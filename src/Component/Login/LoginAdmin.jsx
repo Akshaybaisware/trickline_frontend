@@ -74,7 +74,7 @@ const LoginAdmin = () => {
       const apiUrl = import.meta.env.VITE_APP_API_URL;
       console.log(inputFields, "input");
       const response = await axios.post(
-        `${apiUrl}/user/adminsignin`,
+        `${apiUrl}/auth/adminsignin`,
         inputFields,
         {
           headers: {
@@ -82,6 +82,7 @@ const LoginAdmin = () => {
           },
         }
       );
+      console.log(response, "res");
       if (response.status === 200) {
         setUserrole(response.data.role);
         setUserContext(response.data.role);
@@ -221,7 +222,6 @@ const LoginAdmin = () => {
             </NavLink>
           </Box>
           <Button
-           
             height={"3rem"}
             style={buttonStyle}
             type="submit"
@@ -259,7 +259,7 @@ const buttonStyle = {
   background: "black",
   fontWeight: "700",
   fontFamily: '"Poppins", sans-serif',
-  transition: "background 0.3s, color 0.3s",  // Adding transition for a smooth effect
+  transition: "background 0.3s, color 0.3s", // Adding transition for a smooth effect
 
   ":hover": {
     background: "FloralWhite",

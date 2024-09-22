@@ -49,18 +49,17 @@ import ActiveUser from "./Component/ActiveUser/ActiveUser";
 import FrezzUser from "./Component/FrezzUser/FrezzUser";
 import FrezzUserForm from "./Component/FrezzUser/FrezzUserForm";
 import { useEffect } from "react";
+import Agreement from "./Component/Dashboard/Report/Agreement";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
       <Route path="/employmentform" element={<StampPaper />} />
-      <Route
-        path="employmentformdetails/:id"
-        element={<StampPaperView />}
-      />
+      <Route path="employmentformdetails/:id" element={<StampPaperView />} />
       <Route path="qccheck" element={<QcCheck />} />
       <Route index element={<Login />} />
-       <Route path="/signup" element={<SignUp />} />       <Route path="/admin" element={<LoginAdmin />} />
+      <Route path="/signup" element={<SignUp />} />{" "}
+      <Route path="/admin" element={<LoginAdmin />} />
       <Route path="/userlogin" element={<UserLogin />} />
       <Route path="/ForgetPassword" element={<ForgetPassword />} />
       <Route path="/setPassword" element={<SetPassword />} />
@@ -68,18 +67,17 @@ const router = createBrowserRouter(
         {/* {/ ADMIN PART /} */}
         <Route
           path="dashboard"
-          element={<ProtectedRoute element={<Dashboard />} />}  //OUTLET
+          element={<ProtectedRoute element={<Dashboard />} />} //OUTLET
         >
-          <Route index element={<DashboardOverview />} /> 
-        </Route> 
+          <Route index element={<DashboardOverview />} />
+        </Route>
 
         <Route
           path="user"
           element={<ProtectedRoute element={<UserOutlet />} />}
-
         >
           <Route index element={<User />} />
-          <Route path="activeUser" element={<ActiveUser/>} />
+          <Route path="activeUser" element={<ActiveUser />} />
           <Route path="frezzuser" element={<FrezzUser />} />
           <Route path="registration" element={<Registration />} />
           <Route path="registrationform" element={<RegistrationForm />} />
@@ -87,18 +85,18 @@ const router = createBrowserRouter(
             path="editregistration/:userId"
             element={<EditRegistration />}
           />
-           
-          <Route
-            path="freezeuserform/:userId"
-            element={< FrezzUserForm />}
-          />
+
+          <Route path="freezeuserform/:userId" element={<FrezzUserForm />} />
           <Route
             path="registeruserdetail/:userId"
             element={<RegisterUserDetail />}
           />
           <Route path="pending" element={<Pending />} />
-      
-          <Route path ="pendingformDetails/:userId" element={< PendingDetails />} />
+
+          <Route
+            path="pendingformDetails/:userId"
+            element={<PendingDetails />}
+          />
           <Route path="plan" element={<Plan />} />
           <Route path="userAgreement" element={<UserAgreement />} />
         </Route>
@@ -107,7 +105,7 @@ const router = createBrowserRouter(
         <Route path="reportform/:userId" element={<ReportForm />} />
         <Route path="recovery" element={<Recovery />} />
         <Route path="recoveryprofile/:userId" element={<RecoveryProfile />} />
-        
+
         <Route path="employees" element={<Employees />} />
         <Route
           path="employeeprofileedit/:userId"
@@ -118,14 +116,13 @@ const router = createBrowserRouter(
         <Route path="assignment" element={<Assignment />} />
         <Route path="newassignment" element={<NewAssignment />} />
         <Route path="assignmentreport" element={<AssignmentReport />} />
-
+        <Route path="agreement" element={<Agreement />} />
         {/* <Route
         path="usersidebar"
         element={<ProtectedRoute element={<Dashboard />} />}
       > */}
         {/* {/ Add routes specific to the user dashboard /} */}
       </Route>
-
       {/* {/ <Route path="" element={<UserSidebar />} /> /} */}
     </Route>
   )
@@ -139,10 +136,10 @@ function App() {
       return message; // For some older browsers
     };
 
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("beforeunload", handleBeforeUnload);
 
     return () => {
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
   return (

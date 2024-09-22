@@ -1,5 +1,3 @@
-
-
 import {
   Box,
   Button,
@@ -43,9 +41,9 @@ const RegisterUserDetail = () => {
     caller: "",
     status: "",
     loginStatus: "",
-    password:"",
-    startDate:"",
-    endDate:"",
+    password: "",
+    startDate: "",
+    endDate: "",
   });
 
   // modal button
@@ -55,12 +53,12 @@ const RegisterUserDetail = () => {
   // useEffect to fetch specific user by ID
   useEffect(() => {
     const fetchUserDetails = async () => {
-      
       try {
-        const response = await axios.get(
-          `${apiUrl}/user/getuser_by_id/${userId}`
-        );
+        const response = await axios.post(`${apiUrl}/user/getuserbyid/`, {
+          userId: userId,
+        });
         const data = response.data;
+        console.log(data, "userdata");
         // console.log(data?.User.name);
         // console.log(data?.User);
         setInputField({
@@ -68,12 +66,12 @@ const RegisterUserDetail = () => {
           email: data?.User?.email,
           mobile: data?.User?.mobile,
           address: data?.User?.address,
-          plan: "",
+          plan: data?.User?.plan,
           caller: data?.User?.caller,
           status: data?.User?.status,
-          password:data?.User?.password,
-          startDate:data?.User?.startDate,
-          endDate:data?.User?.endDate,
+          password: data?.User?.password,
+          startDate: data?.User?.startDate,
+          endDate: data?.User?.endDate,
         });
       } catch (error) {
         console.error("Error fetching user details:", error);
@@ -96,9 +94,7 @@ const RegisterUserDetail = () => {
   const deleteUser = async (id) => {
     try {
       // console.log(id);
-      const response = await axios.delete(
-        `${apiUrl}/user/delete_user/${id}`
-      );
+      const response = await axios.delete(`${apiUrl}/user/delete_user/${id}`);
       if (response.status === 200) {
         navigate("/user/registration");
         alert("User Deleted Succesfully.");
@@ -110,18 +106,17 @@ const RegisterUserDetail = () => {
     }
   };
 
-
   //send mail again
   const SendEmail = async (userId) => {
     // console.log(userId, "id");
     const hostName = window.location.hostname;
     const port = 5173;
-    const url = {url: `http://${hostName}:${port}/`};
+    const url = { url: `http://${hostName}:${port}/` };
     // console.log(url, "Responce URl");
     try {
-      const response = await axios.post(
-        `${apiUrl}/user/sendUserInfo/${userId}`
-      );
+      const response = await axios.post(`${apiUrl}/user/senduserinfo`, {
+        userID: userId,
+      });
       // console.log(response, "url mil jayega");
 
       if (response.status === 200) {
@@ -136,7 +131,6 @@ const RegisterUserDetail = () => {
 
   return (
     <Box
-    
       marginLeft={"1rem"}
       marginTop={"1rem"}
       className="employee-form-container"
@@ -150,7 +144,7 @@ const RegisterUserDetail = () => {
                 name="name"
                 onChange={onChangeHandler}
                 value={inputField.name}
-                width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 placeholder="Kaveri Kappor"
               />
@@ -163,7 +157,7 @@ const RegisterUserDetail = () => {
                 name="email"
                 value={inputField.email}
                 onChange={onChangeHandler}
-                width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="email"
                 placeholder="kaveri@gmail.com"
               />
@@ -178,7 +172,7 @@ const RegisterUserDetail = () => {
                 name="mobile"
                 onChange={onChangeHandler}
                 value={inputField.mobile}
-                width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="number"
               />
             </FormControl>
@@ -190,7 +184,7 @@ const RegisterUserDetail = () => {
                 name="address"
                 value={inputField.address}
                 onChange={onChangeHandler}
-                width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 placeholder="Address"
               />
@@ -205,11 +199,10 @@ const RegisterUserDetail = () => {
                 name="plan"
                 onChange={onChangeHandler}
                 value={inputField.plan}
-                width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 placeholder="Select option"
               >
                 <option value="option1">520</option>
-              
               </Select>
             </FormControl>
           </Box>
@@ -220,7 +213,7 @@ const RegisterUserDetail = () => {
                 name="caller"
                 onChange={onChangeHandler}
                 value={inputField.caller}
-                width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 placeholder="Select option"
               >
                 <option value="option1">Caller 1</option>
@@ -237,7 +230,7 @@ const RegisterUserDetail = () => {
             <FormControl className="employee-form-group">
               <FormLabel>Status</FormLabel>
               <Input
-                   width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 name="status"
                 onChange={onChangeHandler}
@@ -249,7 +242,7 @@ const RegisterUserDetail = () => {
             <FormControl className="employee-form-group">
               <FormLabel>Login Status</FormLabel>
               <Input
-                   width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 name="status"
                 value={inputField.status}
@@ -264,7 +257,7 @@ const RegisterUserDetail = () => {
             <FormControl className="employee-form-group">
               <FormLabel>User Id</FormLabel>
               <Input
-                   width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 name="status"
                 onChange={onChangeHandler}
@@ -276,7 +269,7 @@ const RegisterUserDetail = () => {
             <FormControl className="employee-form-group">
               <FormLabel>Password</FormLabel>
               <Input
-                   width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 name="status"
                 value={inputField.password}
@@ -291,11 +284,11 @@ const RegisterUserDetail = () => {
             <FormControl className="employee-form-group">
               <FormLabel>Start Date</FormLabel>
               <Input
-                   width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 name="status"
                 onChange={onChangeHandler}
-                value={inputField.startDate.split("T")[0]}
+                value={inputField?.startDate?.split("T")[0]}
               />
             </FormControl>
           </Box>
@@ -303,10 +296,10 @@ const RegisterUserDetail = () => {
             <FormControl className="employee-form-group">
               <FormLabel>End Date</FormLabel>
               <Input
-                   width={{base:"300px",md:"400px"}}
+                width={{ base: "300px", md: "400px" }}
                 type="text"
                 name="status"
-                value={inputField.endDate.split("T")[0]}
+                value={inputField?.endDate?.split("T")[0]}
                 onChange={onChangeHandler}
               />
             </FormControl>
@@ -316,78 +309,76 @@ const RegisterUserDetail = () => {
 
       {/* <DeleteIcon onClick={onOpen} /> */}
       <Stack direction={"column"}>
-          <Box
-            width={{base:"15rem" , md:"30rem"}}
+        <Box width={{ base: "15rem", md: "30rem" }}>
+          <Button
+            marginTop={"1rem"}
+            _hover={{ background: "white", color: "gray" }}
+            onClick={onOpen}
+            bg={"red"}
           >
-      <Button 
-    marginTop={'1rem'}
-    _hover={{ background: "white", color: "gray" }}
-      onClick={onOpen} bg={'red'}>
-        Delete
-      </Button>
-      {/* Modal Code */}
-      <AlertDialog
-        isOpen={isOpen}
-        leastDestructiveRef={cancelRef}
-        onClose={onClose}
-      >
-        <AlertDialogOverlay>
-          <AlertDialogContent>
-            <AlertDialogHeader fontSize="lg" fontWeight="bold">
-              Delete User
-            </AlertDialogHeader>
+            Delete
+          </Button>
+          {/* Modal Code */}
+          <AlertDialog
+            isOpen={isOpen}
+            leastDestructiveRef={cancelRef}
+            onClose={onClose}
+          >
+            <AlertDialogOverlay>
+              <AlertDialogContent>
+                <AlertDialogHeader fontSize="lg" fontWeight="bold">
+                  Delete User
+                </AlertDialogHeader>
 
-            <AlertDialogBody>
-              Are you sure? You want to delete !!.
-            </AlertDialogBody>
+                <AlertDialogBody>
+                  Are you sure? You want to delete !!.
+                </AlertDialogBody>
 
-            <AlertDialogFooter>
-              <Button ref={cancelRef} onClick={onClose}>
-                Cancel
-              </Button>
-              <Button
-             
-                colorScheme="red"
-                onClick={() => {
-                  onClose();
-                  deleteUser(userId);
-                }}
-                ml={3}
-              >
-                Delete
-              </Button>
-            </AlertDialogFooter>
-          </AlertDialogContent>
-        </AlertDialogOverlay>
-      </AlertDialog>
-      </Box>
+                <AlertDialogFooter>
+                  <Button ref={cancelRef} onClick={onClose}>
+                    Cancel
+                  </Button>
+                  <Button
+                    colorScheme="red"
+                    onClick={() => {
+                      onClose();
+                      deleteUser(userId);
+                    }}
+                    ml={3}
+                  >
+                    Delete
+                  </Button>
+                </AlertDialogFooter>
+              </AlertDialogContent>
+            </AlertDialogOverlay>
+          </AlertDialog>
+        </Box>
 
-      {/* <Link to={`/user/editregistration/${userId}`}>
+        {/* <Link to={`/user/editregistration/${userId}`}>
           <EditIcon />
         </Link> */}
-        <Box
-         width={{base:"15rem" , md:"30rem"}}
-       
-        >
-        
-      <Link to={`/user/editregistration/${userId}`}>
-        <Button
-        width={{md:"5rem"}}
-        marginBottom={'1rem'}
-        marginTop={'1rem'}
-        height={{base:'3.3rem' , md:"2.5r em"}}
-        colorScheme="blue">Edit</Button>
-      </Link>
+        <Box width={{ base: "15rem", md: "30rem" }}>
+          <Link to={`/user/editregistration/${userId}`}>
+            <Button
+              width={{ md: "5rem" }}
+              marginBottom={"1rem"}
+              marginTop={"1rem"}
+              height={{ base: "3.3rem", md: "2.5r em" }}
+              colorScheme="blue"
+            >
+              Edit
+            </Button>
+          </Link>
 
-      <Button
-        onClick={() => SendEmail(userId)}
-        height={{base:'3.3rem' , md:"2.5r em"}}
-        marginLeft={"1rem"}
-        colorScheme="red"
-      >
-       Send Work Mail
-      </Button>
-       </Box>
+          <Button
+            onClick={() => SendEmail(userId)}
+            height={{ base: "3.3rem", md: "2.5r em" }}
+            marginLeft={"1rem"}
+            colorScheme="red"
+          >
+            Send Work Mail
+          </Button>
+        </Box>
       </Stack>
     </Box>
   );

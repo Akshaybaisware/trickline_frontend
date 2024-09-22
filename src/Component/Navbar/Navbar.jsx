@@ -31,24 +31,24 @@ export default function Navbar() {
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
 
-  const userRole = sessionStorage.getItem("userrole")
+  const userRole = sessionStorage.getItem("userrole");
   console.log(userRole);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(userRole,"called");
-  
+    console.log(userRole, "called");
+
     if (newPassword !== confirmPassword) {
       setErrorMessage("Passwords do not match");
       return;
     }
-  
+
     try {
       const response = await axios.post(`${apiUrl}/user/changePassword`, {
         newPassword,
-        userRole
+        userRole,
       });
-  
+
       setSuccessMessage(response.data.message);
       setNewPassword("");
       setConfirmPassword("");
@@ -59,7 +59,6 @@ export default function Navbar() {
       setErrorMessage("Error changing password");
     }
   };
-  
 
   const handleOpenModal = () => {
     setIsOpen(true);
@@ -68,7 +67,7 @@ export default function Navbar() {
   const handleCloseModal = () => {
     setIsOpen(false);
   };
-  
+
   return (
     <Flex
       direction={{ base: "row", md: "row" }} // Stack vertically on small screens and horizontally on medium and larger screens
@@ -118,7 +117,7 @@ export default function Navbar() {
           marginRight="1.5"
         />
       </Box> */}
-      { userRole === "Admin" &&
+      {userRole === "admin" && (
         <Box onClick={handleOpenModal} cursor="pointer">
           <Avatar
             marginTop={"1rem"}
@@ -131,7 +130,7 @@ export default function Navbar() {
             marginRight="1.5"
           />
         </Box>
-      }
+      )}
 
       <Modal isOpen={isOpen} onClose={handleCloseModal}>
         <ModalOverlay />
@@ -151,8 +150,8 @@ export default function Navbar() {
                   onChange={(e) => setNewPassword(e.target.value)}
                   border="1px solid #ccc"
                   borderRadius="4px"
-                  />
-                  {console.log(newPassword , "newpassword")}
+                />
+                {console.log(newPassword, "newpassword")}
               </FormControl>
               <FormControl marginTop="1rem" marginBottom="1rem">
                 <FormLabel>Confirm Password:</FormLabel>
@@ -175,7 +174,7 @@ export default function Navbar() {
             {successMessage && (
               <p style={{ color: "green" }}>{successMessage}</p>
             )}
-            <Button type="submit"    onClick={handleSubmit} colorScheme="blue">
+            <Button type="submit" onClick={handleSubmit} colorScheme="blue">
               Change Password
             </Button>
           </ModalFooter>

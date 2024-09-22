@@ -67,14 +67,14 @@ export default function SideBar() {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const { getUser } = useUserContext();
   // const userRole = getUser();
-  const userRole = sessionStorage.getItem("userrole")
+  const userRole = sessionStorage.getItem("userrole");
   console.log(userRole);
-  const isAdmin = userRole === "Admin";
+  const isAdmin = userRole === "admin";
   const isUser = userRole === "User";
   console.log(isAdmin, isUser);
   const toast = useToast();
   const navigate = useNavigate();
-console.log(isMobileView , onOpen , "ismobileview")
+  console.log(isMobileView, onOpen, "ismobileview");
   useEffect(() => {
     const handleResize = () => {
       setIsMobileView(window.innerWidth <= 768);
@@ -209,54 +209,54 @@ console.log(isMobileView , onOpen , "ismobileview")
                               </ListItem>
 
                               <ListItem
-                                      className="listItem"
-                                      p="5px"
-                                      borderRadius="10px"
-                                    >
-                                      <ListIcon
-                                        as={BsFileEarmarkSpreadsheet}
-                                        color="gray.500"
-                                        ml="10px"
-                                      />
-                                      <NavLink to="/user/activeUser">
-                                        <Text
-                                          as="span"
-                                          pl="10px"
-                                          fontSize={{
-                                            base: "1rem",
-                                            md: "1rem",
-                                          }}
-                                          color="black"
-                                        >
-                                          Active User
-                                        </Text>
-                                      </NavLink>
-                                    </ListItem>
+                                className="listItem"
+                                p="5px"
+                                borderRadius="10px"
+                              >
+                                <ListIcon
+                                  as={BsFileEarmarkSpreadsheet}
+                                  color="gray.500"
+                                  ml="10px"
+                                />
+                                <NavLink to="/user/activeUser">
+                                  <Text
+                                    as="span"
+                                    pl="10px"
+                                    fontSize={{
+                                      base: "1rem",
+                                      md: "1rem",
+                                    }}
+                                    color="black"
+                                  >
+                                    Active User
+                                  </Text>
+                                </NavLink>
+                              </ListItem>
 
-                                    <ListItem
-                                      className="listItem"
-                                      p="5px"
-                                      borderRadius="10px"
-                                    >
-                                      <ListIcon
-                                        as={BsFileEarmarkSpreadsheet}
-                                        color="gray.500"
-                                        ml="10px"
-                                      />
-                                      <NavLink to="/user/frezzuser">
-                                        <Text
-                                          as="span"
-                                          pl="10px"
-                                          fontSize={{
-                                            base: "1rem",
-                                            md: "1rem",
-                                          }}
-                                          color="black"
-                                        >
-                                          Freeze User
-                                        </Text>
-                                      </NavLink>
-                                    </ListItem>
+                              <ListItem
+                                className="listItem"
+                                p="5px"
+                                borderRadius="10px"
+                              >
+                                <ListIcon
+                                  as={BsFileEarmarkSpreadsheet}
+                                  color="gray.500"
+                                  ml="10px"
+                                />
+                                <NavLink to="/user/frezzuser">
+                                  <Text
+                                    as="span"
+                                    pl="10px"
+                                    fontSize={{
+                                      base: "1rem",
+                                      md: "1rem",
+                                    }}
+                                    color="black"
+                                  >
+                                    Freeze User
+                                  </Text>
+                                </NavLink>
+                              </ListItem>
 
                               <ListItem
                                 className="listItem"
@@ -880,7 +880,7 @@ console.log(isMobileView , onOpen , "ismobileview")
                                 </Text>
                               </NavLink>
                             </ListItem>
-{/* 
+                            {/*
                             <ListItem
                               className="listItem"
                               p="5px"
