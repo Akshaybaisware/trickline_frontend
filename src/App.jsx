@@ -50,7 +50,7 @@ import FrezzUser from "./Component/FrezzUser/FrezzUser";
 import FrezzUserForm from "./Component/FrezzUser/FrezzUserForm";
 import { useEffect } from "react";
 import Agreement from "./Component/Dashboard/Report/Agreement";
-import StampPaperSubmission from "./Component/Dashboard/UserAgreement/stampapersucess";
+import StampPaperSubmission from "./Component/Dashboard/UserAgreement/Stampapersucess";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

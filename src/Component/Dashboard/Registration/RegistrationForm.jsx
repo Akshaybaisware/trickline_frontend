@@ -134,13 +134,13 @@ const RegistrationForm = () => {
               type="tel"
               id="mobile"
               name="mobile"
-              {...register("mobile", {
-                required: "Mobile number is required",
-                pattern: {
-                  value: /^[6-9]\d{9}$/,
-                  message: "Mobile number must be 10 digits",
-                },
-              })}
+              // {...register("mobile", {
+              //   required: "Mobile number is required",
+              //   pattern: {
+              //     value: /^[6-9]\d{9}$/,
+              //     message: "Mobile number must be 10 digits",
+              //   },
+              // })}
               placeholder="Enter Mobile No"
               _hover={{ borderColor: "teal.500" }}
             />
