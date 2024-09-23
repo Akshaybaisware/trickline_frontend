@@ -68,8 +68,8 @@ export default function SideBar() {
   const { getUser } = useUserContext();
   // const userRole = getUser();
   const userRole = sessionStorage.getItem("userrole");
-  console.log(userRole);
-  const isAdmin = userRole === "admin";
+  console.log(userRole, "userrole");
+  const isAdmin = userRole === "Admin";
   const isUser = userRole === "User";
   console.log(isAdmin, isUser);
   const toast = useToast();

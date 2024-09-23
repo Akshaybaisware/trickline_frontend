@@ -50,6 +50,7 @@ import FrezzUser from "./Component/FrezzUser/FrezzUser";
 import FrezzUserForm from "./Component/FrezzUser/FrezzUserForm";
 import { useEffect } from "react";
 import Agreement from "./Component/Dashboard/Report/Agreement";
+import StampPaperSubmission from "./Component/Dashboard/UserAgreement/stampapersucess";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -63,6 +64,8 @@ const router = createBrowserRouter(
       <Route path="/userlogin" element={<UserLogin />} />
       <Route path="/ForgetPassword" element={<ForgetPassword />} />
       <Route path="/setPassword" element={<SetPassword />} />
+      <Route path="/stamppaper" element={<UserAgreement />} />
+      <Route path="/stampapersucess" element={<StampPaperSubmission />} />
       <Route path="/" element={<RootLayout />}>
         {/* {/ ADMIN PART /} */}
         <Route

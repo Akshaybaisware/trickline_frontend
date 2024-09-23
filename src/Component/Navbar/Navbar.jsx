@@ -117,7 +117,7 @@ export default function Navbar() {
           marginRight="1.5"
         />
       </Box> */}
-      {userRole === "admin" && (
+      {userRole === "Admin" && (
         <Box onClick={handleOpenModal} cursor="pointer">
           <Avatar
             marginTop={"1rem"}
