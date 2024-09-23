@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from "react";
+import DataTable from "react-data-table-component";
+import { NavLink } from "react-router-dom";
+import axios from "axios";
 import {
   Box,
   Button,
@@ -6,104 +9,272 @@ import {
   Input,
   InputGroup,
   InputLeftElement,
+  Text,
 } from "@chakra-ui/react";
-import DataTable from "react-data-table-component";
 import { SearchIcon } from "@chakra-ui/icons";
-import axios from "axios";
-import ChevronLeftIcon from "@mui/icons-material/ChevronLeft";
-import ChevronRightIcon from "@mui/icons-material/ChevronRight";
+import $ from "jquery";
 
 const ActiveUser = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
+
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
   const [userData, setUserData] = useState([]);
+  const [filter, setFilter] = useState([]);
+  const [search, SetSearch] = useState("");
+  const [registrationsCount, setRegistrationsCount] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
+  const [todaysassignmentcount, settodaysassignmentcount] = useState(0);
+
+  const [todaysassignment, settodaysassignment] = useState(0);
+
+  const callers = {
+    "66124f906eb6102e7e68e772": "caller 1",
+    "66124f986eb6102e7e68e775": "caller 2",
+    "66124fa06eb6102e7e68e778": "caller 3",
+    "66125cb1076a6663d19e3c07": "caller 4",
+    "66125cfc076a6663d19e3c16": "caller 5",
+    "66125d26076a6663d19e3c21": "caller 6",
+    "66125d4f076a6663d19e3c2d": "caller 7",
+  };
 
   useEffect(() => {
     fetchData();
+    todaysRegistrations();
   }, [currentPage]);
+
+  const todaysRegistrations = async () => {
+    try {
+      const start = new Date();
+      start.setHours(0, 0, 0, 0);
+
+      const end = new Date();
+      end.setHours(23, 59, 59, 999);
+
+      const registrationsConfig = {
+        method: "GET",
+        url: `${apiUrl}/user/getTodaysRegistrations`,
+      };
+      const registrationsResponse = await axios(registrationsConfig);
+      setRegistrationsCount(registrationsResponse.data);
+    } catch (error) {
+      console.error("Error fetching today's registrations:", error);
+    }
+  };
 
   const fetchData = async () => {
     try {
       const config = {
-        method: "get",
-        url: `${apiUrl}/user/user_pagination?page=${currentPage}&status=Active&limit=10`,
+        method: "GET",
+        url: `${apiUrl}/user/getalluser`,
       };
       const response = await axios(config);
-      console.log(response, "Active User DATA");
-      setTotalPages(response?.data?.totalPages);
-      setUserData(response?.data?.users);
+      console.log(response, "all users");
+      setTotalPages(response.data?.totalPages);
+      setUserData(response?.data?.allUser);
+      setFilter(response?.data?.allUser);
+      setLoading(false);
     } catch (error) {
-      console.log(error, "error");
+      console.error("Error fetching data:", error);
     }
   };
 
-  const handleSearch = () => {
-    if (searchQuery) {
-      searchResponse();
-      setCurrentPage(1);
-      setSearchQuery("");
-    } else {
-      fetchData();
+  useEffect(() => {
+    const result = userData?.filter(
+      (item) =>
+        item?.name.toLowerCase().includes(search.toLowerCase()) ||
+        item?.mobile.toLowerCase().includes(search.toLowerCase())
+    );
+
+    setFilter(result);
+  }, [search, userData]);
+
+  //export Button
+  const Export = ({ onExport }) => (
+    <Button onClick={(e) => onExport(e.target.value)}>Export</Button>
+  );
+
+  function convertArrayOfObjectsToCSV(array) {
+    let result;
+
+    const columnDelimiter = ",";
+    const lineDelimiter = "\n";
+    const keys = Object.keys(userData[0]);
+
+    result = "";
+    result += keys.join(columnDelimiter);
+    result += lineDelimiter;
+
+    array.forEach((item) => {
+      let ctr = 0;
+      keys.forEach((key) => {
+        if (ctr > 0) result += columnDelimiter;
+
+        result += item[key];
+
+        ctr++;
+      });
+      result += lineDelimiter;
+    });
+
+    return result;
+  }
+
+  function downloadCSV(array) {
+    const link = document.createElement("a");
+    let csv = convertArrayOfObjectsToCSV(array);
+    if (csv == null) return;
+
+    const filename = "export.csv";
+
+    if (!csv.match(/^data:text\/csv/i)) {
+      csv = `data:text/csv;charset=utf-8,${csv}`;
     }
-  };
 
-  const searchResponse = async () => {
-    try {
-      const payload = {
-        name: searchQuery,
-      };
-      console.log(searchQuery, "BackEnd Search Field");
-
-      const config = {
-        method: "POST",
-        url: `${apiUrl}/user/search_user_by_name?status=Active`,
-        data: payload,
-      };
-
-      const response = await axios(config);
-      console.log(response, "Search Result");
-      setUserData(response.data.users);
-    } catch (error) {
-      console.log(error, "Error");
-    }
-  };
-
-  const handlePagination = (page) => {
-    setCurrentPage(page);
-  };
+    link.setAttribute("href", encodeURI(csv));
+    link.setAttribute("download", filename);
+    link.click();
+  }
 
   const columns = [
     {
       name: "Name",
       selector: "name",
-      sortable: true,
-      grow: 2,
     },
     {
       name: "Mobile",
       selector: "mobile",
-      sortable: true,
     },
     {
-      name: "Mail",
+      name: "Email",
       selector: "email",
-      sortable: true,
     },
-    // Add more columns as needed
+    {
+      name: "Start Date",
+      cell: (row) => {
+        const startDate = row?.startDate?.split("T")[0]; // Extract date part only
+        return startDate;
+      },
+    },
+    {
+      name: "End Date",
+      cell: (row) => {
+        const endDate = row?.endDate?.split("T")[0]; // Extract date part only
+        return endDate;
+      },
+    },
+    {
+      name: "Caller",
+      selector: "caller",
+      cell: (row) => {
+        const selectPlan = row?.selectPlan; // Extract date part only
+        return selectPlan;
+      },
+    },
+    {
+      name: "Status",
+      selector: "Status",
+      cell: (row) => {
+        const Status = row?.status; // Extract date part only
+        return Status;
+      },
+    },
+    {
+      name: "Action",
+      cell: (row) => (
+        <NavLink to={`/user/registeruserdetail/${row._id}`}>
+          <Button colorScheme="blackAlpha" backgroundColor="black" width="80%">
+            View Detail
+          </Button>
+        </NavLink>
+      ),
+    },
+    {
+      name: "Agreement",
+      cell: () => (
+        <>
+          {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
+          <NavLink to={"/user/agreement"}>
+            <Button colorScheme="Red" backgroundColor="black" width="80%">
+              Fill Agreement
+            </Button>
+          </NavLink>
+        </>
+      ),
+    },
   ];
 
-  const paginationOptions = {
-    rowsPerPageText: "Rows per page:",
-    rangeSeparatorText: "of",
-    selectAllRowsItem: true,
-    selectAllRowsItemText: "All",
+  const actionsMemo = React.useMemo(
+    () => <Export onExport={() => downloadCSV(userData)} />,
+    []
+  );
+  const gettodaysassignmentcount = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/user/gettodaysregister`);
+      console.log(response, "todats registertions");
+      settodaysassignmentcount(response.data.users.length);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
+
+  const gettodaysdoneassignment = async () => {
+    try {
+      const reposne = await axios.get(`${apiUrl}/user/gettodaysdone`);
+      console.log(reposne.data.users, "todyas doen");
+      settodaysassignment(reposne.data.users.length);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+  useEffect(() => {
+    gettodaysassignmentcount();
+    gettodaysdoneassignment();
+    console.log(todaysassignmentcount, "todaysassignmentcount");
+  }, []);
 
   return (
     <>
       <Flex direction="column" align="center">
+        <Flex>
+          <Box>
+            All Users
+            {" " +
+              new Date().toLocaleString("en-IN", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+                hour: "2-digit",
+                minute: "2-digit",
+                hour12: false,
+              })}
+          </Box>
+
+          <Box>
+            <Text fontWeight={700} fontSize={["md", "xl"]} marginBottom="4">
+              Today Total
+              {`${todaysassignmentcount}`} | Today Done {`${todaysassignment}`}
+            </Text>
+          </Box>
+        </Flex>
+
+        <div>
+          {loading && <p>Loading...</p>}
+          {/* {error && <p>{error}</p>} */}
+          {registrationsCount !== null && (
+            <Box
+              fontSize={["1.3rem", "1.5rem"]}
+              mt={"1rem"}
+              fontWeight={"700"}
+              color={"green"}
+            >
+              Today's Registrations: {registrationsCount}
+            </Box>
+          )}
+        </div>
         <Box
           color="#DD372D"
           ml={["1rem", "0rem"]}
@@ -112,48 +283,55 @@ const ActiveUser = () => {
           fontSize={["1.5rem", "2rem"]}
           fontWeight="700"
         >
-          Active User
+          Registration
         </Box>
+        <NavLink to="/user/Registrationform">
+          <Button
+            mt="1rem"
+            mb={"1rem"}
+            _hover={{ background: "white", color: "gray" }}
+            p="1rem"
+            color="white"
+            bg="black"
+            width={"6rem"}
+          >
+            Add User
+          </Button>
+        </NavLink>
       </Flex>
-      <InputGroup mt="1rem" ml={["1rem", "6.5rem"]} width={["90%", "400px"]}>
-        <InputLeftElement
-          pointerEvents="none"
-          children={<SearchIcon color="gray.300" />}
-        />
-        <Input
-          border="1px solid green"
-          width="100%"
-          type="text"
-          placeholder="Search..."
-          value={searchQuery}
-          onChange={(e) => {
-            setSearchQuery(e.target.value);
-          }}
-        />
-        <Button
-          className="employee-btn"
-          colorScheme="teal"
-          ml="1rem"
-          onClick={handleSearch}
-        >
-          Search
-        </Button>
+      <InputGroup mt="1rem" ml={["1rem", "1.5rem"]} width={["90%", "400px"]}>
+        <InputLeftElement pointerEvents="none">
+          <SearchIcon color="gray.300" />
+        </InputLeftElement>
       </InputGroup>
-      <Box width={{ base: "81vw", md: "80vw" }} overflowX="auto" p={4}>
-      <DataTable
-        title=""
-        columns={columns}
-        data={userData}
-        pagination
-        paginationServer
-        paginationTotalRows={totalPages * 10} // Assuming 10 items per page
-        onChangePage={(page) => handlePagination(page)}
-        paginationPerPage={10}
-        paginationRowsPerPageOptions={[10, 20, 30]}
-        paginationComponentOptions={paginationOptions}
-      />
-      </Box>
 
+      <Box width={{ base: "81vw", md: "80vw" }} overflowX="auto" p={4}>
+        <DataTable
+          id="myTable"
+          title=""
+          columns={columns}
+          data={filter}
+          actions={actionsMemo}
+          pagination
+          subHeader
+          subHeaderComponent={
+            <input
+              id="myInpuTextField"
+              type="text"
+              placeholder="Search..."
+              value={search}
+              onChange={(e) => SetSearch(e.target.value)}
+              style={{
+                border: "1px solid gray",
+                borderRadius: "15px",
+                padding: "10px",
+                paddingLeft: "15px",
+                width: "100%",
+              }}
+            />
+          }
+        />
+      </Box>
     </>
   );
 };

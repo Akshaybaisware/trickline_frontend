@@ -197,7 +197,7 @@ const Registration = () => {
       cell: () => (
         <>
           {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
-          <NavLink to={"/user/agreement"}>
+          <NavLink to={"/stamppaper"}>
             <Button colorScheme="Red" backgroundColor="black" width="80%">
               Fill Agreement
             </Button>
@@ -213,9 +213,7 @@ const Registration = () => {
   );
   const gettodaysassignmentcount = async () => {
     try {
-      const response = await axios.get(
-        "https://greentenbe-production.up.railway.app/api/user/gettodaysregister"
-      );
+      const response = await axios.get(`${apiUrl}/user/gettodaysregister`);
       console.log(response, "todats registertions");
       settodaysassignmentcount(response.data.users.length);
     } catch (error) {
@@ -225,9 +223,7 @@ const Registration = () => {
 
   const gettodaysdoneassignment = async () => {
     try {
-      const reposne = await axios.get(
-        "https://greentenbe-production.up.railway.app/api/user/gettodaysdone"
-      );
+      const reposne = await axios.get(`${apiUrl}/user/gettodaysdone`);
       console.log(reposne.data.users, "todyas doen");
       settodaysassignment(reposne.data.users.length);
     } catch (error) {
@@ -259,8 +255,9 @@ const Registration = () => {
 
           <Box>
             <Text fontWeight={700} fontSize={["md", "xl"]} marginBottom="4">
-              Today Total
-              {`${todaysassignmentcount}`} | Today Done {`${todaysassignment}`}
+              Today Pending
+              {`${todaysassignmentcount}`} | Today Sucess{" "}
+              {`${todaysassignment}`}
             </Text>
           </Box>
         </Flex>

@@ -94,7 +94,9 @@ const RegisterUserDetail = () => {
   const deleteUser = async (id) => {
     try {
       // console.log(id);
-      const response = await axios.delete(`${apiUrl}/user/delete_user/${id}`);
+      const response = await axios.post(`${apiUrl}/user/deleteuser`, {
+        userId: userId,
+      });
       if (response.status === 200) {
         navigate("/user/registration");
         alert("User Deleted Succesfully.");
