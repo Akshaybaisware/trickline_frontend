@@ -52,12 +52,12 @@ const StampPaper = () => {
 
       const config = {
         method: "post",
-        url: `${apiUrl}/user/add_terms`,
+        url: `${apiUrl}/terms/addterms`,
         data: formData,
       };
       // console.log(formData, "Form Data");
       const response = await axios(config);
-      alert("Your data is Sumitted.....")
+      alert("Your data is Sumitted.....");
       // console.log(response, "resp");
     } catch (err) {
       console.log("err in fetching", err);
@@ -117,47 +117,48 @@ const StampPaper = () => {
             <Image src={image} alt="Description of the image" />
           </Box>
         </Box>
-      
-         <Box display="flex" justifyContent="space-evenly">
-      <Box  mb={{ base: "2", lg: "0" }}>
-        <Image
-          w={{ base: '100%', lg: '150px' }}
-          h={{ base: 'auto', lg: '350px' }}
-          src={notri} alt="Dan Abramov"
-        />
-      </Box>
-      <Box textAlign="center">
-        <Heading as="h2" mb={{ base: "2", lg: "4" }}>
-          Legal Employment Contract 2024
-        </Heading>
 
-        <Text>
-          THIS DIGITAL EMPLOYMENT CONTRACT (this "Agreement") Valid Till
-          Eleven Months From 2024-01-01 BETWEEN:
-        </Text>
+        <Box display="flex" justifyContent="space-evenly">
+          <Box mb={{ base: "2", lg: "0" }}>
+            <Image
+              w={{ base: "100%", lg: "150px" }}
+              h={{ base: "auto", lg: "350px" }}
+              src={notri}
+              alt="Dan Abramov"
+            />
+          </Box>
+          <Box textAlign="center">
+            <Heading as="h2" mb={{ base: "2", lg: "4" }}>
+              Legal Employment Contract 2024
+            </Heading>
 
-        <Text fontSize={"1.5rem"}>
-          <strong>Zemex Service of </strong>
-        </Text>
-        <Text>
-          KASTURI WADI INDRA BAZAR GHANSHAM APARTMENT JAIPUR, RAJASTHAN (RJ),
-          INDIA(IN), 302031 of
-        </Text>
+            <Text>
+              THIS DIGITAL EMPLOYMENT CONTRACT (this "Agreement") Valid Till
+              Eleven Months From 2024-01-01 BETWEEN:
+            </Text>
 
-        <Text fontSize={"1.5rem"}>
-          <strong>(The "Employer")</strong>
-        </Text>
+            <Text fontSize={"1.5rem"}>
+              <strong>Zemex Service of </strong>
+            </Text>
+            <Text>
+              KASTURI WADI INDRA BAZAR GHANSHAM APARTMENT JAIPUR, RAJASTHAN
+              (RJ), INDIA(IN), 302031 of
+            </Text>
 
-        <Text ml={{ base: "0", lg: "10%" }}>OF THE FIRST PARTY </Text>
+            <Text fontSize={"1.5rem"}>
+              <strong>(The "Employer")</strong>
+            </Text>
 
-        <Text>-AND-</Text>
-        <Text>
-          S/O &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;...
-          <strong>(The "Employee")</strong>
-        </Text>
-        <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
-      </Box>
-    </Box>
+            <Text ml={{ base: "0", lg: "10%" }}>OF THE FIRST PARTY </Text>
+
+            <Text>-AND-</Text>
+            <Text>
+              S/O &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;...
+              <strong>(The "Employee")</strong>
+            </Text>
+            <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
+          </Box>
+        </Box>
 
         <Box>
           <Heading as="h3" mb={4}>
@@ -564,7 +565,7 @@ const StampPaper = () => {
             type="email"
             placeholder="Enter Your Email "
             _hover={{ borderColor: "teal.500" }}
-          /> 
+          />
         </FormControl>
         <FormControl w={["350px", "400px"]}>
           <FormLabel>Address</FormLabel>
@@ -636,7 +637,6 @@ const StampPaper = () => {
 
 export default StampPaper;
 
-
 // import {
 //   Box,
 //   Heading,
@@ -694,7 +694,7 @@ export default StampPaper;
 //         isClosable: true,
 //       });
 //       navigate("/stamppaersubmission");
-      
+
 //     } catch (err) {
 //       console.log("err in fetching", err);
 //     }
@@ -756,7 +756,7 @@ export default StampPaper;
 //             <Image src={image} alt="Description of the image" />
 //           </Box>
 //         </Box>
-      
+
 //          <Box display="flex" justifyContent="space-evenly">
 //       <Box  mb={{ base: "2", lg: "0" }}>
 //         <Image
@@ -1252,6 +1252,3 @@ export default StampPaper;
 // };
 
 // export default StampPaper;
-
-
-

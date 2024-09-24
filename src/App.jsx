@@ -51,13 +51,16 @@ import FrezzUserForm from "./Component/FrezzUser/FrezzUserForm";
 import { useEffect } from "react";
 import Agreement from "./Component/Dashboard/Report/Agreement";
 import StampPaperSubmission from "./Component/Dashboard/UserAgreement/Stampapersucess";
+import StampPaperFill from "./Component/StampPaper/StampPaperFill";
+import QcReport from "./Component/Dashboard/Report/QcReport";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route> 
+    <Route>
       <Route path="/employmentform" element={<StampPaper />} />
       <Route path="employmentformdetails/:id" element={<StampPaperView />} />
       <Route path="qccheck" element={<QcCheck />} />
+      <Route path="/qcreport" element={<QcReport />} />
       <Route index element={<Login />} />
       <Route path="/signup" element={<SignUp />} />{" "}
       <Route path="/admin" element={<LoginAdmin />} />
@@ -66,6 +69,7 @@ const router = createBrowserRouter(
       <Route path="/setPassword" element={<SetPassword />} />
       <Route path="/stamppaper" element={<UserAgreement />} />
       <Route path="/stampapersucess" element={<StampPaperSubmission />} />
+      <Route path="/stamppaperfill" element={<StampPaperFill />} />
       <Route path="/" element={<RootLayout />}>
         {/* {/ ADMIN PART /} */}
         <Route

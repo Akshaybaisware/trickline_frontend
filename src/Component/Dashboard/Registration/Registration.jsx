@@ -197,7 +197,7 @@ const Registration = () => {
       cell: () => (
         <>
           {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
-          <NavLink to={"/stamppaper"}>
+          <NavLink to={"/stamppaperfill"}>
             <Button colorScheme="Red" backgroundColor="black" width="80%">
               Fill Agreement
             </Button>
