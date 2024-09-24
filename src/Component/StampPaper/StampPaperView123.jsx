@@ -23,7 +23,7 @@ import sign from "../../Images/SIGN 6.svg";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import { usePDF } from "react-to-pdf";
-import generatePDF, { Resolution, Margin } from 'react-to-pdf';
+import generatePDF, { Resolution, Margin } from "react-to-pdf";
 
 const StampPaperView = () => {
   const { toPDF, targetRef } = usePDF({ filename: "Agreement.pdf" });
@@ -46,11 +46,10 @@ const StampPaperView = () => {
 
   const [loader, setLoader] = useState(false);
 
- 
   const downloadPDF = async (photoPreview, signaturePreview) => {
     const capture = document.querySelector(".downLoadBox");
     setLoader(true);
-  
+
     html2canvas(capture).then(async (canvas) => {
       const imgData = canvas.toDataURL("image/png");
       const doc = new jsPDF({
@@ -58,7 +57,7 @@ const StampPaperView = () => {
         unit: "mm",
         format: [canvas.width, canvas.height],
       });
-  
+
       const marginLeft = 0;
       const marginTop = 0;
       const contentWidth = doc.internal.pageSize.getWidth() - 2 * marginLeft;
@@ -66,17 +65,17 @@ const StampPaperView = () => {
       const aspectRatio = canvas.width / canvas.height;
       let imgWidth = contentWidth;
       let imgHeight = contentWidth / aspectRatio;
-  
+
       if (imgHeight > contentHeight) {
         imgHeight = contentHeight;
         imgWidth = contentHeight * aspectRatio;
       }
-  
+
       const imgX = marginLeft + (contentWidth - imgWidth) / 2;
       const imgY = marginTop + (contentHeight - imgHeight) / 2;
-  
+
       doc.addImage(imgData, "PNG", imgX, imgY, imgWidth, imgHeight);
-  
+
       const photoWidth = 0.05 * contentWidth;
       const photoHeight = photoWidth / aspectRatio / 3;
       const photoX = marginLeft + 0.2 * contentWidth;
@@ -86,25 +85,18 @@ const StampPaperView = () => {
         0.05 * contentHeight -
         photoHeight -
         photoTopMargin;
-  
+
       if (photoPreview) {
         await new Promise((resolve) => {
           const image = new Image();
           image.onload = function () {
-            doc.addImage(
-              this,
-              "JPEG",
-              photoX,
-              photoY,
-              photoWidth,
-              photoHeight
-            );
+            doc.addImage(this, "JPEG", photoX, photoY, photoWidth, photoHeight);
             resolve();
           };
           image.src = photoPreview;
         });
       }
-  
+
       const signatureWidth = 0.05 * contentWidth;
       const signatureHeight = signatureWidth / aspectRatio / 3;
       const signatureX = marginLeft + 0.2 * contentWidth;
@@ -114,7 +106,7 @@ const StampPaperView = () => {
         0.25 * contentHeight -
         signatureHeight -
         signatureTopMargin;
-  
+
       if (signaturePreview) {
         await new Promise((resolve) => {
           const image = new Image();
@@ -132,13 +124,12 @@ const StampPaperView = () => {
           image.src = signaturePreview;
         });
       }
-  
+
       // Save the PDF and open it in a new tab
       doc.save("Agreement.pdf");
       setLoader(false);
     });
   };
-  
 
   const handlePhotoChange = (e) => {
     const selectedPhoto = e.target.files[0];
@@ -156,22 +147,30 @@ const StampPaperView = () => {
   useEffect(() => {
     const fetchUserDetails = async () => {
       try {
-        const response = await axios.get(
-          `${appUrl}/user/get_terms_by_id/${id}`
+        const response = await axios.post(
+          `${appUrl}/aggriment/getaggrimentdetails`,
+          {
+            email: id,
+          }
         );
         const data = response.data;
         console.log(data, "data hai ye");
         console.log(data?.results);
         console.log(data?.userData);
         console.log(`${appUrl} / data?.signature`);
+        // const data = response.data;
+        const startDate = response.data.data?.startdate
+          ? new Date(response.data.data.startdate).toLocaleDateString()
+          : "";
+        console.log("$$$$", response.data.data);
         setInputField({
-          name: data?.userData?.name,
-          email: data?.userData?.email,
-          startDate: data?.userData?.startDate,
-          endDate:data?.userData?.endDate,
-          address: data?.userData?.address,
-          signature: data?.results?.signature,
-          photo: data?.results?.photo,
+          name: data?.data?.name,
+          email: data?.data?.email,
+          startDate: data?.data?.startDate,
+          endDate: data?.data?.endDate,
+          address: data?.data?.address,
+          signature: data?.data?.signature,
+          photo: data?.data?.photo,
         });
         setPhotoPreview(data?.results?.photo);
         setSignaturePreview(data?.results?.signature);
@@ -212,52 +211,50 @@ const StampPaperView = () => {
 
   const options = {
     // default is `save`
-    method: 'open',
+    method: "open",
     // default is Resolution.MEDIUM = 3, which should be enough, higher values
     // increases the image quality but also the size of the PDF, so be careful
     // using values higher than 10 when having multiple pages generated, it
     // might cause the page to crash or hang.
     resolution: Resolution.HIGH,
     page: {
-       // margin is in MM, default is Margin.NONE = 0
-       margin: Margin.SMALL,
-       // default is 'A4'
-       format: 'letter',
-       // default is 'portrait'
-       orientation: 'landscape',
+      // margin is in MM, default is Margin.NONE = 0
+      margin: Margin.SMALL,
+      // default is 'A4'
+      format: "letter",
+      // default is 'portrait'
+      orientation: "landscape",
     },
     canvas: {
-       // default is 'image/jpeg' for better size performance
-       mimeType: 'image/png',
-       qualityRatio: 1
+      // default is 'image/jpeg' for better size performance
+      mimeType: "image/png",
+      qualityRatio: 1,
     },
     // Customize any value passed to the jsPDF instance and html2canvas
-    // function. You probably will not need this and things can break, 
+    // function. You probably will not need this and things can break,
     // so use with caution.
     overrides: {
-       // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
-       pdf: {
-          compress: true
-       },
-       // see https://html2canvas.hertzen.com/configuration for more options
-       canvas: {
-          useCORS: true
-       }
+      // see https://artskydj.github.io/jsPDF/docs/jsPDF.html for more options
+      pdf: {
+        compress: true,
+      },
+      // see https://html2canvas.hertzen.com/configuration for more options
+      canvas: {
+        useCORS: true,
+      },
     },
- };
+  };
 
- // you can use a function to return the target element besides using React refs
-const getTargetElement = () => document.getElementById('content-id');
+  // you can use a function to return the target element besides using React refs
+  const getTargetElement = () => document.getElementById("content-id");
 
-
-
-const formatDate = (dateString) => {
-  const date = new Date(dateString);
-  const year = date.getFullYear();
-  const month = String(date.getMonth() + 1).padStart(2, '0'); // Zero-pad month
-  const day = String(date.getDate()).padStart(2, '0');   // Zero-pad day
-  return `${year}-${month}-${day}`; // Formatted date YYYY-MM-DD
-};
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0"); // Zero-pad month
+    const day = String(date.getDate()).padStart(2, "0"); // Zero-pad day
+    return `${year}-${month}-${day}`; // Formatted date YYYY-MM-DD
+  };
 
   return (
     <Box>
@@ -273,7 +270,6 @@ const formatDate = (dateString) => {
           </Box>
         </Box>
 
-      
         <Box display="flex" justifyContent="space-evenly">
           <Box>
             <Image w="150px" h="350px" src={notri} alt="Dan Abramov" />
@@ -474,10 +470,10 @@ const formatDate = (dateString) => {
             are required to work for 5 days. If you fail to commence your work
             after accepting it or choose to cancel it, you will be obligated to
             pay the registration amount.
-            </Text>
-          
-            <br />
-            <Text>
+          </Text>
+
+          <br />
+          <Text>
             He/She Is Liable Pay The Same Registration Amount On Their Own. The
             Employee Must Start & Complete His/her Work Of Form-Filling Assigned
             To Them By The Employer From The Date Of Starting The Project
@@ -709,10 +705,10 @@ const formatDate = (dateString) => {
           <Box>
             {/* <FormControl w="400px">
               <Text>Name : {inputField.name}</Text>
-             
+
             </FormControl> */}
             <FormControl minW="400px">
-            <Text fontSize="md"> Name: {inputField.name}</Text>
+              <Text fontSize="md"> Name: {inputField.name}</Text>
               <Text fontSize="md"> Email: {inputField.email}</Text>
               <Text fontSize="md"> Address: {inputField.address}</Text>
             </FormControl>
@@ -724,18 +720,29 @@ const formatDate = (dateString) => {
             placeholder="Enter the Date"
             _hover={{ borderColor: "teal.500" }}
           /> */}
-              <Text fontSize="md">  Start-Date: {inputField.startDate ? formatDate(inputField.startDate) : 'No Start Date'}</Text>
-             
+              <Text fontSize="md">
+                {" "}
+                Start-Date:{" "}
+                {inputField.startDate
+                  ? formatDate(inputField.startDate)
+                  : "No Start Date"}
+              </Text>
             </FormControl>
             <FormControl w="200px">
-              <Text fontSize="md"> End-Date: {inputField.endDate ? formatDate(inputField.endDate) : 'No End Date'}</Text>
+              <Text fontSize="md">
+                {" "}
+                End-Date:{" "}
+                {inputField.endDate
+                  ? formatDate(inputField.endDate)
+                  : "No End Date"}
+              </Text>
             </FormControl>
 
             <Table w="400px" style={{ marginTop: "20px" }}>
               <Tr>
                 <Td>
                   <Box onChange={handleSignatureChange}>
-                    <Text mb={'10px'}>Signature</Text>
+                    <Text mb={"10px"}>Signature</Text>
                     {signaturePreview && (
                       <Image
                         src={signaturePreview}
@@ -748,10 +755,8 @@ const formatDate = (dateString) => {
                   </Box>
                 </Td>
                 <Td>
-                  <Box
-                   ml={"-10rem"} 
-                  onChange={handlePhotoChange}>
-                    <Text mb={'10px'}>Photo</Text>
+                  <Box ml={"-10rem"} onChange={handlePhotoChange}>
+                    <Text mb={"10px"}>Photo</Text>
                     {photoPreview && (
                       <Image
                         src={photoPreview}
@@ -770,12 +775,12 @@ const formatDate = (dateString) => {
           </Box>
         </Box>
         <Flex>
-        <Box mt={'1rem'} boxSize="sm">
-          <Image src={LeaseAgreement} alt="Stamp" w={["60%" , "40%"]} />
-        </Box>
-        <Box mr={"4rem"} mt={"1.3bhai rem"} boxSize="sm">
-          <Image src={sign} alt="Stamp" w="70%" />
-        </Box>
+          <Box mt={"1rem"} boxSize="sm">
+            <Image src={LeaseAgreement} alt="Stamp" w={["60%", "40%"]} />
+          </Box>
+          <Box mr={"4rem"} mt={"1.3bhai rem"} boxSize="sm">
+            <Image src={sign} alt="Stamp" w="70%" />
+          </Box>
         </Flex>
       </Box>
       <Box>

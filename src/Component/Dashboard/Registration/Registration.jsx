@@ -170,7 +170,7 @@ const Registration = () => {
       name: "Caller",
       selector: "caller",
       cell: (row) => {
-        const selectPlan = row?.selectPlan; // Extract date part only
+        const selectPlan = row?.caller; // Extract date part only
         return selectPlan;
       },
     },
