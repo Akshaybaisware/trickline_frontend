@@ -1,7 +1,7 @@
 
 
 import React, { useState } from "react";
-import logo from "../../Images/Group 1000004815.svg";
+import logo from "../../Images/logo.svg";
 import { NavLink } from "react-router-dom";
 import { Box, Button, Image } from "@chakra-ui/react";
 // Admin Login
@@ -10,6 +10,7 @@ const Login = () => {
   return (
     <>
     <Box
+    bg={"#0F0623"}
       display="flex"
       flexDirection="column"
       alignItems="center"
@@ -18,7 +19,7 @@ const Login = () => {
     >
       <Box p={4} borderRadius="md">
         {/* Adjusted the Image component */}
-        <Image width={"15rem"} height="auto" src={logo} alt="Logo Image" />
+        <Image width={"23rem"} height="auto" src={logo} alt="Logo Image" />
       </Box>
 
       <Box
@@ -34,8 +35,8 @@ const Login = () => {
             width="100%"
             borderRadius="25px"
             border="2px solid black"
-            color="#fff"
-            background="black"
+            color="#47108f"
+            background="gray"
             fontWeight={700}
             fontFamily='"Poppins", sans-serif'
             mt="20px"
@@ -53,8 +54,8 @@ const Login = () => {
             width="100%"
             borderRadius="25px"
             border="2px solid black"
-            color="#fff"
-            background="black"
+             color="#47108f"
+            background="gray"
             fontWeight={700}
             fontFamily='"Poppins", sans-serif'
             mt="20px"
@@ -74,14 +75,7 @@ const Login = () => {
     marginTop={"1rem"}
     textAlign={"right"}
   >
-    <NavLink to="/signup" style={{ textDecoration: "none", width: "100%" }}>
-    <Button
-    borderRadius={'1rem'}
-     _hover={{ background: "FloralWhite", color: "black" }}
-    w={'200px'}>
-    Create an Account
-    </Button>
-    </NavLink>
+    
   </Box>
     </Box>
   </>
