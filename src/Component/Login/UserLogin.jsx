@@ -327,6 +327,21 @@ const UserLogin = () => {
         },
       });
       console.log(response, "user login ");
+      const endDate = new Date(response.data.user.endDate);
+const currentDate = new Date();
+console.log(endDate.getTime(), currentDate.getTime(), "dates");
+if (endDate.getTime() < currentDate.getTime()) {
+  console.log("in the redirect");
+      localStorage.setItem("useremail" , response.data.email);
+      localStorage.setItem("usermobilenumber" , response.data.user.mobile);
+      localStorage.setItem("username", response.data.user.name );
+      localStorage.setItem("useraddress" , response.data.address);
+      localStorage.setItem("usersubmitedforms" , response.data.submittedAssignmentCount);
+  navigate("/qccheck", {
+    state: response.data
+  });
+  return;
+}
 
       if (response.data.status === "Freeze") {
         navigate("/qccheck");

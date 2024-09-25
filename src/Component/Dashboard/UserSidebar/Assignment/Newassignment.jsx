@@ -439,6 +439,7 @@ function ContentValidationfrom() {
   const annualRevenue = useRef();
   const jobFunctional = useRef();
   const pinCode = useRef();
+  const [userdata, setUserData] = useState();
 
   const refreshAssignment = async () => {
     try {
@@ -479,8 +480,9 @@ function ContentValidationfrom() {
         userId: userID,
       });
       console.log(userdetails, "userdetails");
+      setUserData(userdetails.data.User);
       setSubmittedAssignmentCount(
-        userdetails.data.User.submittedAssignmentCount
+        userdetails?.data?.User?.submittedAssignmentCount
       );
     } catch (error) {
       console.log(error);
@@ -519,10 +521,24 @@ function ContentValidationfrom() {
     }
   };
 
+  // Fetch data on component mount and update every 10 minutes
+
+  const showQc = () => {
+    if (userdata?.submittedAssignmentCount == 540) {
+      navigate(
+        "/qccheck"
+        //    {
+        //   state: response.data
+        // }
+      );
+    }
+  };
+
   useEffect(() => {
     getdatafrom();
     getUserdetails();
-  }, []);
+    showQc();
+  }, [userdata]);
 
   return (
     <>

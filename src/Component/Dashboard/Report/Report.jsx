@@ -758,9 +758,9 @@ function Report() {
   //}, []);
 
   const handleIconClick = (rowData) => {
-    navigate("/editclient", {
-      state: { data: rowData },
-    });
+    navigate(`/user/registeruserdetail/${rowData._id}`);
+
+    // <Button color={"white"} bg={"red"} onClick={() => navigate(`/registeruserdetail/${row._id}`, { state: row, }) } > View Qc </Button>
   };
 
   const columns = [
@@ -798,7 +798,7 @@ function Report() {
     {
       name: "Total Forms",
       selector: (row) => {
-        if (row?.totalAssignmentLimit === 510) {
+        if (row?.totalAssignmentLimit === 540) {
           // Call the function if the condition is met
           console.log(row, "www 1");
           qcreportdata(row);

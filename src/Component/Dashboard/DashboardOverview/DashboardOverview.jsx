@@ -1,25 +1,29 @@
-
-
-import { Box, Flex , Center} from "@chakra-ui/layout";
+import { Box, Flex, Center } from "@chakra-ui/layout";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const DashboardOverview = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
-    const [data, setData] = useState(0);
-    const [activeUsers, setActive] = useState(0);
-    const [registerUsers, setRegisterUsers] = useState(0);
-    const [pendingUsers, setPendingUsers] = useState(0);
-    const [FrezzUsers, setFrezzUsers] = useState(0);;
-
-    useEffect(() => {
-          fetchDetails();
-          totlalActiveUser();
-          totlalRegistrationUser();
-          totlalPendingUser();
-          totlalFrezzUser();
-        }, [setData]);
-      
+  const [data, setData] = useState(0);
+  const [activeUsers, setActive] = useState(0);
+  const [registerUsers, setRegisterUsers] = useState(0);
+  const [pendingUsers, setPendingUsers] = useState(0);
+  const [FrezzUsers, setFrezzUsers] = useState(0);
+  const [todaysaggrimentcount, settodaysassignmentcount] = useState(0);
+  const [allusercount, setalluserscount] = useState(0);
+  const [activeusers, setactiveusers] = useState(0);
+  const [todayregistation, settodayregisteration] = useState();
+  useEffect(() => {
+    // fetchDetails();
+    // totlalActiveUser();
+    // totlalRegistrationUser();
+    // totlalPendingUser();
+    // totlalFrezzUser();
+    gettodaysassignmentcount();
+    getallusercount();
+    getctiveusers();
+    getTodaysregistration();
+  }, [setData]);
 
   const fetchDetails = async () => {
     const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -29,45 +33,89 @@ const DashboardOverview = () => {
     setData(totalData);
   };
 
+  const gettodaysassignmentcount = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/user/gettodaysregister`);
+      console.log(response, "todats registertions");
+      settodaysassignmentcount(response.data.users.length);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getallusercount = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/user/getalluser`);
+      console.log(response, "todats registertions");
+      setalluserscount(response.data.allUser.length);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getTodaysregistration = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/user/gettodaysregister`);
+      console.log(response, "todats registertions");
+      settodayregisteration(response.data.users.length);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getctiveusers = async () => {
+    try {
+      const response = await axios.get(`${apiUrl}/user/getallactive`);
+      console.log(response, "todats registertions");
+      setactiveusers(response.data.allUser.length);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 
   const totlalActiveUser = async () => {
-        const response = await axios.get(`${apiUrl}/user/user_pagination?status=Active`);
-        const totalActiveUserData =  response?.data?.users.length;
-        setActive(totalActiveUserData)
-        // console.log(totalActiveUserData,"totalActive");
-        
-      };
-    
-      const totlalRegistrationUser = async () => {
-        const response = await axios.get(`${apiUrl}/user/user_pagination?status=Registered`);
-        const totalRigistraUserData = response?.data?.users.length;
-        setRegisterUsers(totalRigistraUserData)
-        // console.log(response?.data?.users.length,"totalRegistration");
-        
-      }
-    
-      const totlalPendingUser = async () => {
-        const response = await axios.get(`${apiUrl}/user/user_pagination?status=Pending`);
-        const totalPendingUser =  response?.data?.users.length;
-        setPendingUsers(totalPendingUser)
-        // console.log(totalPendingUser,"totalPending");
-      };
-    
-      const totlalFrezzUser = async () => {
-        const response = await axios.get(`${apiUrl}/user/user_pagination?status=Freeze`);
-        const totalFrezzUser = response.data.totalUsers;
-        setFrezzUsers(totalFrezzUser)
-        // console.log(totalFrezzUser,"totalFrezz");
-      };
+    const response = await axios.get(
+      `${apiUrl}/user/user_pagination?status=Active`
+    );
+    const totalActiveUserData = response?.data?.users.length;
+    setActive(totalActiveUserData);
+    // console.log(totalActiveUserData,"totalActive");
+  };
+
+  const totlalRegistrationUser = async () => {
+    const response = await axios.get(
+      `${apiUrl}/user/user_pagination?status=Registered`
+    );
+    const totalRigistraUserData = response?.data?.users.length;
+    setRegisterUsers(totalRigistraUserData);
+    // console.log(response?.data?.users.length,"totalRegistration");
+  };
+
+  const totlalPendingUser = async () => {
+    const response = await axios.get(
+      `${apiUrl}/user/user_pagination?status=Pending`
+    );
+    const totalPendingUser = response?.data?.users.length;
+    setPendingUsers(totalPendingUser);
+    // console.log(totalPendingUser,"totalPending");
+  };
+
+  const totlalFrezzUser = async () => {
+    const response = await axios.get(
+      `${apiUrl}/user/user_pagination?status=Freeze`
+    );
+    const totalFrezzUser = response.data.totalUsers;
+    setFrezzUsers(totalFrezzUser);
+    // console.log(totalFrezzUser,"totalFrezz");
+  };
 
   return (
     <>
-   
       <Flex textAlign="center" flexBasis={{ base: "20%", md: "auto" }}>
         {/* Total Assingment */}
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
-          marginLeft={{ md: "10rem" }}
+            marginLeft={{ md: "10rem" }}
             backgroundColor="#0d080d"
             // border="#ebe9eb"
             color="white"
@@ -92,7 +140,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-              {data.length}
+              {allusercount}
             </span>
             <p
               style={{
@@ -111,13 +159,12 @@ const DashboardOverview = () => {
 
         {/* Submitted Assingment */}
         <Box
-         
           gap="15%"
           textAlign="center"
           flexBasis={{ base: "100%", md: "auto" }}
         >
           <Box
-           marginLeft={{ md: "20rem" }}
+            marginLeft={{ md: "20rem" }}
             backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
@@ -141,7 +188,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-              {data.length}
+              {todayregistation}
             </span>
             <p
               style={{
@@ -163,8 +210,8 @@ const DashboardOverview = () => {
         {/* Pending Assingment */}
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
-          marginLeft={{ md: "10rem" }}
-           backgroundColor="#0d080d"
+            marginLeft={{ md: "10rem" }}
+            backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -187,7 +234,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-               {activeUsers}
+              {activeUsers}
             </span>
             <p
               style={{
@@ -210,7 +257,7 @@ const DashboardOverview = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-       backgroundColor="#0d080d"
+            backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -233,7 +280,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-               {FrezzUsers}
+              {FrezzUsers}
             </span>
             <p
               style={{
@@ -259,8 +306,8 @@ const DashboardOverview = () => {
           flexBasis={{ base: "100%", md: "auto" }}
         >
           <Box
-          marginLeft={{ md: "10rem" }}
-           backgroundColor="#0d080d"
+            marginLeft={{ md: "10rem" }}
+            backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -283,7 +330,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-              {pendingUsers}
+              {todaysaggrimentcount}
             </span>
             <p
               style={{
@@ -308,7 +355,7 @@ const DashboardOverview = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-          backgroundColor="#0d080d"
+            backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -331,7 +378,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-               {data?.submitted}
+              {data?.submitted}
             </span>
             <p
               style={{
@@ -352,7 +399,7 @@ const DashboardOverview = () => {
       <Flex flexBasis={{ base: "20%", md: "auto" }} textAlign="center">
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
-          marginLeft={{ md: "10rem" }}
+            marginLeft={{ md: "10rem" }}
             backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
@@ -399,7 +446,7 @@ const DashboardOverview = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-        backgroundColor="#0d080d"
+            backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -439,8 +486,7 @@ const DashboardOverview = () => {
           </Box>
         </Box>
       </Flex>
-     
-  </>
+    </>
   );
 };
 

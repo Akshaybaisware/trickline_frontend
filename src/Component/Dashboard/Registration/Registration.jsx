@@ -46,6 +46,9 @@ const Registration = () => {
     todaysRegistrations();
   }, [currentPage]);
 
+
+  // https://glorry-bakcend-updated-production.up.railway.app/api/user/gettodaysregister
+
   const todaysRegistrations = async () => {
     try {
       const start = new Date();
