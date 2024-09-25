@@ -68,7 +68,7 @@ const User = () => {
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#ffe6ff"
+          backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -83,6 +83,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -94,7 +95,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -116,7 +117,7 @@ const User = () => {
         >
           <Box
            marginLeft={{ md: "20rem" }}
-            backgroundColor="#EBE9EB"
+            backgroundColor="#060406"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -131,6 +132,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -142,7 +144,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -161,7 +163,7 @@ const User = () => {
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#e6ffe6"
+            backgroundColor="#060806"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -176,6 +178,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -187,7 +190,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -206,7 +209,7 @@ const User = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-            backgroundColor="#e6ffe6"
+            backgroundColor="#080d08"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -221,6 +224,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -232,7 +236,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -255,7 +259,7 @@ const User = () => {
         >
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#ffe6ff"
+            backgroundColor="#080508"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -270,6 +274,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -281,7 +286,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -302,7 +307,7 @@ const User = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-            backgroundColor="#EBE9EB"
+            backgroundColor="#090709"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -317,6 +322,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -328,7 +334,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -346,7 +352,7 @@ const User = () => {
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#e6ffe6"
+            backgroundColor="#040604"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -361,6 +367,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -372,7 +379,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -391,7 +398,7 @@ const User = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-            backgroundColor="#e6ffe6"
+            backgroundColor="#070a07"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -406,6 +413,7 @@ const User = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -417,7 +425,7 @@ const User = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",

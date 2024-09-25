@@ -18,7 +18,7 @@ import {
 } from "@chakra-ui/react";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 // import Dataentry from "../../Images/logo.png";
-import Dataentry from "../../Images/ZEMEX LOGO.png";
+import Dataentry from "../../Images/logo.svg";
 import { useState } from "react";
 import axios from "axios";
 const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -75,15 +75,18 @@ export default function Navbar() {
       // alignItems="center"
       paddingX={{ base: "3", md: "8" }} // Add padding on small screens and larger screens
       paddingY="4"
+      bg={" #defaed"}
     >
       <Box
+      
         display="flex"
         alignItems="center"
         marginBottom={{ base: "4", md: "0" }}
       >
         <Image
+        
           marginLeft={{ base: "0", md: "0rem" }}
-          boxSize={{ base: "70px", md: "120px" }}
+          boxSize={{ base: "90px", md: "150px" }}
           src={Dataentry}
           // width="20px"
         />
@@ -102,7 +105,7 @@ export default function Navbar() {
             //boxShadow: "0 8px 16px rgba(128, 0, 128, 0.1), 20px 10px 3px rgba(128, 0, 128, 0.08)"
           }}
         >
-          Zemix Services
+       Glorry Enterprises
         </Heading>
       </Box>
       {/* <Box>
@@ -120,7 +123,7 @@ export default function Navbar() {
       {userRole === "Admin" && (
         <Box onClick={handleOpenModal} cursor="pointer">
           <Avatar
-            marginTop={"1rem"}
+            marginTop={"2rem"}
             borderRadius="50%"
             width={{ base: "2.5rem", md: "3.5rem" }}
             height={{ base: "2.4rem", md: "3rem" }}

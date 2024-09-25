@@ -68,8 +68,9 @@ const DashboardOverview = () => {
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#ffe6ff"
-            border="#ebe9eb"
+            backgroundColor="#0d080d"
+            // border="#ebe9eb"
+            color="white"
             margin="20px"
             padding="40px"
             fontWeight="800"
@@ -83,6 +84,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -94,7 +96,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -116,7 +118,7 @@ const DashboardOverview = () => {
         >
           <Box
            marginLeft={{ md: "20rem" }}
-            backgroundColor="#EBE9EB"
+            backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -131,6 +133,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -142,7 +145,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -161,7 +164,7 @@ const DashboardOverview = () => {
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#e6ffe6"
+           backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -176,6 +179,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -187,7 +191,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -206,7 +210,7 @@ const DashboardOverview = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-            backgroundColor="#e6ffe6"
+       backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -221,6 +225,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -232,7 +237,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -255,7 +260,7 @@ const DashboardOverview = () => {
         >
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#ffe6ff"
+           backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -270,6 +275,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -281,7 +287,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -302,7 +308,7 @@ const DashboardOverview = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-            backgroundColor="#EBE9EB"
+          backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -317,6 +323,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -328,7 +335,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -346,7 +353,7 @@ const DashboardOverview = () => {
         <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
           <Box
           marginLeft={{ md: "10rem" }}
-            backgroundColor="#e6ffe6"
+            backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -361,6 +368,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -372,7 +380,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",
@@ -391,7 +399,7 @@ const DashboardOverview = () => {
         >
           <Box
             marginLeft={{ md: "20rem" }}
-            backgroundColor="#e6ffe6"
+        backgroundColor="#0d080d"
             border="#ebe9eb"
             margin="20px"
             padding="40px"
@@ -406,6 +414,7 @@ const DashboardOverview = () => {
           >
             <span
               style={{
+                color: "white",
                 marginTop: "5px",
                 marginBottom: "5px",
                 height: "10px",
@@ -417,7 +426,7 @@ const DashboardOverview = () => {
             </span>
             <p
               style={{
-                color: "gray",
+                color: "white",
                 fontWeight: "600",
                 flexDirection: "row",
                 marginLeft: "0px",

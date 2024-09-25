@@ -102,7 +102,7 @@ export default function SideBar() {
 
   return (
     <>
-      <List p="10px" bg="">
+      <List p="10px" bg=" #dedcde">
         {isMobileView && (
           <IconButton
             icon={<HamburgerIcon />}
@@ -193,7 +193,7 @@ export default function SideBar() {
                               >
                                 <ListIcon
                                   as={BsAmd}
-                                  color="gray.500"
+                                  color="gray.1 00"
                                   ml="10px"
                                 />
                                 <NavLink to="/user/registration">
@@ -302,26 +302,7 @@ export default function SideBar() {
                                 </NavLink>
                               </ListItem>
 
-                              {/* <ListItem
-                                className="listItem"
-                                p="5px"
-                                borderRadius="10px"
-                              >
-                                <ListIcon
-                                  as={BsFillFileEarmarkSpreadsheetFill}
-                                  ml="10px"
-                                />
-                                <NavLink to="/user/plan">
-                                  <Text
-                                    as="span"
-                                    pl="10px"
-                                    fontSize={{ base: "0.6rem", md: "1rem" }}
-                                    color="black"
-                                  >
-                                    Plan
-                                  </Text>
-                                </NavLink>
-                              </ListItem> */}
+                            
 
                               <Divider borderWidth="1px" borderColor={"gray"} />
                             </AccordionPanel>
@@ -332,25 +313,7 @@ export default function SideBar() {
                   </ListItem>
                 </Accordion>
 
-                <ListItem
-                  style={{ marginTop: "2rem" }}
-                  className="listItem"
-                  p="10px"
-                  borderRadius="10px"
-                >
-                  <PersonOffIcon className="sidebaricon" />
-                  <NavLink to="/blockeduser">
-                    <Text
-                      as="span"
-                      color="black"
-                      fontSize="rem"
-                      marginLeft="8px" // Add some margin for spacing between icon and text
-                      _hover={{ textDecoration: "underline" }}
-                    >
-                      Blocked Services
-                    </Text>
-                  </NavLink>
-                </ListItem>
+           
 
                 <ListItem
                   style={{ marginTop: "1.5rem" }}
@@ -374,25 +337,7 @@ export default function SideBar() {
 
                 <Divider borderWidth="1px" borderColor={"gray"} />
 
-                <ListItem
-                  style={{ marginTop: "1.5rem" }}
-                  className="listItem"
-                  p="10px"
-                  borderRadius="10px"
-                >
-                  <MultilineChartIcon className="sidebaricon" />
-                  <NavLink to="/recovery">
-                    <Text
-                      as="span"
-                      color="black"
-                      fontSize="rem"
-                      marginLeft="8px" // Add some margin for spacing between icon and text
-                      _hover={{ textDecoration: "underline" }}
-                    >
-                      Recovery
-                    </Text>
-                  </NavLink>
-                </ListItem>
+               
 
                 <ListItem
                   style={{ marginTop: "1.5rem" }}
@@ -413,24 +358,7 @@ export default function SideBar() {
                     </Text>
                   </NavLink>
                 </ListItem>
-                <ListItem
-                  style={{ marginTop: "2rem" }}
-                  className="listItem"
-                  p="10px"
-                  borderRadius="10px"
-                >
-                  <PersonOffIcon className="sidebaricon" />
-
-                  <Text
-                    as="span"
-                    color="black"
-                    fontSize="rem"
-                    marginLeft="8px" // Add some margin for spacing between icon and text
-                    _hover={{ textDecoration: "underline" }}
-                  >
-                    Assignment Report
-                  </Text>
-                </ListItem>
+             
 
                 <ListItem
                   style={{ marginTop: "1.5rem" }}
@@ -670,25 +598,7 @@ export default function SideBar() {
                           </NavLink>
                         </Accordion>
 
-                        <ListItem
-                          style={{ marginTop: "2rem" }}
-                          className="listItem"
-                          p="10px"
-                          borderRadius="10px"
-                        >
-                          <PersonOffIcon className="sidebaricon" />
-                          <NavLink to="/blockeduser">
-                            <Text
-                              as="span"
-                              color="black"
-                              fontSize="rem"
-                              marginLeft="8px" // Add some margin for spacing between icon and text
-                              _hover={{ textDecoration: "underline" }}
-                            >
-                              Blocked Services
-                            </Text>
-                          </NavLink>
-                        </ListItem>
+                    
 
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
@@ -714,26 +624,7 @@ export default function SideBar() {
 
                         <Divider borderWidth="1px" borderColor={"gray"} />
 
-                        <ListItem
-                          style={{ marginTop: "1.5rem" }}
-                          className="listItem"
-                          p="10px"
-                          borderRadius="10px"
-                        >
-                          <MultilineChartIcon className="sidebaricon" />
-                          <NavLink to="/recovery">
-                            <Text
-                              as="span"
-                              color="black"
-                              fontSize="rem"
-                              marginLeft="8px" // Add some margin for spacing between icon and text
-                              _hover={{ textDecoration: "underline" }}
-                            >
-                              Recovery
-                            </Text>
-                          </NavLink>
-                        </ListItem>
-
+                       
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
                           className="listItem"
@@ -753,24 +644,7 @@ export default function SideBar() {
                             </Text>
                           </NavLink>
                         </ListItem>
-                        <ListItem
-                          style={{ marginTop: "2rem" }}
-                          className="listItem"
-                          p="10px"
-                          borderRadius="10px"
-                        >
-                          <PersonOffIcon className="sidebaricon" />
-
-                          <Text
-                            as="span"
-                            color="black"
-                            fontSize="rem"
-                            marginLeft="8px" // Add some margin for spacing between icon and text
-                            _hover={{ textDecoration: "underline" }}
-                          >
-                            Assignment Report
-                          </Text>
-                        </ListItem>
+                     
 
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
@@ -799,10 +673,10 @@ export default function SideBar() {
                           fontSize={"1.1rem"}
                           width={"100px"}
                           height={"35px"}
-                          color={"black"}
+                          color={"white"}
                           fontWeight={"bold"}
                           onClick={onClose}
-                          bg={"lightgray"}
+                          bg={"red"}
                           borderRadius={"8px"}
                         >
                           {" "}
@@ -1082,10 +956,10 @@ export default function SideBar() {
                         fontSize={"1.1rem"}
                         width={"100px"}
                         height={"35px"}
-                        color={"black"}
+                        color={"white"}
                         fontWeight={"bold"}
                         onClick={onClose}
-                        bg={"lightgray"}
+                        bg={"red"}
                         borderRadius={"8px"}
                       >
                         {" "}
