@@ -200,7 +200,7 @@ const DashboardOverview = () => {
                 marginTop: "10px",
               }}
             >
-              Total Registration
+              Today's Registration
             </p>
           </Box>
         </Box>
@@ -234,7 +234,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-              {activeUsers}
+               {todaysaggrimentcount}
             </span>
             <p
               style={{
@@ -246,7 +246,7 @@ const DashboardOverview = () => {
                 marginTop: "10px",
               }}
             >
-              Active User
+              Pending User
             </p>
           </Box>
         </Box>
@@ -280,7 +280,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-              {FrezzUsers}
+              {allusercount}
             </span>
             <p
               style={{
@@ -292,7 +292,7 @@ const DashboardOverview = () => {
                 marginTop: "10px",
               }}
             >
-              Inactive User
+              Active User
             </p>
           </Box>
         </Box>
@@ -330,7 +330,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-              {todaysaggrimentcount}
+             {activeUsers}
             </span>
             <p
               style={{
@@ -342,7 +342,7 @@ const DashboardOverview = () => {
                 marginTop: "10px",
               }}
             >
-              Pending Registration
+             Inactive User
             </p>
           </Box>
         </Box>

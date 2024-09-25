@@ -312,9 +312,9 @@ function EmployeesTable() {
       />
     </Center>
   ) : (
-    <Center>
+   
       <Box mt="1.5rem" w="80%" p="4">
-        <Flex justifyContent="space-between" alignItems="center" mb="4">
+        <Flex direction={"column"} alignItems="center" mb="4">
           <Text fontSize="2rem" fontWeight="700">
             Employees
           </Text>
@@ -327,7 +327,9 @@ function EmployeesTable() {
         <Input placeholder="Search" mb="4" />
         <DataTable columns={columns} data={data} pagination />
       </Box>
-    </Center>
+   
+   
+
   );
 }
 

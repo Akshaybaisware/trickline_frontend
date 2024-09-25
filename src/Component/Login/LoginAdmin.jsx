@@ -347,7 +347,7 @@ const LoginAdmin = () => {
         sessionStorage.setItem("token", JSON.stringify(decodedToken));
 
         toast({
-          title: "Login Success",
+          title: "Hello Admin",
           status: "success",
           duration: 3000,
           isClosable: true,

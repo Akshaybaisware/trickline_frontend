@@ -86,11 +86,11 @@ function QcReport() {
               <label>Zip Code:</label>
               <input type="text" value={item.zipcode} readOnly />
             </div>
-
+{/* 
             <div className={`form-group ${hasError("userId", index)}`}>
               <label>User ID:</label>
               <input type="text" value={item.userId} readOnly />
-            </div>
+            </div> */}
           </div>
         ))}
       </div>

@@ -154,7 +154,7 @@ export default function SideBar() {
                     borderRadius="10px"
                     m="0px"
                   >
-                    <NavLink to="user">
+                    <NavLink to="dashboard">
                       <AccordionItem _hover={{ bg: "#F0F0F0" }}>
                         {({ isExpanded }) => (
                           <>
@@ -400,7 +400,7 @@ export default function SideBar() {
                     <DrawerBody>
                       <Stack>
                         <Accordion allowToggle width={"90%"}>
-                          <NavLink to="user">
+                          <NavLink to="dashboard">
                             <AccordionItem _hover={{ bg: "#F0F0F0" }}>
                               {({ isExpanded }) => (
                                 <>

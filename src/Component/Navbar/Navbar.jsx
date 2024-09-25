@@ -89,7 +89,8 @@ export default function Navbar() {
       // alignItems="center"
       paddingX={{ base: "3", md: "8" }} // Add padding on small screens and larger screens
       paddingY="4"
-      bg={" #defaed"}
+       bg={" #defaed"}
+      // bg={"#0F0623"}
     >
       <Box
         display="flex"

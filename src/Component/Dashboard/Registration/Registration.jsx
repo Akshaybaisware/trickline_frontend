@@ -13,6 +13,10 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import $ from "jquery";
+import { FaDownload } from 'react-icons/fa';
+import * as xlsx from 'xlsx';
+import { saveAs } from 'file-saver';
+
 
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -67,6 +71,29 @@ const Registration = () => {
       console.error("Error fetching today's registrations:", error);
     }
   };
+// excel data 
+const exportToExcel = () => {
+  // Convert data to worksheet format
+  const worksheet = xlsx.utils.json_to_sheet(filter); // Use 'filter' state
+
+  // Create a new workbook and add the worksheet
+  const workbook = xlsx.utils.book_new();
+  xlsx.utils.book_append_sheet(workbook, worksheet, "Registrations");
+
+  // Write the workbook to a binary format
+  const excelBuffer = xlsx.write(workbook, {
+    bookType: "xlsx",
+    type: "array",
+  });
+
+  // Convert the binary data to a Blob
+  const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+
+  // Save the Excel file using FileSaver
+  saveAs(blob, "registrations.xlsx");
+};
+
+
 
   const fetchData = async () => {
     try {
@@ -96,72 +123,53 @@ const Registration = () => {
   }, [search, userData]);
 
   //export Button
-  const Export = ({ onExport }) => (
-    <Button onClick={(e) => onExport(e.target.value)}>Export</Button>
-  );
+  // const Export = ({ onExport }) => (
+  //   <Button onClick={(e) => onExport(e.target.value)}>Export</Button>
+  // );
 
-  const exportToExcel = () => {
-    // Convert data to worksheet format
-    const worksheet = xlsx.utils.json_to_sheet(filteredData);
+ 
 
-    // Create a new workbook and add the worksheet
-    const workbook = xlsx.utils.book_new();
-    xlsx.utils.book_append_sheet(workbook, worksheet, "Registrations");
+  // function convertArrayOfObjectsToCSV(array) {
+  //   let result;
 
-    // Write the workbook to a binary format
-    const excelBuffer = xlsx.write(workbook, {
-      bookType: "xlsx",
-      type: "array",
-    });
+  //   const columnDelimiter = ",";
+  //   const lineDelimiter = "\n";
+  //   const keys = Object.keys(userData[0]);
 
-    // Convert the binary data to a Blob
-    const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+  //   result = "";
+  //   result += keys.join(columnDelimiter);
+  //   result += lineDelimiter;
 
-    // Save the Excel file using FileSaver
-    saveAs(blob, "registrations.xlsx");
-  };
+  //   array.forEach((item) => {
+  //     let ctr = 0;
+  //     keys.forEach((key) => {
+  //       if (ctr > 0) result += columnDelimiter;
 
-  function convertArrayOfObjectsToCSV(array) {
-    let result;
+  //       result += item[key];
 
-    const columnDelimiter = ",";
-    const lineDelimiter = "\n";
-    const keys = Object.keys(userData[0]);
+  //       ctr++;
+  //     });
+  //     result += lineDelimiter;
+  //   });
 
-    result = "";
-    result += keys.join(columnDelimiter);
-    result += lineDelimiter;
+  //   return result;
+  // }
 
-    array.forEach((item) => {
-      let ctr = 0;
-      keys.forEach((key) => {
-        if (ctr > 0) result += columnDelimiter;
+  // function downloadCSV(array) {
+  //   const link = document.createElement("a");
+  //   let csv = convertArrayOfObjectsToCSV(array);
+  //   if (csv == null) return;
 
-        result += item[key];
+  //   const filename = "export.csv";
 
-        ctr++;
-      });
-      result += lineDelimiter;
-    });
+  //   if (!csv.match(/^data:text\/csv/i)) {
+  //     csv = `data:text/csv;charset=utf-8,${csv}`;
+  //   }
 
-    return result;
-  }
-
-  function downloadCSV(array) {
-    const link = document.createElement("a");
-    let csv = convertArrayOfObjectsToCSV(array);
-    if (csv == null) return;
-
-    const filename = "export.csv";
-
-    if (!csv.match(/^data:text\/csv/i)) {
-      csv = `data:text/csv;charset=utf-8,${csv}`;
-    }
-
-    link.setAttribute("href", encodeURI(csv));
-    link.setAttribute("download", filename);
-    link.click();
-  }
+  //   link.setAttribute("href", encodeURI(csv));
+  //   link.setAttribute("download", filename);
+  //   link.click();
+  // }
 
   const columns = [
     {
@@ -210,7 +218,7 @@ const Registration = () => {
       name: "Action",
       cell: (row) => (
         <NavLink to={`/user/registeruserdetail/${row._id}`}>
-          <Button colorScheme="blackAlpha" backgroundColor="black" width="80%">
+          <Button colorScheme="blackAlpha" backgroundColor="#6666ff" width="80%">
             View Detail
           </Button>
         </NavLink>
@@ -221,8 +229,8 @@ const Registration = () => {
       cell: () => (
         <>
           {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
-          <NavLink to={"/stamppaperfill"}>
-            <Button colorScheme="Red" backgroundColor="black" width="80%">
+          <NavLink to={"/employmentform"}>
+            <Button colorScheme="Red"backgroundColor="#6666ff" width="80%">
               Fill Agreement
             </Button>
           </NavLink>
@@ -231,10 +239,10 @@ const Registration = () => {
     },
   ];
 
-  const actionsMemo = React.useMemo(
-    () => <Export onExport={() => downloadCSV(userData)} />,
-    []
-  );
+  // const actionsMemo = React.useMemo(
+  //   () => <Export onExport={() => downloadCSV(userData)} />,
+  //   []
+  // );
   const gettodaysassignmentcount = async () => {
     try {
       const response = await axios.get(`${apiUrl}/user/gettodaysregister`);
@@ -262,7 +270,18 @@ const Registration = () => {
 
   return (
     <>
+<Flex mt={"2rem"} justifyContent="flex-end">
+        <Button
+          bg={"#33ff69"}
+          leftIcon={<FaDownload />}
+          onClick={exportToExcel}
+        >
+          Export to Excel
+        </Button>
+      </Flex>
+
       <Flex direction="column" align="center">
+     
         {/* <Flex direction={"column"}>
           <Box>
             All Users
@@ -294,8 +313,9 @@ const Registration = () => {
       gap={0} // Gap between children
     >
       <Box
-        p={4}
-        bg="gray.100" // Light background for visibility
+        p={2}
+        bg="#6666ff" // Light background for visibility
+        color={"white"}
         borderRadius="md"
         flex={{ base: "1", md: "0 0 45%" }} // Flex-grow on small screens, fixed width on medium+
         textAlign={{ base: "center", md: "left" }} // Center text on small screens
@@ -312,13 +332,15 @@ const Registration = () => {
       </Box>
 
       <Box
-        p={4}
-        bg="gray.100"
+      mt={"0.5rem"}
+        p={0.5}
+        bg="#6666ff" // Light background for visibility 
+        color={"white"}
         borderRadius="md"
         flex={{ base: "1", md: "0 0 45%" }}
         textAlign={{ base: "center", md: "left" }}
       >
-        <Text fontWeight={700} fontSize={{ base: "md", md: "xl" }} mb={4}>
+        <Text fontWeight={600} fontSize={{ base: "md", md: "xl" }} mb={4}>
           Today Pending: {todaysassignmentcount} | Today Success:{" "}
           {todaysassignment}
         </Text>
@@ -340,7 +362,7 @@ const Registration = () => {
           )}
         </div>
         <Box
-          color="#DD372D"
+          color="#0c9d49"
           ml={["1rem", "0rem"]}
           mt={["0rem", "0"]}
           mb="1rem"
@@ -356,7 +378,7 @@ const Registration = () => {
             _hover={{ background: "white", color: "gray" }}
             p="1rem"
             color="white"
-            bg="black"
+            bg="#71a507" // Light background for visibility
             width={"6rem"}
           >
             Add User
@@ -375,7 +397,7 @@ const Registration = () => {
           title=""
           columns={columns}
           data={filter}
-          actions={actionsMemo}
+          // actions={actionsMemo}
           pagination
           subHeader
           subHeaderComponent={

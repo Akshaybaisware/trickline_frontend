@@ -433,7 +433,7 @@
 //           <Text fontSize="md">
 //             2.1. Remuneration: - For The Form Filling Services Rendered By The
 //             Employee, The Employee Shall Be Entitled For Payment Of Price 40Rs.
-//             (INR) Max Per Form For The Salary May Vary From 20800/- INR To
+//             (INR) Max Per Form For The Salary May Vary From 20900/- INR To
 //             20130/- INR Depends Upon The Accuracy.
 //             <br /> <br />
 //             2.2.Billing :- Employer Will Provide Workload Of 520 FORMS Which The
@@ -487,7 +487,7 @@
 //             3. Conflict of Interest
 //           </Heading>
 //           <Text color="red" fontSize="md">
-//             3.1. Application Fee(s): The Registration Amount Of 6800/- INR. Will
+//             3.1. Application Fee(s): The Registration Amount Of 6900/- INR. Will
 //             Be Deducted From The Salary If Generated, And If The Salary Is Not
 //             Generated i.e If The Employee Fails To Complete The Work, Then You
 //             are required to work for 5 days. If you fail to commence your work
@@ -1385,7 +1385,7 @@
 //             <Text
 //               mt={["-1rem", "1rem"]}
 //               padding={["1rem", "3rem"]}
-//               fontWeight={"800"}
+//               fontWeight={"900"}
 //               fontSize={"1.5rem"}
 //             >
 //               Employer : -
@@ -1405,7 +1405,7 @@
 //           <Text
 //             mt={["-1rem", "-5rem"]}
 //             padding={["1rem", "3rem"]}
-//             fontWeight={"800"}
+//             fontWeight={"900"}
 //             fontSize={"1.5rem"}
 //           >
 //             Employee : -
@@ -1535,14 +1535,17 @@ import {
 } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 // import Front from "../../assets/Frontnew.jpg";
-// import LOGO from "../../assets/New_Stamp1.svg";
+import stamplogo from "../../Images/glorry-stamp.svg";
 import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
+import notri from "../../Images/notriimages.jpg"
+ import image from "../../Images/SVG STAM.svg";
+
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
 // import sign from "../../assets/Stamp.jpg";
-// import stamplogo from "../../assets/stamplogo.svg";
+import LOGO from "../../Images/Glorry-Circle-stamp.svg";
 const StampPaperView = () => {
   const { toPDF, targetRef } = usePDF({ filename: "Legal-Agreement.pdf" });
   const locationdata = useLocation();
@@ -1783,22 +1786,60 @@ const StampPaperView = () => {
     <>
       <Box>
         <Box minWidth="100%" ref={targetRef}>
+        <Box display="flex" flexDirection="column" textAlign="center">
           <Box
-            display="flex"
-            flexDirection="column"
-            textAlign="center"
-            maxWidth="100%"
+            mx="auto"
+            boxSize={{ base: "100%", md: "auto" }} // Adjusted to "auto" for non-base screen sizes
+            objectFit="contain"
+            mb={{ base: "2", lg: "0" }}
+            maxWidth="100%" // Added maxWidth property
           >
-            <Box
-              mx="auto"
-              boxSize={{ base: "100%", md: "auto" }} // Adjusted to "auto" for non-base screen sizes
-              objectFit="contain"
-              mb={{ base: "2", lg: "0" }}
-              maxWidth="100%" // Added maxWidth property
-            >
-              {/* <Image src={Front} alt="Description of the image" /> */}
-            </Box>
+            <Image src={image} alt="Description of the image" />
           </Box>
+        
+      
+         <Box display="flex" justifyContent="space-evenly">
+      <Box  mb={{ base: "2", lg: "0" }}>
+        <Image
+          w={{ base: '100%', lg: '150px' }}
+          h={{ base: 'auto', lg: '270px' }}
+          src={notri} alt="Dan Abramov"
+        />
+      </Box>
+      <Box textAlign="center">
+        <Heading as="h2" mb={{ base: "2", lg: "4" }}>
+          Legal Employment Contract 2024
+        </Heading>
+
+        <Text>
+          THIS DIGITAL EMPLOYMENT CONTRACT (this "Agreement") Valid Till
+          Eleven Months From 2024-9-26 BETWEEN:
+        </Text>
+
+        <Text fontSize={"1.5rem"}>
+          <strong>Glorry EnterPrises of </strong>
+        </Text>
+        <Text>
+        Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
+         India (IN), Pin Code: 313001 
+
+        </Text>
+
+        <Text fontSize={"1.5rem"}>
+          <strong>(The "Employer")</strong>
+        </Text>
+
+        <Text ml={{ base: "0", lg: "10%" }}>OF THE FIRST PARTY </Text>
+
+        <Text>-AND-</Text>
+        <Text>
+          S/O &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;...
+          <strong>(The "Employee")</strong>
+        </Text>
+        <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
+      </Box>
+    </Box>
+        </Box>
 
           <Box>
             <Text
@@ -1809,12 +1850,12 @@ const StampPaperView = () => {
               FREELANCING AGREEMENT
               <br />
               <br />
-              THIS GENERAL GREENTEN SERVICE AGREEMENT (THE AGREEMENT) DATED THIS
+              THIS GENERAL GLORRY ENTERPRISES AGREEMENT (THE AGREEMENT) DATED THIS
               AS OF GOVERNMENT FOR 2024 To 2025.
               <br />
               <br />
               THE FIRST PART OF THIS AGREEMENT IS Greenten SERVICE. THAT
-              REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD BIKANER
+              REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
               RAJASTHAN 334007
               <br />
               <br />
@@ -1824,7 +1865,7 @@ const StampPaperView = () => {
               <br />
               <Text fontSize={["0.8rem", "1.5rem"]}>POINT'S TO BE NOTE: -</Text>
               <br />
-              * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH GREENTEN SERVICE
+              * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH GLORRY ENTERPRISES
               COMPANY.
               <br />
               <br />
@@ -1862,7 +1903,7 @@ const StampPaperView = () => {
               <br />
               2.1 REMUNERATION: - - For the form filling service rendered by the
               client. The Clients shall beentitled to payments of price 41Rs.
-              (INR) Max perform for the salary may vary from 20910/- INR The
+              (INR) Max perform for the salary may vary from 22680/- INR The
               Client shall raise the invoice within 5 days after the successful
               completion of the project. The contractor will pay each project's
               amount within a maximum of 41 HRS, from the date of issue of the
@@ -1884,9 +1925,9 @@ const StampPaperView = () => {
               Working Days for the date andon completion of quality check shall
               issue a Quality report. Both parties agree to assure the highest
               Quality of End service. Following Cycle for accuracy will be
-              followed. cut off - 43 (in total) Above 90% @50/- INR perform. if
+              followed. cut off - 43 (in total) Above 90% @42/- INR perform. if
               below cut off or id is terminated then the client is supposed to
-              clear the Registration Amount (6800/-) to the company.
+              clear the Registration Amount (6900/-) to the company.
               <br />
               <br />
               2.4 The Q.C. Department will Check the forms Randomly by the
@@ -1907,7 +1948,7 @@ const StampPaperView = () => {
               3. Conflict of interest
               <br />
               <br />
-              3.1 Application Fee(S): The Registration Amount of 6800/- INR.
+              3.1 Application Fee(S): The Registration Amount of 6900/- INR.
               Will be deducted from the salary ifgenerated, and if the salary is
               not generated
               <br />
@@ -1933,7 +1974,7 @@ const StampPaperView = () => {
               server of the company detects that there are multiple login
               Attempts/multiple IP Addresses of the account Modules .and The ID
               will get Terminated Without Any Intimation and the client needs to
-              clear the server maintenance charge up to 6800/- INR. (Refundable
+              clear the server maintenance charge up to 6900/- INR. (Refundable
               Amount After Successfully done the work**) For That Particular
               Project As Per This Agreement.
               <br />
@@ -1948,7 +1989,7 @@ const StampPaperView = () => {
               <br />
               3.4 Client will Execute The data Processing Work provided by the
               contractor through experiencedpersons in such a manner to carry
-              out the work efficiently at a minimum of 80% for our files.
+              out the work efficiently at a minimum of 90% for our files.
               <br />
               <br />
               3.5 Contractor Agree to provide Formats and Other Information for
@@ -1959,7 +2000,7 @@ const StampPaperView = () => {
               <br />
               3.6 Client will Execute The data Processing Work provided by the
               contractor through experiencedpersons in such a manner to carry
-              out the work efficiently at a minimum of 80% for our files.
+              out the work efficiently at a minimum of 90% for our files.
               <br />
               <br />
               3.7 This Agreement Represent The business agreement and operation
@@ -2017,7 +2058,7 @@ const StampPaperView = () => {
               political turbulence or for any other reasons of a similar nature,
               which is beyond the control of the client. If you want to
               terminate your agreement after your first work, you need to pay
-              6800*11 times the agreement amount as per company policies.
+              6900*11 times the agreement amount as per company policies.
               <br />
             </Text>
           </Box>
@@ -2186,16 +2227,7 @@ const StampPaperView = () => {
               Note :Extension will be Provided But u Have to Pay the Extension
               Amount 8100/ Correction amount 8100
             </Text>
-            <Text
-              color={"red"}
-              fontSize={["0.8rem", "1.5rem"]}
-              mt={["-1rem", "-6rem"]}
-              fontWeight={"500"}
-              padding={["1rem", "3rem"]}
-            >
-              The helpline department is available from Monday to Saturday from
-              11:00 Am to 5:30 Pm
-            </Text>
+           
           </Box>
 
           <Box mt={["1rem", "-5rem"]}>
@@ -2207,12 +2239,11 @@ const StampPaperView = () => {
               mt={["-1rem", "-5rem"]}
               padding={["1rem", "3rem"]}
             >
-              Name : Greenten Service <br />
-              Email :greenhelplineservice19@gmail.com <br />
-              {/* Address : block number: 23 Hanuman Nagar Ajmer Road
-              S.O, Jaipur, 302006 */}
-              Adress: Sham Baba Apartment Office Number 20/21 Postmaster Post
-              Office Road Bikaner Rajasthan ,334007
+             Name : Glorry Enterprises <br />
+            Email : helplineservice19@gmail.com <br />
+            Adress:  block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), 
+            Udaipur, Rajasthan, India (IN), Pin Code: 313001 
+
             </Text>
           </Box>
           <Text
@@ -2250,7 +2281,7 @@ const StampPaperView = () => {
               </FormControl>
             </Box>
             <Box marginTop={["3rem", "-5rem"]} marginLeft={["0rem", "9rem"]}>
-              {/* <Image src={LOGO} alt="Description of the image" /> */}
+              <Image src={LOGO} alt="Description of the image" />
             </Box>
           </Box>
           {/* <Box width={["200px", "400px"]}>
@@ -2290,7 +2321,7 @@ const StampPaperView = () => {
           </Box> */}
           <Box display="flex" justifyContent="center" mt="1rem">
             <Box ml="2rem" w={["255%", "105%"]} h={["0%", "20%"]} mr="1rem">
-              {/* <Image src={stamplogo} alt="Stamp" /> */}
+              <Image src={stamplogo} alt="Stamp" />
             </Box>
             <Box display="flex" flexDirection="row">
               <Box onChange={handleSignatureChange}>
@@ -2319,13 +2350,19 @@ const StampPaperView = () => {
             ml={["3rem", "7rem"]}
             onClick={() => toPDF()}
             //downlodePDF(photoPreview, signaturePreview)}
-            bg={"purple"}
+            bg={"#ff4dff"}
+            color ="black"
             variant="solid"
             mt="4"
             mb="1rem"
-            color={"white"}
+           
+            _hover={{
+              boxShadow: "lg", // You can adjust the shadow size
+              transform: "scale(1.05)", // Optional: Add a slight scaling effect
+              bg: "#e633e6", // Optional: Change background color on hover
+            }}
           >
-            Download
+            Download Your Pdf
           </Button>
         </Box>
       </Box>

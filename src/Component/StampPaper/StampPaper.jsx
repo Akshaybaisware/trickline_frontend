@@ -18,8 +18,9 @@ import { Spinner } from "@chakra-ui/react";
 // import Front from "../../assets/Frontnew.jpg";
 // import frontpage from "../../assets/frontpage.jpg";
 // import sign from "../../assets/cropto stamp.svg";
-// import stamplogo from "../../assets/stamplogo.svg";
-// import image from "./SVG STAM.svg";
+ import stamplogo from "../../Images/glorry-stamp.svg";
+import notri from "../../Images/notriimages.jpg"
+ import image from "../../Images/SVG STAM.svg";
 
 import { useState } from "react";
 import axios from "axios";
@@ -127,8 +128,51 @@ const StampPaper = () => {
             mb={{ base: "2", lg: "0" }}
             maxWidth="100%" // Added maxWidth property
           >
-            {/* <Image src={Front} alt="Description of the image" /> */}
+            <Image src={image} alt="Description of the image" />
           </Box>
+        
+      
+         <Box display="flex" justifyContent="space-evenly">
+      <Box  mb={{ base: "2", lg: "0" }}>
+        <Image
+          w={{ base: '100%', lg: '150px' }}
+          h={{ base: 'auto', lg: '270px' }}
+          src={notri} alt="Dan Abramov"
+        />
+      </Box>
+      <Box textAlign="center">
+        <Heading as="h2" mb={{ base: "2", lg: "4" }}>
+          Legal Employment Contract 2024
+        </Heading>
+
+        <Text>
+          THIS DIGITAL EMPLOYMENT CONTRACT (this "Agreement") Valid Till
+          Eleven Months From 2024-9-26 BETWEEN:
+        </Text>
+
+        <Text fontSize={"1.5rem"}>
+          <strong>Glorry EnterPrises of </strong>
+        </Text>
+        <Text>
+        Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
+         India (IN), Pin Code: 313001 
+
+        </Text>
+
+        <Text fontSize={"1.5rem"}>
+          <strong>(The "Employer")</strong>
+        </Text>
+
+        <Text ml={{ base: "0", lg: "10%" }}>OF THE FIRST PARTY </Text>
+
+        <Text>-AND-</Text>
+        <Text>
+          S/O &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;... &nbsp;...
+          <strong>(The "Employee")</strong>
+        </Text>
+        <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
+      </Box>
+    </Box>
         </Box>
 
         <Box>
@@ -140,12 +184,12 @@ const StampPaper = () => {
             FREELANCING AGREEMENT
             <br />
             <br />
-            THIS GENERAL GREENTEN SERVICE AGREEMENT (THE AGREEMENT) DATED THIS
+            THIS GENERAL GLORRY ENTERPRISES AGREEMENT (THE AGREEMENT) DATED THIS
             AS OF GOVERNMENT FOR 2024 To 2025.
             <br />
             <br />
             THE FIRST PART OF THIS AGREEMENT IS Greenten SERVICE. THAT
-            REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD BIKANER
+            REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
             RAJASTHAN
             <br />
             <br />
@@ -155,7 +199,7 @@ const StampPaper = () => {
             <br />
             <Text fontSize={["0.8rem", "1.5rem"]}>POINT'S TO BE NOTE: -</Text>
             <br />
-            * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH GREENTEN SERVICE
+            * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH GLORRY ENTERPRISES
             COMPANY.
             <br />
             <br />
@@ -193,7 +237,7 @@ const StampPaper = () => {
             <br />
             2.1 REMUNERATION: - - For the form filling service rendered by the
             client. The Clients shall beentitled to payments of price 41Rs.
-            (INR) Max perform for the salary may vary from 20910/- INR The
+            (INR) Max perform for the salary may vary from 22680/- INR The
             Client shall raise the invoice within 5 days after the successful
             completion of the project. The contractor will pay each project's
             amount within a maximum of 48 HRS, from the date of issue of the
@@ -215,9 +259,9 @@ const StampPaper = () => {
             Working Days for the date andon completion of quality check shall
             issue a Quality report. Both parties agree to assure the highest
             Quality of End service. Following Cycle for accuracy will be
-            followed. cut off - 43 (in total) Above 80% @41/- INR perform. if
+            followed. cut off - 43 (in total) Above 90% @41/- INR perform. if
             below cut off or id is terminated then the client is supposed to
-            clear the Registration Amount (6800/-) to the company.
+            clear the Registration Amount (6900/-) to the company.
             <br />
             <br />
             2.4 The Q.C. Department will Check the forms Randomly by the server.
@@ -238,7 +282,7 @@ const StampPaper = () => {
             3. Conflict of interest
             <br />
             <br />
-            3.1 Application Fee(S): The Registration Amount of 6800/- INR. Will
+            3.1 Application Fee(S): The Registration Amount of 6900/- INR. Will
             be deducted from the salary ifgenerated, and if the salary is not
             generated i.e If the client fails to complete the work. then he/she
             is liable to pay the same registration amount on their own. The
@@ -259,7 +303,7 @@ const StampPaper = () => {
             server of the company detects that there are multiple login
             Attempts/multiple IP Addresses of the account Modules .and The ID
             will get Terminated Without Any Intimation and the client needs to
-            clear the server maintenance charge up to 6800/- INR. (Refundable
+            clear the server maintenance charge up to 6900/- INR. (Refundable
             Amount After Successfully done the work**) For That Particular
             Project As Per This Agreement.
             <br />
@@ -273,7 +317,7 @@ const StampPaper = () => {
             <br />
             3.4 Client will Execute The data Processing Work provided by the
             contractor through experiencedpersons in such a manner to carry out
-            the work efficiently at a minimum of 80% for our files.
+            the work efficiently at a minimum of 90% for our files.
             <br />
             <br />
             3.5 Contractor Agree to provide Formats and Other Information for
@@ -284,7 +328,7 @@ const StampPaper = () => {
             <br />
             3.6 Client will Execute The data Processing Work provided by the
             contractor through experiencedpersons in such a manner to carry out
-            the work efficiently at a minimum of 80% for our files.
+            the work efficiently at a minimum of 90% for our files.
             <br />
             <br />
             3.7 This Agreement Represent The business agreement and operation
@@ -334,7 +378,7 @@ const StampPaper = () => {
             data entry operators engaged by the client, violence or political
             turbulence or for any other reasons of a similar nature, which is
             beyond the control of the client. If you want to terminate your
-            agreement after your first work, you need to pay 6800*11 times the
+            agreement after your first work, you need to pay 6900*11 times the
             agreement amount as per company policies.
             <br />
           </Text>
@@ -482,7 +526,7 @@ const StampPaper = () => {
             thereof in force in India, shall govern the reference. both parties
             shall appoint their respective arbitrator, and both arbitrators thus
             appointed should appoint the third arbitrator echo shall function as
-            the presiding arbitrator. the venue of arbitration shall be BIKANER
+            the presiding arbitrator. the venue of arbitration shall be UDAIPUR
             RAJASTHAN 422101
           </Text>
           <Text
@@ -505,16 +549,7 @@ const StampPaper = () => {
             Note :Extension will be Provided But u Have to Pay the Extension
             Amount 8100/ Correction amount 8100
           </Text>
-          <Text
-            color={"red"}
-            fontSize={["0.8rem", "1.5rem"]}
-            mt={["-1rem", "-6rem"]}
-            fontWeight={"500"}
-            padding={["1rem", "3rem"]}
-          >
-            The helpline department is available from Monday to Saturday from
-            11:00 Am to 5:30 Pm
-          </Text>
+       
         </Box>
 
         <Box>
@@ -522,15 +557,16 @@ const StampPaper = () => {
             Employer : -
           </Text>
           <Text ml={["1rem", "3rem"]} fontWeight={"500"}>
-            Name : Greenten Service <br />
-            Email : greenhelplineservice19@gmail.com <br />
-            Adress: Sham Baba Apartment Office Number 20/21 Postmaster Post
-            Office Road Bikaner Rajasthan ,334007
+            Name : Glorry Enterprises <br />
+            Email : helplineservice19@gmail.com <br />
+            Adress:  block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), 
+            Udaipur, Rajasthan, India (IN), Pin Code: 313001 
+
           </Text>
         </Box>
 
         <Box ml={["0.5rem", "2rem"]} width={["200px", "400px"]}>
-          {/* <Image src={stamplogo} alt="Stamp" /> */}
+          <Image src={stamplogo} alt="Stamp" />
         </Box>
         {/* <FormControl w={["350px", "400px"]}>
           <FormLabel>Name</FormLabel>
@@ -617,10 +653,11 @@ const StampPaper = () => {
           </Tr>
         </Table>
         <Button
+        color={"white"}
           onClick={handleSubmit}
           mt={"1rem"}
           ml={"1.6rem"}
-          bg={"#DD372D"}
+          bg={"#2312a0"}
           _hover={{ background: "gray", color: "white" }}
         >
           Submit

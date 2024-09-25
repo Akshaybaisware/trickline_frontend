@@ -174,9 +174,8 @@ const RegistrationForm = () => {
                   placeholder="Select Plan"
                   _hover={{ borderColor: "teal.500" }}
                 >
-                  <option value="510">510</option>
-                  <option value="1020">1020</option>
-                  <option value="2040">2040</option>
+                  <option value="510">540</option>
+                 
                 </Select>
               )}
             />
@@ -201,9 +200,15 @@ const RegistrationForm = () => {
                       {employee.name}
                     </option>
                   ))} */}
-                  <option value="caller1">caller1</option>
-                  <option value="caller2">caller2</option>
-                  <option value="caller3">caller3</option>
+                  <option value="caller1">caller 1</option>
+                  <option value="caller2">caller 2</option>
+                  <option value="caller3">caller 3</option>
+                  <option value="caller1">caller 4</option>
+                  <option value="caller2">caller 5</option>
+                  <option value="caller3">caller 6</option>
+                  <option value="caller1">caller 7</option>
+                  <option value="caller2">caller 8</option>
+                  <option value="caller3">caller 9</option>
                 </Select>
               )}
             />
