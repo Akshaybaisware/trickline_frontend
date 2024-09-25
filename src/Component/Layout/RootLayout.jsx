@@ -37,7 +37,9 @@ function RootLayout() {
       {/* Main Content */}
       <Flex flexGrow={1}>
         {/* Sidebar */}
-        <Box flexBasis={{ base: "60%", md: "20%" }}>
+        <Box
+     boxShadow="10px 0 10px -5px rgba(189, 22, 189, 0.5)" // right-side shadow
+        flexBasis={{ base: "60%", md: "20%" }}>
         <SideBar />
         </Box>
 

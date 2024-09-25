@@ -102,7 +102,7 @@ export default function SideBar() {
 
   return (
     <>
-      <List p="10px" bg=" #dedcde">
+      <List p="10px" bg=" #fcf7fc"  boxShadow="0 4px 10px rgba(128, 0, 128, 0.5)" >
         {isMobileView && (
           <IconButton
             icon={<HamburgerIcon />}

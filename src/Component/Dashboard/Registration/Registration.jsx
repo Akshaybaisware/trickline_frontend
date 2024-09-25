@@ -97,6 +97,27 @@ const Registration = () => {
     <Button onClick={(e) => onExport(e.target.value)}>Export</Button>
   );
 
+  const exportToExcel = () => {
+    // Convert data to worksheet format
+    const worksheet = xlsx.utils.json_to_sheet(filteredData);
+
+    // Create a new workbook and add the worksheet
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook, worksheet, "Registrations");
+
+    // Write the workbook to a binary format
+    const excelBuffer = xlsx.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
+
+    // Convert the binary data to a Blob
+    const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+
+    // Save the Excel file using FileSaver
+    saveAs(blob, "registrations.xlsx");
+  };
+
   function convertArrayOfObjectsToCSV(array) {
     let result;
 
@@ -239,7 +260,7 @@ const Registration = () => {
   return (
     <>
       <Flex direction="column" align="center">
-        <Flex>
+        {/* <Flex direction={"column"}>
           <Box>
             All Users
             {" " +
@@ -260,15 +281,54 @@ const Registration = () => {
               {`${todaysassignment}`}
             </Text>
           </Box>
-        </Flex>
+        </Flex> */}
+         <Flex
+      direction={{ base: "column", md: "column" }} // Stacks on small screens, row on medium+
+      p={{ base: 4, md: 6 }} // Padding based on screen size
+      align="center"
+      justify="space-between" // Space between boxes in row direction
+      wrap="wrap" // Wrap content on smaller screens
+      gap={0} // Gap between children
+    >
+      <Box
+        p={4}
+        bg="gray.100" // Light background for visibility
+        borderRadius="md"
+        flex={{ base: "1", md: "0 0 45%" }} // Flex-grow on small screens, fixed width on medium+
+        textAlign={{ base: "center", md: "left" }} // Center text on small screens
+      >
+        All Users{" "}
+        {new Date().toLocaleString("en-IN", {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+          hour12: false,
+        })}
+      </Box>
 
-        <div>
+      <Box
+        p={4}
+        bg="gray.100"
+        borderRadius="md"
+        flex={{ base: "1", md: "0 0 45%" }}
+        textAlign={{ base: "center", md: "left" }}
+      >
+        <Text fontWeight={700} fontSize={{ base: "md", md: "xl" }} mb={4}>
+          Today Pending: {todaysassignmentcount} | Today Success:{" "}
+          {todaysassignment}
+        </Text>
+      </Box>
+    </Flex>
+
+        <div >
           {loading && <p>Loading...</p>}
           {/* {error && <p>{error}</p>} */}
           {registrationsCount !== null && (
             <Box
               fontSize={["1.3rem", "1.5rem"]}
-              mt={"1rem"}
+              mt={"5rem"}
               fontWeight={"700"}
               color={"green"}
             >
@@ -279,7 +339,7 @@ const Registration = () => {
         <Box
           color="#DD372D"
           ml={["1rem", "0rem"]}
-          mt={["1rem", "0"]}
+          mt={["0rem", "0"]}
           mb="1rem"
           fontSize={["1.5rem", "2rem"]}
           fontWeight="700"
@@ -288,7 +348,7 @@ const Registration = () => {
         </Box>
         <NavLink to="/user/Registrationform">
           <Button
-            mt="1rem"
+            mt="0rem"
             mb={"1rem"}
             _hover={{ background: "white", color: "gray" }}
             p="1rem"
