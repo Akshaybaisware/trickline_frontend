@@ -1,0 +1,8 @@
+.content {
+    .playwrite-cu-<uniquifier> {
+        font-family: "Playwrite CU", cursive;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+    }
+}

@@ -30,7 +30,19 @@ export default function Navbar() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-
+  const token = sessionStorage.getItem("token"); // Replace 'token' with your actual cookie name
+  console.log(token, "dasdasd");
+  // let userID;
+  // Check if token exists
+  let parsedToken;
+  if (token) {
+    // Parse the token if it's a JSON object or JWT
+    parsedToken = JSON.parse(token);
+    // userID = parsedToken._id;
+    // console.log(userID, "1234456");
+  } else {
+    console.log("Token not found");
+  }
   const userRole = sessionStorage.getItem("userrole");
   console.log(userRole);
 
@@ -44,11 +56,13 @@ export default function Navbar() {
     }
 
     try {
-      const response = await axios.post(`${apiUrl}/user/changePassword`, {
-        newPassword,
-        userRole,
+      const response = await axios.post(`${apiUrl}/auth/adminforgetpassword`, {
+        newPassword: newPassword,
+        confirmPassword: confirmPassword,
+        userEmail: parsedToken.email,
+        // userRole,
       });
-
+      console.log(response, "frogetpassword");
       setSuccessMessage(response.data.message);
       setNewPassword("");
       setConfirmPassword("");
@@ -78,13 +92,11 @@ export default function Navbar() {
       bg={" #defaed"}
     >
       <Box
-      
         display="flex"
         alignItems="center"
         marginBottom={{ base: "4", md: "0" }}
       >
         <Image
-        
           marginLeft={{ base: "0", md: "0rem" }}
           boxSize={{ base: "90px", md: "150px" }}
           src={Dataentry}
@@ -105,7 +117,7 @@ export default function Navbar() {
             //boxShadow: "0 8px 16px rgba(128, 0, 128, 0.1), 20px 10px 3px rgba(128, 0, 128, 0.08)"
           }}
         >
-       Glorry Enterprises
+          Glorry Enterprises
         </Heading>
       </Box>
       {/* <Box>

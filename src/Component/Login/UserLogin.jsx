@@ -73,19 +73,19 @@
 //           },
 //         }
 //       );
-    
+
 //       if (response.data.status === "Freeze") {
 //         navigate("/qccheck");
 //       } else if (response.status === 200) {
 //         console.log(response);
 //         navigate("/assignment");
 //         setUserContext(response.data.role);
-//         sessionStorage.setItem("userrole", response.data.role); 
+//         sessionStorage.setItem("userrole", response.data.role);
 //         // Extracting token and id from the response
 //         const { token, id } = response.data;
 //         const decodedToken = jwtDecode(token);
 //         // localStorage.setItem("token", JSON.stringify(decodedToken));
-//         sessionStorage.setItem("token", JSON.stringify(decodedToken)); 
+//         sessionStorage.setItem("token", JSON.stringify(decodedToken));
 //         sessionStorage.setItem("id", id);
 //         // Optionally, display a success message
 //         // alert("Login successful.");
@@ -119,8 +119,8 @@
 //   };
 //   return (
 //     <form onSubmit={handleSubmit}>
-//       <Box  
-     
+//       <Box
+
 //      width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }} // Adjust width based on screen size
 //      marginX="auto" // Center horizontally
 //      minHeight="100vh" // Ensure full height even if content is not enough
@@ -131,7 +131,7 @@
 //      padding="20px"
 //      bg={"#0F0623"}
 //       >
-        
+
 //         <Box
 //           display="flex"
 //           flexDirection="column"
@@ -150,7 +150,7 @@
 //         <Flex
 //           direction="column"
 //           width={["90%", "70%", "50%", "40%"]}
-         
+
 //         >
 //           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
 //             <FaEnvelope style={{ width: "4%", marginLeft: "20px" }} />
@@ -321,11 +321,12 @@ const UserLogin = () => {
     }
     setIsLoading(true); // Start the loader when login is initiated
     try {
-      const response = await axios.post(`${apiUrl}/user/userlogin`, inputFields, {
+      const response = await axios.post(`${apiUrl}/user/login`, inputFields, {
         headers: {
           "Content-Type": "application/json",
         },
       });
+      console.log(response, "user login ");
 
       if (response.data.status === "Freeze") {
         navigate("/qccheck");
@@ -376,9 +377,20 @@ const UserLogin = () => {
         padding="20px"
         bg={"#0F0623"}
       >
-        <Box display="flex" flexDirection="column" alignItems="center" marginY="20px" w={"20rem"}>
+        <Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          marginY="20px"
+          w={"20rem"}
+        >
           <Image width={"23rem"} src={logo} alt="" />
-          <Heading marginTop={"1rem"} color="#000" fontFamily="Poppins, serif" size="lg">
+          <Heading
+            marginTop={"1rem"}
+            color="#000"
+            fontFamily="Poppins, serif"
+            size="lg"
+          >
             User Login
           </Heading>
         </Box>
@@ -405,7 +417,11 @@ const UserLogin = () => {
           </Alert>
         )}
 
-        <Flex direction="column" width={["90%", "70%", "50%", "40%"]} marginY="10px">
+        <Flex
+          direction="column"
+          width={["90%", "70%", "50%", "40%"]}
+          marginY="10px"
+        >
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
             <FaLock style={{ width: "4%", marginLeft: "20px" }} />
             <Input
@@ -435,7 +451,8 @@ const UserLogin = () => {
             isDisabled={isLoading} // Disable the button when loading
             _hover={{ background: "FloralWhite", color: "black" }}
           >
-            {isLoading ? <Spinner size="md" /> : "Login"} {/* Show spinner while loading */}
+            {isLoading ? <Spinner size="md" /> : "Login"}{" "}
+            {/* Show spinner while loading */}
           </Button>
         </Flex>
       </Box>
@@ -469,4 +486,3 @@ const buttonStyle = {
 };
 
 export default UserLogin;
-

@@ -1,362 +1,690 @@
+// Testing full part
+// import React, { useEffect, useState, useRef } from "react";
+// import { useToast, Box, Flex, Text, Input, Button } from "@chakra-ui/react";
+// import { BiRefresh } from "react-icons/bi";
+// import axios from "axios";
+// import { useNavigate } from "react-router-dom";
+// import "./contentvalidation.css"
+
+// function ContentValidationfrom() {
+//   const toast = useToast();
+//   const navigate = useNavigate();
+
+//   const userId = localStorage.getItem("userId");
+
+//   const [apidata, setapidata] = useState();
+//   const [randomIndex, setRandomIndex] = useState(null); // State to store the random index
+
+//   const name = useRef();
+//   const mobile = useRef();
+//   const address = useRef();
+//   const annualRevenue = useRef();
+//   const jobFunctional = useRef();
+//   const pinCode = useRef();
+//   const refreshAssignment = async () => {
+//     try {
+//       await getdatafrom(); // Fetch new assignment data
+//       setRandomIndex(Math.floor(Math.random() * 510)); // Set new random index
+//     } catch (error) {
+//       console.log(error);
+//     }
+//   };
+
+//   const getdatafrom = async () => {
+//     try {
+//       const response = await axios.get(
+//         "https://greentenbe-production.up.railway.app/api/assignment/getallassignments"
+//         // {
+//         //   userId: userId,
+//         // }
+//       );
+//       console.log(response , "res")
+//       setapidata(response?.data?.assignments);
+//       setRandomIndex(Math.floor(Math.random() * 520));
+//       console.log(randomIndex , "randomIndex")
+//     } catch (error) {
+//       toast({
+//         title: "Error ",
+//         description: "Error",
+//         status: "error",
+//         duration: 3000,
+//         position: "top",
+//         isClosable: true,
+//       });
+//       console.log(error.message);
+//     }
+//   };
+
+//   const submitForm = async () => {
+//     try {
+//       const response = await axios.post(
+//         "https://greentenbe-production.up.railway.app/api/assignment/addassignment",
+//         {
+//           userId: userId,
+//         }
+//       );
+//       console.log(response, "mkninmiopn");
+//       if (response.status === 201) {
+//         toast({
+//           title: "Success",
+//           description: "Form submitted successfully",
+//           status: "success",
+//           duration: 3000,
+//           position: "top",
+//           isClosable: true,
+//         });
+//         refreshAssignment();
+//         navigate("/");
+//         // Refresh the assignment data after submission
+//       }
+//     } catch (error) {
+//       toast({
+//         title: "Error ",
+//         description: `error: ${error.message}`,
+//         status: "error",
+//         duration: 10000,
+//         position: "top",
+//         isClosable: true,
+//       });
+//       console.log(error.message);
+//     }
+
+//   };
+
+//   useEffect(() => {
+//     getdatafrom();
+//   }, []);
+
+//   return (
+//     <>
+
+//       <Flex
+//         mt={["2rem", "0rem"]}
+//         justifyContent={"center"}
+//         gap={"2rem"}
+//         flexDirection={["column", "row"]}
+//         className="content"
+//       >
+//         <Box p="4" border="1px solid #ccc" borderRadius="md" maxW="600px">
+//           <Flex direction="column"
+//              style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//           >
+//             <Text fontSize={["1.5rem", "2.3rem"]}>
+//               {apidata?.[randomIndex]?.name}
+//             </Text>
+//             <Text fontSize={["1.5rem", "2.3rem"]}>
+//               {apidata?.[randomIndex]?.phone}
+//             </Text>
+//             <Text fontSize={["1.5rem", "2.3rem"]}>
+//               {apidata?.[randomIndex]?.address}
+//             </Text>
+//             <Text fontSize={["1.5rem", "2.3rem"]}>
+//               {apidata?.[randomIndex]?.annualRevenue}
+//             </Text>
+//             <Text fontSize={["1.5rem", "2.3rem"]}>
+//               {apidata?.[randomIndex]?.jobFunctional}
+//             </Text>
+//             <Text fontSize={["1.5rem", "2.3rem"]}>
+//               {apidata?.[randomIndex]?.pinCode}
+//             </Text>
+//           </Flex>
+//         </Box>
+
+//         <Box p="4" border="1px solid #ccc" borderRadius="md" maxW="1000px">
+//           <Flex
+//              style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//           width={["330px", "400px"]} direction="column">
+//             <Text>Name:</Text>
+//             <Input
+//                style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//             ref={name} />
+//             <Text>Mobile:</Text>
+//             <Input
+//                style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//             ref={mobile} />
+//             <Text>Address:</Text>
+//             <Input
+//                style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//             ref={address} />
+//             <Text>Annual Revenue:</Text>
+//             <Input
+//                style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//             ref={annualRevenue} />
+//             <Text>Job Functional:</Text>
+//             <Input
+//                style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//             ref={jobFunctional} />
+//             <Text>Pin Code:</Text>
+//             <Input
+//                style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
+//             ref={pinCode} />
+
+//             <Button
+//               mt={"1rem"}
+//               mb={"1rem"}
+//               onClick={submitForm}
+//               color={"white"}
+//               bg="green" // Change to the desired color scheme
+//             >
+//               Submit
+//             </Button>
+
+//           </Flex>
+//         </Box>
+//       </Flex>
+//     </>
+//   );
+// }
+
+// export default ContentValidationfrom;
+
+// testing with chatbot
+
+import React, { useEffect, useState, useRef } from "react";
 import {
+  useToast,
   Box,
-  Button,
-  Divider,
-  FormControl,
-  FormLabel,
-  Input,
-  Stack,
+  Flex,
   Text,
+  Input,
+  Button,
+  Grid,
+  GridItem,
 } from "@chakra-ui/react";
+import { BiRefresh } from "react-icons/bi";
 import axios from "axios";
-import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-// import React from "react";
-// import "./EmployeeProfileEdit.css";
-import { useToast } from '@chakra-ui/react';
-const NewAssignment = () => {
-  const apiUrl = import.meta.env.VITE_APP_API_URL;
-  const token = JSON.parse(sessionStorage.getItem("token"));
-  const { email, _id } = token;
-  // console.log(email, "Get Email");
-  // console.log(_id, "Get ID");
+import Cookies from "js-cookie";
+// import ChatBot from "react-simple-chatbot";
+// import { Segment } from "semantic-ui-react";
+import styled, { keyframes } from "styled-components";
+// import "semantic-ui-css/semantic.min.css";
+import "./contentvalidation.css";
+import { ContactsOutlined } from "@mui/icons-material";
+// import ChatbotImage from "../assets/chatbot.webp"; // Replace with the correct path to your image
+// import image from "../assets/chatbot.webp";
+// Define the blinking keyframes for the logo
+// import chatbotimage from "../../assets/chatbot.webp";
+const blink = keyframes`
+  50% {
+    opacity: 0;
+  }
+`;
+
+// Create a styled component for the blinking logo
+const BlinkingImage = styled.img`
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  animation: ${blink} 1s step-end infinite;
+`;
+
+const BlinkingLogo = ({ onClick }) => {
+  return (
+    <BlinkingImage
+      src={chatbotimage} // Example logo
+      alt="Chatbot"
+      onClick={onClick}
+    />
+  );
+};
+
+// const ChatBotComponent = () => {
+//   const [showChatBot, setShowChatBot] = useState(false);
+//   const chatBotRef = useRef(null);
+
+//   const handleClickOutside = (event) => {
+//     if (chatBotRef.current && !chatBotRef.current.contains(event.target)) {
+//       setShowChatBot(false);
+//     }
+//   };
+
+//   useEffect(() => {
+//     if (showChatBot) {
+//       document.addEventListener("mousedown", handleClickOutside);
+//     } else {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     }
+
+//     return () => {
+//       document.removeEventListener("mousedown", handleClickOutside);
+//     };
+//   }, [showChatBot]);
+
+//   const steps = [
+//     {
+//       id: "Greet",
+//       message: "Hello, Welcome to Greenten Services",
+//       trigger: "Ask Name",
+//     },
+//     {
+//       id: "Ask Name",
+//       message: "Please enter your Name",
+//       trigger: "waiting1",
+//     },
+//     {
+//       id: "waiting1",
+//       user: true,
+//       trigger: "Name",
+//     },
+//     {
+//       id: "Name",
+//       message: "Hi {previousValue}, select your issue",
+//       trigger: "issues",
+//     },
+//     {
+//       id: "issues",
+//       options: [
+//         { value: "qc", label: "QC-Report", trigger: "qc" },
+//         { value: "assignment", label: "Assignment", trigger: "assignment" },
+//         { value: "login", label: "Login", trigger: "login" },
+//         { value: "salary", label: "Salary", trigger: "salary" },
+//         { value: "cancel_work", label: "Cancel Work", trigger: "cancel_work" },
+//       ],
+//     },
+//     {
+//       id: "qc",
+//       options: [
+//         {
+//           value: "400_completed",
+//           label: "510 Form Completed",
+//           trigger: "400_completed",
+//         },
+//         {
+//           value: "400_not_completed",
+//           label: "510 Form pending",
+//           trigger: "400_not_completed",
+//         },
+//       ],
+//     },
+//     {
+//       id: "400_completed",
+//       message:
+//         "Your QC report will be generated after your end-date. Till then, please wait for the result. For more queries, mail to greenhelplineservice19@gmail.com.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "400_not_completed",
+//       message:
+//         "Please complete the 510 Assignment. For more queries, mail to greenhelplineservice19@gmail.com.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "assignment",
+//       options: [
+//         {
+//           value: "assignment_completed",
+//           label: "Assignment Completed",
+//           trigger: "assignment_completed",
+//         },
+//         {
+//           value: "question_in_assignment",
+//           label: "Form in showing After Completion of Assignment",
+//           trigger: "question_in_assignment",
+//         },
+//       ],
+//     },
+//     {
+//       id: "assignment_completed",
+//       message:
+//         "Wait for the QC report which will be displayed after your end-date in Your dashboard. For more queries, mail to greenhelplineservice19@gmail.com.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "question_in_assignment",
+//       message:
+//         "Ignore Form due to server problem it shows The assignment is over. You have to wait for the QC report after 5 days. For more queries, mail to greenhelplineservice19@gmail.com.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "login",
+//       options: [
+//         {
+//           value: "login_problem",
+//           label: "Login Problem",
+//           trigger: "login_problem",
+//         },
+//         {
+//           value: "qc_not_showing",
+//           label: "After Login QC is Not Showing",
+//           trigger: "qc_not_showing",
+//         },
+//       ],
+//     },
+//     {
+//       id: "login_problem",
+//       message:
+//         "Make sure to copy-paste your user ID and password properly. Don't copy any extra spaces before or after the credentials, as this can cause login issues. For more queries, mail to greenhelplineservice19@gmail.com.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "qc_not_showing",
+//       message:
+//         "Make sure your 5 days are completed. After 5 days, log out and log in again; your QC will be there. For more queries, mail to greenhelplineservice19@gmail.com.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "salary",
+//       message:
+//         "You will receive your salary via NEFT/GPay/PhonePe after 5 days if your correct percentage is more than 80%. For more queries, mail to greenhelplineservice19@gmail.com.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "cancel_work",
+//       message:
+//         "To cancel your work, please mail to greenhelplineservice19@gmail.com. You cannot cancel from here.",
+//       trigger: "user_input",
+//     },
+//     {
+//       id: "user_input",
+//       user: true,
+//       trigger: "thank_you",
+//     },
+//     {
+//       id: "thank_you",
+//       message:
+//         "Thank you for connecting with us. We will look into your queries. For more information, contact greenhelplineservice19@gmail.com.",
+//       end: true,
+//     },
+//   ];
+
+//   return (
+//     <>
+//       {showChatBot && (
+//         <Segment
+//           ref={chatBotRef}
+//           style={{
+//             position: "fixed",
+//             bottom: "80px",
+//             right: "20px",
+//             zIndex: 1000,
+//           }}
+//         >
+//           <ChatBot steps={steps} />
+//         </Segment>
+//       )}
+//       <BlinkingLogo onClick={() => setShowChatBot(!showChatBot)} />
+//     </>
+//   );
+// };
+
+function ContentValidationfrom() {
   const toast = useToast();
+  const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_APP_API_URL;
 
-  const Navigate = useNavigate();
-  // state hook to take input from form
-  const [data, setData] = useState("");
-  const [inputFields, setInputFields] = useState({
-    name: "",
-    address: "",
-    pinCode: "",
-    jobFunctional: "",
-    phone: "",
-    annualRevenue: "",
-    cleanCode: "",
-  });
-  useEffect(() => {
-    getDataAssignment();
-  }, [email]);
-  console.log(email);
+  const userId = localStorage.getItem("userId");
+  const token = sessionStorage.getItem("token"); // Replace 'token' with your actual cookie name
+  console.log(token, "dasdasd");
+  let userID;
+  // Check if token exists
+  if (token) {
+    // Parse the token if it's a JSON object or JWT
+    const parsedToken = JSON.parse(token);
+    userID = parsedToken._id;
+    console.log(userID, "1234456");
+  } else {
+    console.log("Token not found");
+  }
 
-  const getDataAssignment = async () => {
+  const [apidata, setapidata] = useState();
+  const [randomIndex, setRandomIndex] = useState(null); // State to store the random index
+  const [submittedAssignmentCount, setSubmittedAssignmentCount] = useState();
+  const name = useRef();
+  const mobile = useRef();
+  const address = useRef();
+  const annualRevenue = useRef();
+  const jobFunctional = useRef();
+  const pinCode = useRef();
+
+  const refreshAssignment = async () => {
     try {
-      const config = {
-        method: "POST",
-        url: `${apiUrl}/user/get_assignment_details`,
-        data: { email: email }, // Pass the email as part of the request body
-      };
-
-      const response = await axios(config);
-      console.log("Get response:", response.data);
-      // Assuming you have a state variable setData to store the response
-      setData(response?.data?.assignmentDetail);
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-  // console.log(data, "Get Data");
-
-  // console.log(data?._id ,"Assingment ID");
-  const RelodeHandle = async () => {
-    try {
-      const config = {
-        method: "GET",
-        url: `${apiUrl}/user/refresh_assignment_detail/${data?._id}`,
-      };
-      const responce = await axios(config);
-      console.log(responce, "Relode ");
-      getDataAssignment();
-    } catch (err) {
-      // console.log("error", err);
-      alert("error occured")
-    }
-  };
-
-  // on change capture the input from frontsnd handler
-  const onChangehandler = (e) => {
-    //console.log(e , "e")
-    const { name, value } = e.target;
-    setInputFields((prev) => {
-      return {
-        ...prev, // value saari isme daalra
-        [name]: value,
-      };
-    });
-  };
-  // handle to submit form data
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-
-    // console.log(inputFields);
-    try {
-      const id = sessionStorage.getItem("id");  
-      console.log(id ,"id")
-      if (!id) {
-        console.error("User ID is missing in sessionStorage");
-        return;
-      }
-      // for (const key in inputFields) {
-      //   if (!inputFields[key]) {
-      //     alert(`Please enter ${key} value.`);
-      //     return;
-      //   }
-      // }
-      const response = await axios.post(
-        `${apiUrl}/user/add_assignment/${id}`,
-        // body : JSON.stringify(inputFields), 
-         inputFields,
-        {
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-       console.log(response ,"response") ;
-      // alert("Assignment Saved successfully.");
-      toast({
-        title: 'Assignment Saved successfully',
-        // description: 'Provide Correct UserId and Password',
-        status: 'success',
-        duration: 3000, // Toast message will disappear after 3 seconds
-        isClosable: true,
-        position:"top",
-      });
-      getDataAssignment();
-      Navigate("/assignment");
+      await getdatafrom(); // Fetch new assignment data
+      setRandomIndex(Math.floor(Math.random() * 510)); // Set new random index
     } catch (error) {
       console.log(error);
-      // alert("An error occurred. Please try again later.");
-      toast({
-        title: 'An error occurred. Please try again later.',
-        // description: 'Provide Correct UserId and Password',
-        status: 'success',
-        duration: 3000, // Toast message will disappear after 3 seconds
-        isClosable: true,
-        position:"top",
-      });
     }
   };
 
+  const getdatafrom = async () => {
+    try {
+      const response = await axios.get(
+        `${apiUrl}/assignment/getallassignments`
+      );
+      console.log(response, "res");
+      setapidata(response?.data?.assignments);
+      setRandomIndex(Math.floor(Math.random() * 520));
+
+      console.log(randomIndex, "randomIndex");
+    } catch (error) {
+      toast({
+        title: "Error ",
+        // description: "Error",
+        status: "error",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+      console.log(error.message);
+    }
+  };
+
+  const getUserdetails = async () => {
+    try {
+      // console.log(useremail, "ingetuser");
+      const userdetails = await axios.post(`${apiUrl}/user/getuserbyid`, {
+        userId: userID,
+      });
+      console.log(userdetails, "userdetails");
+      setSubmittedAssignmentCount(
+        userdetails.data.User.submittedAssignmentCount
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const submitForm = async () => {
+    try {
+      const response = await axios.post(`${apiUrl}/assignment/addassignment`, {
+        userId: userID,
+      });
+      console.log(response, "mkninmiopn");
+      if (response.status === 201) {
+        toast({
+          title: "Success",
+          description: "Form submitted successfully",
+          status: "success",
+          duration: 3000,
+          position: "top",
+          isClosable: true,
+        });
+        refreshAssignment();
+        navigate("/assignment");
+        // Refresh the assignment data after submission
+      }
+    } catch (error) {
+      toast({
+        title: "Error ",
+        description: `error: ${error.message}`,
+        status: "error",
+        duration: 10000,
+        position: "top",
+        isClosable: true,
+      });
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    getdatafrom();
+    getUserdetails();
+  }, []);
+
   return (
-    <Box className="employee-form-container">
-      {/* <Box
-        display="grid"
-        gridTemplateColumns="repeat(4, 1fr)"
-        gap={4}
-        p="7"
-        borderWidth="1px"
-        borderRadius="md"
-        mb="4"
-        color="#393e46"
+    <>
+      <style>
+        @import
+        url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Whisper&display=swap')
+      </style>
+
+      <Flex
+        mt={["3rem", "5rem"]}
+        justifyContent={"center"}
+        gap={"2rem"}
+        flexDirection={["column", "column"]}
+        className="content"
       >
         <Box>
-          <Text fontSize="xl">Name : {data?.name}</Text>
+          <Grid
+            templateColumns="repeat(3, 1fr)" // Three columns layout for the first row
+            gap={4} // Spacing between items
+          >
+            {/* First Row */}
+            <GridItem>
+              <Text fontSize="1.5rem">
+                {submittedAssignmentCount}/ {apidata?.length}
+              </Text>
+            </GridItem>
+          </Grid>
         </Box>
-        <Box>
-          <Text fontSize="xl">Address : {data?.address}</Text>
-        </Box>
-        <Box>
-          <Text fontSize="xl">Pin Code : {data?.pinCode}</Text>
-        </Box>
-        <Box>
-          <Text fontSize="xl">Job Function :{data?.jobFunctional}</Text>
+        <Box
+          marginLeft={["-1rem", "10rem"]}
+          justifyContent={"center"}
+          p="3"
+          maxW="600px"
+        >
+          {/* <Flex  fontFamily="'Dancing Script', cursive">
+          <Box direction={["column" , "row"]}>
+            <Text fontSize={["1.5rem", "2.3rem"]}>
+              {apidata?.[randomIndex]?.name}
+            </Text>
+            <Text fontSize={["1.5rem", "2.3rem"]}>
+              {apidata?.[randomIndex]?.phone}
+            </Text>
+            </Box>
+
+            <Text fontSize={["1.5rem", "2.3rem"]}>
+              {apidata?.[randomIndex]?.address}
+            </Text>
+            <Text fontSize={["1.5rem", "2.3rem"]}>
+              {apidata?.[randomIndex]?.annualRevenue}
+            </Text>
+
+            <Text fontSize={["1.5rem", "2.3rem"]}>
+              {apidata?.[randomIndex]?.jobFunctional}
+            </Text>
+            <Box direction={["column" , "column"]}>
+            <Text fontSize={["1.5rem", "2.3rem"]}>
+              {apidata?.[randomIndex]?.pinCode}
+            </Text>
+            </Box>
+          </Flex> */}
+          <Flex fontFamily="'Dancing Script', cursive" direction="column" p={4}>
+            <Grid
+              templateColumns="repeat(3, 1fr)" // Three columns layout for the first row
+              gap={4} // Spacing between items
+            >
+              {/* First Row */}
+              <GridItem>
+                <Text fontSize="1.5rem">
+                  {apidata?.[randomIndex]?.firstname}
+                </Text>
+              </GridItem>
+              <GridItem>
+                <Text fontSize="1.5rem">
+                  {apidata?.[randomIndex]?.lastname}
+                </Text>
+              </GridItem>
+
+              <GridItem>
+                <Text fontSize="1.5rem">{apidata?.[randomIndex]?.email}</Text>
+              </GridItem>
+
+              <GridItem>
+                <Text fontSize="1.5rem">
+                  {apidata?.[randomIndex]?.phonenumber}
+                </Text>
+              </GridItem>
+
+              <GridItem>
+                <Text fontSize="1.5rem">
+                  {apidata?.[randomIndex]?.licencenumber}
+                </Text>
+              </GridItem>
+
+              <GridItem>
+                <Text fontSize="1.5rem">{apidata?.[randomIndex]?.ip}</Text>
+              </GridItem>
+
+              {/* Third Row (Pin code spans the entire row) */}
+              <GridItem colSpan={3}>
+                <Text fontSize="1.5rem">{apidata?.[randomIndex]?.zipcode}</Text>
+              </GridItem>
+            </Grid>
+          </Flex>
         </Box>
 
-        <Divider gridColumn="span 4" my="2" />
-
-        <Box>
-          <Text fontSize="xl">Mobile : {data?.phone}</Text>
-        </Box>
-        <Box>
-          <Text fontSize="xl">Annual Revenue : {data?.annualRevenue}</Text>
-        </Box>
-        <Box>
-          <Text fontSize="xl">Client Code : {data?.cleanCode}</Text>
-        </Box>
-      </Box> */}
-      <Box
-        display="grid"
-         gridTemplateColumns={{ base: "1fr", md: "repeat(4, 1fr)" }}
-        gap={4}
-        p="7"
-        borderWidth="1px"
-        borderRadius="md"
-        mb="4"
-        color="#393e46"
-        style={{ fontFamily: 'BILLY ARGEL FONT', fontStyle: 'italic' , fontWeight:"bold" }}
-      >
-        <Box>
-          <Text fontSize={{ base: "lg", md: "xl" }}>Name: {data?.name}</Text>
-        </Box>
-        <Box>
-          <Text fontSize={{ base: "lg", md: "xl" }}>
-            Address: {data?.address}
-          </Text>
-        </Box>
-        <Box>
-          <Text fontSize={{ base: "lg", md: "xl" }}>
-            Pin Code: {data?.pinCode}
-          </Text>
-        </Box>
-        <Box>
-          <Text fontSize={{ base: "lg", md: "xl" }}>
-            Job Function: {data?.jobFunctional}
-          </Text>
-        </Box>
-
-        <Box>
-          <Text fontSize={{ base: "lg", md: "xl" }}>Mobile: {data?.phone}</Text>
-        </Box>
-        <Box>
-          <Text fontSize={{ base: "lg", md: "xl" }}>
-            Annual Revenue: {data?.annualRevenue}
-          </Text>
-        </Box>
-        <Box>
-          <Text fontSize={{ base: "lg", md: "xl" }}>
-            Client Code: {data?.cleanCode}
-          </Text>
-        </Box>
-      </Box>
-
-      <Box
-        marginBottom={"1rem"}
-        fontSize={"2rem"}
-        fontWeight={"700"}
-        p={"20px"}
-      >
-        New Assignment
-      </Box>
-      <form
-        className="employee-form"
-        onSubmit={handleSubmit}
-        style={{ padding: "20px" }}
-      >
-        <Stack direction={{ md: "row", base: "column" }}>
-          <Box>
-            <FormControl isRequired className="employee-form-group">
-              <FormLabel> Name</FormLabel>
-              <Input
-                width={{ base: "300px", md: "400px" }}
-                type="text"
-                placeholder="Enter Name"
-                name="name"
-                onChange={onChangehandler}
-              
-              />
-            </FormControl>
-          </Box>
-          <Box>
-            <FormControl isRequired className="employee-form-group">
-              <FormLabel>Address</FormLabel>
-              <Input
-                width={{ base: "300px", md: "400px" }}
-                type="text"
-                placeholder="Enter Address"
-                name="address"
-                onChange={onChangehandler}
-              />
-            </FormControl>
-          </Box>
-        </Stack>
-        <Stack direction={{ md: "row", base: "column" }}>
-          <Box>
-            <FormControl  className="employee-form-group">
-              <FormLabel>PinCode</FormLabel>
-              <Input
-                width={{ base: "300px", md: "400px" }}
-                type="number"
-                placeholder="Enter PInCode"
-                name="pinCode"
-                onChange={onChangehandler}
-              />
-            </FormControl>
-          </Box>
-          <Box>
-            <FormControl  className="employee-form-group">
-              <FormLabel>Job Function</FormLabel>
-              <Input
-               width={{ base: "300px", md: "400px" }}
-                type="text"
-                placeholder="Enter your Job Function"
-                name="jobFunctional"
-                onChange={onChangehandler}
-              />
-            </FormControl>
-          </Box>
-        </Stack>
-        <Stack direction={{ md: "row", base: "column" }}>
-          <Box>
-            <FormControl  className="employee-form-group">
-              <FormLabel>Mobile</FormLabel>
-              <Input
-                width={{ base: "300px", md: "400px" }}
-                placeholder="Enter the Number"
-                name="phone"
-                onChange={onChangehandler}
-              />
-            </FormControl>
-           
-          </Box>
-          <Box>
-            <FormControl  className="employee-form-group">
-              <FormLabel>Annual Revenue</FormLabel>
-              <Input
-                width={{ base: "300px", md: "400px" }}
-                type="text"
-                placeholder="Enter Annual Revenue"
-                name="annualRevenue"
-                onChange={onChangehandler}
-              />
-            </FormControl>
-          </Box>
-        </Stack>
-        <Box>
-          <FormControl  className="employee-form-group">
-            <FormLabel>Client Code</FormLabel>
+        <Box
+          border="2px solid green"
+          marginLeft={["0rem", "10rem"]}
+          p="4"
+          maxW="1000px"
+        >
+          <Flex
+            fontFamily="'Dancing Script', cursive" // Set the input font family
+            width={["330px", "600px"]}
+            direction="column"
+          >
+            <Text>Name:</Text>
             <Input
-              width={{ base: "300px", md: "400px" }}
-              type="text"
-              placeholder="Enter Client Code"
-              name="cleanCode"
-              onChange={onChangehandler}
+              fontFamily="'Dancing Script', cursive" // Set the input font family
+              ref={name}
             />
-          </FormControl>
-        </Box>
-        <Stack direction={{ md: "row", base: "column" }}>
-          <Box>
+            <Text>Mobile:</Text>
+            <Input
+              fontFamily="'Dancing Script', cursive" // Set the input font family
+              ref={mobile}
+            />
+            <Text>Email:</Text>
+            <Input
+              fontFamily="'Dancing Script', cursive" // Set the input font family
+              ref={address}
+            />
+            <Text>Annual Revenue:</Text>
+            <Input
+              fontFamily="'Dancing Script', cursive" // Set the input font family
+              ref={annualRevenue}
+            />
+            <Text>Address:</Text>
+            <Input
+              fontFamily="'Dancing Script', cursive" // Set the input font family
+              ref={jobFunctional}
+            />
+            <Text>IP:</Text>
+            <Input
+              fontFamily="'Dancing Script', cursive" // Set the input font family
+              ref={pinCode}
+            />
+
             <Button
-              className="employee-btn"
-              colorScheme="teal"
-              mt="4"
-              width={{ md: "4rem" }}
-              onClick={handleSubmit}
-              style={{
-                marginLeft: "50px",
-              }}
+              mt={"1rem"}
+              mb={"1rem"}
+              onClick={submitForm}
+              color={"white"}
+              bg="green" // Change to the desired color scheme
             >
               Submit
             </Button>
-          </Box>
-          <Box>
-            <Button
-              // onClick={Previouspage}
-              className="employee-btn"
-              colorScheme="teal"
-              mt="4"
-              width={{ md: "4rem" }}
-              style={{
-                marginLeft: "50px",
-              }}
-              onClick={RelodeHandle}
-            >
-              Reload
-            </Button>
-          </Box>
-        </Stack>
-      </form>
-    </Box>
+          </Flex>
+        </Box>
+      </Flex>
+      {/* <ChatBotComponent /> */}
+    </>
   );
-};
-export default NewAssignment;
+}
+
+export default ContentValidationfrom;
