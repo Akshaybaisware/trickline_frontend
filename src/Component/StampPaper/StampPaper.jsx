@@ -83,7 +83,7 @@ const StampPaper = () => {
 
       const config = {
         method: "post",
-        url: `https://greentenbe-production.up.railway.app/api/user/add_terms`,
+        url: `${apiUrl}/user/add_terms`,
         data: formData,
       };
 
@@ -149,9 +149,8 @@ const StampPaper = () => {
             RAJASTHAN
             <br />
             <br />
-            THE SECOND PART OF THIS AGREEMENT SUBJECTED TO THE CLIENT WHICH
-            HAS FOLLOWING DETAILS MENTIONED IN THE BOTTOM PART OF THE STAMPPAPER
-
+            THE SECOND PART OF THIS AGREEMENT SUBJECTED TO THE CLIENT WHICH HAS
+            FOLLOWING DETAILS MENTIONED IN THE BOTTOM PART OF THE STAMPPAPER
             <br />
             <br />
             <Text fontSize={["0.8rem", "1.5rem"]}>POINT'S TO BE NOTE: -</Text>
@@ -525,13 +524,13 @@ const StampPaper = () => {
           <Text ml={["1rem", "3rem"]} fontWeight={"500"}>
             Name : Greenten Service <br />
             Email : greenhelplineservice19@gmail.com <br />
-            Adress: Sham Baba Apartment Office Number 20/21
-            Postmaster Post Office Road Bikaner Rajasthan ,334007
+            Adress: Sham Baba Apartment Office Number 20/21 Postmaster Post
+            Office Road Bikaner Rajasthan ,334007
           </Text>
         </Box>
 
         <Box ml={["0.5rem", "2rem"]} width={["200px", "400px"]}>
-          <Image src={stamplogo} alt="Stamp" />
+          {/* <Image src={stamplogo} alt="Stamp" /> */}
         </Box>
         {/* <FormControl w={["350px", "400px"]}>
           <FormLabel>Name</FormLabel>
