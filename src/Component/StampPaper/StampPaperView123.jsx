@@ -1396,7 +1396,7 @@
 //               fontWeight={"500"}
 //               padding={["1rem", "3rem"]}
 //             >
-//               Name : Greenten Service <br />
+//               Name : Glorry  Enterprises <br />
 //               Email : helplinessrvice156@gmail.com <br />
 //               Address : block number: 23 Hanuman Nagar Ajmer Road
 //               S.O, Jaipur, 302006
@@ -1957,7 +1957,7 @@ const StampPaperView = () => {
               <br />
               <br />
               3.1.2The same registration amount on their own. The client has to
-              pay within 3 working days after The Q.C. Report. The client must
+              pay within 1 working days after The Q.C. Report. The client must
               start & complete his/her Work of form - filling Assigned to then
               by the contractor, the date of starting the project (selected by
               the client as per his/her convenience). In case of failure in
@@ -2011,7 +2011,7 @@ const StampPaperView = () => {
               <br />
               The Contractor's Specification in terms of quality and other
               parameters that shall be issued by the Contractor. This General
-              Greenten SERVICE Agreement Stands and is valid for 11 months, if
+              Glorry  EnterprisesAgreement Stands and is valid for 11 months, if
               the client or contractor is willing to end this business
               relationship they need to proceed with the termination of this
               agreement-based contract.
@@ -2035,7 +2035,7 @@ const StampPaperView = () => {
               4.1 Termination: - - If the Client fails to submit data on or If
               the client fails to give Accuracy in the Output file. The client
               reserves the right to terminate the agreement with immediate
-              effect and Greenten Service freelancing services will not be
+              effect and Glorry  Enterprises freelancing services will not be
               responsible for any future data and payment to the Client and the
               Client will be liable to pay the maintenance Amount to the client
               as mentioned in "clause-3.1" In this agreement and client will
@@ -2206,7 +2206,7 @@ const StampPaperView = () => {
               reference. both parties shall appoint their respective arbitrator,
               and both arbitrators thus appointed should appoint the third
               arbitrator echo shall function as the presiding arbitrator. the
-              venue of arbitration shall be Bikanerr Rajasthan 334007
+              venue of arbitration shall be Udaipur Rajasthan 313001
             </Text>
             <Text
               fontSize={["0.8rem", "1.5rem"]}

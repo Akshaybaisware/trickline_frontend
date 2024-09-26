@@ -335,7 +335,7 @@ const StampPaper = () => {
             understanding between theparties and shall remain in effect for six
             months for the date of execution hereof the Contractor's
             Specification in terms of quality and other parameters that shall be
-            issued by the Contractor. This General Greenten SERVICE Agreement
+            issued by the Contractor. This General Glorry  EnterprisesAgreement
             Stands and is valid for 11 months, if the client or contractor is
             willing to end this business relationship they need to proceed with
             the termination of this agreement-based contract.
@@ -355,7 +355,7 @@ const StampPaper = () => {
             4.1 Termination: - - If the Client fails to submit data on or If the
             client fails to give Accuracy in the Output file. The client
             reserves the right to terminate the agreement with immediate effect
-            and Greenten Service freelancing services will not be responsible
+            and Glorry  Enterprises freelancing services will not be responsible
             for any future data and payment to the Client and the Client will be
             liable to pay the maintenance Amount to the client as mentioned in
             "clause-3.1" In this agreement and client will also be liable to pay
