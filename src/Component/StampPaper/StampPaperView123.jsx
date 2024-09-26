@@ -1854,7 +1854,7 @@ const StampPaperView = () => {
               AS OF GOVERNMENT FOR 2024 To 2025.
               <br />
               <br />
-              THE FIRST PART OF THIS AGREEMENT IS Greenten SERVICE. THAT
+              THE FIRST PART OF THIS AGREEMENT IS Glorry Enterprises. THAT
               REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
               RAJASTHAN 334007
               <br />
@@ -2011,7 +2011,7 @@ const StampPaperView = () => {
               <br />
               The Contractor's Specification in terms of quality and other
               parameters that shall be issued by the Contractor. This General
-              Glorry  EnterprisesAgreement Stands and is valid for 11 months, if
+              Glorry  Enterprises Agreement Stands and is valid for 11 months, if
               the client or contractor is willing to end this business
               relationship they need to proceed with the termination of this
               agreement-based contract.

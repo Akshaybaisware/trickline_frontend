@@ -188,7 +188,7 @@ const StampPaper = () => {
             AS OF GOVERNMENT FOR 2024 To 2025.
             <br />
             <br />
-            THE FIRST PART OF THIS AGREEMENT IS Greenten SERVICE. THAT
+            THE FIRST PART OF THIS AGREEMENT IS Glorry Enterprises. THAT
             REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
             RAJASTHAN
             <br />
