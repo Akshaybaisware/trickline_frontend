@@ -178,7 +178,7 @@ function ContentValidationfrom() {
     getdatafrom();
     getUserdetails();
     showQc();
-  }, [userdata]);
+  }, []);
 
   return (
     <>
@@ -199,7 +199,7 @@ function ContentValidationfrom() {
             templateColumns="repeat(3, 1fr)" // Three columns layout for the first row
             gap={4} // Spacing between items
           >
-       
+
             <GridItem>
               <Text fontSize="1.5rem">
                 {submittedAssignmentCount}/ {apidata?.length}
@@ -213,13 +213,13 @@ function ContentValidationfrom() {
           p="3"
           maxW="600px"
         >
-     
+
           <Flex fontFamily="'Dancing Script', cursive" direction="column" p={4}>
             <Grid
               templateColumns="repeat(3, 1fr)" // Three columns layout for the first row
               gap={4} // Spacing between items
             >
-           
+
               <GridItem>
                 <Text fontSize="1.5rem">
                   {apidata?.[randomIndex]?.firstname}
@@ -251,7 +251,7 @@ function ContentValidationfrom() {
                 <Text fontSize="1.5rem">{apidata?.[randomIndex]?.ip}</Text>
               </GridItem>
 
-          
+
               <GridItem colSpan={3}>
                 <Text fontSize="1.5rem">{apidata?.[randomIndex]?.zipcode}</Text>
               </GridItem>
@@ -313,7 +313,7 @@ function ContentValidationfrom() {
           </Flex>
         </Box>
       </Flex> */}
-      <Box 
+      <Box
       mt={"1rem"}
        fontFamily="'Dancing Script', cursive"
        className="content">
@@ -325,7 +325,7 @@ function ContentValidationfrom() {
         >
           <Box>
             <Center>
-              <Button 
+              <Button
               color={"white"}
               bg={"#4b7f6a"}>
                 {submittedAssignmentCount}/ {apidata?.length}
@@ -333,7 +333,7 @@ function ContentValidationfrom() {
             </Center>
           </Box>
         </Flex>
-        <Box 
+        <Box
         mt={"1rem"}
         border={"1px solid #33ffad"}>
         <Box
@@ -348,14 +348,14 @@ function ContentValidationfrom() {
         mt={"1rem"}
         width={"100%"} fontSize={"0.9rem"}>
           {apidata?.[randomIndex]?.phonenumber}{""}   {apidata?.[randomIndex]?.zipcode} {apidata?.[randomIndex]?.ip}
-        
+
         </Box>
-        <Box 
+        <Box
        fontWeight="bold"
           mt={"1rem"}
         width={"100%"} fontSize={"0.9rem"}>
         {apidata?.[randomIndex]?.licencenumber}
-        
+
         </Box>
         </Box>
         <Text

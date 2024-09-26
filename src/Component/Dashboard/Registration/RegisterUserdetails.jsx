@@ -50,6 +50,8 @@ const RegisterUserDetail = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const cancelRef = useRef();
 
+  // const navigate = useNavigate();
+
   // useEffect to fetch specific user by ID
   useEffect(() => {
     const fetchUserDetails = async () => {
@@ -360,17 +362,22 @@ const RegisterUserDetail = () => {
           <EditIcon />
         </Link> */}
         <Box width={{ base: "15rem", md: "30rem" }}>
-          <Link to={`/user/editregistration/${userId}`}>
-            <Button
-              width={{ md: "5rem" }}
-              marginBottom={"1rem"}
-              marginTop={"1rem"}
-              height={{ base: "3.3rem", md: "2.5r em" }}
-              colorScheme="blue"
-            >
-              Edit
-            </Button>
-          </Link>
+          {/* <Link to={`/user/editregistration/${userId}`}> */}
+          <Button
+            width={{ md: "5rem" }}
+            marginBottom={"1rem"}
+            marginTop={"1rem"}
+            height={{ base: "3.3rem", md: "2.5r em" }}
+            colorScheme="blue"
+            onClick={() =>
+              navigate(`/user/editregistration/${userId}`, {
+                state: { data: inputField, userId: userId },
+              })
+            }
+          >
+            Edit
+          </Button>
+          {/* </Link> */}
 
           <Button
             onClick={() => SendEmail(userId)}
