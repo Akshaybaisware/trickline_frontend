@@ -367,37 +367,36 @@ function ContentValidationfrom() {
         </Text>
         <Text mt={"0.5rem"} fontFamily="sans-serif">First Name:</Text>
             <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
+            fontFamily="sans-serif"
               ref={name}
             />
             <Text mt={"0.5rem"} fontFamily="sans-serif">Last Name:</Text>
             <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
+          fontFamily="sans-serif"
               ref={mobile}
             />
             <Text mt={"0.5rem"} fontFamily="sans-serif">Email:</Text>
             <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
+           fontFamily="sans-serif"
               ref={address}
             />
              <Text mt={"0.5rem"} fontFamily="sans-serif">Mobile:</Text>
             <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
+            fontFamily="sans-serif"
               ref={annualRevenue}
             />
            <Text mt={"0.5rem"} fontFamily="sans-serif">Zipcode:</Text>
             <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
+            fontFamily="sans-serif"
               ref={jobFunctional}
             />
               <Text mt={"0.5rem"} fontFamily="sans-serif">IP:</Text>
             <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
-              ref={jobFunctional}
+            fontFamily="sans-serif"
             />
           <Text mt={"0.5rem"} fontFamily="sans-serif">LICENSE:</Text>
             <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
+            fontFamily="sans-serif"
               ref={pinCode}
             />
 
