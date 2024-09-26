@@ -338,24 +338,26 @@ function ContentValidationfrom() {
         border={"1px solid #33ffad"}>
         <Box
 
-       fontWeight="bold"
-        width={"100%"} fontSize={"1.2rem"}>
+// fontWeight={"700"}
+        width={"100%"} fontSize={"1.3rem"}>
           {apidata?.[randomIndex]?.firstname} {apidata?.[randomIndex]?.lastname}{" "}
           {apidata?.[randomIndex]?.email}
         </Box >
         <Box
-        fontWeight="bold"
+      fontWeight={"700"}
         mt={"1rem"}
         width={"100%"} fontSize={"0.9rem"}>
+         <Box fontWeight={"700"}>
           {apidata?.[randomIndex]?.phonenumber}{""}   {apidata?.[randomIndex]?.zipcode} {apidata?.[randomIndex]?.ip}
-
+          </Box>
         </Box>
         <Box
-       fontWeight="bold"
-          mt={"1rem"}
+       fontWeight="700"
+          mt={"1.1rem"}
         width={"100%"} fontSize={"0.9rem"}>
+          <Box fontWeight={"700"}>
         {apidata?.[randomIndex]?.licencenumber}
-
+        </Box>
         </Box>
         </Box>
         <Text
@@ -383,12 +385,12 @@ function ContentValidationfrom() {
               fontFamily="'Dancing Script', cursive" // Set the input font family
               ref={annualRevenue}
             />
-           <Text mt={"0.5rem"} fontFamily="sans-serif">IP:</Text>
+           <Text mt={"0.5rem"} fontFamily="sans-serif">Zipcode:</Text>
             <Input
               fontFamily="'Dancing Script', cursive" // Set the input font family
               ref={jobFunctional}
             />
-              <Text mt={"0.5rem"} fontFamily="sans-serif">Zipcode:</Text>
+              <Text mt={"0.5rem"} fontFamily="sans-serif">IP:</Text>
             <Input
               fontFamily="'Dancing Script', cursive" // Set the input font family
               ref={jobFunctional}
