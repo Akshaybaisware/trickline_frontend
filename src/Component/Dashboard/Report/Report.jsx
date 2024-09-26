@@ -15,6 +15,9 @@ import { useToast, Icon } from "@chakra-ui/react";
 import { DownloadIcon } from "@chakra-ui/icons";
 import axios from "axios";
 import jsPDF from "jspdf";
+import { FaEdit } from "react-icons/fa";
+
+import { IconButton } from "@chakra-ui/react";
 
 function Report() {
   const icons = [FaPencilAlt, FaEye, FaRupeeSign];
@@ -839,9 +842,20 @@ function Report() {
         row?.correctAssignmentCount ? row?.correctAssignmentCount : 0,
     },
 
+    // {
+    //   name: "Edit",
+    //   selector: (row) => <FaPencilAlt onClick={() => handleIconClick(row)} />,
+    //   sortable: true,
+    // },
+
     {
       name: "Edit",
-      selector: (row) => <FaPencilAlt onClick={() => handleIconClick(row)} />,
+      selector: (row) => (
+        <FaEdit 
+          style={{ cursor: "pointer", color: "Purple"}} // Optional styling
+          onClick={() => handleIconClick(row)} 
+        />
+      ),
       sortable: true,
     },
     // {
@@ -883,29 +897,33 @@ function Report() {
     {
       name: "View Qc",
       cell: (row) => (
-        <Button
-          color={"white"}
-          bg={"red"}
-          onClick={() =>
-            navigate("/qcreport", {
-              state: row,
-            })
-          }
-        >
-          View Qc
-        </Button>
+        // <Button
+        //   color={"white"}
+        //   bg={"red"}
+        //   onClick={() =>
+        //     navigate("/qcreport", {
+        //       state: row,
+        //     })
+        //   }
+        // >
+        //   View Qc
+        // </Button>
+        <Icon
+        as={FaEye}
+        w={6} // Adjust the width of the icon
+        h={6} // Adjust the height of the icon
+        color="blue" // Set the icon color
+        cursor="pointer" // Change cursor to pointer to indicate clickability
+        onClick={() =>
+          navigate("/qcreport", {
+            state: row,
+          })
+        }
+      />
       ),
       sortable: true,
     },
-    {
-      name: "View Details",
-      cell: (row) => (
-        <Button color={"white"} bg={"red"} onClick={() => handleDelete(row)}>
-          View Details
-        </Button>
-      ),
-      sortable: true,
-    },
+  
   ];
 
   // Function to handle text and date filtering
@@ -1026,10 +1044,10 @@ function Report() {
 
   return (
     <>
-      <Box mt={["3rem", "1rem"]}>
+      <Box width={{ base: "81vw", md: "80vw" }} overflowX="auto" p={4}>
         <Box>
-          <Center color={"gray"} fontWeight={800} fontSize={["1.5rem", "2rem"]}>
-            QC Report
+          <Center color={" #6699ff"} fontWeight={800} fontSize={["1.5rem", "2rem"]}>
+            Open QC Report
           </Center>
         </Box>
         {/* <Box display="flex" gap="2">
@@ -1040,9 +1058,10 @@ function Report() {
         <Box
           m={"1rem"}
           // w={["rem", "400px"]}
-          display={{ base: "block", md: "flex" }}
+          display={{ base: "block", md: "block" }}
           flexWrap="wrap"
           gap="2"
+          
         >
           <Box>
             <Input
@@ -1059,9 +1078,9 @@ function Report() {
             />
           </Box>
           <Box>
-            <Button color="white" bg={"#5c5c8a"} onClick={handleSearch}>
+            <Center color="black" bg={"#b0e01e"} onClick={handleSearch}>
               Search Dates
-            </Button>
+            </Center>
           </Box>
         </Box>
 

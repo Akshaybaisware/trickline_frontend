@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { Box, Flex } from "@chakra-ui/react";
+import { Box, Flex, Icon } from "@chakra-ui/react";
 import axios from "axios";
+import { FaCalendarAlt } from "react-icons/fa";
+import { FaTasks } from "react-icons/fa"; // or FaClipboardList if preferred
+import { FaCheckCircle } from "react-icons/fa"; // You can also use FaFileAlt
+import { FaClipboard } from "react-icons/fa"; // Import the clipboard icon
 const Assignment = () => {
   // for data
   const [data, setData] = useState();
@@ -67,132 +71,142 @@ const Assignment = () => {
     >
       {/* Total Assingment */}
       <Flex textAlign="center" width={{ base: "100%", md: "auto" }}>
-        <Box
-          backgroundColor="#ffe6ff"
-          border="#ebe9eb"
-          margin="20px"
-          padding="40px"
-          fontWeight="800"
-          borderRadius="10px"
-          width="150px"
-          height="150px"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          ml={{ base: "6rem" }}
-        >
-          <span
-            style={{
-              marginTop: "5px",
-              marginBottom: "5px",
-              height: "10px",
-              fontSize: "20px",
-              marginRight: "0%",
-            }}
-          >
-            {data?.total}
-          </span>
-          <p
-            style={{
-              color: "gray",
-              fontWeight: "600",
-              flexDirection: "row",
-              marginLeft: "0px",
-              textAlign: "center",
-              marginTop: "10px",
-            }}
-          >
-            Total Assingment {useinfo?.totalAssignmentLimit}
-          </p>
-        </Box>
-      </Flex>
+  <Box
+    color={"black"}
+    backgroundColor="#a7632d"
+    border="#ebe9eb"
+    margin="20px"
+    padding="40px"
+    fontWeight="800"
+    borderRadius="10px"
+    width="300px"
+    height="150px"
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    justifyContent="center"
+    ml={{ base: "2rem" }}
+  >
+    <p
+      style={{
+        color: "black",
+        fontWeight: "600",
+        flexDirection: "row",
+        marginLeft: "0px",
+        textAlign: "center",
+        marginTop: "10px",
+      }}
+    >
+      {/* Add the clipboard icon here */}
+      <Icon as={FaClipboard} w={6} h={6} mr={2} />
+      Total Assignment {useinfo?.totalAssignmentLimit}
+    </p>
+  </Box>
+</Flex>
 
       {/* Submitted Assingment */}
       <Flex textAlign="center" width={{ base: "100%", md: "auto" }}>
-        <Box
-          backgroundColor="#EBE9EB"
-          border="#ebe9eb"
-          margin="20px"
-          padding="40px"
-          fontWeight="800"
-          borderRadius="10px"
-          width="150px"
-          height="150px"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          ml={{ base: "6rem" }}
-        >
-          <span
-            style={{
-              marginTop: "5px",
-              marginBottom: "5px",
-              height: "10px",
-              fontSize: "20px",
-              marginRight: "0%",
-            }}
-          >
-            {data?.submitted}
-          </span>
-          <p
-            style={{
-              color: "gray",
-              fontWeight: "600",
-              flexDirection: "row",
-              marginLeft: "0px",
-              textAlign: "center",
-              marginTop: "10px",
-            }}
-          >
-            Submitted Assingment {useinfo?.submittedAssignmentCount}
-          </p>
-        </Box>
-      </Flex>
-
+  <Box
+    color={"black"}
+    backgroundColor="#964596"
+    border="#ebe9eb"
+    margin="20px"
+    padding="40px"
+    fontWeight="800"
+    borderRadius="10px"
+    width="300px"
+    height="150px"
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    justifyContent="center"
+    ml={{ base: "2rem" }}
+  >
+    <p
+      style={{
+        color: "black",
+        fontWeight: "600",
+        flexDirection: "row",
+        marginLeft: "0px",
+        textAlign: "center",
+        marginTop: "10px",
+      }}
+    >
+      {/* Add the checkmark icon */}
+      <Icon as={FaCheckCircle} w={6} h={6} mr={2} />
+      Submitted Assignment {useinfo?.submittedAssignmentCount}
+    </p>
+  </Box>
+</Flex>
       {/* Pending Assingment */}
       <Flex textAlign="center" width={{ base: "100%", md: "auto" }}>
-        <Box
-          backgroundColor="#e6ffe6"
-          border="#ebe9eb"
-          margin="20px"
-          padding="40px"
-          fontWeight="800"
-          borderRadius="10px"
-          width="150px"
-          height="150px"
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          justifyContent="center"
-          ml={{ base: "6rem" }}
-        >
-          <span
-            style={{
-              marginTop: "5px",
-              marginBottom: "5px",
-              height: "10px",
-              fontSize: "20px",
-              marginRight: "0%",
-            }}
-          >
-            {data?.pending}
-          </span>
-          <p
-            style={{
-              color: "gray",
-              fontWeight: "600",
-              flexDirection: "row",
-              marginLeft: "0px",
-              textAlign: "center",
-              marginTop: "10px",
-            }}
-          >
-            Pending Assingment {useinfo?.pendingAssignmentCount}
-          </p>
-        </Box>
-      </Flex>
+  <Box
+    backgroundColor="#59ac59"
+    color={"black"}
+    border="#ebe9eb"
+    margin="20px"
+    padding="40px"
+    fontWeight="800"
+    borderRadius="10px"
+    width="300px"
+    height="150px"
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    justifyContent="center"
+    ml={{ base: "2rem" }}
+  >
+    <p
+      style={{
+        color: "black",
+        fontWeight: "600",
+        flexDirection: "row",
+        marginLeft: "0px",
+        textAlign: "center",
+        marginTop: "10px",
+      }}
+    >
+      {/* Add the Tasks Icon here */}
+      <Icon as={FaTasks} w={6} h={6} mr={2} />
+      Pending Assignment {useinfo?.pendingAssignmentCount}
+    </p>
+  </Box>
+</Flex>
+      {/* End date */}
+      <Flex textAlign="center" width={{ base: "100%", md: "auto" }}>
+  <Box
+    backgroundColor="#d43ad4"
+    color={"black"}
+    border="#ebe9eb"
+    margin="20px"
+    padding="40px"
+    fontWeight="800"
+    borderRadius="10px"
+    width="300px"
+    height="150px"
+    display="flex"
+    flexDirection="column"
+    alignItems="center"
+    justifyContent="center"
+    ml={{ base: "2rem" }}
+  >
+    <p
+      style={{
+        color: "black",
+        fontWeight: "600",
+        flexDirection: "row",
+        marginLeft: "0px",
+        textAlign: "center",
+        marginTop: "10px",
+      }}
+    >
+      {/* Add the Calendar Icon here */}
+      <Icon as={FaCalendarAlt} w={6} h={6} mr={2} /> 
+      <span>End-Date: {useinfo?.endDate.slice(0, 10)}</span>
+    </p>
+  </Box>
+</Flex>
+
     </Flex>
   );
 };
