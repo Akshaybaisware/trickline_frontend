@@ -234,7 +234,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-               {todaysaggrimentcount}
+           0
             </span>
             <p
               style={{

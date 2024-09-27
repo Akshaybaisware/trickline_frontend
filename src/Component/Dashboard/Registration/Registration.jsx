@@ -341,7 +341,7 @@ const exportToExcel = () => {
         textAlign={{ base: "center", md: "left" }}
       >
         <Text fontWeight={600} fontSize={{ base: "md", md: "xl" }} mb={4}>
-          Today Pending: {todaysassignmentcount} | Today Success:{" "}
+          Today Total: {todaysassignmentcount} | Today Success:{" "}
           {todaysassignment}
         </Text>
       </Box>
