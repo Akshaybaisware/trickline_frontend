@@ -135,8 +135,8 @@ const StampPaper = () => {
          <Box display="flex" justifyContent="space-evenly">
       <Box  mb={{ base: "2", lg: "0" }}>
         <Image
-          w={{ base: '100%', lg: '150px' }}
-          h={{ base: 'auto', lg: '270px' }}
+       w={{ base: '100%',md:"140px", lg: '150px' }}
+       h={{ base: 'auto', md:"190px" ,lg: '270px' }}
           src={notri} alt="Dan Abramov"
         />
       </Box>
