@@ -1540,7 +1540,7 @@ import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
 import notri from "../../Images/notriimages.jpg"
  import image from "../../Images/SVG STAM.svg";
-
+ import front from "../../Images/Legal-Agreement (30)_page-0001 1.svg"
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
@@ -1787,7 +1787,7 @@ const StampPaperView = () => {
       <Box>
         <Box minWidth="100%" ref={targetRef}>
         <Box display="flex" flexDirection="column" textAlign="center">
-          <Box
+          {/* <Box
             mx="auto"
             boxSize={{ base: "100%", md: "auto" }} // Adjusted to "auto" for non-base screen sizes
             objectFit="contain"
@@ -1838,7 +1838,8 @@ const StampPaperView = () => {
         </Text>
         <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
       </Box>
-    </Box>
+    </Box> */}
+      <Image src={front} alt="Description of the image" />
         </Box>
 
           <Box>

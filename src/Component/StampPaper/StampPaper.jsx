@@ -18,6 +18,7 @@ import { Spinner } from "@chakra-ui/react";
 // import Front from "../../assets/Frontnew.jpg";
 // import frontpage from "../../assets/frontpage.jpg";
 // import sign from "../../assets/cropto stamp.svg";
+import front from "../../Images/Legal-Agreement (30)_page-0001 1.svg"
  import stamplogo from "../../Images/glorry-stamp.svg";
 import notri from "../../Images/notriimages.jpg"
  import image from "../../Images/SVG STAM.svg";
@@ -121,7 +122,7 @@ const StampPaper = () => {
     <>
       <Box>
         <Box display="flex" flexDirection="column" textAlign="center">
-          <Box
+          {/* <Box
             mx="auto"
             boxSize={{ base: "100%", md: "auto" }} // Adjusted to "auto" for non-base screen sizes
             objectFit="contain"
@@ -172,7 +173,8 @@ const StampPaper = () => {
         </Text>
         <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
       </Box>
-    </Box>
+    </Box> */}
+    <Image src={front} alt="Description of the image" />
         </Box>
 
         <Box>
