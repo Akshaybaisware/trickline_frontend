@@ -45,9 +45,9 @@ const DashboardOverview = () => {
 
   const getallusercount = async () => {
     try {
-      const response = await axios.get(`${apiUrl}/user/getalluser`);
+      const response = await axios.get(`${apiUrl}/user/getallclient`);
       console.log(response, "todats registertions");
-      setalluserscount(response.data.allUser.length);
+      setalluserscount(response?.data?.data?.length);
     } catch (error) {
       console.log(error.message);
     }
@@ -234,7 +234,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-           0
+              0
             </span>
             <p
               style={{
@@ -330,7 +330,7 @@ const DashboardOverview = () => {
                 marginRight: "0%",
               }}
             >
-             {activeUsers}
+              {activeUsers}
             </span>
             <p
               style={{
@@ -342,7 +342,7 @@ const DashboardOverview = () => {
                 marginTop: "10px",
               }}
             >
-             Inactive User
+              Inactive User
             </p>
           </Box>
         </Box>

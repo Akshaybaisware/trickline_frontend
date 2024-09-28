@@ -13,10 +13,9 @@ import {
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import $ from "jquery";
-import { FaDownload } from 'react-icons/fa';
-import * as xlsx from 'xlsx';
-import { saveAs } from 'file-saver';
-
+import { FaDownload } from "react-icons/fa";
+import * as xlsx from "xlsx";
+import { saveAs } from "file-saver";
 
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -50,7 +49,6 @@ const Registration = () => {
     todaysRegistrations();
   }, [currentPage]);
 
-
   // https://glorry-bakcend-updated-production.up.railway.app/api/user/gettodaysregister
 
   const todaysRegistrations = async () => {
@@ -71,41 +69,39 @@ const Registration = () => {
       console.error("Error fetching today's registrations:", error);
     }
   };
-// excel data 
-const exportToExcel = () => {
-  // Convert data to worksheet format
-  const worksheet = xlsx.utils.json_to_sheet(filter); // Use 'filter' state
+  // excel data
+  const exportToExcel = () => {
+    // Convert data to worksheet format
+    const worksheet = xlsx.utils.json_to_sheet(filter); // Use 'filter' state
 
-  // Create a new workbook and add the worksheet
-  const workbook = xlsx.utils.book_new();
-  xlsx.utils.book_append_sheet(workbook, worksheet, "Registrations");
+    // Create a new workbook and add the worksheet
+    const workbook = xlsx.utils.book_new();
+    xlsx.utils.book_append_sheet(workbook, worksheet, "Registrations");
 
-  // Write the workbook to a binary format
-  const excelBuffer = xlsx.write(workbook, {
-    bookType: "xlsx",
-    type: "array",
-  });
+    // Write the workbook to a binary format
+    const excelBuffer = xlsx.write(workbook, {
+      bookType: "xlsx",
+      type: "array",
+    });
 
-  // Convert the binary data to a Blob
-  const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
+    // Convert the binary data to a Blob
+    const blob = new Blob([excelBuffer], { type: "application/octet-stream" });
 
-  // Save the Excel file using FileSaver
-  saveAs(blob, "registrations.xlsx");
-};
-
-
+    // Save the Excel file using FileSaver
+    saveAs(blob, "registrations.xlsx");
+  };
 
   const fetchData = async () => {
     try {
       const config = {
         method: "GET",
-        url: `${apiUrl}/user/getalluser`,
+        url: `${apiUrl}/user/getallclient`,
       };
       const response = await axios(config);
       console.log(response, "all users");
-      setTotalPages(response.data?.totalPages);
-      setUserData(response?.data?.allUser);
-      setFilter(response?.data?.allUser);
+      setTotalPages(response.data?.data?.totalPages);
+      setUserData(response?.data?.data);
+      setFilter(response?.data?.data);
       setLoading(false);
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -126,8 +122,6 @@ const exportToExcel = () => {
   // const Export = ({ onExport }) => (
   //   <Button onClick={(e) => onExport(e.target.value)}>Export</Button>
   // );
-
- 
 
   // function convertArrayOfObjectsToCSV(array) {
   //   let result;
@@ -218,7 +212,11 @@ const exportToExcel = () => {
       name: "Action",
       cell: (row) => (
         <NavLink to={`/user/registeruserdetail/${row._id}`}>
-          <Button colorScheme="blackAlpha" backgroundColor="#6666ff" width="80%">
+          <Button
+            colorScheme="blackAlpha"
+            backgroundColor="#6666ff"
+            width="80%"
+          >
             View Detail
           </Button>
         </NavLink>
@@ -230,7 +228,7 @@ const exportToExcel = () => {
         <>
           {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
           <NavLink to={"/employmentform"}>
-            <Button colorScheme="Red"backgroundColor="#6666ff" width="80%">
+            <Button colorScheme="Red" backgroundColor="#6666ff" width="80%">
               Fill Agreement
             </Button>
           </NavLink>
@@ -270,7 +268,7 @@ const exportToExcel = () => {
 
   return (
     <>
-<Flex mt={"2rem"} justifyContent="flex-end">
+      <Flex mt={"2rem"} justifyContent="flex-end">
         <Button
           bg={"#33ff69"}
           leftIcon={<FaDownload />}
@@ -281,7 +279,6 @@ const exportToExcel = () => {
       </Flex>
 
       <Flex direction="column" align="center">
-     
         {/* <Flex direction={"column"}>
           <Box>
             All Users
@@ -304,50 +301,50 @@ const exportToExcel = () => {
             </Text>
           </Box>
         </Flex> */}
-         <Flex
-      direction={{ base: "column", md: "column" }} // Stacks on small screens, row on medium+
-      p={{ base: 4, md: 6 }} // Padding based on screen size
-      align="center"
-      justify="space-between" // Space between boxes in row direction
-      wrap="wrap" // Wrap content on smaller screens
-      gap={0} // Gap between children
-    >
-      <Box
-        p={2}
-        bg="#6666ff" // Light background for visibility
-        color={"white"}
-        borderRadius="md"
-        flex={{ base: "1", md: "0 0 45%" }} // Flex-grow on small screens, fixed width on medium+
-        textAlign={{ base: "center", md: "left" }} // Center text on small screens
-      >
-        All Users{" "}
-        {new Date().toLocaleString("en-IN", {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-          hour12: false,
-        })}
-      </Box>
+        <Flex
+          direction={{ base: "column", md: "column" }} // Stacks on small screens, row on medium+
+          p={{ base: 4, md: 6 }} // Padding based on screen size
+          align="center"
+          justify="space-between" // Space between boxes in row direction
+          wrap="wrap" // Wrap content on smaller screens
+          gap={0} // Gap between children
+        >
+          <Box
+            p={2}
+            bg="#6666ff" // Light background for visibility
+            color={"white"}
+            borderRadius="md"
+            flex={{ base: "1", md: "0 0 45%" }} // Flex-grow on small screens, fixed width on medium+
+            textAlign={{ base: "center", md: "left" }} // Center text on small screens
+          >
+            All Users{" "}
+            {new Date().toLocaleString("en-IN", {
+              year: "numeric",
+              month: "2-digit",
+              day: "2-digit",
+              hour: "2-digit",
+              minute: "2-digit",
+              hour12: false,
+            })}
+          </Box>
 
-      <Box
-      mt={"0.5rem"}
-        p={0.5}
-        bg="#6666ff" // Light background for visibility 
-        color={"white"}
-        borderRadius="md"
-        flex={{ base: "1", md: "0 0 45%" }}
-        textAlign={{ base: "center", md: "left" }}
-      >
-        <Text fontWeight={600} fontSize={{ base: "md", md: "xl" }} mb={4}>
-          Today Total: {todaysassignmentcount} | Today Success:{" "}
-          {todaysassignment}
-        </Text>
-      </Box>
-    </Flex>
+          <Box
+            mt={"0.5rem"}
+            p={0.5}
+            bg="#6666ff" // Light background for visibility
+            color={"white"}
+            borderRadius="md"
+            flex={{ base: "1", md: "0 0 45%" }}
+            textAlign={{ base: "center", md: "left" }}
+          >
+            <Text fontWeight={600} fontSize={{ base: "md", md: "xl" }} mb={4}>
+              Today Total: {todaysassignmentcount} | Today Success:{" "}
+              {todaysassignment}
+            </Text>
+          </Box>
+        </Flex>
 
-        <div >
+        <div>
           {loading && <p>Loading...</p>}
           {/* {error && <p>{error}</p>} */}
           {registrationsCount !== null && (
