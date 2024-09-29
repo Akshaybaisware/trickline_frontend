@@ -89,6 +89,7 @@ export default function SideBar() {
 
   const handleSignout = () => {
     localStorage.clear();
+    sessionStorage.clear();
     toast({
       title: "Logout Success.",
       // description: "We've created your account for you.",
@@ -102,7 +103,11 @@ export default function SideBar() {
 
   return (
     <>
-      <List p="10px" bg=" #fcf7fc"  boxShadow="0 4px 10px rgba(128, 0, 128, 0.5)" >
+      <List
+        p="10px"
+        bg=" #fcf7fc"
+        boxShadow="0 4px 10px rgba(128, 0, 128, 0.5)"
+      >
         {isMobileView && (
           <IconButton
             icon={<HamburgerIcon />}
@@ -302,8 +307,6 @@ export default function SideBar() {
                                 </NavLink>
                               </ListItem>
 
-                            
-
                               <Divider borderWidth="1px" borderColor={"gray"} />
                             </AccordionPanel>
                           </>
@@ -312,8 +315,6 @@ export default function SideBar() {
                     </NavLink>
                   </ListItem>
                 </Accordion>
-
-           
 
                 <ListItem
                   style={{ marginTop: "1.5rem" }}
@@ -337,8 +338,6 @@ export default function SideBar() {
 
                 <Divider borderWidth="1px" borderColor={"gray"} />
 
-               
-
                 <ListItem
                   style={{ marginTop: "1.5rem" }}
                   className="listItem"
@@ -358,7 +357,6 @@ export default function SideBar() {
                     </Text>
                   </NavLink>
                 </ListItem>
-             
 
                 <ListItem
                   style={{ marginTop: "1.5rem" }}
@@ -598,8 +596,6 @@ export default function SideBar() {
                           </NavLink>
                         </Accordion>
 
-                    
-
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
                           className="listItem"
@@ -624,7 +620,6 @@ export default function SideBar() {
 
                         <Divider borderWidth="1px" borderColor={"gray"} />
 
-                       
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
                           className="listItem"
@@ -644,7 +639,6 @@ export default function SideBar() {
                             </Text>
                           </NavLink>
                         </ListItem>
-                     
 
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
