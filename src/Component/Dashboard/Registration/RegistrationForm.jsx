@@ -203,12 +203,12 @@ const RegistrationForm = () => {
                   <option value="caller1">caller 1</option>
                   <option value="caller2">caller 2</option>
                   <option value="caller3">caller 3</option>
-                  <option value="caller1">caller 4</option>
-                  <option value="caller2">caller 5</option>
-                  <option value="caller3">caller 6</option>
-                  <option value="caller1">caller 7</option>
-                  <option value="caller2">caller 8</option>
-                  <option value="caller3">caller 9</option>
+                  <option value="caller4">caller 4</option>
+                  <option value="caller5">caller 5</option>
+                  <option value="caller6">caller 6</option>
+                  <option value="caller7">caller 7</option>
+                  <option value="caller8">caller 8</option>
+                  <option value="caller9">caller 9</option>
                 </Select>
               )}
             />
