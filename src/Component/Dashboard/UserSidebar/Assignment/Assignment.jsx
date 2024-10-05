@@ -202,7 +202,7 @@ const Assignment = () => {
     >
       {/* Add the Calendar Icon here */}
       <Icon as={FaCalendarAlt} w={6} h={6} mr={2} /> 
-      <span>End-Date: {useinfo?.endDate.slice(0, 10)}</span>
+      <span>End-Date: {useinfo?.endDate?.slice(0, 10)}</span>
     </p>
   </Box>
 </Flex>

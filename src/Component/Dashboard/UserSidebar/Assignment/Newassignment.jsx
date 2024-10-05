@@ -123,7 +123,17 @@ function ContentValidationfrom() {
       setUserData(userdetails.data.User);
       setSubmittedAssignmentCount(
         userdetails?.data?.User?.submittedAssignmentCount
+
       );
+
+      if (userdetails?.data?.User?.submittedAssignmentCount >= 539) {
+        navigate(
+          "/qccheck"
+          //    {
+          //   state: response.data
+          // }
+        );
+      }
     } catch (error) {
       console.log(error);
     }
@@ -164,7 +174,7 @@ function ContentValidationfrom() {
   // Fetch data on component mount and update every 10 minutes
 
   const showQc = () => {
-    if (userdata?.submittedAssignmentCount == 540) {
+    if (userdata?.submittedAssignmentCount >= 539) {
       navigate(
         "/qccheck"
         //    {
