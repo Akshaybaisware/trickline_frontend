@@ -200,12 +200,13 @@ const UserAgreemen = () => {
     try {
       const config = {
         method: "GET",
-        url: `${apiUrl}/terms/getterms`,
+        //  url: `${apiUrl}/terms/getterms`,
+         url: `${apiUrl}/user/getallclient`,
       };
       const response = await axios(config);
       setTotalPages(response.data?.totalPages);
-      setUserData(response?.data?.allAgreements);
-      setFilter(response?.data?.allAgreements);
+      setUserData(response?.data?.data);
+      setFilter(response?.data?.data);
       console.log(response);
     } catch (error) {
       console.log(error, "error");
