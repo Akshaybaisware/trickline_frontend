@@ -269,7 +269,7 @@ import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
-import logo from "../../Images/logo.svg";
+import logo from "../../Images/TRICKLINE_2.png";
 import { jwtDecode } from "jwt-decode";
 import { useUserContext } from "../Context/UserContext";
 
@@ -393,25 +393,22 @@ const UserLogin = () => {
         alignItems="center"
         justifyContent={"center"}
         padding="20px"
-        bg={"#0F0623"}
+        bg={"#96436B  "}
       >
-        <Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          marginY="20px"
-          w={"20rem"}
-        >
-          <Image width={"23rem"} src={logo} alt="" />
-          <Heading
-            marginTop={"1rem"}
-            color="#000"
-            fontFamily="Poppins, serif"
-            size="lg"
-          >
-            User Login
-          </Heading>
-        </Box>
+       <Box 
+        borderRadius="25%" 
+        overflow="hidden" // Ensures the image respects the borderRadius of the Box
+        display="flex" 
+        flexDirection="column" 
+        alignItems="center" 
+        marginY="20px"
+      >
+        <Image 
+          width={"23rem"} 
+          src={logo} 
+          alt="Logo" 
+        />
+      </Box>
 
         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
@@ -498,7 +495,7 @@ const buttonStyle = {
   borderRadius: "25px",
   border: "2px solid black",
   color: "#fff",
-  background: "#47108f",
+   background: "#6BC15C",
   fontWeight: "700",
   fontFamily: '"Poppins", sans-serif',
 };
