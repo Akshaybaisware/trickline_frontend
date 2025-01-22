@@ -16,6 +16,12 @@ import $ from "jquery";
 import { FaDownload } from "react-icons/fa";
 import * as xlsx from "xlsx";
 import { saveAs } from "file-saver";
+import { FaPencilAlt } from "react-icons/fa";
+import { TfiReload } from "react-icons/tfi";
+// import { FaDownload } from "react-icons/fa6";
+import { FaFile } from "react-icons/fa";
+import { RiDeleteBin5Fill } from "react-icons/ri";
+import { BiLinkExternal } from "react-icons/bi";
 
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -48,6 +54,14 @@ const Registration = () => {
     fetchData();
     todaysRegistrations();
   }, [currentPage]);
+
+  const icons = [FaPencilAlt, TfiReload, FaDownload, FaFile, RiDeleteBin5Fill];
+  const iconspending = [
+    FaPencilAlt,
+    TfiReload,
+    BiLinkExternal,
+    RiDeleteBin5Fill,
+  ];
 
   // https://glorry-bakcend-updated-production.up.railway.app/api/user/gettodaysregister
 
@@ -117,6 +131,143 @@ const Registration = () => {
 
     setFilter(result);
   }, [search, userData]);
+
+  const deleteclientinfo = async (id) => {
+    try {
+      const response = await axios.post(
+        "https://zemixbe-production.up.railway.app/api/user/deleteclient",
+        {
+          id: id,
+        }
+      );
+      // await deletaggrimet(id);
+      console.log(response, "deleted response");
+      setFilter(filter.filter((item) => item._id !== id));
+      if (response.status) {
+        toast({
+          title: "Deleted",
+          description: "Client Deleted Successfully",
+          status: "success",
+          duration: 3000,
+          position: "top",
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      toast({
+        title: "Error",
+        description: "Client Not Deleted",
+        status: "error",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+      console.log(error);
+    }
+  };
+
+  const emailsending = async (email) => {
+    try {
+      console.log("email function");
+      const response = await axios.post(
+        "https://zemixbe-production.up.railway.app/api/user/sendconfirmmail",
+        {
+          email: email,
+        }
+      );
+      console.log(response, "email response");
+
+      if (response.status === 200) {
+        toast({
+          title: "Email Sent",
+          description: "Email Sent Successfully",
+          status: "success",
+          duration: 3000,
+          position: "top",
+          isClosable: true,
+        });
+      }
+    } catch (error) {
+      console.log(error);
+      toast({
+        title: "Error",
+        description: "Email Not Sent",
+        status: "error",
+        duration: 3000,
+        position: "top",
+        isClosable: true,
+      });
+    }
+  };
+
+  const handleIconClick = (rowData, iconIndex) => {
+    // Perform actions based on rowData and iconIndex
+    console.log("Clicked on icon:", iconIndex);
+    console.log("Row data:", rowData);
+    console.log(rowData, "filteredData");
+
+    if (
+      rowData.status === "Active" ||
+      rowData.status === "Registered" ||
+      rowData.status === "Success"
+    ) {
+      switch (iconIndex) {
+        case 0:
+          navigate("/editclient", {
+            state: { data: rowData },
+          });
+          break;
+        case 1:
+          emailsending(rowData.email);
+          break;
+        case 2:
+          //handledownload(rowData._id);
+          navigate("/downloadreport", {
+            state: { data: rowData },
+          });
+          break;
+        case 3:
+          navigate("/downloadreport", {
+            state: { data: rowData },
+          });
+          break;
+        case 4:
+          deleteclientinfo(rowData._id);
+          // deletaggrimet(rowData.email);
+          break;
+        default:
+          // Handle default case
+          break;
+      }
+    } else if (rowData.status === "Pending") {
+      switch (iconIndex) {
+        // Add your pending logic here
+        case 0:
+          navigate("/editclient", {
+            state: { data: rowData },
+          });
+          // Perform action for the first icon
+          break;
+        case 1:
+          emailsending(rowData.email);
+          break;
+        // Perform action for the second icon
+
+        // Add cases for other icons as needed
+        case 2:
+          navigate("/stamppaper");
+          document.createElement("a").click();
+
+          break;
+        case 3:
+          deleteclientinfo(rowData._id);
+          break;
+        default:
+          // Handle default case
+          break;
+      }
+    }
+  };
 
   //export Button
   // const Export = ({ onExport }) => (
@@ -211,17 +362,87 @@ const Registration = () => {
     {
       name: "Action",
       cell: (row) => (
-        <NavLink to={`/user/registeruserdetail/${row._id}`}>
-          <Button
-            colorScheme="blackAlpha"
-            backgroundColor="#6666ff"
-            width="80%"
-          >
-            View Detail
-          </Button>
-        </NavLink>
+        <Flex>
+          {/* sucess icons chnages here  */}
+          {row.status === "Active" ||
+          row.status === "Registered" ||
+          row.status === "Success"
+            ? icons.map((Icon, index) => (
+                <Icon
+                  key={index}
+                  style={{
+                    fontSize: "35px",
+                    padding: "3px",
+                    // color: index === 0 ? 'white' : 'inherit',
+                    color: row.status === "Success" ? "green" : "inherit", // Change color based on status
+                    // background: index === 3 ? "green" : "green",
+                    backgroundColor:
+                      index === 4
+                        ? "lightgray" // Red for delete, gray for other
+                        : index === 1
+                        ? " #99ebff" // Yellow for refresh
+                        : index === 0
+                        ? "#ffb3ff" // Blue for edit
+                        : index === 2
+                        ? " #c6ffb3"
+                        : "white", // White for other
+                    color:
+                      index === 4
+                        ? "red"
+                        : row.status === "Success"
+                        ? "green"
+                        : "inherit",
+                    cursor: "pointer",
+                    margin: "0 5px",
+                  }}
+                  onClick={() => handleIconClick(row, index)} // Pass row data and icon index to handleIconClick function
+                />
+              ))
+            : iconspending.map((Icon, index) => (
+                // pending icon chnages here
+                <Icon
+                  key={index}
+                  style={{
+                    fontSize: "35px",
+                    color: "red",
+                    cursor: "pointer",
+                    padding: "3px",
+                    margin: "0 5px",
+                    // color: index === 0 ? 'white' : 'inherit',
+                    // backgroundColor:"red"
+                    // background: index === 3 ? "green" : "green",
+                    backgroundColor:
+                      index === 4
+                        ? "lightgray" // Red for delete, gray for other
+                        : index === 1
+                        ? " #99ebff" // Yellow for refresh
+                        : index === 0
+                        ? "#ffb3ff"
+                        : index === 2
+                        ? " #c6ffb3" // Blue for edit
+                        : "white", // White for other
+                    // color : index === 3 ? "red" : "red", // Delete icon is red
+                  }}
+                  onClick={() => handleIconClick(row, index)} // Pass row data and icon index to handleIconClick function
+                />
+              ))}
+        </Flex>
       ),
     },
+    // {
+    //   name: "Action",
+    //   cell: (row) => (
+    //     <NavLink to={`/user/registeruserdetail/${row._id}`}>
+    //       <Button
+    //         colorScheme="blackAlpha"
+    //         backgroundColor="#6666ff"
+    //         width="80%"
+    //       >
+    //         View Detail
+    //       </Button>
+    //     </NavLink>
+    //   ),
+    // },
     {
       name: "Agreement",
       cell: () => (
@@ -229,7 +450,7 @@ const Registration = () => {
           {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
           <NavLink to={"/employmentform"}>
             <Button colorScheme="Red" backgroundColor="#6666ff" width="80%">
-              Fill Agreement
+              Agreement
             </Button>
           </NavLink>
         </>
@@ -388,7 +609,7 @@ const Registration = () => {
         </InputLeftElement>
       </InputGroup>
 
-      <Box width={{ base: "81vw", md: "80vw" }} overflowX="auto" p={4}>
+      <Box width={{ base: "90vw", md: "90vw" }} overflowX="auto" p={4}>
         <DataTable
           id="myTable"
           title=""
@@ -408,11 +629,30 @@ const Registration = () => {
                 border: "1px solid gray",
                 borderRadius: "15px",
                 padding: "10px",
-                paddingLeft: "15px",
+                paddingLeft: "25px",
                 width: "100%",
               }}
             />
           }
+          customStyles={{
+            headCells: {
+              style: {
+                fontSize: "16px", // Adjust the font size of table header cells
+                fontWeight: "bold", // Make the font bold if desired
+              },
+            },
+            rows: {
+              style: {
+                fontSize: "14px", // Adjust the font size of table rows
+              },
+            },
+            table: {
+              style: {
+                borderCollapse: "collapse", // Collapse table borders
+                // border: "2px solid gray", // Adjust the border thickness and color of the table
+              },
+            },
+          }}
         />
       </Box>
     </>
