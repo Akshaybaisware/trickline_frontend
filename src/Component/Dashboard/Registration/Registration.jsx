@@ -256,6 +256,8 @@ const Registration = () => {
         // Add cases for other icons as needed
         case 2:
           navigate("/stamppaper");
+          document.createElement("a").click();
+
           break;
         case 3:
           deleteclientinfo(rowData._id);
