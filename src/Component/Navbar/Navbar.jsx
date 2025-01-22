@@ -89,20 +89,21 @@ export default function Navbar() {
       // alignItems="center"
       paddingX={{ base: "3", md: "8" }} // Add padding on small screens and larger screens
       paddingY="4"
-       bg={" #defaed"}
+       bg={"rgb(77, 26, 165)"}
       // bg={"#0F0623"}
     >
       <Box
+      mt={"1rem"}
         display="flex"
         alignItems="center"
         marginBottom={{ base: "4", md: "0" }}
       >
-        <Image
+        {/* <Image
           marginLeft={{ base: "0", md: "0rem" }}
           boxSize={{ base: "90px", md: "150px" }}
           src={Dataentry}
-          // width="20px"
-        />
+          
+        /> */}
         {/* <Heading
           fontSize={{ base: "2xl", md: "5xl" }}
           marginLeft={{ base: "1rem", md: "10rem" }}
@@ -110,6 +111,7 @@ export default function Navbar() {
           Zemix Services
         </Heading> */}
         <Heading
+        color={"white"}
           fontSize={{ base: "2xl", md: "5xl" }}
           marginLeft={{ base: "1rem", md: "10rem" }}
           style={{
@@ -118,7 +120,7 @@ export default function Navbar() {
             //boxShadow: "0 8px 16px rgba(128, 0, 128, 0.1), 20px 10px 3px rgba(128, 0, 128, 0.08)"
           }}
         >
-          Glorry Enterprises
+          Trickline Enterprises
         </Heading>
       </Box>
       {/* <Box>
@@ -135,8 +137,8 @@ export default function Navbar() {
       </Box> */}
       {userRole === "Admin" && (
         <Box onClick={handleOpenModal} cursor="pointer">
-          <Avatar
-            marginTop={"2rem"}
+          {/* <Avatar
+            marginTop={"1rem"}
             borderRadius="50%"
             width={{ base: "2.5rem", md: "3.5rem" }}
             height={{ base: "2.4rem", md: "3rem" }}
@@ -144,7 +146,17 @@ export default function Navbar() {
             border={"6px solid lightgray"}
             // src="Avatarimage.jpg"
             marginRight="1.5"
-          />
+          /> */}
+          <Avatar
+  marginTop={"1rem"}
+  borderRadius="50%"
+  width={{ base: "2.5rem", md: "3.5rem" }}
+  height={{ base: "2.4rem", md: "3rem" }}
+  bg={"gray"}
+  border={"6px solid lightgray"}
+  src="https://randomuser.me/api/portraits/men/33.jpg" // Replace with any Indian-themed placeholder
+  marginRight="1.5"
+/>
         </Box>
       )}
 
