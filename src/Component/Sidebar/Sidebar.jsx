@@ -41,6 +41,8 @@ import DashboardIcon from "@mui/icons-material/Dashboard";
 import MultilineChartIcon from "@mui/icons-material/MultilineChart";
 import KeyboardArrowRightIcon from "@mui/icons-material/KeyboardArrowRight";
 import { NavLink, useNavigate, Link } from "react-router-dom";
+import DescriptionIcon from "@mui/icons-material/Description";
+import ListAltIcon from "@mui/icons-material/ListAlt";
 import {
   AddIcon,
   ChevronDownIcon,
@@ -105,7 +107,7 @@ export default function SideBar() {
     <>
       <List
         p="10px"
-        bg=" #fcf7fc"
+        bg="rgb(240, 238, 240)"
         boxShadow="0 4px 10px rgba(128, 0, 128, 0.5)"
       >
         {isMobileView && (
@@ -117,7 +119,7 @@ export default function SideBar() {
         )}
         {/* //laptop view for admin */}
         {!isMobileView && (
-          <Box>
+          <Box bg={"purple"}>
             {isAdmin && (
               <ListItem className="listItem" p="10px" borderRadius="10px">
                 <Flex alignItems="center">
@@ -132,12 +134,12 @@ export default function SideBar() {
                   >
                     <Text
                       as={"span"}
-                      color="black"
+                      color="white"
                       fontSize={"1.5rem"}
                       marginLeft="8px" // Add some margin for spacing between icon and text
                       _hover={{ textDecoration: "underline" }}
                     >
-                      Dashboard
+                      Greeting Admin !
                     </Text>
                   </NavLink>
                 </Flex>
@@ -160,27 +162,104 @@ export default function SideBar() {
                     m="0px"
                   >
                     <NavLink to="dashboard">
-                      <AccordionItem _hover={{ bg: "#F0F0F0" }}>
+                      <AccordionItem _hover={{ bg: "purple" }}>
                         {({ isExpanded }) => (
                           <>
                             <h2>
                               <AccordionButton>
-                                <AccountCircleIcon
-                                  style={{
-                                    borderRadius: "50%",
-                                    width: "3.5rem",
-                                    height: "3rem",
-                                    textAlign: "center",
-                                  }}
-                                />
+                              <DescriptionIcon
+                                        style={{
+                                          borderRadius: "50%",
+                                          width: "3.5rem",
+                                          height: "3rem",
+                                          textAlign: "center",
+                                        }}
+                                      />
                                 <Text
                                   as="span"
-                                  color="black"
+                                  color="white"
+
                                   fontSize="1.5rem"
                                   marginLeft={"0.7rem"}
                                   // Remove the hover red color
                                 >
-                                  User
+                                  Forms
+                                </Text>
+
+                                {isExpanded ? (
+                                  <ChevronUpIcon color={"black"} ml="10px" />
+                                ) : (
+                                  <ChevronDownIcon color={"black"} ml="10px" />
+                                )}
+                              </AccordionButton>
+                            </h2>
+                            <AccordionPanel pb={4}>
+                            <ListItem
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={BsAmd}
+                                        color="gray.500"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/Registrationform">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "1rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          Add Client
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+                           
+
+                              <Divider borderWidth="1px" borderColor={"gray"} />
+                            </AccordionPanel>
+                          </>
+                        )}
+                      </AccordionItem>
+                    </NavLink>
+                  </ListItem>
+                </Accordion>
+
+
+                <Accordion allowToggle width={"90%"}>
+                  <ListItem
+                    className="listItem"
+                    p="0px"
+                    borderRadius="10px"
+                    m="0px"
+                  >
+                    <NavLink to="dashboard">
+                      <AccordionItem _hover={{ bg: "purple" }}>
+                        {({ isExpanded }) => (
+                          <>
+                            <h2>
+                              <AccordionButton>
+                              <ListAltIcon
+                                        style={{
+                                          borderRadius: "50%",
+                                          width: "3.5rem",
+                                          height: "3rem",
+                                          textAlign: "center",
+                                        }}
+                                      />
+                                <Text
+                                  as="span"
+                                  color="white"
+
+                                  fontSize="1.5rem"
+                                  marginLeft={"0.7rem"}
+                                  // Remove the hover red color
+                                >
+                                  Ptocedure
                                 </Text>
 
                                 {isExpanded ? (
@@ -192,13 +271,14 @@ export default function SideBar() {
                             </h2>
                             <AccordionPanel pb={4}>
                               <ListItem
+                                color="yellow"
                                 className="listItem"
                                 p="5px"
                                 borderRadius="10px"
                               >
                                 <ListIcon
                                   as={BsAmd}
-                                  color="gray.1 00"
+                                   color="yellow"
                                   ml="10px"
                                 />
                                 <NavLink to="/user/registration">
@@ -206,21 +286,22 @@ export default function SideBar() {
                                     as="span"
                                     pl="10px"
                                     fontSize={{ base: "0.6rem", md: "1rem" }}
-                                    color="black"
+                                     color="white"
                                   >
-                                    Registration
+                                    All Client
                                   </Text>
                                 </NavLink>
                               </ListItem>
 
                               <ListItem
+                               color="yellow"
                                 className="listItem"
                                 p="5px"
                                 borderRadius="10px"
                               >
                                 <ListIcon
                                   as={BsFileEarmarkSpreadsheet}
-                                  color="gray.500"
+                                 color="yellow"
                                   ml="10px"
                                 />
                                 <NavLink to="/user/activeUser">
@@ -231,21 +312,22 @@ export default function SideBar() {
                                       base: "1rem",
                                       md: "1rem",
                                     }}
-                                    color="black"
+                                     color="white"
                                   >
-                                    Active User
+                                    Working Client
                                   </Text>
                                 </NavLink>
                               </ListItem>
 
                               <ListItem
+                               color="yellow"
                                 className="listItem"
                                 p="5px"
                                 borderRadius="10px"
                               >
                                 <ListIcon
                                   as={BsFileEarmarkSpreadsheet}
-                                  color="gray.500"
+                                color="yellow"
                                   ml="10px"
                                 />
                                 <NavLink to="/user/frezzuser">
@@ -256,56 +338,109 @@ export default function SideBar() {
                                       base: "1rem",
                                       md: "1rem",
                                     }}
-                                    color="black"
+                                      color="white"
                                   >
-                                    Freeze User
+                                      QC Failed Client
                                   </Text>
                                 </NavLink>
                               </ListItem>
 
                               <ListItem
-                                className="listItem"
-                                p="5px"
-                                borderRadius="10px"
-                              >
-                                <ListIcon
-                                  as={BsFileEarmarkSpreadsheet}
-                                  color="gray.500"
-                                  ml="10px"
-                                />
-                                <NavLink to="/user/pending">
-                                  <Text
-                                    as="span"
-                                    pl="10px"
-                                    fontSize={{ base: "0.6rem", md: "1rem" }}
-                                    color="black"
-                                  >
-                                    Pending
-                                  </Text>
-                                </NavLink>
-                              </ListItem>
-
+                                     color="yellow"
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={BsFileEarmarkSpreadsheet}
+                                         color="yellow"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/pending">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "0.9rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          Today work to send
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+                               
                               <ListItem
-                                className="listItem"
-                                p="5px"
-                                borderRadius="10px"
-                              >
-                                <ListIcon
-                                  as={CiMoneyBill}
-                                  color="gray.500"
-                                  ml="10px"
-                                />
-                                <NavLink to="/user/userAgreement">
-                                  <Text
-                                    as="span"
-                                    pl="10px"
-                                    fontSize={{ base: "0.6rem", md: "1rem" }}
-                                    color="black"
-                                  >
-                                    Agreement
-                                  </Text>
-                                </NavLink>
-                              </ListItem>
+                                     color="yellow"
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={CiMoneyBill}
+                                       color="yellow"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/userAgreement">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "1rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          User Agreement
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+
+                                    <ListItem
+                          style={{ marginTop: "1.5rem" }}
+                          className="listItem"
+                          p="10px"
+                          borderRadius="10px"
+                           color="yellow"
+                        >
+                          <MovingIcon 
+                           color="yellow"
+                          className="sidebaricon" />
+                          <NavLink to="/report">
+                            <Text
+                              as="span"
+                              color="white"
+                              fontSize="rem"
+                              marginLeft="8px" // Add some margin for spacing between icon and text
+                              _hover={{ textDecoration: "underline" }}
+                            >
+                              Report
+                            </Text>
+                          </NavLink>
+                        </ListItem>
+                        <ListItem
+                          style={{ marginTop: "1.5rem" }}
+                          className="listItem"
+                          p="10px"
+                          borderRadius="10px"
+                           color="yellow"
+                        >
+                          <GroupsIcon className="sidebaricon"></GroupsIcon>
+                          <NavLink to="/employees">
+                            <Text
+                              as="span"
+                              color="white"
+                              fontSize="rem"
+                              marginLeft="8px" // Add some margin for spacing between icon and text
+                              _hover={{ textDecoration: "underline" }}
+                            >
+                              Employees
+                            </Text>
+                          </NavLink>
+                        </ListItem>
+
+
 
                               <Divider borderWidth="1px" borderColor={"gray"} />
                             </AccordionPanel>
@@ -316,47 +451,9 @@ export default function SideBar() {
                   </ListItem>
                 </Accordion>
 
-                <ListItem
-                  style={{ marginTop: "1.5rem" }}
-                  className="listItem"
-                  p="10px"
-                  borderRadius="10px"
-                >
-                  <MovingIcon className="sidebaricon" />
-                  <NavLink to="/report">
-                    <Text
-                      as="span"
-                      color="black"
-                      fontSize="rem"
-                      marginLeft="8px" // Add some margin for spacing between icon and text
-                      _hover={{ textDecoration: "underline" }}
-                    >
-                      Report
-                    </Text>
-                  </NavLink>
-                </ListItem>
+                     
 
-                <Divider borderWidth="1px" borderColor={"gray"} />
-
-                <ListItem
-                  style={{ marginTop: "1.5rem" }}
-                  className="listItem"
-                  p="10px"
-                  borderRadius="10px"
-                >
-                  <GroupsIcon className="sidebaricon"></GroupsIcon>
-                  <NavLink to="/employees">
-                    <Text
-                      as="span"
-                      color="black"
-                      fontSize="rem"
-                      marginLeft="8px" // Add some margin for spacing between icon and text
-                      _hover={{ textDecoration: "underline" }}
-                    >
-                      Employees
-                    </Text>
-                  </NavLink>
-                </ListItem>
+                
 
                 <ListItem
                   style={{ marginTop: "1.5rem" }}
@@ -383,7 +480,7 @@ export default function SideBar() {
         )}
         {/* mobile view for admin */}
         {isMobileView && (
-          <Box>
+          <Box bg={"purple"}>
             {isAdmin && (
               <Drawer
                 isOpen={isOpen}
@@ -392,19 +489,22 @@ export default function SideBar() {
                 width="10px"
               >
                 <DrawerOverlay>
-                  <DrawerContent>
+                  <DrawerContent bg={"#C13FE6"}>
                     <DrawerCloseButton />
-                    <DrawerHeader>DashBoard</DrawerHeader>
+                    <DrawerHeader color={"white"}>
+                      Greeting Admin !
+                    </DrawerHeader>
                     <DrawerBody>
                       <Stack>
                         <Accordion allowToggle width={"90%"}>
                           <NavLink to="dashboard">
-                            <AccordionItem _hover={{ bg: "#F0F0F0" }}>
+                            <AccordionItem _hover={{ bg: "purple" }}>
                               {({ isExpanded }) => (
                                 <>
                                   <h2>
                                     <AccordionButton>
-                                      <AccountCircleIcon
+                                      
+                                      <DescriptionIcon
                                         style={{
                                           borderRadius: "50%",
                                           width: "3.5rem",
@@ -414,12 +514,12 @@ export default function SideBar() {
                                       />
                                       <Text
                                         as="span"
-                                        color="black"
+                                        color="white"
                                         fontSize="1.5rem"
                                         marginLeft={"0.7rem"}
                                         // Remove the hover red color
                                       >
-                                        User
+                                        Form
                                       </Text>
 
                                       {isExpanded ? (
@@ -446,7 +546,7 @@ export default function SideBar() {
                                         color="gray.500"
                                         ml="10px"
                                       />
-                                      <NavLink to="/user/registration">
+                                      <NavLink to="/user/Registrationform">
                                         <Text
                                           as="span"
                                           pl="10px"
@@ -454,109 +554,9 @@ export default function SideBar() {
                                             base: "1rem",
                                             md: "1rem",
                                           }}
-                                          color="black"
+                                          color="white"
                                         >
-                                          Registration
-                                        </Text>
-                                      </NavLink>
-                                    </ListItem>
-
-                                    <ListItem
-                                      className="listItem"
-                                      p="5px"
-                                      borderRadius="10px"
-                                    >
-                                      <ListIcon
-                                        as={BsFileEarmarkSpreadsheet}
-                                        color="gray.500"
-                                        ml="10px"
-                                      />
-                                      <NavLink to="/user/activeUser">
-                                        <Text
-                                          as="span"
-                                          pl="10px"
-                                          fontSize={{
-                                            base: "1rem",
-                                            md: "1rem",
-                                          }}
-                                          color="black"
-                                        >
-                                          Active User
-                                        </Text>
-                                      </NavLink>
-                                    </ListItem>
-
-                                    <ListItem
-                                      className="listItem"
-                                      p="5px"
-                                      borderRadius="10px"
-                                    >
-                                      <ListIcon
-                                        as={BsFileEarmarkSpreadsheet}
-                                        color="gray.500"
-                                        ml="10px"
-                                      />
-                                      <NavLink to="/user/frezzuser">
-                                        <Text
-                                          as="span"
-                                          pl="10px"
-                                          fontSize={{
-                                            base: "1rem",
-                                            md: "1rem",
-                                          }}
-                                          color="black"
-                                        >
-                                          Freeze User
-                                        </Text>
-                                      </NavLink>
-                                    </ListItem>
-
-                                    <ListItem
-                                      className="listItem"
-                                      p="5px"
-                                      borderRadius="10px"
-                                    >
-                                      <ListIcon
-                                        as={BsFileEarmarkSpreadsheet}
-                                        color="gray.500"
-                                        ml="10px"
-                                      />
-                                      <NavLink to="/user/pending">
-                                        <Text
-                                          as="span"
-                                          pl="10px"
-                                          fontSize={{
-                                            base: "1rem",
-                                            md: "1rem",
-                                          }}
-                                          color="black"
-                                        >
-                                          Pending
-                                        </Text>
-                                      </NavLink>
-                                    </ListItem>
-
-                                    <ListItem
-                                      className="listItem"
-                                      p="5px"
-                                      borderRadius="10px"
-                                    >
-                                      <ListIcon
-                                        as={CiMoneyBill}
-                                        color="gray.500"
-                                        ml="10px"
-                                      />
-                                      <NavLink to="/user/userAgreement">
-                                        <Text
-                                          as="span"
-                                          pl="10px"
-                                          fontSize={{
-                                            base: "1rem",
-                                            md: "1rem",
-                                          }}
-                                          color="black"
-                                        >
-                                          User Agreement
+                                          Add Client
                                         </Text>
                                       </NavLink>
                                     </ListItem>
@@ -596,17 +596,189 @@ export default function SideBar() {
                           </NavLink>
                         </Accordion>
 
-                        <ListItem
+                        <Accordion allowToggle width={"90%"}>
+                          <NavLink to="dashboard">
+                            <AccordionItem _hover={{ bg: "purple" }}>
+                              {({ isExpanded }) => (
+                                <>
+                                  <h2>
+                                    <AccordionButton>
+                                      <ListAltIcon
+                                        style={{
+                                          borderRadius: "50%",
+                                          width: "3.5rem",
+                                          height: "3rem",
+                                          textAlign: "center",
+                                        }}
+                                      />
+                                      <Text
+                                        as="span"
+                                        color="white"
+                                        fontSize="1.5rem"
+                                        marginLeft={"0.7rem"}
+                                        // Remove the hover red color
+                                      >
+                                        Procedure
+                                      </Text>
+
+                                      {isExpanded ? (
+                                        <ChevronUpIcon
+                                          color={"black"}
+                                          ml="10px"
+                                        />
+                                      ) : (
+                                        <ChevronDownIcon
+                                          color={"black"}
+                                          ml="10px"
+                                        />
+                                      )}
+                                    </AccordionButton>
+                                  </h2>
+                                  <AccordionPanel pb={4}>
+                                    <ListItem
+                                     color="yellow"
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={BsAmd}
+                                        color="yellow"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/registration">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "1rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          All client
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+
+                                    <ListItem
+                                     color="yellow"
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={BsFileEarmarkSpreadsheet}
+                                        color="yellow"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/activeUser">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "1rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          Working Client
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+
+                                    <ListItem
+                                     color="yellow"
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={BsFileEarmarkSpreadsheet}
+                                        color="yellow"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/frezzuser">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "1rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          QC Failed Client
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+
+                                    <ListItem
+                                     color="yellow"
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={BsFileEarmarkSpreadsheet}
+                                         color="yellow"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/pending">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "0.9rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          Today work to send
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+
+                                    <ListItem
+                                     color="yellow"
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={CiMoneyBill}
+                                       color="yellow"
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/userAgreement">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "1rem",
+                                            md: "1rem",
+                                          }}
+                                          color="white"
+                                        >
+                                          User Agreement
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem>
+
+                                    <ListItem
                           style={{ marginTop: "1.5rem" }}
                           className="listItem"
                           p="10px"
                           borderRadius="10px"
+                           color="yellow"
                         >
-                          <MovingIcon className="sidebaricon" />
+                          <MovingIcon 
+                           color="yellow"
+                          className="sidebaricon" />
                           <NavLink to="/report">
                             <Text
                               as="span"
-                              color="black"
+                              color="white"
                               fontSize="rem"
                               marginLeft="8px" // Add some margin for spacing between icon and text
                               _hover={{ textDecoration: "underline" }}
@@ -616,21 +788,18 @@ export default function SideBar() {
                           </NavLink>
                         </ListItem>
 
-                        {/* Active User */}
-
-                        <Divider borderWidth="1px" borderColor={"gray"} />
-
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
                           className="listItem"
                           p="10px"
                           borderRadius="10px"
+                           color="yellow"
                         >
                           <GroupsIcon className="sidebaricon"></GroupsIcon>
                           <NavLink to="/employees">
                             <Text
                               as="span"
-                              color="black"
+                              color="white"
                               fontSize="rem"
                               marginLeft="8px" // Add some margin for spacing between icon and text
                               _hover={{ textDecoration: "underline" }}
@@ -640,11 +809,52 @@ export default function SideBar() {
                           </NavLink>
                         </ListItem>
 
+                                    {/* <ListItem
+                                      className="listItem"
+                                      p="5px"
+                                      borderRadius="10px"
+                                    >
+                                      <ListIcon
+                                        as={BsFillFileEarmarkSpreadsheetFill}
+                                        ml="10px"
+                                      />
+                                      <NavLink to="/user/plan">
+                                        <Text
+                                          as="span"
+                                          pl="10px"
+                                          fontSize={{
+                                            base: "1rem",
+                                            md: "1rem",
+                                          }}
+                                          color="black"
+                                        >
+                                          Plan
+                                        </Text>
+                                      </NavLink>
+                                    </ListItem> */}
+
+                                    <Divider
+                                      borderWidth="1px"
+                                      borderColor={"gray"}
+                                    />
+                                  </AccordionPanel>
+                                </>
+                              )}
+                            </AccordionItem>
+                          </NavLink>
+                        </Accordion>
+
+                       
+
+                        {/* Active User */}
+
+                     
                         <ListItem
                           style={{ marginTop: "1.5rem" }}
                           className="listItem"
                           p="10px"
                           borderRadius="10px"
+                           color="black"
                         >
                           <MovingIcon className="sidebaricon" />
 
@@ -659,23 +869,6 @@ export default function SideBar() {
                             SignOut
                           </Text>
                         </ListItem>
-
-                        <Button
-                          marginLeft={"2.5rem"}
-                          marginTop={"1.8rem"}
-                          mr={3}
-                          fontSize={"1.1rem"}
-                          width={"100px"}
-                          height={"35px"}
-                          color={"white"}
-                          fontWeight={"bold"}
-                          onClick={onClose}
-                          bg={"red"}
-                          borderRadius={"8px"}
-                        >
-                          {" "}
-                          Close X
-                        </Button>
                       </Stack>
                     </DrawerBody>
                   </DrawerContent>
@@ -685,7 +878,7 @@ export default function SideBar() {
           </Box>
         )}
       </List>
-      <List>
+      <List bg={"purple"}>
         {/* laptop view for user */}
         {!isMobileView && (
           <Box>

@@ -1,6 +1,8 @@
 import { Box, Flex, Center } from "@chakra-ui/layout";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { FiUsers, FiUserPlus,FiAlertTriangle,FiXCircle,FiClock } from "react-icons/fi";
+
 
 const DashboardOverview = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
@@ -111,381 +113,279 @@ const DashboardOverview = () => {
 
   return (
     <>
-      <Flex textAlign="center" flexBasis={{ base: "20%", md: "auto" }}>
-        {/* Total Assingment */}
-        <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
-          <Box
-            marginLeft={{ md: "10rem" }}
-            backgroundColor="#0d080d"
-            // border="#ebe9eb"
-            color="white"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
+ <Flex justifyContent="center" width="100%">
+      <Box
+        backgroundColor="#1a1a2e"
+        color="white"
+        margin="20px auto"
+        padding="20px"
+        fontWeight="800"
+        borderRadius="10px"
+        maxWidth="400px"
+        width="90%"
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)"
+      >
+        {/* Text Content */}
+        <Box>
+          <span
+            style={{
+              color: "#00d4ff",
+              fontSize: "24px",
+              fontWeight: "700",
+              display: "block",
+            }}
           >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              {allusercount}
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Total User
-            </p>
-          </Box>
+            {allusercount}
+          </span>
+          <p
+            style={{
+              color: "white",
+              fontWeight: "600",
+              fontSize: "16px",
+              marginTop: "5px",
+            }}
+          >
+            Total Users
+          </p>
         </Box>
 
-        {/* Submitted Assingment */}
+        {/* Icon */}
         <Box
-          gap="15%"
-          textAlign="center"
-          flexBasis={{ base: "100%", md: "auto" }}
+          backgroundColor="#0f3460"
+          borderRadius="50%"
+          padding="15px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
         >
-          <Box
-            marginLeft={{ md: "20rem" }}
-            backgroundColor="#0d080d"
-            border="#ebe9eb"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              {todayregistation}
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Today's Registration
-            </p>
-          </Box>
+          <FiUsers size={40} color="#00d4ff" />
         </Box>
-      </Flex>
-
-      <Flex>
-        {/* Pending Assingment */}
-        <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
-          <Box
-            marginLeft={{ md: "10rem" }}
-            backgroundColor="#0d080d"
-            border="#ebe9eb"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
+      </Box>
+    </Flex>
+ <Flex justifyContent="center" width="100%">
+      <Box
+        backgroundColor="#0d080d"
+        color="white"
+        margin="20px auto"
+        padding="20px"
+        fontWeight="800"
+        borderRadius="10px"
+        maxWidth="400px"
+        width="90%"
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)"
+      >
+        {/* Text Content */}
+        <Box>
+          <span
+            style={{
+              color: "#f39c12",
+              fontSize: "24px",
+              fontWeight: "700",
+              display: "block",
+            }}
           >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              0
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Pending User
-            </p>
-          </Box>
-        </Box>
-        <Box
-          gap="15%"
-          textAlign="center"
-          flexBasis={{ base: "100%", md: "auto" }}
-        >
-          <Box
-            marginLeft={{ md: "20rem" }}
-            backgroundColor="#0d080d"
-            border="#ebe9eb"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
+            {todayregistation}
+          </span>
+          <p
+            style={{
+              color: "white",
+              fontWeight: "600",
+              fontSize: "16px",
+              marginTop: "5px",
+            }}
           >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              {allusercount}
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Active User
-            </p>
-          </Box>
-        </Box>
-      </Flex>
-
-      <Flex>
-        {/* Total Assingment */}
-        <Box
-          gap="15%"
-          textAlign="center"
-          flexBasis={{ base: "100%", md: "auto" }}
-        >
-          <Box
-            marginLeft={{ md: "10rem" }}
-            backgroundColor="#0d080d"
-            border="#ebe9eb"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              {activeUsers}
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Inactive User
-            </p>
-          </Box>
+            Today's Registration
+          </p>
         </Box>
 
-        {/* Submitted Assingment */}
+        {/* Icon */}
         <Box
-          gap="15%"
-          textAlign="center"
-          flexBasis={{ base: "100%", md: "auto" }}
+          backgroundColor="#f39c12"
+          borderRadius="50%"
+          padding="15px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
         >
-          <Box
-            marginLeft={{ md: "20rem" }}
-            backgroundColor="#0d080d"
-            border="#ebe9eb"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              {data?.submitted}
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Cancel User's
-            </p>
-          </Box>
+          <FiUserPlus size={40} color="#0d080d" />
         </Box>
-      </Flex>
-      {/* Pending Assingment */}
-      <Flex flexBasis={{ base: "20%", md: "auto" }} textAlign="center">
-        <Box textAlign="center" flexBasis={{ base: "100%", md: "auto" }}>
-          <Box
-            marginLeft={{ md: "10rem" }}
-            backgroundColor="#0d080d"
-            border="#ebe9eb"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
+      </Box>
+    </Flex>
+
+    <Flex justifyContent="center" width="100%">
+      <Box
+        backgroundColor="#0d080d"
+        color="white"
+        margin="20px auto"
+        padding="20px"
+        fontWeight="800"
+        borderRadius="10px"
+        maxWidth="400px"
+        width="90%"
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)"
+      >
+        {/* Text Content */}
+        <Box>
+          <span
+            style={{
+              color: "#e74c3c",
+              fontSize: "24px",
+              fontWeight: "700",
+              display: "block",
+            }}
           >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              {data?.pending}
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Today's Recovery
-            </p>
-          </Box>
+            0
+          </span>
+          <p
+            style={{
+              color: "white",
+              fontWeight: "600",
+              fontSize: "16px",
+              marginTop: "5px",
+            }}
+          >
+            Not Submit
+          </p>
         </Box>
+
+        {/* Icon */}
         <Box
-          gap="15%"
-          textAlign="center"
-          flexBasis={{ base: "100%", md: "auto" }}
+          backgroundColor="#e74c3c"
+          borderRadius="50%"
+          padding="15px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
         >
-          <Box
-            marginLeft={{ md: "20rem" }}
-            backgroundColor="#0d080d"
-            border="#ebe9eb"
-            margin="20px"
-            padding="40px"
-            fontWeight="800"
-            borderRadius="10px"
-            width={{ base: "100px", md: "150px" }}
-            height={{ base: "100px", md: "150px" }}
-            display="flex"
-            flexDirection="column"
-            alignItems="center"
-            justifyContent="center"
-          >
-            <span
-              style={{
-                color: "white",
-                marginTop: "5px",
-                marginBottom: "5px",
-                height: "10px",
-                fontSize: "20px",
-                marginRight: "0%",
-              }}
-            >
-              {data?.pending}
-            </span>
-            <p
-              style={{
-                color: "white",
-                fontWeight: "600",
-                flexDirection: "row",
-                marginLeft: "0px",
-                textAlign: "center",
-                marginTop: "10px",
-              }}
-            >
-              Total Recovery
-            </p>
-          </Box>
+          <FiAlertTriangle size={40} color="#0d080d" />
         </Box>
-      </Flex>
+      </Box>
+    </Flex>
+    <Flex justifyContent="center" width="100%">
+      <Box
+        backgroundColor="#0d080d"
+        color="white"
+        margin="20px auto"
+        padding="20px"
+        fontWeight="800"
+        borderRadius="10px"
+        maxWidth="400px"
+        width="90%"
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)"
+      >
+        {/* Text Content */}
+        <Box>
+          <span
+            style={{
+              color: "#e74c3c",
+              fontSize: "24px",
+              fontWeight: "700",
+              display: "block",
+            }}
+          >
+            0
+          </span>
+          <p
+            style={{
+              color: "white",
+              fontWeight: "600",
+              fontSize: "16px",
+              marginTop: "5px",
+            }}
+          >
+            QC Report Fail
+          </p>
+        </Box>
+
+        {/* Icon */}
+        <Box
+          backgroundColor="#e74c3c"
+          borderRadius="50%"
+          padding="15px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
+        >
+          <FiXCircle size={40} color="#0d080d" />
+        </Box>
+      </Box>
+    </Flex>
+
+    <Flex justifyContent="center" width="100%">
+      <Box
+        backgroundColor="#0d080d"
+        color="white"
+        margin="20px auto"
+        padding="20px"
+        fontWeight="800"
+        borderRadius="10px"
+        maxWidth="400px"
+        width="90%"
+        display="flex"
+        flexDirection="row"
+        alignItems="center"
+        justifyContent="space-between"
+        boxShadow="0px 4px 6px rgba(0, 0, 0, 0.1)"
+      >
+        {/* Text Content */}
+        <Box>
+          <span
+            style={{
+              color: "#f1c40f",
+              fontSize: "24px",
+              fontWeight: "700",
+              display: "block",
+            }}
+          >
+            0
+          </span>
+          <p
+            style={{
+              color: "white",
+              fontWeight: "600",
+              fontSize: "16px",
+              marginTop: "5px",
+            }}
+          >
+            Pending User
+          </p>
+        </Box>
+
+        {/* Icon */}
+        <Box
+          backgroundColor="#f1c40f"
+          borderRadius="50%"
+          padding="15px"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          boxShadow="0px 4px 8px rgba(0, 0, 0, 0.2)"
+        >
+          <FiClock size={40} color="#0d080d" />
+        </Box>
+      </Box>
+    </Flex>
+     
     </>
   );
 };
