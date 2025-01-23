@@ -22,9 +22,11 @@ import { TfiReload } from "react-icons/tfi";
 import { FaFile } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { BiLinkExternal } from "react-icons/bi";
+import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
+  const navigate = useNavigate();
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -131,11 +133,13 @@ const Registration = () => {
 
     setFilter(result);
   }, [search, userData]);
-
+  const gloryapiurl = import.meta.env.VITE_APP_API_URL;
   const deleteclientinfo = async (id) => {
     try {
+      console.log(id, "delete user details");
       const response = await axios.post(
-        "https://zemixbe-production.up.railway.app/api/user/deleteclient",
+        // "https://zemixbe-production.up.railway.app/api/user/deleteclient",
+        `${gloryapiurl}/user/deleteclient`, //gloryapiurl,
         {
           id: id,
         }
@@ -165,7 +169,14 @@ const Registration = () => {
       console.log(error);
     }
   };
-
+  const handledownload = async (rowData) => {
+    navigate("/downloadreport", {
+      state: {
+        data: rowData,
+        downlodePDFparentcompoent: true,
+      },
+    });
+  };
   const emailsending = async (email) => {
     try {
       console.log("email function");
@@ -221,10 +232,11 @@ const Registration = () => {
           emailsending(rowData.email);
           break;
         case 2:
-          //handledownload(rowData._id);
-          navigate("/downloadreport", {
-            state: { data: rowData },
-          });
+          handledownload(rowData);
+          // navigate("/downloadreport", {
+          //   state: { data: rowData },
+          // });
+
           break;
         case 3:
           navigate("/downloadreport", {
@@ -444,12 +456,32 @@ const Registration = () => {
     //   ),
     // },
     {
+      name: "Delete",
+      cell: (row) => (
+        <Button
+          onClick={() => deleteclientinfo(row._id)}
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="80%"
+          marginLeft={10}
+        >
+          Delete
+        </Button>
+      ),
+    },
+    {
       name: "Agreement",
       cell: () => (
         <>
           {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
           <NavLink to={"/employmentform"}>
-            <Button colorScheme="Red" backgroundColor="#6666ff" width="80%">
+            <Button
+              colorScheme="Red"
+              backgroundColor="#6666ff"
+              width="80%"
+              padding={4}
+              margin={4}
+            >
               Agreement
             </Button>
           </NavLink>

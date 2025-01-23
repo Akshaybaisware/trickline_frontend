@@ -15,6 +15,7 @@ import { useToast } from "@chakra-ui/react";
 
 const RegistrationForm = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
+  // const apiUrl = "http://localhost:5000";
   const {
     handleSubmit,
     register,
@@ -175,7 +176,6 @@ const RegistrationForm = () => {
                   _hover={{ borderColor: "teal.500" }}
                 >
                   <option value="510">540</option>
-                 
                 </Select>
               )}
             />

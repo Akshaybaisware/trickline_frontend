@@ -53,6 +53,7 @@ import Agreement from "./Component/Dashboard/Report/Agreement";
 import StampPaperSubmission from "./Component/Dashboard/UserAgreement/Stampapersucess";
 import StampPaperFill from "./Component/StampPaper/StampPaperFill";
 import QcReport from "./Component/Dashboard/Report/QcReport";
+import DownloadStampPaper from "./Component/StampPaper/DownloadStampPaper";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -124,6 +125,8 @@ const router = createBrowserRouter(
         <Route path="newassignment" element={<NewAssignment />} />
         <Route path="assignmentreport" element={<AssignmentReport />} />
         <Route path="agreement" element={<Agreement />} />
+        <Route path="editclient" element={<EditRegistration />} />
+        <Route path="downloadreport" element={<DownloadStampPaper />} />
         {/* <Route
         path="usersidebar"
         element={<ProtectedRoute element={<Dashboard />} />}

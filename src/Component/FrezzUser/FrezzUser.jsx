@@ -21,6 +21,8 @@ const FreezeUser = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [userData, setUserData] = useState([]);
 
+  const [allusersData, setAllusersData] = useState([]);
+
   useEffect(() => {
     fetchData();
   }, [currentPage]);
@@ -74,32 +76,95 @@ const FreezeUser = () => {
   const handlePagination = (page) => {
     setCurrentPage(page);
   };
-
   const columns = [
     {
       name: "Name",
       selector: "name",
-      sortable: true,
-      grow: 2,
     },
     {
       name: "Mobile",
       selector: "mobile",
-      sortable: true,
     },
     {
-      name: "Mail",
+      name: "Email",
       selector: "email",
-      sortable: true,
     },
     {
-      name: "Actions",
+      name: "Start Date",
+      cell: (row) => {
+        const startDate = row?.startDate?.split("T")[0]; // Extract date part only
+        return startDate;
+      },
+    },
+    {
+      name: "End Date",
+      cell: (row) => {
+        const endDate = row?.endDate?.split("T")[0]; // Extract date part only
+        return endDate;
+      },
+    },
+    {
+      name: "Caller",
+      selector: "caller",
+      cell: (row) => {
+        const selectPlan = row?.caller; // Extract date part only
+        return selectPlan;
+      },
+    },
+    {
+      name: "Status",
+      selector: "Status",
+      cell: (row) => {
+        const Status = row?.status; // Extract date part only
+        return Status;
+      },
+    },
+
+    // {
+    //   name: "Action",
+    //   cell: (row) => (
+    //     <NavLink to={`/user/registeruserdetail/${row._id}`}>
+    //       <Button
+    //         colorScheme="blackAlpha"
+    //         backgroundColor="#6666ff"
+    //         width="80%"
+    //       >
+    //         View Detail
+    //       </Button>
+    //     </NavLink>
+    //   ),
+    // },
+    {
+      name: "Delete",
       cell: (row) => (
-        <NavLink to={`/user/freezeuserform/${row._id}`}>
-          <Button colorScheme="blackAlpha" backgroundColor="black" width="80%">
-            View Detail
-          </Button>
-        </NavLink>
+        <Button
+          onClick={() => deleteclientinfo(row._id)}
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="80%"
+          marginLeft={10}
+        >
+          Delete
+        </Button>
+      ),
+    },
+    {
+      name: "Agreement",
+      cell: () => (
+        <>
+          {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
+          <NavLink to={"/employmentform"}>
+            <Button
+              colorScheme="Red"
+              backgroundColor="#6666ff"
+              width="80%"
+              padding={4}
+              margin={4}
+            >
+              Agreement
+            </Button>
+          </NavLink>
+        </>
       ),
     },
   ];
@@ -111,6 +176,36 @@ const FreezeUser = () => {
     selectAllRowsItemText: "All",
   };
 
+  const getUserdata = async () => {
+    try {
+      const registrationsConfig = {
+        method: "GET",
+        url: `${apiUrl}/user/getallclient`,
+      };
+      const registrationsResponse = await axios(registrationsConfig);
+      console.log(registrationsResponse, "Freeze User");
+      const currentDate = new Date();
+      // Calculate the previous date
+      const previousDate = new Date(currentDate);
+      previousDate.setDate(currentDate.getDate() - 1);
+
+      // Filter the data
+      const filteredData = registrationsResponse.data.data.filter((user) => {
+        const endDate = new Date(user.endDate);
+        return endDate <= previousDate;
+      });
+
+      // Set the filtered data
+      setAllusersData(filteredData);
+
+      //end shoudle be equal or  less than previus data
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    getUserdata();
+  }, []);
   return (
     <>
       <Flex direction="column" align="center">
@@ -122,7 +217,7 @@ const FreezeUser = () => {
           fontSize={["1.5rem", "2rem"]}
           fontWeight="700"
         >
-          Freeze User
+          Qc Failed Client
         </Box>
       </Flex>
       <InputGroup mt="1rem" ml={["1rem", "6.5rem"]} width={["90%", "400px"]}>
@@ -143,25 +238,25 @@ const FreezeUser = () => {
         <Button
           className="employee-btn"
           colorScheme="teal"
-        ml={'1rem'}
+          ml={"1rem"}
           onClick={handleSearch}
         >
           Search
         </Button>
       </InputGroup>
       <Box width={{ base: "81vw", md: "80vw" }} overflowX="auto" p={4}>
-      <DataTable
-        title=""
-        columns={columns}
-        data={userData}
-        pagination
-        paginationServer
-        paginationTotalRows={totalPages * 10} // Assuming 10 items per page
-        onChangePage={(page) => handlePagination(page)}
-        paginationPerPage={10}
-        paginationRowsPerPageOptions={[10, 20, 30]}
-        paginationComponentOptions={paginationOptions}
-      />
+        <DataTable
+          title=""
+          columns={columns}
+          data={allusersData}
+          pagination
+          paginationServer
+          paginationTotalRows={totalPages * 10} // Assuming 10 items per page
+          onChangePage={(page) => handlePagination(page)}
+          paginationPerPage={10}
+          paginationRowsPerPageOptions={[10, 20, 30]}
+          paginationComponentOptions={paginationOptions}
+        />
       </Box>
     </>
   );

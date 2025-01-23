@@ -101,7 +101,7 @@ const StampPaperFill = () => {
       });
       navigate("/stampapersucess");
     } catch (error) {
-      alert("Email Aredy Exist", error.message);
+      alert("Email Alredy Exist", error.message);
       setLoading(false);
     }
   };

@@ -7,6 +7,7 @@ import { Flex } from "@chakra-ui/layout";
 import DataTable from "react-data-table-component";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
+import { NavLink } from "react-router-dom/dist/umd/react-router-dom.development";
 
 import { BiSolidPhoneCall } from "react-icons/bi";
 import { TbReload } from "react-icons/tb";
@@ -25,6 +26,7 @@ function Pending() {
 
   const iconsarray = [BiSolidPhoneCall, TbReload, IoIosClose];
   const [pendinglist, setPendinglist] = useState();
+  const [allusersData, setAllusersData] = useState([]);
   const emailsendingpassword = async (id) => {
     try {
       console.log(id, "asdasdasd");
@@ -107,110 +109,92 @@ function Pending() {
   const columns = [
     {
       name: "Name",
-      selector: (row) => row.name,
-      sortable: true,
+      selector: "name",
     },
     {
-      name: "Mobile No",
-      selector: (row) => row?.mobile,
-      sortable: true,
+      name: "Mobile",
+      selector: "mobile",
     },
     {
       name: "Email",
-      selector: (row) => row?.email,
-      sortable: true,
-    },
-    {
-      name: "Registration Date",
-      selector: (row) => row?.createdAt?.slice(0, 10),
-      sortable: true,
+      selector: "email",
     },
     {
       name: "Start Date",
-      selector: (row) => row.startDate?.slice(0, 10),
-      sortable: true,
+      cell: (row) => {
+        const startDate = row?.startDate?.split("T")[0]; // Extract date part only
+        return startDate;
+      },
+    },
+    {
+      name: "End Date",
+      cell: (row) => {
+        const endDate = row?.endDate?.split("T")[0]; // Extract date part only
+        return endDate;
+      },
     },
     {
       name: "Caller",
-      selector: (row) => `1`, // Prepend static number 1 to the caller value
-      sortable: true,
+      selector: "caller",
+      cell: (row) => {
+        const selectPlan = row?.caller; // Extract date part only
+        return selectPlan;
+      },
+    },
+    {
+      name: "Status",
+      selector: "Status",
+      cell: (row) => {
+        const Status = row?.status; // Extract date part only
+        return Status;
+      },
     },
 
     // {
-    //   name: "Status",
-    //   selector: (row) => row.submittedAssignmentCount,
-    //   sortable: true,
+    //   name: "Action",
+    //   cell: (row) => (
+    //     <NavLink to={`/user/registeruserdetail/${row._id}`}>
+    //       <Button
+    //         colorScheme="blackAlpha"
+    //         backgroundColor="#6666ff"
+    //         width="80%"
+    //       >
+    //         View Detail
+    //       </Button>
+    //     </NavLink>
+    //   ),
     // },
     {
-      name: "Status",
-      selector: (row) => {
-        // Determine which icon to display based on submittedAssignmentCount
-        if (row.submittedAssignmentCount > 10) {
-          return (
-            <div style={{ color: "green" }}>
-              <FaCheckCircle />
-            </div>
-          );
-        } else if (row.submittedAssignmentCount < 0) {
-          return (
-            <div style={{ color: "orange" }}>
-              <FaClock />
-            </div>
-          );
-        } else {
-          return (
-            <div style={{ color: "red" }}>
-              <FaTimesCircle />
-            </div>
-          );
-        }
-      },
-      sortable: true,
-    },
-
-    {
-      name: "Action",
+      name: "Delete",
       cell: (row) => (
-        // <Flex>
-        //   {iconsarray.map((Icon, index) => (
-        //     <Button
-        //       key={index}
-        //       colorScheme="green"
-        //       size="sm"
-        //       variant="outline"
-        //       onClick={() => handleAction(row, index)}
-        //       leftIcon={<Icon />}
-        //       mr={2}
-        //       mb={2}
-        //     />
-        //   ))}
-        // </Flex>
-        <Flex>
-          {iconsarray.map((Icon, index) => {
-            // Determine the appropriate background color based on the icon index
-            let colorScheme;
-            if (index === 0) {
-              colorScheme = "green"; // Green background for FaCheckCircle
-            } else if (index === 1) {
-              colorScheme = "blue"; // Orange background for FaClock
-            } else if (index === 2) {
-              colorScheme = "red"; // Red background for FaTimesCircle
-            }
-
-            return (
-              <Button
-                key={index}
-                colorScheme={colorScheme} // Apply the determined color scheme
-                size="sm"
-                variant="outline"
-                onClick={() => handleAction(row, index)}
-                leftIcon={<Icon />}
-                mr={2}
-                mb={2}
-              />
-            );
-          })}
-        </Flex>
+        <Button
+          onClick={() => deleteclientinfo(row._id)}
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="80%"
+          marginLeft={10}
+        >
+          Delete
+        </Button>
+      ),
+    },
+    {
+      name: "Agreement",
+      cell: () => (
+        <>
+          {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
+          <NavLink to={"/employmentform"}>
+            <Button
+              colorScheme="Red"
+              backgroundColor="#6666ff"
+              width="80%"
+              padding={4}
+              margin={4}
+            >
+              Agreement
+            </Button>
+          </NavLink>
+        </>
       ),
     },
   ];
@@ -239,6 +223,38 @@ function Pending() {
   useEffect(() => {
     pendingdata();
   }, [dependancy, deletedependency, reload]);
+
+  const getUserdata = async () => {
+    try {
+      const registrationsConfig = {
+        method: "GET",
+        url: `${apiUrl}/user/getallclient`,
+      };
+      const registrationsResponse = await axios(registrationsConfig);
+      // Get the current date
+      const currentDate = new Date();
+      // Set the time to midnight to compare only the date part
+      currentDate.setHours(0, 0, 0, 0);
+
+      // Filter the data
+      const filteredData = registrationsResponse.data.data.filter((user) => {
+        const startDate = new Date(user.startDate);
+        // Set the time to midnight to compare only the date part
+        startDate.setHours(0, 0, 0, 0);
+        return startDate.getTime() === currentDate.getTime();
+      });
+
+      // Set the filtered data
+      setAllusersData(filteredData);
+
+      //end shoudle be equal or  less than previus data
+    } catch (e) {
+      console.log(e);
+    }
+  };
+  useEffect(() => {
+    getUserdata();
+  }, []);
   return loading ? (
     <Center height={"100vh"}>
       <Spinner
@@ -255,13 +271,13 @@ function Pending() {
         <Box width={{ base: "100vw", md: "90vw" }} overflowX="auto" p={4}>
           <Center mb={4}>
             <Text fontSize="2xl" fontWeight={"800"} color="red">
-              Pending Registrations
+              Todays Registrations
             </Text>
           </Center>
 
           <DataTable
             columns={columns}
-            data={pendinglist}
+            data={allusersData}
             pagination
             responsive
             subHeader

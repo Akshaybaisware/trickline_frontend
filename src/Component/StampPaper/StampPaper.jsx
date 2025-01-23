@@ -18,10 +18,10 @@ import { Spinner } from "@chakra-ui/react";
 // import Front from "../../assets/Frontnew.jpg";
 // import frontpage from "../../assets/frontpage.jpg";
 // import sign from "../../assets/cropto stamp.svg";
-import front from "../../Images/Legal-Agreement (30)_page-0001 1.svg"
- import stamplogo from "../../Images/glorry-stamp.svg";
-import notri from "../../Images/notriimages.jpg"
- import image from "../../Images/SVG STAM.svg";
+import front from "../../Images/Legal-Agreement (30)_page-0001 1.svg";
+import stamplogo from "../../Images/glorry-stamp.svg";
+import notri from "../../Images/notriimages.jpg";
+import image from "../../Images/SVG STAM.svg";
 
 import { useState } from "react";
 import axios from "axios";
@@ -103,7 +103,7 @@ const StampPaper = () => {
       });
       navigate("/stampapersucess");
     } catch (error) {
-      alert("Email Aredy Exist", error.message);
+      alert("Email Alredy Exist", error.message);
       setLoading(false);
     }
   };
@@ -131,8 +131,8 @@ const StampPaper = () => {
           >
             <Image src={image} alt="Description of the image" />
           </Box>
-        
-      
+
+
          <Box display="flex" justifyContent="space-evenly">
       <Box  mb={{ base: "2", lg: "0" }}>
         <Image
@@ -156,7 +156,7 @@ const StampPaper = () => {
         </Text>
         <Text>
         Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
-         India (IN), Pin Code: 313001 
+         India (IN), Pin Code: 313001
 
         </Text>
 
@@ -174,7 +174,7 @@ const StampPaper = () => {
         <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
       </Box>
     </Box> */}
-    <Image src={front} alt="Description of the image" />
+          <Image src={front} alt="Description of the image" />
         </Box>
 
         <Box>
@@ -239,15 +239,15 @@ const StampPaper = () => {
             <br />
             2.1 REMUNERATION: - - For the form filling service rendered by the
             client. The Clients shall beentitled to payments of price 41Rs.
-            (INR) Max perform for the salary may vary from 22680/- INR 
-            Total Form will be 540  and per form woll be 42 and the u dont have to 
-            correct more than 486 form
-            The  Client shall raise the invoice within 5 days after the successful
-            completion of the project. The contractor will pay each project's
-            amount within a maximum of 48 HRS, from the date of issue of the
-            quality check report. the invoice can be raised by Email and by a
-            report on the working website. Q.C. Report will be provided within
-            24-72 Working hours from the date of submission
+            (INR) Max perform for the salary may vary from 22680/- INR Total
+            Form will be 540 and per form woll be 42 and the u dont have to
+            correct more than 486 form The Client shall raise the invoice within
+            5 days after the successful completion of the project. The
+            contractor will pay each project's amount within a maximum of 48
+            HRS, from the date of issue of the quality check report. the invoice
+            can be raised by Email and by a report on the working website. Q.C.
+            Report will be provided within 24-72 Working hours from the date of
+            submission
             <br />
             <br /> 2.2 Billing: - - contractor will provide a workload of
             Question Forms which the client shall complete thework within 5 days
@@ -339,7 +339,7 @@ const StampPaper = () => {
             understanding between theparties and shall remain in effect for six
             months for the date of execution hereof the Contractor's
             Specification in terms of quality and other parameters that shall be
-            issued by the Contractor. This General Glorry  EnterprisesAgreement
+            issued by the Contractor. This General Glorry EnterprisesAgreement
             Stands and is valid for 11 months, if the client or contractor is
             willing to end this business relationship they need to proceed with
             the termination of this agreement-based contract.
@@ -359,7 +359,7 @@ const StampPaper = () => {
             4.1 Termination: - - If the Client fails to submit data on or If the
             client fails to give Accuracy in the Output file. The client
             reserves the right to terminate the agreement with immediate effect
-            and Glorry  Enterprises freelancing services will not be responsible
+            and Glorry Enterprises freelancing services will not be responsible
             for any future data and payment to the Client and the Client will be
             liable to pay the maintenance Amount to the client as mentioned in
             "clause-3.1" In this agreement and client will also be liable to pay
@@ -553,7 +553,6 @@ const StampPaper = () => {
             Note :Extension will be Provided But u Have to Pay the Extension
             Amount 8100/ Correction amount 8100
           </Text>
-       
         </Box>
 
         <Box>
@@ -563,9 +562,8 @@ const StampPaper = () => {
           <Text ml={["1rem", "3rem"]} fontWeight={"500"}>
             Name : Glorry Enterprises <br />
             Email : helplineservice19@gmail.com <br />
-            Adress:  block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), 
-            Udaipur, Rajasthan, India (IN), Pin Code: 313001 
-
+            Adress: block Number 128 Shivaji Nagar Post Office Udaipur City SO
+            (Sub-Office), Udaipur, Rajasthan, India (IN), Pin Code: 313001
           </Text>
         </Box>
 
@@ -657,7 +655,7 @@ const StampPaper = () => {
           </Tr>
         </Table>
         <Button
-        color={"white"}
+          color={"white"}
           onClick={handleSubmit}
           mt={"1rem"}
           ml={"1.6rem"}

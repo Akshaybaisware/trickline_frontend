@@ -347,7 +347,7 @@ const EditClientComponent = () => {
     // Send PUT request to update user details
     try {
       const response = await fetch(
-        `${apiUrl}/user/edituser/${UserId}`,
+        `${apiUrl}/user/edituser/${userId}`,
         // `http://localhost:5000/api/user/edituser/${userId}`,
         {
           method: "PUT",
