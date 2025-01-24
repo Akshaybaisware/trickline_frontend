@@ -1,4 +1,4 @@
-import React, { useRef, useEffect } from "react";
+import React, { useRef, useEffect, useState } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
@@ -8,10 +8,10 @@ const FIR = ({ onPDFGenerated, rowData }) => {
   const countref = useRef(0);
   console.log(rowData, "fir pdf");
   const [userData, setUserData] = useState();
-  setUserData(rowData);
 
   useEffect(() => {
     // Automatically generate the PDF when the component is rendered
+    setUserData(rowData);
     if (countref.current === 0) {
       const input = pdfRef.current;
       console.log("fir pdf");
