@@ -43,6 +43,7 @@ const Registration = () => {
   const [todaysassignmentcount, settodaysassignmentcount] = useState(0);
 
   const [todaysassignment, settodaysassignment] = useState(0);
+  const [rowdatafordir, setRowdataforFir] = useState();
 
   const callers = {
     "66124f906eb6102e7e68e772": "caller 1",
@@ -260,10 +261,10 @@ const Registration = () => {
         case 3:
           console.log("danger icon");
           setShowFIR(true);
-
-          {
-            showFIR && <FIR onPDFGenerated={handlePDFGenerated} />;
-          }
+          setRowdataforFir(rowData);
+          // {
+          //   showFIR && <FIR onPDFGenerated={handlePDFGenerated} />;
+          // }
           // navigate("/downloadreport", {
           //   state: { data: rowData },
           // });
@@ -304,10 +305,11 @@ const Registration = () => {
           console.log("danger icon");
           // deleteclientinfo(rowData._id);
           setShowFIR(true);
+          setRowdataforFir(rowData);
 
-          {
-            showFIR && <FIR onPDFGenerated={handlePDFGenerated} />;
-          }
+          // {
+          //   showFIR && <FIR onPDFGenerated={handlePDFGenerated} />;
+          // }
           break;
         default:
           // Handle default case
@@ -736,6 +738,9 @@ const Registration = () => {
           }}
         />
       </Box>
+      {showFIR && (
+        <FIR onPDFGenerated={handlePDFGenerated} rowData={rowdatafordir} />
+      )}
     </>
   );
 };

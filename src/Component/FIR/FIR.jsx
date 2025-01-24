@@ -2,28 +2,35 @@ import React, { useRef, useEffect } from "react";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 
-const FIR = ({ onPDFGenerated }) => {
+const FIR = ({ onPDFGenerated, rowData }) => {
   const pdfRef = useRef();
   console.log(onPDFGenerated, "fir pdf");
+  const countref = useRef(0);
+  console.log(rowData, "fir pdf");
+  const [userData, setUserData] = useState();
+  setUserData(rowData);
 
   useEffect(() => {
     // Automatically generate the PDF when the component is rendered
-    const input = pdfRef.current;
-    console.log("fir pdf");
+    if (countref.current === 0) {
+      const input = pdfRef.current;
+      console.log("fir pdf");
 
-    html2canvas(input, { scale: 2 }).then((canvas) => {
-      const imgData = canvas.toDataURL("image/png");
-      const pdf = new jsPDF("p", "mm", "a4");
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = pdf.internal.pageSize.getHeight();
-      pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-      pdf.save("FIR_Copy.pdf");
+      html2canvas(input, { scale: 2 }).then((canvas) => {
+        const imgData = canvas.toDataURL("image/png");
+        const pdf = new jsPDF("p", "mm", "a4");
+        const pdfWidth = pdf.internal.pageSize.getWidth();
+        const pdfHeight = pdf.internal.pageSize.getHeight();
+        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
+        pdf.save("FIR_Copy.pdf");
 
-      // Notify parent that the PDF has been generated
-      if (onPDFGenerated) {
-        onPDFGenerated();
-      }
-    });
+        // Notify parent that the PDF has been generated
+        if (onPDFGenerated) {
+          onPDFGenerated();
+        }
+      });
+      countref.current = 1;
+    }
   }, [onPDFGenerated]);
 
   return (
@@ -54,7 +61,7 @@ const FIR = ({ onPDFGenerated }) => {
         <h2 style={{ textAlign: "center", color: "red" }}>F.I.R</h2>
         <p>To,</p>
         <p>
-          <strong>Mr./Ms./Mrs. [Name]:</strong> I. BHAVYA
+          <strong>Mr./Ms./Mrs. {userData?.name}:</strong> I. BHAVYA
         </p>
         <p>
           Kindly note the details are being sent at Mumbai District Court for
