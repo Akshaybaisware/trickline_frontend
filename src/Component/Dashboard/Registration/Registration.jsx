@@ -23,10 +23,12 @@ import { FaFile } from "react-icons/fa";
 import { RiDeleteBin5Fill } from "react-icons/ri";
 import { BiLinkExternal } from "react-icons/bi";
 import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
-
+import { AiTwotoneWarning } from "react-icons/ai";
+import FIR from "../../FIR/FIR";
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
   const navigate = useNavigate();
+  const [showFIR, setShowFIR] = useState(false);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -57,13 +59,29 @@ const Registration = () => {
     todaysRegistrations();
   }, [currentPage]);
 
-  const icons = [FaPencilAlt, TfiReload, FaDownload, FaFile, RiDeleteBin5Fill];
+  const icons = [
+    FaPencilAlt,
+    TfiReload,
+    FaDownload,
+    AiTwotoneWarning,
+    FaFile,
+    RiDeleteBin5Fill,
+  ];
   const iconspending = [
     FaPencilAlt,
     TfiReload,
     BiLinkExternal,
+    AiTwotoneWarning,
     RiDeleteBin5Fill,
   ];
+
+  const handleDownloadClick = () => {
+    setShowFIR(true); // Render the FIR component
+  };
+
+  const handlePDFGenerated = () => {
+    setShowFIR(false); // Remove the FIR component after the PDF is generated
+  };
 
   // https://glorry-bakcend-updated-production.up.railway.app/api/user/gettodaysregister
 
@@ -210,7 +228,7 @@ const Registration = () => {
       });
     }
   };
-
+  console.log(showFIR, "showfir");
   const handleIconClick = (rowData, iconIndex) => {
     // Perform actions based on rowData and iconIndex
     console.log("Clicked on icon:", iconIndex);
@@ -229,6 +247,7 @@ const Registration = () => {
           });
           break;
         case 1:
+          console.log("email");
           emailsending(rowData.email);
           break;
         case 2:
@@ -239,12 +258,22 @@ const Registration = () => {
 
           break;
         case 3:
-          navigate("/downloadreport", {
-            state: { data: rowData },
-          });
+          console.log("danger icon");
+          setShowFIR(true);
+
+          {
+            showFIR && <FIR onPDFGenerated={handlePDFGenerated} />;
+          }
+          // navigate("/downloadreport", {
+          //   state: { data: rowData },
+          // });
           break;
         case 4:
-          deleteclientinfo(rowData._id);
+          // deleteclientinfo(rowData._id);
+          console.log("danger icon");
+          navigate("/editclient", {
+            state: { data: rowData },
+          });
           // deletaggrimet(rowData.email);
           break;
         default:
@@ -272,7 +301,13 @@ const Registration = () => {
 
           break;
         case 3:
-          deleteclientinfo(rowData._id);
+          console.log("danger icon");
+          // deleteclientinfo(rowData._id);
+          setShowFIR(true);
+
+          {
+            showFIR && <FIR onPDFGenerated={handlePDFGenerated} />;
+          }
           break;
         default:
           // Handle default case
@@ -384,29 +419,37 @@ const Registration = () => {
                   key={index}
                   style={{
                     fontSize: "35px",
-                    padding: "3px",
-                    // color: index === 0 ? 'white' : 'inherit',
-                    color: row.status === "Success" ? "green" : "inherit", // Change color based on status
-                    // background: index === 3 ? "green" : "green",
-                    backgroundColor:
-                      index === 4
-                        ? "lightgray" // Red for delete, gray for other
-                        : index === 1
-                        ? " #99ebff" // Yellow for refresh
-                        : index === 0
-                        ? "#ffb3ff" // Blue for edit
-                        : index === 2
-                        ? " #c6ffb3"
-                        : "white", // White for other
-                    color:
-                      index === 4
-                        ? "red"
-                        : row.status === "Success"
-                        ? "green"
-                        : "inherit",
                     cursor: "pointer",
-                    margin: "0 5px",
                   }}
+                  // style={{
+                  //   fontSize: "35px",
+                  //   padding: "3px",
+                  //   // color: index === 0 ? 'white' : 'inherit',
+                  //   color: row.status === "Success" ? "green" : "inherit", // Change color based on status
+                  //   // background: index === 3 ? "green" : "green",
+                  //   backgroundColor:
+                  //     index === 4
+                  //       ? "lightgray" // Red for delete, gray for other
+                  //       : index === 1
+                  //       ? " #99ebff" // Yellow for refresh
+                  //       : index === 0
+                  //       ? "#ffb3ff" // Blue for edit
+                  //       : index === 2
+                  //       ? " #c6ffb3"
+                  //       : "white"
+                  //       ? index === 3
+                  //       : "black", // White for other
+                  //   cursor: "pointer",
+                  //   color:
+                  //     index === 4
+                  //       ? "red"
+                  //       : row.status === "Success"
+                  //       ? "green"
+                  //       : "inherit",
+                  //   cursor: "pointer",
+                  //   margin: "0 5px",
+                  //   pointerEvents: "auto",
+                  // }}
                   onClick={() => handleIconClick(row, index)} // Pass row data and icon index to handleIconClick function
                 />
               ))
@@ -416,25 +459,30 @@ const Registration = () => {
                   key={index}
                   style={{
                     fontSize: "35px",
-                    color: "red",
                     cursor: "pointer",
-                    padding: "3px",
-                    margin: "0 5px",
-                    // color: index === 0 ? 'white' : 'inherit',
-                    // backgroundColor:"red"
-                    // background: index === 3 ? "green" : "green",
-                    backgroundColor:
-                      index === 4
-                        ? "lightgray" // Red for delete, gray for other
-                        : index === 1
-                        ? " #99ebff" // Yellow for refresh
-                        : index === 0
-                        ? "#ffb3ff"
-                        : index === 2
-                        ? " #c6ffb3" // Blue for edit
-                        : "white", // White for other
-                    // color : index === 3 ? "red" : "red", // Delete icon is red
                   }}
+                  // style={{
+                  //   fontSize: "35px",
+                  //   color: "red",
+                  //   cursor: "pointer",
+                  //   padding: "3px",
+                  //   margin: "0 5px",
+                  //   // color: index === 0 ? 'white' : 'inherit',
+                  //   // backgroundColor:"red"
+                  //   // background: index === 3 ? "green" : "green",
+                  //   backgroundColor:
+                  //     index === 4
+                  //       ? "lightgray" // Red for delete, gray for other
+                  //       : index === 1
+                  //       ? " #99ebff" // Yellow for refresh
+                  //       : index === 0
+                  //       ? "#ffb3ff"
+                  //       : index === 2
+                  //       ? " #c6ffb3" // Blue for edit
+                  //       : "white", // White for other
+                  //   color: index === 3 ? "red" : "red", // Delete icon is red
+                  //   pointerEvents: "auto",
+                  // }}
                   onClick={() => handleIconClick(row, index)} // Pass row data and icon index to handleIconClick function
                 />
               ))}
@@ -463,7 +511,7 @@ const Registration = () => {
           colorScheme="blackAlpha"
           backgroundColor="#6666ff"
           width="80%"
-          marginLeft={10}
+          marginLeft={20}
         >
           Delete
         </Button>
@@ -471,6 +519,7 @@ const Registration = () => {
     },
     {
       name: "Agreement",
+
       cell: () => (
         <>
           {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
@@ -641,7 +690,7 @@ const Registration = () => {
         </InputLeftElement>
       </InputGroup>
 
-      <Box width={{ base: "90vw", md: "90vw" }} overflowX="auto" p={4}>
+      <Box width={{ base: "110vw", md: "100vw" }} overflowX="auto" p={4}>
         <DataTable
           id="myTable"
           title=""
