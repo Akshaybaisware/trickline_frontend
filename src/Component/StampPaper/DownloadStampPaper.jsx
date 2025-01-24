@@ -1536,12 +1536,12 @@ import {
 import { useLocation } from "react-router-dom";
 // import Front from "../../assets/Frontnew.jpg";
 import stamplogo from "../../Images/glorry-stamp.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePDF } from "react-to-pdf";
 import notri from "../../Images/notriimages.jpg";
 import image from "../../Images/SVG STAM.svg";
 import front from "../../Images/Legal-Agreement (30)_page-0001 1.svg";
-
+import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 // import sign from "../../assets/Stamp.jpg";
@@ -1551,6 +1551,7 @@ const StampPaperView = () => {
   const locationdata = useLocation();
 
   console.log(locationdata?.state?.data, "location date ");
+  const statedatafromLocation = locationdata?.state?.data;
   const { downlodePDFparentcompoent } = location.state || {};
   const { id } = useParams();
   const appUrl = import.meta.env.VITE_APP_API_URL;
@@ -1567,12 +1568,16 @@ const StampPaperView = () => {
     enddate: "",
   });
 
+  const navigate = useNavigate();
+
   const [photoPreview, setPhotoPreview] = useState(null);
   const [signaturePreview, setSignaturePreview] = useState(null);
 
   const userId = localStorage.getItem("userId");
 
   const [loader, setLoader] = useState(false);
+
+  const coutref = useRef(0);
 
   const downlodePDF = async (photoPreview, signaturePreview) => {
     const capture = document.querySelector(".downLodeBox");
@@ -1788,6 +1793,18 @@ const StampPaperView = () => {
     }
   };
   // ... rest of the code
+
+  useEffect(() => {
+    function tobeCalled() {
+      toPDF();
+    }
+    if (coutref.current === 0) {
+      tobeCalled();
+      coutref.current++;
+      navigate("/user/registration");
+    }
+    // tobeCalled();
+  }, [statedatafromLocation]);
 
   return (
     <>
@@ -2353,12 +2370,12 @@ const StampPaperView = () => {
             </Box>
           </Box>
         </Box>
-        <Box>
+        {/* <Box>
           <Button
             ml={["3rem", "7rem"]}
-            // onClick={() => toPDF()}
+            onClick={() => toPDF()}
             //downlodePDF(photoPreview, signaturePreview)}
-            onClick={() => handleDownloadPDF()}
+            // onClick={() => handleDownloadPDF()}
             bg={"#ff4dff"}
             color="black"
             variant="solid"
@@ -2372,7 +2389,7 @@ const StampPaperView = () => {
           >
             Download Your Pdf
           </Button>
-        </Box>
+        </Box> */}
       </Box>
     </>
   );
