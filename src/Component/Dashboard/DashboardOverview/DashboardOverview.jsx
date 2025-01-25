@@ -149,7 +149,7 @@ const DashboardOverview = () => {
               marginTop: "5px",
             }}
           >
-            Total Users
+            Total Client
           </p>
         </Box>
 
@@ -197,13 +197,13 @@ const DashboardOverview = () => {
           </span>
           <p
             style={{
-              color: "white",
+              color: "white", 
               fontWeight: "600",
               fontSize: "16px",
               marginTop: "5px",
             }}
           >
-            Today's Registration
+            Today's Client
           </p>
         </Box>
 

@@ -595,7 +595,7 @@ export default function SideBar() {
                             </AccordionItem>
                           </NavLink>
                         </Accordion>
-
+google meet
                         <Accordion allowToggle width={"90%"}>
                           <NavLink to="dashboard">
                             <AccordionItem _hover={{ bg: "purple" }}>

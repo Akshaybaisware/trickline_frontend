@@ -1535,17 +1535,17 @@ import {
 } from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 // import Front from "../../assets/Frontnew.jpg";
-import stamplogo from "../../Images/glorry-stamp.svg";
+import stamplogo from "../../Images/trickline_horizontal.svg";
 import { useEffect, useState } from "react";
 import { usePDF } from "react-to-pdf";
 import notri from "../../Images/notriimages.jpg"
  import image from "../../Images/SVG STAM.svg";
- import front from "../../Images/Legal-Agreement (30)_page-0001 1.svg"
+ import front from "../../Images/Trickline_STAMP.svg"
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
 // import sign from "../../assets/Stamp.jpg";
-import LOGO from "../../Images/Glorry-Circle-stamp.svg";
+import LOGO from "../../Images/Trickline_circle.svg";
 const StampPaperView = () => {
   const { toPDF, targetRef } = usePDF({ filename: "Legal-Agreement.pdf" });
   const locationdata = useLocation();

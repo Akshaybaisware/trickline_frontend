@@ -318,52 +318,7 @@ const Registration = () => {
     }
   };
 
-  //export Button
-  // const Export = ({ onExport }) => (
-  //   <Button onClick={(e) => onExport(e.target.value)}>Export</Button>
-  // );
-
-  // function convertArrayOfObjectsToCSV(array) {
-  //   let result;
-
-  //   const columnDelimiter = ",";
-  //   const lineDelimiter = "\n";
-  //   const keys = Object.keys(userData[0]);
-
-  //   result = "";
-  //   result += keys.join(columnDelimiter);
-  //   result += lineDelimiter;
-
-  //   array.forEach((item) => {
-  //     let ctr = 0;
-  //     keys.forEach((key) => {
-  //       if (ctr > 0) result += columnDelimiter;
-
-  //       result += item[key];
-
-  //       ctr++;
-  //     });
-  //     result += lineDelimiter;
-  //   });
-
-  //   return result;
-  // }
-
-  // function downloadCSV(array) {
-  //   const link = document.createElement("a");
-  //   let csv = convertArrayOfObjectsToCSV(array);
-  //   if (csv == null) return;
-
-  //   const filename = "export.csv";
-
-  //   if (!csv.match(/^data:text\/csv/i)) {
-  //     csv = `data:text/csv;charset=utf-8,${csv}`;
-  //   }
-
-  //   link.setAttribute("href", encodeURI(csv));
-  //   link.setAttribute("download", filename);
-  //   link.click();
-  // }
+  
 
   const columns = [
     {
@@ -670,9 +625,9 @@ const Registration = () => {
           fontSize={["1.5rem", "2rem"]}
           fontWeight="700"
         >
-          Registration
+          ALL CLIENTS..!
         </Box>
-        <NavLink to="/user/Registrationform">
+        {/* <NavLink to="/user/Registrationform">
           <Button
             mt="0rem"
             mb={"1rem"}
@@ -684,7 +639,7 @@ const Registration = () => {
           >
             Add User
           </Button>
-        </NavLink>
+        </NavLink> */}
       </Flex>
       <InputGroup mt="1rem" ml={["1rem", "1.5rem"]} width={["90%", "400px"]}>
         <InputLeftElement pointerEvents="none">
