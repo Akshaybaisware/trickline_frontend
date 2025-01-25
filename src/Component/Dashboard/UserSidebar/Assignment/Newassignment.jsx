@@ -123,7 +123,6 @@ function ContentValidationfrom() {
       setUserData(userdetails.data.User);
       setSubmittedAssignmentCount(
         userdetails?.data?.User?.submittedAssignmentCount
-
       );
 
       if (userdetails?.data?.User?.submittedAssignmentCount >= 539) {
@@ -324,102 +323,103 @@ function ContentValidationfrom() {
         </Box>
       </Flex> */}
       <Box
-      mt={"1rem"}
-       fontFamily="'Dancing Script', cursive"
-       className="content">
+        mt={"1rem"}
+        fontFamily="'Dancing Script', cursive"
+        className="content"
+      >
         <Flex
-
           justify="center" // Center horizontally
           align="center" // Center vertically
           // height="100vh"   // Full height to demonstrate vertical centering
         >
           <Box>
             <Center>
-              <Button
-              color={"white"}
-              bg={"#4b7f6a"}>
+              <Button color={"white"} bg={"#4b7f6a"}>
                 {submittedAssignmentCount}/ {apidata?.length}
               </Button>
             </Center>
+            <Center color={"red"}>{userdata?.endDate}</Center>
           </Box>
         </Flex>
-        <Box
-        mt={"1rem"}
-        border={"1px solid #33ffad"}>
-        <Box
-
-// fontWeight={"700"}
-        width={"100%"} fontSize={"1.3rem"}>
-          {apidata?.[randomIndex]?.firstname} {apidata?.[randomIndex]?.lastname}{" "}
-          {apidata?.[randomIndex]?.email}
-        </Box >
-        <Box
-      fontWeight={"700"}
-        mt={"1rem"}
-        width={"100%"} fontSize={"0.9rem"}>
-         <Box fontWeight={"700"}>
-          {apidata?.[randomIndex]?.phonenumber}{""}   {apidata?.[randomIndex]?.zipcode} {apidata?.[randomIndex]?.ip}
+        <Box mt={"1rem"} border={"1px solid #33ffad"}>
+          <Box
+            // fontWeight={"700"}
+            width={"100%"}
+            fontSize={"1.3rem"}
+          >
+            {apidata?.[randomIndex]?.firstname}{" "}
+            {apidata?.[randomIndex]?.lastname} {apidata?.[randomIndex]?.email}
+          </Box>
+          <Box
+            fontWeight={"700"}
+            mt={"1rem"}
+            width={"100%"}
+            fontSize={"0.9rem"}
+          >
+            <Box fontWeight={"700"}>
+              {apidata?.[randomIndex]?.phonenumber}
+              {""} {apidata?.[randomIndex]?.zipcode}{" "}
+              {apidata?.[randomIndex]?.ip}
+            </Box>
+          </Box>
+          <Box
+            fontWeight="700"
+            mt={"1.1rem"}
+            width={"100%"}
+            fontSize={"0.9rem"}
+          >
+            <Box fontWeight={"700"}>
+              {apidata?.[randomIndex]?.licencenumber}
+            </Box>
           </Box>
         </Box>
-        <Box
-       fontWeight="700"
-          mt={"1.1rem"}
-        width={"100%"} fontSize={"0.9rem"}>
-          <Box fontWeight={"700"}>
-        {apidata?.[randomIndex]?.licencenumber}
-        </Box>
-        </Box>
-        </Box>
         <Text
-        fontWeight={"700"}
-        fontFamily="sans-serif" mt={"1rem"} mb={"1rem"}>
+          fontWeight={"700"}
+          fontFamily="sans-serif"
+          mt={"1rem"}
+          mb={"1rem"}
+        >
           Fill Your Assignment Here
         </Text>
-        <Text mt={"0.5rem"} fontFamily="sans-serif">First Name:</Text>
-            <Input
-            fontFamily="sans-serif"
-              ref={name}
-            />
-            <Text mt={"0.5rem"} fontFamily="sans-serif">Last Name:</Text>
-            <Input
-          fontFamily="sans-serif"
-              ref={mobile}
-            />
-            <Text mt={"0.5rem"} fontFamily="sans-serif">Email:</Text>
-            <Input
-           fontFamily="sans-serif"
-              ref={address}
-            />
-             <Text mt={"0.5rem"} fontFamily="sans-serif">Mobile:</Text>
-            <Input
-            fontFamily="sans-serif"
-              ref={annualRevenue}
-            />
-           <Text mt={"0.5rem"} fontFamily="sans-serif">Zipcode:</Text>
-            <Input
-            fontFamily="sans-serif"
-              ref={jobFunctional}
-            />
-              <Text mt={"0.5rem"} fontFamily="sans-serif">IP:</Text>
-            <Input
-            fontFamily="sans-serif"
-            />
-          <Text mt={"0.5rem"} fontFamily="sans-serif">LICENSE:</Text>
-            <Input
-            fontFamily="sans-serif"
-              ref={pinCode}
-            />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+          First Name:
+        </Text>
+        <Input fontFamily="sans-serif" ref={name} />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+          Last Name:
+        </Text>
+        <Input fontFamily="sans-serif" ref={mobile} />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+          Email:
+        </Text>
+        <Input fontFamily="sans-serif" ref={address} />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+          Mobile:
+        </Text>
+        <Input fontFamily="sans-serif" ref={annualRevenue} />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+          Zipcode:
+        </Text>
+        <Input fontFamily="sans-serif" ref={jobFunctional} />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+          IP:
+        </Text>
+        <Input fontFamily="sans-serif" />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+          LICENSE:
+        </Text>
+        <Input fontFamily="sans-serif" ref={pinCode} />
 
-<Button
- fontFamily="sans-serif"
-              mt={"1rem"}
-              mb={"1rem"}
-              onClick={submitForm}
-              color={"white"}
-              bg="blue " // Change to the desired color scheme
-            >
-              Submit
-            </Button>
+        <Button
+          fontFamily="sans-serif"
+          mt={"1rem"}
+          mb={"1rem"}
+          onClick={submitForm}
+          color={"white"}
+          bg="blue " // Change to the desired color scheme
+        >
+          Submit
+        </Button>
       </Box>
     </>
   );
