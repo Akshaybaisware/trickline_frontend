@@ -1573,121 +1573,162 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
   const coutnref = useRef(0);
   const [loader, setLoader] = useState(false);
 
+  // const downlodePDF = async (photoPreview, signaturePreview) => {
+  //   const capture = document.querySelector(".downLodeBox");
+  //   setLoader(true);
+
+  //   console.log("downloadPdf ");
+
+  //   html2canvas(capture).then((canvas) => {
+  //     const imgData = canvas.toDataURL("image/png");
+  //     const doc = new jsPDF({
+  //       orientation: "portrait",
+  //       unit: "mm",
+  //       // format: [canvas.width, canvas.height],
+  //       format: window.innerWidth > 600 ? [canvas.width, canvas.height] : "a4",
+  //     });
+
+  //     // const marginLeft = 0;
+  //     // const marginTop = 0;
+  //     const marginLeft = 10; // Adjust as needed
+  //     const marginRight = 10; // Adjust as needed
+  //     const marginTop = 10; // Adjust as needed
+  //     const marginBottom = 10; // Adjust as needed
+
+  //     // const contentWidth = doc.internal.pageSize.getWidth() - 2 * marginLeft;
+  //     // const contentHeight = doc.internal.pageSize.getHeight() - 2 * marginTop;
+
+  //     const contentWidth =
+  //       doc.internal.pageSize.getWidth() - marginLeft - marginRight;
+  //     const contentHeight =
+  //       doc.internal.pageSize.getHeight() - marginTop - marginBottom;
+
+  //     const aspectRatio = canvas.width / canvas.height;
+  //     let imgWidth = contentWidth;
+  //     let imgHeight = contentWidth / aspectRatio;
+
+  //     if (imgHeight > contentHeight) {
+  //       imgHeight = contentHeight;
+  //       imgWidth = contentHeight * aspectRatio;
+  //     }
+
+  //     const imgX = marginLeft + (contentWidth - imgWidth) / 2;
+  //     const imgY = marginTop + (contentHeight - imgHeight) / 2;
+
+  //     doc.addImage(imgData, "PNG", imgX, imgY, imgWidth, imgHeight);
+
+  //     // const photoX = marginLeft + 420;
+  //     // const photoY = doc.internal.pageSize.getHeight() - 400;
+  //     // if (photoPreview) {
+  //     //     doc.addImage(photoPreview, "JPEG", photoX, photoY, 35, 75);
+  //     // }
+
+  //     // const signatureX = marginLeft + 400;
+  //     // const signatureY = doc.internal.pageSize.getHeight() - 400;
+  //     // if (signaturePreview) {
+  //     //     doc.addImage(signaturePreview, "PNG", signatureX, signatureY, 35, 75);
+  //     // }
+
+  //     const photoWidth = 0.05 * contentWidth;
+  //     const photoHeight = photoWidth / aspectRatio / 3;
+  //     const photoX = marginLeft + 0.2 * contentWidth;
+  //     const photoTopMargin = 0.08 * contentHeight;
+  //     const photoY =
+  //       doc.internal.pageSize.getHeight() -
+  //       0.05 * contentHeight -
+  //       photoHeight -
+  //       photoTopMargin;
+
+  //     if (photoPreview) {
+  //       doc.addImage(
+  //         photoPreview,
+  //         "JPEG",
+  //         photoX,
+  //         photoY,
+  //         photoWidth,
+  //         photoHeight
+  //       );
+  //     }
+
+  //     const signatureWidth = 0.05 * contentWidth;
+  //     const signatureHeight = signatureWidth / aspectRatio / 3;
+  //     const signatureX = marginLeft + 0.2 * contentWidth;
+  //     const signatureTopMargin = -0.09 * contentHeight;
+  //     const signatureY =
+  //       // doc.internal.pageSize.getHeight() -
+  //       // 0.25 * contentHeight -
+  //       // signatureHeight -
+  //       // signatureTopMargin;
+  //       marginTop + 0.05 * contentHeight + signatureHeight + signatureTopMargin;
+
+  //     if (signaturePreview) {
+  //       doc.addImage(
+  //         signaturePreview,
+  //         "PNG",
+  //         signatureX,
+  //         signatureY,
+  //         signatureWidth,
+  //         signatureHeight
+  //       );
+  //     }
+
+  //     // Save the PDF and open it in a new tab
+  //     doc.save("Agreement.pdf");
+  //     setLoader(false);
+
+  //     // Open the PDF in a new tab
+  //     // const pdfBlob = doc.output('blob');
+  //     // const pdfUrl = URL.createObjectURL(pdfBlob);
+  //     // window.open(pdfUrl, '_blank');
+  //   });
+  // };
+  console.log(rowData, "rowdata", onDownalodClick);
   const downlodePDF = async (photoPreview, signaturePreview) => {
     const capture = document.querySelector(".downLodeBox");
-    setLoader(true);
+    if (!capture) {
+      console.error("Element with class 'downLodeBox' not found.");
+      return;
+    }
 
-    console.log("downloadPdf ");
-
-    html2canvas(capture).then((canvas) => {
+    try {
+      setLoader(true);
+      const canvas = await html2canvas(capture);
       const imgData = canvas.toDataURL("image/png");
       const doc = new jsPDF({
         orientation: "portrait",
         unit: "mm",
-        // format: [canvas.width, canvas.height],
         format: window.innerWidth > 600 ? [canvas.width, canvas.height] : "a4",
       });
 
-      // const marginLeft = 0;
-      // const marginTop = 0;
-      const marginLeft = 10; // Adjust as needed
-      const marginRight = 10; // Adjust as needed
-      const marginTop = 10; // Adjust as needed
-      const marginBottom = 10; // Adjust as needed
+      // Add the captured image to the PDF
+      doc.addImage(imgData, "PNG", 10, 10, 180, 240);
 
-      // const contentWidth = doc.internal.pageSize.getWidth() - 2 * marginLeft;
-      // const contentHeight = doc.internal.pageSize.getHeight() - 2 * marginTop;
-
-      const contentWidth =
-        doc.internal.pageSize.getWidth() - marginLeft - marginRight;
-      const contentHeight =
-        doc.internal.pageSize.getHeight() - marginTop - marginBottom;
-
-      const aspectRatio = canvas.width / canvas.height;
-      let imgWidth = contentWidth;
-      let imgHeight = contentWidth / aspectRatio;
-
-      if (imgHeight > contentHeight) {
-        imgHeight = contentHeight;
-        imgWidth = contentHeight * aspectRatio;
-      }
-
-      const imgX = marginLeft + (contentWidth - imgWidth) / 2;
-      const imgY = marginTop + (contentHeight - imgHeight) / 2;
-
-      doc.addImage(imgData, "PNG", imgX, imgY, imgWidth, imgHeight);
-
-      // const photoX = marginLeft + 420;
-      // const photoY = doc.internal.pageSize.getHeight() - 400;
-      // if (photoPreview) {
-      //     doc.addImage(photoPreview, "JPEG", photoX, photoY, 35, 75);
-      // }
-
-      // const signatureX = marginLeft + 400;
-      // const signatureY = doc.internal.pageSize.getHeight() - 400;
-      // if (signaturePreview) {
-      //     doc.addImage(signaturePreview, "PNG", signatureX, signatureY, 35, 75);
-      // }
-
-      const photoWidth = 0.05 * contentWidth;
-      const photoHeight = photoWidth / aspectRatio / 3;
-      const photoX = marginLeft + 0.2 * contentWidth;
-      const photoTopMargin = 0.08 * contentHeight;
-      const photoY =
-        doc.internal.pageSize.getHeight() -
-        0.05 * contentHeight -
-        photoHeight -
-        photoTopMargin;
-
+      // Add photo preview if provided
       if (photoPreview) {
-        doc.addImage(
-          photoPreview,
-          "JPEG",
-          photoX,
-          photoY,
-          photoWidth,
-          photoHeight
-        );
+        doc.addImage(photoPreview, "JPEG", 50, 260, 40, 40); // Adjust dimensions
       }
 
-      const signatureWidth = 0.05 * contentWidth;
-      const signatureHeight = signatureWidth / aspectRatio / 3;
-      const signatureX = marginLeft + 0.2 * contentWidth;
-      const signatureTopMargin = -0.09 * contentHeight;
-      const signatureY =
-        // doc.internal.pageSize.getHeight() -
-        // 0.25 * contentHeight -
-        // signatureHeight -
-        // signatureTopMargin;
-        marginTop + 0.05 * contentHeight + signatureHeight + signatureTopMargin;
-
+      // Add signature preview if provided
       if (signaturePreview) {
-        doc.addImage(
-          signaturePreview,
-          "PNG",
-          signatureX,
-          signatureY,
-          signatureWidth,
-          signatureHeight
-        );
+        doc.addImage(signaturePreview, "PNG", 100, 260, 40, 40); // Adjust dimensions
       }
 
-      // Save the PDF and open it in a new tab
+      // Save the PDF
       doc.save("Agreement.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    } finally {
       setLoader(false);
-
-      // Open the PDF in a new tab
-      // const pdfBlob = doc.output('blob');
-      // const pdfUrl = URL.createObjectURL(pdfBlob);
-      // window.open(pdfUrl, '_blank');
-    });
-  };
-  console.log(rowData, "rowdata", onDownalodClick);
-  useEffect(() => {
-    if (coutnref === 0) {
-      downlodePDF(photoPreview, signaturePreview);
-      coutnref.current++;
     }
+  };
+  useEffect(() => {
+    if (coutnref.current === 0) {
+      // Call downloadPDF only once during the first render
+      downlodePDF(photoPreview, signaturePreview);
+      coutnref.current++; // Increment the countRef to prevent re-calls
+    }
+
+    // If onDownalodClick is provided, call it
     if (onDownalodClick) {
       onDownalodClick();
     }
@@ -1799,7 +1840,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
 
   return (
     <>
-      <Box>
+      <Box className="downLodeBox">
         <Box minWidth="100%" ref={targetRef}>
           <Box display="flex" flexDirection="column" textAlign="center">
             {/* <Box
