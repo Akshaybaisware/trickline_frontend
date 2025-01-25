@@ -8,6 +8,7 @@ import {
   Button,
   Grid,
   GridItem,
+  Select,
   Center,
 } from "@chakra-ui/react";
 import { BiRefresh } from "react-icons/bi";
@@ -80,11 +81,21 @@ function ContentValidationfrom() {
   const jobFunctional = useRef();
   const pinCode = useRef();
   const [userdata, setUserData] = useState();
+  const [currentPage, setCurrentPage] = useState(1);
+  const [currentpageshowinginui, setcurrentpageshowinginui] = useState();
+
+  const handlePageChange = (event) => {
+    const selectedPage = Number(event.target.value);
+    setCurrentPage(selectedPage);
+    setcurrentpageshowinginui(selectedPage);
+    onPageChange(selectedPage); // Call the function to refresh the content
+  };
 
   const refreshAssignment = async () => {
     try {
       await getdatafrom(); // Fetch new assignment data
       setRandomIndex(Math.floor(Math.random() * 510)); // Set new random index
+      setcurrentpageshowinginui(submittedAssignmentCount + 1);
     } catch (error) {
       console.log(error);
     }
@@ -124,6 +135,9 @@ function ContentValidationfrom() {
       setSubmittedAssignmentCount(
         userdetails?.data?.User?.submittedAssignmentCount
       );
+      setcurrentpageshowinginui(
+        userdetails?.data?.User?.submittedAssignmentCount + 1
+      );
 
       if (userdetails?.data?.User?.submittedAssignmentCount >= 539) {
         navigate(
@@ -138,12 +152,17 @@ function ContentValidationfrom() {
     }
   };
 
+  useEffect(() => {
+    refreshAssignment();
+  }, [currentPage]);
+
   const submitForm = async () => {
     try {
       const response = await axios.post(`${apiUrl}/assignment/addassignment`, {
         userId: userID,
       });
       console.log(response, "mkninmiopn");
+      setcurrentpageshowinginui(submittedAssignmentCount + 1);
       if (response.status === 201) {
         toast({
           title: "Success",
@@ -338,7 +357,27 @@ function ContentValidationfrom() {
                 {submittedAssignmentCount}/ {apidata?.length}
               </Button>
             </Center>
-            <Center color={"red"}>{userdata?.endDate}</Center>
+            <Center color={"red"}>{userdata?.endDate?.slice(0, 10)}</Center>
+          </Box>
+          <Box>
+            <Center color={"red"}>
+              {"Current Page"}: {currentpageshowinginui}
+            </Center>
+          </Box>
+          <Box>
+            <Select
+              value={currentPage}
+              onChange={handlePageChange}
+              width="150px"
+              color="red"
+              placeholder="Select Page"
+            >
+              {Array.from({ length: apidata?.length }, (_, index) => (
+                <option key={index + 1} value={index + 1}>
+                  {index + 1}
+                </option>
+              ))}
+            </Select>
           </Box>
         </Flex>
         <Box mt={"1rem"} border={"1px solid #33ffad"}>
