@@ -1536,17 +1536,17 @@ import {
 import { useLocation } from "react-router-dom";
 // import Front from "../../assets/Frontnew.jpg";
 import stamplogo from "../../Images/trickline_horizontal.svg";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { usePDF } from "react-to-pdf";
-import notri from "../../Images/notriimages.jpg"
- import image from "../../Images/SVG STAM.svg";
- import front from "../../Images/Trickline_STAMP.svg"
+import notri from "../../Images/notriimages.jpg";
+import image from "../../Images/SVG STAM.svg";
+import front from "../../Images/Trickline_STAMP.svg";
 
 import axios from "axios";
 import { useParams } from "react-router-dom";
 // import sign from "../../assets/Stamp.jpg";
 import LOGO from "../../Images/Trickline_circle.svg";
-const StampPaperView = () => {
+const StampPaperView = ({ onDownalodClick, rowData }) => {
   const { toPDF, targetRef } = usePDF({ filename: "Legal-Agreement.pdf" });
   const locationdata = useLocation();
 
@@ -1570,12 +1570,14 @@ const StampPaperView = () => {
   const [signaturePreview, setSignaturePreview] = useState(null);
 
   const userId = localStorage.getItem("userId");
-
+  const coutnref = useRef(0);
   const [loader, setLoader] = useState(false);
 
   const downlodePDF = async (photoPreview, signaturePreview) => {
     const capture = document.querySelector(".downLodeBox");
     setLoader(true);
+
+    console.log("downloadPdf ");
 
     html2canvas(capture).then((canvas) => {
       const imgData = canvas.toDataURL("image/png");
@@ -1680,6 +1682,16 @@ const StampPaperView = () => {
       // window.open(pdfUrl, '_blank');
     });
   };
+  console.log(rowData, "rowdata", onDownalodClick);
+  useEffect(() => {
+    if (coutnref === 0) {
+      downlodePDF(photoPreview, signaturePreview);
+      coutnref.current++;
+    }
+    if (onDownalodClick) {
+      onDownalodClick();
+    }
+  }, [photoPreview, signaturePreview, onDownalodClick]);
 
   const handlePhotoChange = (e) => {
     const selectedPhoto = e.target.files[0];
@@ -1696,7 +1708,9 @@ const StampPaperView = () => {
   const getuserdetails = async () => {
     const locationid = locationdata?.state?.data?.email;
     const otherid = id;
-    const emailid = locationid ? locationid : otherid;
+    const idfromprops = rowData?.email;
+    const emailid = locationid ? locationid : otherid ? otherid : idfromprops;
+    console.log(emailid, "emailid");
     try {
       const response = await axios.post(
         // "http://localhost:5000/api/user/getuserdetailsbymail",
@@ -1719,7 +1733,8 @@ const StampPaperView = () => {
     const fetchUserDetails = async () => {
       const locationid = locationdata?.state?.data?.email;
       const otherid = id;
-      const emailid = locationid ? locationid : otherid;
+      const idfromprops = rowData?.email;
+      const emailid = locationid ? locationid : otherid ? otherid : idfromprops;
 
       console.log(emailid, "id");
       try {
@@ -1786,8 +1801,8 @@ const StampPaperView = () => {
     <>
       <Box>
         <Box minWidth="100%" ref={targetRef}>
-        <Box display="flex" flexDirection="column" textAlign="center">
-          {/* <Box
+          <Box display="flex" flexDirection="column" textAlign="center">
+            {/* <Box
             mx="auto"
             boxSize={{ base: "100%", md: "auto" }} // Adjusted to "auto" for non-base screen sizes
             objectFit="contain"
@@ -1796,8 +1811,8 @@ const StampPaperView = () => {
           >
             <Image src={image} alt="Description of the image" />
           </Box>
-        
-      
+
+
          <Box display="flex" justifyContent="space-evenly">
       <Box  mb={{ base: "2", lg: "0" }}>
         <Image
@@ -1821,7 +1836,7 @@ const StampPaperView = () => {
         </Text>
         <Text>
         Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
-         India (IN), Pin Code: 313001 
+         India (IN), Pin Code: 313001
 
         </Text>
 
@@ -1839,8 +1854,8 @@ const StampPaperView = () => {
         <Text ml={{ base: "0", lg: "10%" }}>OF THE SECOND PARTY</Text>
       </Box>
     </Box> */}
-      <Image src={front} alt="Description of the image" />
-        </Box>
+            <Image src={front} alt="Description of the image" />
+          </Box>
 
           <Box>
             <Text
@@ -1851,8 +1866,8 @@ const StampPaperView = () => {
               FREELANCING AGREEMENT
               <br />
               <br />
-              THIS GENERAL GLORRY ENTERPRISES AGREEMENT (THE AGREEMENT) DATED THIS
-              AS OF GOVERNMENT FOR 2024 To 2025.
+              THIS GENERAL GLORRY ENTERPRISES AGREEMENT (THE AGREEMENT) DATED
+              THIS AS OF GOVERNMENT FOR 2024 To 2025.
               <br />
               <br />
               THE FIRST PART OF THIS AGREEMENT IS Glorry Enterprises. THAT
@@ -1904,14 +1919,15 @@ const StampPaperView = () => {
               <br />
               2.1 REMUNERATION: - - For the form filling service rendered by the
               client. The Clients shall beentitled to payments of price 41Rs.
-              (INR) Max perform for the salary may vary from 22680/- INR  
-              Total Form will be 540  and per form willl be 42/- and the u dont have to 
-              correct more than 486 form The Client shall raise the invoice within 5 days after the successful
-              completion of the project. The contractor will pay each project's
-              amount within a maximum of 41 HRS, from the date of issue of the
-              quality check report. the invoice can be raised by Email and by a
-              report on the working website. Q.C. Report will be provided within
-              24-72 Working hours from the date of submission
+              (INR) Max perform for the salary may vary from 22680/- INR Total
+              Form will be 540 and per form willl be 42/- and the u dont have to
+              correct more than 486 form The Client shall raise the invoice
+              within 5 days after the successful completion of the project. The
+              contractor will pay each project's amount within a maximum of 41
+              HRS, from the date of issue of the quality check report. the
+              invoice can be raised by Email and by a report on the working
+              website. Q.C. Report will be provided within 24-72 Working hours
+              from the date of submission
               <br />
               <br /> 2.2 Billing: - - contractor will provide a workload of
               Question Forms which the client shall complete thework within 5
@@ -2013,7 +2029,7 @@ const StampPaperView = () => {
               <br />
               The Contractor's Specification in terms of quality and other
               parameters that shall be issued by the Contractor. This General
-              Glorry  Enterprises Agreement Stands and is valid for 11 months, if
+              Glorry Enterprises Agreement Stands and is valid for 11 months, if
               the client or contractor is willing to end this business
               relationship they need to proceed with the termination of this
               agreement-based contract.
@@ -2037,7 +2053,7 @@ const StampPaperView = () => {
               4.1 Termination: - - If the Client fails to submit data on or If
               the client fails to give Accuracy in the Output file. The client
               reserves the right to terminate the agreement with immediate
-              effect and Glorry  Enterprises freelancing services will not be
+              effect and Glorry Enterprises freelancing services will not be
               responsible for any future data and payment to the Client and the
               Client will be liable to pay the maintenance Amount to the client
               as mentioned in "clause-3.1" In this agreement and client will
@@ -2229,7 +2245,6 @@ const StampPaperView = () => {
               Note :Extension will be Provided But u Have to Pay the Extension
               Amount 8100/ Correction amount 8100
             </Text>
-           
           </Box>
 
           <Box mt={["1rem", "-5rem"]}>
@@ -2241,11 +2256,10 @@ const StampPaperView = () => {
               mt={["-1rem", "-5rem"]}
               padding={["1rem", "3rem"]}
             >
-             Name : Glorry Enterprises <br />
-            Email : helplineservice19@gmail.com <br />
-            Adress:  block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), 
-            Udaipur, Rajasthan, India (IN), Pin Code: 313001 
-
+              Name : Glorry Enterprises <br />
+              Email : helplineservice19@gmail.com <br />
+              Adress: block Number 128 Shivaji Nagar Post Office Udaipur City SO
+              (Sub-Office), Udaipur, Rajasthan, India (IN), Pin Code: 313001
             </Text>
           </Box>
           <Text
@@ -2353,11 +2367,10 @@ const StampPaperView = () => {
             onClick={() => toPDF()}
             //downlodePDF(photoPreview, signaturePreview)}
             bg={"#ff4dff"}
-            color ="black"
+            color="black"
             variant="solid"
             mt="4"
             mb="1rem"
-           
             _hover={{
               boxShadow: "lg", // You can adjust the shadow size
               transform: "scale(1.05)", // Optional: Add a slight scaling effect

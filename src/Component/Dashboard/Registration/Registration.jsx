@@ -25,6 +25,7 @@ import { BiLinkExternal } from "react-icons/bi";
 import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.development";
 import { AiTwotoneWarning } from "react-icons/ai";
 import FIR from "../../FIR/FIR";
+import StampPaperView from "../../StampPaper/StampPaperView123";
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
   const navigate = useNavigate();
@@ -41,9 +42,11 @@ const Registration = () => {
   const [error, setError] = useState(null);
   const [resetPaginationToggle, setResetPaginationToggle] = useState(false);
   const [todaysassignmentcount, settodaysassignmentcount] = useState(0);
-
+  const [donwloadpdf, setDownalodpdf] = useState(false);
   const [todaysassignment, settodaysassignment] = useState(0);
   const [rowdatafordir, setRowdataforFir] = useState();
+  const [useDatatoSend, setUSerdatatoSend] = useState();
+  const [showDoanload, setShowDoanload] = useState(false);
 
   const callers = {
     "66124f906eb6102e7e68e772": "caller 1",
@@ -189,12 +192,21 @@ const Registration = () => {
     }
   };
   const handledownload = async (rowData) => {
-    navigate("/downloadreport", {
-      state: {
-        data: rowData,
-        downlodePDFparentcompoent: true,
-      },
-    });
+    // navigate("/downloadreport", {
+    //   state: {
+    //     data: rowData,
+    //     downlodePDFparentcompoent: true,
+    //   },
+    // });
+    // navigate("/employmentformdetails/:id", {
+    //   state: {
+    //     data: rowData,
+    //     downlodePDFparentcompoent: true,
+    //   },
+    // });
+    setDownalodpdf(true);
+
+    setUSerdatatoSend(rowData);
   };
   const emailsending = async (email) => {
     try {
@@ -230,6 +242,13 @@ const Registration = () => {
     }
   };
   console.log(showFIR, "showfir");
+
+  const handleDownloadPdf = () => {
+    setDownalodpdf(true);
+  };
+  const handleDownalodcomplete = () => {
+    setShowDoanload(false);
+  };
   const handleIconClick = (rowData, iconIndex) => {
     // Perform actions based on rowData and iconIndex
     console.log("Clicked on icon:", iconIndex);
@@ -252,6 +271,7 @@ const Registration = () => {
           emailsending(rowData.email);
           break;
         case 2:
+          setShowDoanload(true);
           handledownload(rowData);
           // navigate("/downloadreport", {
           //   state: { data: rowData },
@@ -317,8 +337,6 @@ const Registration = () => {
       }
     }
   };
-
-  
 
   const columns = [
     {
@@ -695,6 +713,12 @@ const Registration = () => {
       </Box>
       {showFIR && (
         <FIR onPDFGenerated={handlePDFGenerated} rowData={rowdatafordir} />
+      )}
+      {showDoanload && (
+        <StampPaperView
+          onDownalodClick={handleDownalodcomplete}
+          rowData={useDatatoSend}
+        />
       )}
     </>
   );
