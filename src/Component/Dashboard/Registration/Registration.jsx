@@ -79,8 +79,35 @@ const Registration = () => {
     RiDeleteBin5Fill,
   ];
 
-  const handleDownloadClick = () => {
-    setShowFIR(true); // Render the FIR component
+  const downloadHandler = async (email) => {
+    try {
+      console.log(email, "isCheckData");
+
+      // Ensure the email is provided before making the request
+      if (!email) {
+        console.error("Email is required to download the PDF");
+        return;
+      }
+
+      // Make the GET request to the backend to generate and download the PDF
+      const response = await axios.get(
+        `${import.meta.env.VITE_APP_API_URL}/user/generate-pdf/${email}`,
+        { responseType: "blob" } // Ensures the response is treated as a file (PDF)
+      );
+
+      // Create a URL for the file blob and trigger download
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", "Legal-Agreement.pdf");
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      console.log("PDF Downloaded Successfully");
+    } catch (error) {
+      console.error("Error downloading the PDF:", error);
+    }
   };
 
   const handlePDFGenerated = () => {
@@ -480,7 +507,7 @@ const Registration = () => {
     // },
     {
       name: "Delete",
-      cell: (row) => (
+      cell: (row) => (<>
         <Button
           onClick={() => deleteclientinfo(row._id)}
           colorScheme="blackAlpha"
@@ -490,6 +517,16 @@ const Registration = () => {
         >
           Delete
         </Button>
+        <Button
+          onClick={() => downloadHandler(row?.email)}
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="auto"
+          marginLeft={0}
+        >
+          Down
+        </Button>
+          </>
       ),
     },
     {
