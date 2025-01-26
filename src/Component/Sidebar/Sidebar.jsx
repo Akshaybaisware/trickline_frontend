@@ -44,9 +44,9 @@ import { NavLink, useNavigate, Link } from "react-router-dom";
 import DescriptionIcon from "@mui/icons-material/Description";
 import ListAltIcon from "@mui/icons-material/ListAlt";
 import AssignmentIcon from "@mui/icons-material/Assignment";
-import { BsInfoCircle,  } from 'react-icons/bs'; 
-import { FaCheckCircle, FaBook, FaClipboardList, FaPen } from 'react-icons/fa';
-import { FaSignOutAlt } from 'react-icons/fa';
+import { BsInfoCircle } from "react-icons/bs";
+import { FaCheckCircle, FaBook, FaClipboardList, FaPen } from "react-icons/fa";
+import { FaSignOutAlt } from "react-icons/fa";
 import {
   AddIcon,
   ChevronDownIcon,
@@ -886,19 +886,18 @@ export default function SideBar() {
                         <>
                           <h2>
                             <AccordionButton>
-                            <AssignmentIcon
-                                        style={{
-                                          background:
-                                            "linear-gradient(135deg, #f06, #f79)", // Gradient background
-                                          color: "white", // Icon color
-                                          borderRadius: "50%", // Circular shape
-                                          width: "3.5rem", // Adjust icon size
-                                          height: "3.5rem",
-                                          padding: "0.5rem", // Adjust spacing inside the circle
-                                          boxShadow:
-                                            "0 4px 8px rgba(0,0,0,0.2)", // Optional shadow for depth
-                                          textAlign: "center",
-                                        }}
+                              <AssignmentIcon
+                                style={{
+                                  background:
+                                    "linear-gradient(135deg, #f06, #f79)", // Gradient background
+                                  color: "white", // Icon color
+                                  borderRadius: "50%", // Circular shape
+                                  width: "3.5rem", // Adjust icon size
+                                  height: "3.5rem",
+                                  padding: "0.5rem", // Adjust spacing inside the circle
+                                  boxShadow: "0 4px 8px rgba(0,0,0,0.2)", // Optional shadow for depth
+                                  textAlign: "center",
+                                }}
                               />
                               <NavLink to="/assignment">
                                 <Text
@@ -925,14 +924,17 @@ export default function SideBar() {
                               p="5px"
                               borderRadius="10px"
                             >
-                              <ListIcon as={BsInfoCircle} color="yellow.200" ml="10px" />
+                              <ListIcon
+                                as={BsInfoCircle}
+                                color="yellow.200"
+                                ml="10px"
+                              />
                               <NavLink to="/userinstructions">
                                 <Text
-                                 color={"white"}
+                                  color={"white"}
                                   as="span"
                                   pl="10px"
                                   fontSize={{ base: "0.6rem", md: "1rem" }}
-                               
                                 >
                                   Instructions
                                 </Text>
@@ -943,11 +945,11 @@ export default function SideBar() {
                               p="5px"
                               borderRadius="10px"
                             >
-                            <ListIcon
-  as={FaCheckCircle}
-  color="yellow.400"
-  ml="10px"
-/>
+                              <ListIcon
+                                as={FaCheckCircle}
+                                color="yellow.400"
+                                ml="10px"
+                              />
                               <NavLink to="/newassignment">
                                 <Text
                                   as="span"
@@ -1019,12 +1021,12 @@ export default function SideBar() {
         {isMobileView && (
           <Box>
             {isUser && (
-              <Drawer isOpen={isOpen} onClose={onClose} placement="left">
+              <Drawer isOpen={isOpen} onClose={onClose} placement="top">
                 <DrawerOverlay bg={"gray"}>
                   <DrawerContent bg="purple">
                     <DrawerCloseButton />
                     <DrawerHeader fontSize={"2rem"} color={"white"}>
-                      Hello  User
+                      Hello User
                     </DrawerHeader>
                     <DrawerBody>
                       <Stack mt={"1rem"}>
@@ -1081,8 +1083,15 @@ export default function SideBar() {
                                     p="5px"
                                     borderRadius="10px"
                                   >
-                                    <ListIcon as={BsInfoCircle} color="yellow.200" ml="10px" />
-                                    <NavLink to="/userinstructions">
+                                    <ListIcon
+                                      as={BsInfoCircle}
+                                      color="yellow.200"
+                                      ml="10px"
+                                    />
+                                    <NavLink
+                                      to="/userinstructions"
+                                      onClick={onClose}
+                                    >
                                       <Text
                                         color={"white"}
                                         as="span"
@@ -1101,12 +1110,15 @@ export default function SideBar() {
                                     p="5px"
                                     borderRadius="10px"
                                   >
-                                <ListIcon
-  as={FaCheckCircle}
-  color="yellow.400"
-  ml="10px"
-/>
-                                    <NavLink to="/newassignment">
+                                    <ListIcon
+                                      as={FaCheckCircle}
+                                      color="yellow.400"
+                                      ml="10px"
+                                    />
+                                    <NavLink
+                                      to="/newassignment"
+                                      onClick={onClose}
+                                    >
                                       <Text
                                         as="span"
                                         pl="10px"
@@ -1179,22 +1191,7 @@ export default function SideBar() {
                     </DrawerBody>
                     <DrawerFooter>
                       {" "}
-                      <Button
-                        marginLeft={"2.5rem"}
-                        marginTop={"1.8rem"}
-                        mr={3}
-                        fontSize={"1.1rem"}
-                        width={"100px"}
-                        height={"35px"}
-                        color={"white"}
-                        fontWeight={"bold"}
-                        onClick={onClose}
-                        bg={"red"}
-                        borderRadius={"8px"}
-                      >
-                        {" "}
-                        Close X
-                      </Button>
+                     
                     </DrawerFooter>
                   </DrawerContent>
                 </DrawerOverlay>

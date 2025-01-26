@@ -171,6 +171,39 @@ const Registration = () => {
     }
   };
 
+  // red notice
+
+
+
+  const SendnoticeEmail = async (userId, email, name, address) => {
+    try {
+      const hostName = window.location.hostname;
+      const port = 5173;
+      const url = `http://${hostName}:${port}/`;  // The URL can be used for other purposes if needed
+  
+      const response = await axios.post(`${apiUrl}/user/sendRedNotice`, {
+        userID: userId,
+        email: email,  // Add email if needed for your backend request
+        name: name,    // Add name if required
+        address: address,  // Add address if required
+      });
+  
+      console.log(response, "Response from API");
+  
+      if (response.status === 200) {
+        alert("Mail sent successfully.");
+      } else {
+        alert("Failed to send mail.");
+      }
+    } catch (error) {
+      console.error("Error occurred while sending the email:", error);
+      alert("An error occurred while sending the email.");
+    }
+  };
+  
+  
+  
+
   useEffect(() => {
     const result = userData?.filter(
       (item) =>
@@ -270,6 +303,8 @@ const Registration = () => {
     }
   };
   console.log(showFIR, "showfir");
+
+
 
   const handleDownloadPdf = () => {
     setDownalodpdf(true);
@@ -562,13 +597,13 @@ const Registration = () => {
       name: "red notice",
       cell: (row) => (
         <Button
-          // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+          onClick={() => SendnoticeEmail(row._id, row.email, row.name, row.address)} // Passing user details
           colorScheme="blackAlpha"
           backgroundColor="#6666ff"
           width="80%"
           marginLeft={20}
         >
-          red notice
+          Red Notice
         </Button>
       ),
     },

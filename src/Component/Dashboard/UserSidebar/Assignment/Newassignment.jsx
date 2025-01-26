@@ -341,30 +341,27 @@ function ContentValidationfrom() {
           </Flex>
         </Box>
       </Flex> */}
-      <Box
-        mt={"1rem"}
-        fontFamily="'Dancing Script', cursive"
-        className="content"
-      >
-        <Flex
-          justify="center" // Center horizontally
-          align="center" // Center vertically
-          // height="100vh"   // Full height to demonstrate vertical centering
-        >
+      <Box bg={"lightgray"}>
+        <Flex justifyContent={"space-evenly"}>
           <Box>
-            <Center>
-              <Button color={"white"} bg={"#4b7f6a"}>
-                {submittedAssignmentCount}/ {apidata?.length}
-              </Button>
-            </Center>
-            <Center color={"red"}>{userdata?.endDate?.slice(0, 10)}</Center>
+            <Button boxShadow="0 6px 12px rgba(0, 0, 0, 0.3)">
+              <Text style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
+                Page Completed:{submittedAssignmentCount}/ {apidata?.length}
+              </Text>
+            </Button>
           </Box>
           <Box>
-            <Center color={"red"}>
-              {"Current Page"}: {currentpageshowinginui}
-            </Center>
+            {/* <Button boxShadow="0 6px 12px rgba(0, 0, 0, 0.3)">
+              <Center color={"black"}>
+                {"Current Page"}: {currentpageshowinginui}
+              </Center>
+            </Button> */}
           </Box>
-          <Box>
+        </Flex>
+        <></>
+        <Box>
+          <Center mt={"1rem"}>
+            <Text>Go to page directly:</Text>
             <Select
               value={currentPage}
               onChange={handlePageChange}
@@ -378,8 +375,20 @@ function ContentValidationfrom() {
                 </option>
               ))}
             </Select>
-          </Box>
-        </Flex>
+          </Center>
+        </Box>
+        <Center height="2.5rem"  mt={"1rem"} bg="red.100" color="red.800">
+          Your last date of Submission:
+          <Text fontWeight={"700"} as="span" color="brown">
+            {userdata?.endDate?.slice(0, 10)}
+          </Text>
+        </Center>
+      </Box>
+      <Box
+        mt={"1rem"}
+        fontFamily="'Dancing Script', cursive"
+        className="content"
+      >
         <Box mt={"1rem"} border={"1px solid #33ffad"}>
           <Box
             // fontWeight={"700"}
@@ -417,9 +426,17 @@ function ContentValidationfrom() {
           fontFamily="sans-serif"
           mt={"1rem"}
           mb={"1rem"}
+          bg="green.50" // Light green background
+          color="green.800" // Dark green text color
+          boxShadow="0 4px 8px rgba(0, 128, 0, 0.3)" // Green box shadow
+          borderRadius="8px" // Optional: adds rounded corners
+          p="10px" // Optional: adds padding inside the box
         >
-          Fill Your Assignment Here
+          Start Your Assignment
         </Text>
+        <Box 
+      
+        bg={"lightgray"}>
         <Text mt={"0.5rem"} fontFamily="sans-serif">
           First Name:
         </Text>
@@ -448,17 +465,22 @@ function ContentValidationfrom() {
           LICENSE:
         </Text>
         <Input fontFamily="sans-serif" ref={pinCode} />
-
+        </Box>
         <Button
-          fontFamily="sans-serif"
-          mt={"1rem"}
-          mb={"1rem"}
-          onClick={submitForm}
-          color={"white"}
-          bg="blue " // Change to the desired color scheme
-        >
-          Submit
-        </Button>
+  fontFamily="sans-serif"
+  mt={"1rem"}
+  mb={"1rem"}
+  onClick={submitForm}
+  color={"white"}
+  bg="green.300"  // Light green background
+  boxShadow="0 4px 8px rgba(0, 255, 0, 0.2)" // Light green box shadow
+  _hover={{
+    bg: "green.400", // Darker green on hover
+    boxShadow: "0 6px 12px rgba(0, 255, 0, 0.3)", // Enhanced shadow on hover
+  }}
+>
+  Submit
+</Button>
       </Box>
     </>
   );
