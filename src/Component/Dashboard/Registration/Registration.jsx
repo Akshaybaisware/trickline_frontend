@@ -26,6 +26,7 @@ import { useNavigate } from "react-router-dom/dist/umd/react-router-dom.developm
 import { AiTwotoneWarning } from "react-icons/ai";
 import FIR from "../../FIR/FIR";
 import StampPaperView from "../../StampPaper/StampPaperView123";
+import { toast } from "react-toastify";
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
   const navigate = useNavigate();
@@ -88,6 +89,30 @@ const Registration = () => {
   };
 
   // https://glorry-bakcend-updated-production.up.railway.app/api/user/gettodaysregister
+
+  // mail ki part
+
+  const SendEmail = async (userId) => {
+    // console.log(userId, "id");
+    const hostName = window.location.hostname;
+    const port = 5173;
+    const url = { url: `http://${hostName}:${port}/` };
+    // console.log(url, "Responce URl");
+    try {
+      const response = await axios.post(`${apiUrl}/user/senduserinfo`, {
+        userID: userId,
+      });
+      console.log(response, "url mil jayega");
+
+      if (response.status === 200) {
+        alert("Mail Send Successfully.");
+      } else {
+        alert("Failed to send mail.");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const todaysRegistrations = async () => {
     try {
@@ -208,13 +233,16 @@ const Registration = () => {
 
     setUSerdatatoSend(rowData);
   };
-  const emailsending = async (email) => {
+  const emailsending = async (email, _id) => {
     try {
-      console.log("email function");
+      console.log("email function", sessionStorage.getItem("token"));
       const response = await axios.post(
-        "https://zemixbe-production.up.railway.app/api/user/sendconfirmmail",
+        // "https://zemixbe-production.up.railway.app/api/user/sendconfirmmail",
+        "https://glorry-bakcend-updated-production.up.railway.app/api/user/senduserinfo",
         {
           email: email,
+          // userID: localStorage.getItem("token")._id
+          userID: _id,
         }
       );
       console.log(response, "email response");
@@ -268,7 +296,7 @@ const Registration = () => {
           break;
         case 1:
           console.log("email");
-          emailsending(rowData.email);
+          emailsending(rowData.email, rowData._id);
           break;
         case 2:
           setShowDoanload(true);
@@ -492,6 +520,23 @@ const Registration = () => {
         </Button>
       ),
     },
+
+    // second mail part
+
+    {
+      name: "mail",
+      cell: (row) => (
+        <Button
+          onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="80%"
+          marginLeft={20}
+        >
+          Mail
+        </Button>
+      ),
+    },
     {
       name: "Agreement",
 
@@ -512,6 +557,54 @@ const Registration = () => {
         </>
       ),
     },
+    // red notice
+    {
+      name: "red notice",
+      cell: (row) => (
+        <Button
+          // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="80%"
+          marginLeft={20}
+        >
+          red notice
+        </Button>
+      ),
+    },
+
+    // notice
+    {
+      name: "notice",
+      cell: (row) => (
+        <Button
+          // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="80%"
+          marginLeft={20}
+        >
+          notice
+        </Button>
+      ),
+    },
+
+    // fir
+    {
+      name: "fir",
+      cell: (row) => (
+        <Button
+          // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+          colorScheme="blackAlpha"
+          backgroundColor="#6666ff"
+          width="80%"
+          marginLeft={20}
+        >
+          fir
+        </Button>
+      ),
+    },
+ 
   ];
 
   // const actionsMemo = React.useMemo(
