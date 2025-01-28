@@ -269,7 +269,7 @@ const Registration = () => {
         // `http://localhost:5000/api/user/generatePdf/${email}`,
         `${apiUrl}/user/generatePdf/${email}`,
         {
-          responseType: "blob", // Important for handling PDF file
+          responseType: "blob", // Important for handling PDF file  `1
         }
       );
       const url = window.URL.createObjectURL(new Blob([response.data]));
