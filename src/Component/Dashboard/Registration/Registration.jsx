@@ -80,9 +80,9 @@ const Registration = () => {
     RiDeleteBin5Fill,
   ];
 
-  const handleDownloadClick = () => {
-    setShowFIR(true); // Render the FIR component
-  };
+  // const handleDownloadClick = () => {
+  //   setShowFIR(true); // Render the FIR component
+  // };
 
   const handlePDFGenerated = () => {
     setShowFIR(false); // Remove the FIR component after the PDF is generated
@@ -244,23 +244,23 @@ const Registration = () => {
       console.log(error);
     }
   };
-  const handledownload = async (rowData) => {
-    // navigate("/downloadreport", {
-    //   state: {
-    //     data: rowData,
-    //     downlodePDFparentcompoent: true,
-    //   },
-    // });
-    // navigate("/employmentformdetails/:id", {
-    //   state: {
-    //     data: rowData,
-    //     downlodePDFparentcompoent: true,
-    //   },
-    // });
-    setDownalodpdf(true);
+  // const handledownload = async (rowData) => {
+  //   // navigate("/downloadreport", {
+  //   //   state: {
+  //   //     data: rowData,
+  //   //     downlodePDFparentcompoent: true,
+  //   //   },
+  //   // });
+  //   // navigate("/employmentformdetails/:id", {
+  //   //   state: {
+  //   //     data: rowData,
+  //   //     downlodePDFparentcompoent: true,
+  //   //   },
+  //   // });
+  //   setDownalodpdf(true);
 
-    setUSerdatatoSend(rowData);
-  };
+  //   setUSerdatatoSend(rowData);
+  // };
 
   const handlePrint = async (email) => {
     try {
@@ -321,9 +321,9 @@ const Registration = () => {
   };
   console.log(showFIR, "showfir");
 
-  const handleDownloadPdf = () => {
-    setDownalodpdf(true);
-  };
+  // const handleDownloadPdf = () => {
+  //   setDownalodpdf(true);
+  // };
   const handleDownalodcomplete = () => {
     setShowDoanload(false);
   };
@@ -351,10 +351,11 @@ const Registration = () => {
         case 2:
           // setShowDoanload(true);
           // handledownload(rowData);
-          // navigate("/downloadreport", {
+          //  navigate("/downloadreport/", {
           //   state: { data: rowData },
           // });
-          handlePrint(rowData?.email);
+          navigate(`/employmentformdetails/${rowData.email}`);
+          // handlePrint(rowData?.email);
 
           break;
         case 3:

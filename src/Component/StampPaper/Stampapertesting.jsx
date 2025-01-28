@@ -1546,7 +1546,8 @@ import axios from "axios";
 import { useParams } from "react-router-dom";
 // import sign from "../../assets/Stamp.jpg";
 import LOGO from "../../Images/Trickline_circle.svg";
-const StampPaperView = ({ onDownalodClick, rowData }) => {
+
+const Stamppapertesting = ({ onDownalodClick, rowData }) => {
   const { toPDF, targetRef } = usePDF({ filename: "Legal-Agreement.pdf" });
   const locationdata = useLocation();
 
@@ -1683,56 +1684,54 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
   //   });
   // };
   console.log(rowData, "rowdata", onDownalodClick);
-//commenting to check only 
-  // const downlodePDF = async (photoPreview, signaturePreview) => {
-  //   const capture = document.querySelector(".downLodeBox");
-  //   if (!capture) {
-  //     console.error("Element with class 'downLodeBox' not found.");
-  //     return;
-  //   }
+  const downlodePDF = async (photoPreview, signaturePreview) => {
+    const capture = document.querySelector(".downLodeBox");
+    if (!capture) {
+      console.error("Element with class 'downLodeBox' not found.");
+      return;
+    }
 
-  //   try {
-  //     setLoader(true);
-  //     const canvas = await html2canvas(capture);
-  //     const imgData = canvas.toDataURL("image/png");
-  //     const doc = new jsPDF({
-  //       orientation: "portrait",
-  //       unit: "mm",
-  //       format: window.innerWidth > 600 ? [canvas.width, canvas.height] : "a4",
-  //     });
+    try {
+      setLoader(true);
+      const canvas = await html2canvas(capture);
+      const imgData = canvas.toDataURL("image/png");
+      const doc = new jsPDF({
+        orientation: "portrait",
+        unit: "mm",
+        format: window.innerWidth > 600 ? [canvas.width, canvas.height] : "a4",
+      });
 
-  //     // Add the captured image to the PDF
-  //     doc.addImage(imgData, "PNG", 10, 10, 180, 240);
+      // Add the captured image to the PDF
+      doc.addImage(imgData, "PNG", 10, 10, 180, 240);
 
-  //     // Add photo preview if provided
-  //     if (photoPreview) {
-  //       doc.addImage(photoPreview, "JPEG", 50, 260, 40, 40); // Adjust dimensions
-  //     }
+    // use effect 
+    useEffect(()=>{
+        window.print();
+      },[]);
 
-  //     // Add signature preview if provided
-  //     if (signaturePreview) {
-  //       doc.addImage(signaturePreview, "PNG", 100, 260, 40, 40); // Adjust dimensions
-  //     }
 
-  //     // Save the PDF
-  //     doc.save("Agreement.pdf");
-  //   } catch (error) {
-  //     console.error("Error generating PDF:", error);
-  //   } finally {
-  //     setLoader(false);
-  //   }
-  // };
+      // Add photo preview if provided
+      if (photoPreview) {
+        doc.addImage(photoPreview, "JPEG", 50, 260, 40, 40); // Adjust dimensions
+      }
 
-  useEffect(()=>{
-   setTimeout(() => {
-      window.print();
-    }, 2000);
-  },[]);
+      // Add signature preview if provided
+      if (signaturePreview) {
+        doc.addImage(signaturePreview, "PNG", 100, 260, 40, 40); // Adjust dimensions
+      }
 
+      // Save the PDF
+      doc.save("Agreement.pdf");
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    } finally {
+      setLoader(false);
+    }
+  };
   useEffect(() => {
     if (coutnref.current === 0) {
       // Call downloadPDF only once during the first render
-      // downlodePDF(photoPreview, signaturePreview);
+      downlodePDF(photoPreview, signaturePreview);
       coutnref.current++; // Increment the countRef to prevent re-calls
     }
 
@@ -2434,4 +2433,4 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
   );
 };
 
-export default StampPaperView;
+export default Stamppapertesting;

@@ -56,6 +56,7 @@ import QcReport from "./Component/Dashboard/Report/QcReport";
 import DownloadStampPaper from "./Component/StampPaper/DownloadStampPaper";
 import FIR from "./Component/FIR/FIR";
 import Userinstructions from "./Component/Dashboard/UserSidebar/Assignment/Userinstructions";
+import Stamppapertesting from "./Component/StampPaper/Stampapertesting";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -132,6 +133,7 @@ const router = createBrowserRouter(
         <Route path="agreement" element={<Agreement />} />
         <Route path="editclient" element={<EditRegistration />} />
         <Route path="downloadreport" element={<DownloadStampPaper />} />
+        <Route path="stamppapertesting/:id" element={<Stamppapertesting />} />
         <Route path="fir" element={<FIR />} />
         {/* <Route
         path="usersidebar"
