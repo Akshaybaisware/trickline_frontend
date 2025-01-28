@@ -1,3 +1,4 @@
+
 // import {
 //   Box,
 //   Button,
@@ -8,23 +9,24 @@
 //   Alert,
 //   AlertIcon,
 //   AlertTitle,
+//   Spinner, // Chakra UI spinner for loader
 // } from "@chakra-ui/react";
 // import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
 // import { Link, NavLink, useNavigate } from "react-router-dom";
 // import React, { useState } from "react";
 
 // import axios from "axios";
-// import logo from "../../Images/logo.svg";
+// import logo from "../../Images/TRICKLINE_2.png";
 // import { jwtDecode } from "jwt-decode";
 // import { useUserContext } from "../Context/UserContext";
 // import { useToast } from "@chakra-ui/react";
-// // Admin Login Page
+
 // const LoginAdmin = () => {
 //   const { setUserContext } = useUserContext();
 //   const toast = useToast();
 
 //   const [userrole, setUserrole] = useState("");
-
+//   const [loading, setLoading] = useState(false); // Add loading state
 //   const [errors, setErrors] = useState({});
 //   const navigate = useNavigate();
 //   const [inputFields, setInputFields] = useState({
@@ -42,37 +44,19 @@
 //     });
 //   };
 
-//   // const emailRegex = /^[a-zA-Z]/;
-//   // const passwordRegex =/^[a-zA-Z0-9]+$/
-
 //   const validationForm = (inputFields) => {
-//     // console.log(inputFields);
 //     const newError = {};
-//     // if (!inputFields.email.match(emailRegex)) {
-//     //   newError.email = "Invalid Email Address";
-//     // }
-//     // console.log("email success");
-//     // if(!inputFields.password.match(passwordRegex)){
-//     //   newError.password = "Invalid Password "
-//     // }
 //     setErrors(newError);
-//     // console.log(" success");
 //     return true;
 //   };
-//   // handle submit login button
+
 //   const handleSubmit = async (e) => {
-//     console.log("called");
 //     e.preventDefault();
-//     // const validate = validationForm(inputFields);
-//     // console.log(validate);
-//     // if(!validate){
-//     //   return alert("fields are not valid")
-//     // }
-//     // console.log(inputFields , "inputFields")
+//     setLoading(true); // Set loading to true when the login process starts
 
 //     try {
 //       const apiUrl = import.meta.env.VITE_APP_API_URL;
-//       console.log(inputFields, "input");
+//       // /const apiUrl = "https://webifycode.com/api";
 //       const response = await axios.post(
 //         `${apiUrl}/auth/adminsignin`,
 //         inputFields,
@@ -82,84 +66,77 @@
 //           },
 //         }
 //       );
-//       console.log(response, "res");
+
+//       console.log(response, "adming login response");
+
 //       if (response.status === 200) {
 //         setUserrole(response.data.role);
 //         setUserContext(response.data.role);
 //         sessionStorage.setItem("userrole", response.data.role);
-//         // extracting token from response
+
 //         const token = response.data.token;
-//         // decoding the token
 //         const decodedToken = jwtDecode(token);
 //         sessionStorage.setItem("token", JSON.stringify(decodedToken));
-//         // alert("Login Success....");
+
 //         toast({
-//           title: "Login Success",
-//           // description: 'Provide Correct UserId and Password',
+//           title: "Hello Admin",
 //           status: "success",
-//           duration: 3000, // Toast message will disappear after 3 seconds
+//           duration: 3000,
 //           isClosable: true,
 //           position: "top",
 //         });
+
 //         navigate("/dashboard");
 //       } else {
-//         // Handle other HTTP status codes (e.g., 401 for unauthorized)
 //         alert("Invalid credentials");
 //       }
 //     } catch (error) {
 //       console.error("Error:", error);
-//       // Check if the error is due to invalid credentials
 //       if (error.response && error.response.status === 401) {
-//         // alert("Invalid credentials");
 //         toast({
 //           title: "Invalid credentials",
-//           // description: 'Provide Correct UserId and Password',
 //           status: "error",
-//           duration: 3000, // Toast message will disappear after 3 seconds
+//           duration: 3000,
 //           isClosable: true,
 //           position: "top",
 //         });
 //       } else {
-//         // Handle other types of errors
 //         toast({
 //           title: "Login Failed",
 //           description: "Provide Correct UserId and Password",
 //           status: "error",
-//           duration: 3000, // Toast message will disappear after 3 seconds
+//           duration: 3000,
 //           isClosable: true,
 //           position: "top",
 //         });
 //       }
+//     } finally {
+//       setLoading(false); // Set loading to false after the login process finishes
 //     }
 //   };
+
 //   return (
 //     <form>
 //       <Box
-//         width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }} // Adjust width based on screen size
-//         marginX="auto" // Center horizontally
-//         minHeight="100vh" // Ensure full height even if content is not enough
+//         width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }}
+//         marginX="auto"
+//         minHeight="100vh"
 //         display="flex"
 //         flexDirection="column"
 //         alignItems="center"
 //         justifyContent={"center"}
 //         padding="20px"
-//         bg={"#0F0623"}
+//         bg={"#96436B  "}
 //       >
 //         <Box
+//           borderRadius="25%"
+//           overflow="hidden" // Ensures the image respects the borderRadius of the Box
 //           display="flex"
 //           flexDirection="column"
 //           alignItems="center"
 //           marginY="20px"
 //         >
-//           <Image width={"23rem"} src={logo} alt="" />
-//           <Heading
-//             marginTop={"1rem"}
-//             color="#000"
-//             fontFamily="Poppins, serif"
-//             size="lg"
-//           >
-//             Admin Login
-//           </Heading>
+//           <Image width={"23rem"} src={logo} alt="Logo" />
 //         </Box>
 
 //         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
@@ -183,6 +160,7 @@
 //             <AlertTitle> {errors.username}</AlertTitle>
 //           </Alert>
 //         )}
+
 //         <Flex
 //           direction="column"
 //           width={["90%", "70%", "50%", "40%"]}
@@ -201,12 +179,14 @@
 //             />
 //           </Flex>
 //         </Flex>
-//         {errors.email && (
+
+//         {errors.password && (
 //           <Alert width="20%" status="error">
 //             <AlertIcon />
 //             <AlertTitle>{errors.password}</AlertTitle>
 //           </Alert>
 //         )}
+
 //         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
 //           <Box marginBottom={"0.6rem"} display="flex" justifyContent="flex-end">
 //             <NavLink
@@ -214,22 +194,25 @@
 //               style={{
 //                 fontSize: "16px",
 //                 fontFamily: "Poppins",
-//                 color: "black",
+//                 color: "white",
 //                 marginRight: "20px",
 //               }}
 //             >
 //               Forget the password?
 //             </NavLink>
 //           </Box>
+
 //           <Button
-//           bg={"gray"}
+//             bg={"#6BC15C"}
 //             height={"3rem"}
 //             style={buttonStyle}
 //             type="submit"
 //             onClick={handleSubmit}
-//             _hover={{ background: "white", color: "gray" }}
+//             _hover={{ background: "white", color: "black" }}
+//             isDisabled={loading} // Disable the button while loading
 //           >
-//             Login
+//             {loading ? <Spinner size="sm" color="gray" /> : "Login"}{" "}
+//             {/* Show spinner when loading */}
 //           </Button>
 //         </Flex>
 //       </Box>
@@ -256,15 +239,15 @@
 //   width: "100%",
 //   borderRadius: "25px",
 //   border: "2px solid black",
-//   color: "#fff",
-//   background: "#47108f",
+//   color: "black",
+//   bg: "#6BC15C",
 //   fontWeight: "700",
 //   fontFamily: '"Poppins", sans-serif',
-//   transition: "background 0.3s, color 0.3s", // Adding transition for a smooth effect
+//   transition: "background 0.3s, color 0.3s",
 
 //   ":hover": {
 //     background: "FloralWhite",
-//     color: "white",
+//     color: "black",
 //   },
 // };
 
@@ -274,30 +257,50 @@ import {
   Box,
   Button,
   Flex,
-  Heading,
   Image,
   Input,
   Alert,
   AlertIcon,
   AlertTitle,
   Spinner, // Chakra UI spinner for loader
+  useToast,
+  
 } from "@chakra-ui/react";
+import {  keyframes, css } from '@chakra-ui/react';
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
-import { Link, NavLink, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
-
 import axios from "axios";
 import logo from "../../Images/TRICKLINE_2.png";
 import { jwtDecode } from "jwt-decode";
 import { useUserContext } from "../Context/UserContext";
-import { useToast } from "@chakra-ui/react";
+import bg from "../../Images/dataentry_adminbg.webp"
+// Define a light-weight background image URL (replace with your preferred URL)
+
+
+const borderAnimation = keyframes`
+  0% {
+    border-color: #FF6347;
+    border-width: 4px;
+  }
+  50% {
+    border-color: #00BFFF;
+    border-width: 8px;
+  }
+  100% {
+    border-color: #32CD32;
+    border-width: 4px;
+  }
+`;
+
+
 
 const LoginAdmin = () => {
   const { setUserContext } = useUserContext();
   const toast = useToast();
 
   const [userrole, setUserrole] = useState("");
-  const [loading, setLoading] = useState(false); // Add loading state
+  const [loading, setLoading] = useState(false); // Loading state for button and spinner
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [inputFields, setInputFields] = useState({
@@ -327,7 +330,6 @@ const LoginAdmin = () => {
 
     try {
       const apiUrl = import.meta.env.VITE_APP_API_URL;
-      // /const apiUrl = "https://webifycode.com/api";
       const response = await axios.post(
         `${apiUrl}/auth/adminsignin`,
         inputFields,
@@ -337,8 +339,6 @@ const LoginAdmin = () => {
           },
         }
       );
-
-      console.log(response, "adming login response");
 
       if (response.status === 200) {
         setUserrole(response.data.role);
@@ -397,18 +397,30 @@ const LoginAdmin = () => {
         alignItems="center"
         justifyContent={"center"}
         padding="20px"
-        bg={"#96436B  "}
+       bgImage={`url(${bg})`}
+        backgroundSize="cover"
+        backgroundPosition="center"
+        animation="fadeIn 2s ease-in-out" // Apply fade-in animation
+        transition="background 0.5s ease-in-out"
       >
         <Box
-          borderRadius="25%"
-          overflow="hidden" // Ensures the image respects the borderRadius of the Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          marginY="20px"
-        >
-          <Image width={"23rem"} src={logo} alt="Logo" />
-        </Box>
+  borderRadius="25%"
+  overflow="hidden"
+  display="flex"
+  flexDirection="column"
+  alignItems="center"
+  marginY="20px"
+  border="4px solid #FF6347"
+  animation={`${borderAnimation} 2s infinite`}
+  css={css`
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      border-width: 8px;
+    }
+  `}
+>
+  <Image width={"23rem"} src={logo} alt="Logo" />
+</Box>
 
         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
@@ -428,15 +440,11 @@ const LoginAdmin = () => {
         {errors.username && (
           <Alert width="20%" status="error">
             <AlertIcon />
-            <AlertTitle> {errors.username}</AlertTitle>
+            <AlertTitle>{errors.username}</AlertTitle>
           </Alert>
         )}
 
-        <Flex
-          direction="column"
-          width={["90%", "70%", "50%", "40%"]}
-          marginY="10px"
-        >
+        <Flex direction="column" width={["90%", "70%", "50%", "40%"]} marginY="10px">
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
             <FaLock style={{ width: "4%", marginLeft: "20px" }} />
             <Input
@@ -479,11 +487,10 @@ const LoginAdmin = () => {
             style={buttonStyle}
             type="submit"
             onClick={handleSubmit}
-            _hover={{ background: "white", color: "black" }}
+            _hover={{ background: "FloralWhite", color: "black" }}
             isDisabled={loading} // Disable the button while loading
           >
-            {loading ? <Spinner size="sm" color="gray" /> : "Login"}{" "}
-            {/* Show spinner when loading */}
+            {loading ? <Spinner size="sm" color="gray" /> : "Login"} {/* Spinner while loading */}
           </Button>
         </Flex>
       </Box>
@@ -515,7 +522,6 @@ const buttonStyle = {
   fontWeight: "700",
   fontFamily: '"Poppins", sans-serif',
   transition: "background 0.3s, color 0.3s",
-
   ":hover": {
     background: "FloralWhite",
     color: "black",

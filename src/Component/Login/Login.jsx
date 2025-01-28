@@ -1,112 +1,129 @@
 
 
-// import React, { useState } from "react";
+// import React from "react";
 // import logo from "../../Images/TRICKLINE_2.png";
 // import { NavLink } from "react-router-dom";
 // import { Box, Button, Image, keyframes } from "@chakra-ui/react";
-// // Admin Login
+
+// // Define keyframes for animations
+// const float = keyframes`
+//   0% { transform: translateY(0); }
+//   50% { transform: translateY(-10px); }
+//   100% { transform: translateY(0); }
+// `;
+
+// const fadeIn = keyframes`
+//   0% { opacity: 0; }
+//   100% { opacity: 1; }
+// `;
+
+// const bgAnimation = keyframes`
+//   0% { background-position: 0% 50%; }
+//   50% { background-position: 100% 50%; }
+//   100% { background-position: 0% 50%; }
+// `;
 
 // const Login = () => {
 //   return (
 //     <>
-//     <Box
-//   bg="linear-gradient(135deg, #333 25%, #444 25%, #444 50%, #333 50%, #333 75%, #444 75%, #444 100%)"
-//       display="flex"
-//       flexDirection="column"
-//       alignItems="center"
-//       justifyContent="center"
-//       height="100vh" // Center content vertically on the page
-       
-//     >
-//         {/* <Box p={4}   borderRadius={"160px"}>
-          
-//           <Image width={"23rem"} height="auto" src={logo} alt="Logo Image" />
-//         </Box> */}
-
-
-// <Box 
-//   p={4} 
-//   borderRadius="25%" 
-//   bg="gray.200" // Optional: Add a background color to see the border radius effect
-//   display="inline-flex" // Ensure the box fits tightly around its content
-// >
-//   <Image 
-//     width="23rem" 
-//     height="auto" 
-//     src={logo} 
-//     alt="Logo Image" 
-//     style={{ borderRadius: "inherit" }} // Ensure the image follows the parent Box's borderRadius
-//   />
-// </Box>
-
 //       <Box
-//       borderRadius={"16px"}
+//         // bg="linear-gradient(135deg, #333, #444, #555, #666)"
+//         bg={"#96436B  "}
+//         bgSize="200% 200%"
+//         animation={`${bgAnimation} 10s ease infinite`}
 //         display="flex"
 //         flexDirection="column"
 //         alignItems="center"
-//         maxWidth="400px" // Set a maximum width for responsiveness
-//         width="100%" // Take up full width on smaller screens
+//         justifyContent="center"
+//         height="100vh"
 //       >
-//         <NavLink to="/admin" style={{ textDecoration: "none", width: "100%" }}>
-//           <Button
-//             height={"3rem"}
-//             width="100%"
-//             borderRadius="25px"
-//             border="2px solid black"
-//             color="#47108f"
-//             background="gray"
-//             fontWeight={700}
-//             fontFamily='"Poppins", sans-serif'
-//             mt="20px"
-//             _hover={{ background: "FloralWhite", color: "black" }}
-//           >
-//             Login as Admin
-//           </Button>
-//         </NavLink>
-//         <NavLink
-//           to="/userlogin"
-//           style={{ textDecoration: "none", width: "100%" }}
+//         {/* Floating logo with rounded corners */}
+//         <Box
+//           p={4}
+//           borderRadius="25%"
+//           bg="gray.200"
+//           display="inline-flex"
+//           animation={`${float} 3s ease-in-out infinite`}
 //         >
-//           <Button
-//             height={"3rem"}
-//             width="100%"
-//             borderRadius="25px"
-//             border="2px solid black"
-//              color="#47108f"
-//             background="gray"
-//             fontWeight={700}
-//             fontFamily='"Poppins", sans-serif'
-//             mt="20px"
-//             _hover={{ background: "FloralWhite", color: "black" }}
+//           <Image
+//             width="23rem"
+//             height="auto"
+//             src={logo}
+//             alt="Logo Image"
+//             style={{ borderRadius: "inherit" }}
+//           />
+//         </Box>
+
+//         {/* Fade-in login buttons */}
+//         <Box
+//           borderRadius="16px"
+//           display="flex"
+//           flexDirection="column"
+//           alignItems="center"
+//           maxWidth="400px"
+//           width="100%"
+//           animation={`${fadeIn} 2s ease-in-out`}
+//         >
+//           <NavLink to="/admin" style={{ textDecoration: "none", width: "100%" }}>
+//             <Button
+//               height={"3rem"}
+//               width="100%"
+//               borderRadius="25px"
+//               border="2px solid gray"
+//               color="pink"
+//               background="#6BC15C"
+//               fontWeight={700}
+//               fontFamily='"Poppins", sans-serif'
+//               mt="20px"
+//               _hover={{ background: "FloralWhite", color: "black" }}
+//             >
+//               Login as Admin
+//             </Button>
+//           </NavLink>
+//           <NavLink
+//             to="/userlogin"
+//             style={{ textDecoration: "none", width: "100%" }}
 //           >
-//             Login as User
-//           </Button>
-//         </NavLink>
+//             <Button
+//               height={"3rem"}
+//               width="100%"
+//               borderRadius="25px"
+//             border="2px solid gray"
+//                 color="pink"
+//               background="#6BC15C"
+//               fontWeight={700}
+//               fontFamily='"Poppins", sans-serif'
+//               mt="20px"
+//               _hover={{ background: "FloralWhite", color: "black" }}
+//             >
+//               Login as User
+//             </Button>
+//           </NavLink>
+//         </Box>
+
+//         {/* Optional footer or extra info */}
+//         <Box
+//           width={"400px"}
+//           display={"flex"}
+//           justifyContent={"flex-end"}
+//           fontWeight={"700"}
+//           color={"#901810"}
+//           marginTop={"1rem"}
+//           textAlign={"right"}
+//         ></Box>
 //       </Box>
-      
-//     <Box
-//     width={'400px'}
-//     display={"flex"}
-//     justifyContent={"flex-end"}
-//     fontWeight={"700"}
-//     color={"#901810"}
-//     marginTop={"1rem"}
-//     textAlign={"right"}
-//   >
-    
-//   </Box>
-//     </Box>
-//   </>
+//     </>
 //   );
 // };
 
 // export default Login;
-
+ 
 
 import React from "react";
 import logo from "../../Images/TRICKLINE_2.png";
 import { NavLink } from "react-router-dom";
 import { Box, Button, Image, keyframes } from "@chakra-ui/react";
+import bgImage from "../../Images/dataentry_banner.webp";
 
 // Define keyframes for animations
 const float = keyframes`
@@ -120,32 +137,54 @@ const fadeIn = keyframes`
   100% { opacity: 1; }
 `;
 
-const bgAnimation = keyframes`
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-`;
-
 const Login = () => {
   return (
     <>
       <Box
-        // bg="linear-gradient(135deg, #333, #444, #555, #666)"
-        bg={"#96436B  "}
-        bgSize="200% 200%"
-        animation={`${bgAnimation} 10s ease infinite`}
+        bgImage={`url(${bgImage})`}
+        bgSize="cover"
+        bgPosition="center"
         display="flex"
         flexDirection="column"
         alignItems="center"
         justifyContent="center"
         height="100vh"
+        color="white"
+        // filter="grayscale(100%)" // Black and white effect
+        position="relative"
       >
-        {/* Floating logo with rounded corners */}
+        {/* Overlay for better text contrast */}
+        <Box
+          position="absolute"
+          top={0}
+          left={0}
+          width="100%"
+          height="100%"
+          bgColor="rgba(0, 0, 0, 0.5)"
+          zIndex={0}
+        ></Box>
+
+        {/* Top Banner Section */}
+        <Box
+          textAlign="center"
+          fontSize="2xl"
+          fontWeight="bold"
+          p={6}
+          zIndex={1}
+          position="relative"
+          animation={`${fadeIn} 2s ease-in-out`}
+        >
+          Data Entry Work - Highest Paid Data Entry Jobs - Earn from Home
+        </Box>
+
+        {/* Floating logo with rounded corners and colored background */}
         <Box
           p={4}
           borderRadius="25%"
-          bg="gray.200"
+          bg="linear-gradient(135deg, #ff7f50, #ff6347)" // Colorful background for the logo
           display="inline-flex"
+          zIndex={1}
+          position="relative"
           animation={`${float} 3s ease-in-out infinite`}
         >
           <Image
@@ -165,6 +204,8 @@ const Login = () => {
           alignItems="center"
           maxWidth="400px"
           width="100%"
+          zIndex={1}
+          position="relative"
           animation={`${fadeIn} 2s ease-in-out`}
         >
           <NavLink to="/admin" style={{ textDecoration: "none", width: "100%" }}>
@@ -191,8 +232,8 @@ const Login = () => {
               height={"3rem"}
               width="100%"
               borderRadius="25px"
-            border="2px solid gray"
-                color="pink"
+              border="2px solid gray"
+              color="pink"
               background="#6BC15C"
               fontWeight={700}
               fontFamily='"Poppins", sans-serif'
@@ -203,21 +244,9 @@ const Login = () => {
             </Button>
           </NavLink>
         </Box>
-
-        {/* Optional footer or extra info */}
-        <Box
-          width={"400px"}
-          display={"flex"}
-          justifyContent={"flex-end"}
-          fontWeight={"700"}
-          color={"#901810"}
-          marginTop={"1rem"}
-          textAlign={"right"}
-        ></Box>
       </Box>
     </>
   );
 };
 
 export default Login;
- 
