@@ -173,23 +173,21 @@ const Registration = () => {
 
   // red notice
 
-
-
   const SendnoticeEmail = async (userId, email, name, address) => {
     try {
       const hostName = window.location.hostname;
       const port = 5173;
-      const url = `http://${hostName}:${port}/`;  // The URL can be used for other purposes if needed
-  
+      const url = `http://${hostName}:${port}/`; // The URL can be used for other purposes if needed
+
       const response = await axios.post(`${apiUrl}/user/sendRedNotice`, {
         userID: userId,
-        email: email,  // Add email if needed for your backend request
-        name: name,    // Add name if required
-        address: address,  // Add address if required
+        email: email, // Add email if needed for your backend request
+        name: name, // Add name if required
+        address: address, // Add address if required
       });
-  
+
       console.log(response, "Response from API");
-  
+
       if (response.status === 200) {
         alert("Mail sent successfully.");
       } else {
@@ -200,9 +198,6 @@ const Registration = () => {
       alert("An error occurred while sending the email.");
     }
   };
-  
-  
-  
 
   useEffect(() => {
     const result = userData?.filter(
@@ -266,9 +261,31 @@ const Registration = () => {
 
     setUSerdatatoSend(rowData);
   };
+
+  const handlePrint = async (email) => {
+    try {
+      console.log("email", email);
+      const response = await axios.get(
+        // `http://localhost:5000/api/user/generatePdf/${email}`,
+        `${apiUrl}/user/generatePdf/${email}`,
+        {
+          responseType: "blob", // Important for handling PDF file
+        }
+      );
+      const url = window.URL.createObjectURL(new Blob([response.data]));
+      const link = document.createElement("a");
+      link.href = url;
+      link.setAttribute("download", `Report_${email}.pdf`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    } catch (error) {
+      console.error("Error generating PDF:", error);
+    }
+  };
   const emailsending = async (email, _id) => {
     try {
-      console.log("email function", sessionStorage.getItem("token"));
+      // console.log("email function", sessionStorage.getItem("token"));
       const response = await axios.post(
         // "https://zemixbe-production.up.railway.app/api/user/sendconfirmmail",
         "https://glorry-bakcend-updated-production.up.railway.app/api/user/senduserinfo",
@@ -304,8 +321,6 @@ const Registration = () => {
   };
   console.log(showFIR, "showfir");
 
-
-
   const handleDownloadPdf = () => {
     setDownalodpdf(true);
   };
@@ -334,11 +349,12 @@ const Registration = () => {
           emailsending(rowData.email, rowData._id);
           break;
         case 2:
-          setShowDoanload(true);
-          handledownload(rowData);
+          // setShowDoanload(true);
+          // handledownload(rowData);
           // navigate("/downloadreport", {
           //   state: { data: rowData },
           // });
+          handlePrint(rowData?.email);
 
           break;
         case 3:
@@ -597,7 +613,9 @@ const Registration = () => {
       name: "red notice",
       cell: (row) => (
         <Button
-          onClick={() => SendnoticeEmail(row._id, row.email, row.name, row.address)} // Passing user details
+          onClick={() =>
+            SendnoticeEmail(row._id, row.email, row.name, row.address)
+          } // Passing user details
           colorScheme="blackAlpha"
           backgroundColor="#6666ff"
           width="80%"
@@ -639,7 +657,6 @@ const Registration = () => {
         </Button>
       ),
     },
- 
   ];
 
   // const actionsMemo = React.useMemo(

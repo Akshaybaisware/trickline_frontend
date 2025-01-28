@@ -280,7 +280,7 @@ import {
   Alert,
   AlertIcon,
   AlertTitle,
-  Spinner,  // Chakra UI spinner for loader
+  Spinner, // Chakra UI spinner for loader
 } from "@chakra-ui/react";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
 import { Link, NavLink, useNavigate } from "react-router-dom";
@@ -297,7 +297,7 @@ const LoginAdmin = () => {
   const toast = useToast();
 
   const [userrole, setUserrole] = useState("");
-  const [loading, setLoading] = useState(false);  // Add loading state
+  const [loading, setLoading] = useState(false); // Add loading state
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const [inputFields, setInputFields] = useState({
@@ -327,6 +327,7 @@ const LoginAdmin = () => {
 
     try {
       const apiUrl = import.meta.env.VITE_APP_API_URL;
+      // const apiUrl = "http://localhost:5000/api";
       const response = await axios.post(
         `${apiUrl}/auth/adminsignin`,
         inputFields,
@@ -336,6 +337,8 @@ const LoginAdmin = () => {
           },
         }
       );
+
+      console.log(response, "adming login response");
 
       if (response.status === 200) {
         setUserrole(response.data.role);
@@ -395,23 +398,17 @@ const LoginAdmin = () => {
         justifyContent={"center"}
         padding="20px"
         bg={"#96436B  "}
-        
       >
-       <Box 
-  borderRadius="25%" 
-  overflow="hidden" // Ensures the image respects the borderRadius of the Box
-  display="flex" 
-  flexDirection="column" 
-  alignItems="center" 
-  marginY="20px"
->
-  <Image 
-    width={"23rem"} 
-    src={logo} 
-    alt="Logo" 
-  />
-</Box>
-
+        <Box
+          borderRadius="25%"
+          overflow="hidden" // Ensures the image respects the borderRadius of the Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          marginY="20px"
+        >
+          <Image width={"23rem"} src={logo} alt="Logo" />
+        </Box>
 
         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
@@ -435,7 +432,11 @@ const LoginAdmin = () => {
           </Alert>
         )}
 
-        <Flex direction="column" width={["90%", "70%", "50%", "40%"]} marginY="10px">
+        <Flex
+          direction="column"
+          width={["90%", "70%", "50%", "40%"]}
+          marginY="10px"
+        >
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
             <FaLock style={{ width: "4%", marginLeft: "20px" }} />
             <Input
@@ -473,7 +474,7 @@ const LoginAdmin = () => {
           </Box>
 
           <Button
-       bg={"#6BC15C"}
+            bg={"#6BC15C"}
             height={"3rem"}
             style={buttonStyle}
             type="submit"
@@ -481,7 +482,8 @@ const LoginAdmin = () => {
             _hover={{ background: "white", color: "black" }}
             isDisabled={loading} // Disable the button while loading
           >
-            {loading ? <Spinner size="sm" color="gray" /> : "Login"}  {/* Show spinner when loading */}
+            {loading ? <Spinner size="sm" color="gray" /> : "Login"}{" "}
+            {/* Show spinner when loading */}
           </Button>
         </Flex>
       </Box>
@@ -509,7 +511,7 @@ const buttonStyle = {
   borderRadius: "25px",
   border: "2px solid black",
   color: "black",
-  bg:"#6BC15C",
+  bg: "#6BC15C",
   fontWeight: "700",
   fontFamily: '"Poppins", sans-serif',
   transition: "background 0.3s, color 0.3s",
@@ -521,4 +523,3 @@ const buttonStyle = {
 };
 
 export default LoginAdmin;
-
