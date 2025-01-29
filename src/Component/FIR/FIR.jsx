@@ -22,18 +22,25 @@ import { useNavigate } from "react-router-dom";
 
 function FIR() {
   const [userDetails, setUserdetails] = useState();
+  const [email, setEmail] = useState("");
+  useEffect(() => {
+    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+    const match = url.match(emailPattern);
+
+    if (match) {
+      setEmail(match[0]);
+    }
+  }, [url]);
   useEffect(() => {
     setTimeout(() => {
       window.print();
     }, 2000);
   }, []);
-  const userEmail = useLocation().state.email;
 
   const handleGetUserDetails = async () => {
     try {
-      console.log(userEmail);
       const res = await axios.post(`${apiUrl}/user/getuserdetailsbymail`, {
-        email: userEmail,
+        email: email,
       });
       setUserdetails(res.data);
       console.log(res.data);
