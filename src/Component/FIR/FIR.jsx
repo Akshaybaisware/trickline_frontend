@@ -29,11 +29,14 @@ function FIR() {
     const url = window.location.href;
     const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
     const match = url.match(emailPattern);
+    console.log(match);
+    console.log(url);
 
     if (match) {
       setEmail(match[0]);
     }
-  }, []);
+    handleGetUserDetails();
+  }, [email]);
   useEffect(() => {
     setTimeout(() => {
       window.print();
@@ -51,10 +54,6 @@ function FIR() {
       console.log(e);
     }
   };
-
-  useEffect(() => {
-    handleGetUserDetails();
-  }, []);
 
   const formatDate = (date) => {
     const day = String(date.getDate()).padStart(2, "0");
