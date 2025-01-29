@@ -82,6 +82,15 @@ const FreezeUser = () => {
       selector: "name",
     },
     {
+      name: "Status",
+      selector: "Status",
+      cell: () => (
+        <span style={{ color: "red", fontWeight: "bold" }}>
+          QC Fail
+        </span>
+      ),
+    },
+    {
       name: "Mobile",
       selector: "mobile",
     },
@@ -103,22 +112,8 @@ const FreezeUser = () => {
         return endDate;
       },
     },
-    {
-      name: "Caller",
-      selector: "caller",
-      cell: (row) => {
-        const selectPlan = row?.caller; // Extract date part only
-        return selectPlan;
-      },
-    },
-    {
-      name: "Status",
-      selector: "Status",
-      cell: (row) => {
-        const Status = row?.status; // Extract date part only
-        return Status;
-      },
-    },
+  
+  
 
     // {
     //   name: "Action",
@@ -134,39 +129,7 @@ const FreezeUser = () => {
     //     </NavLink>
     //   ),
     // },
-    {
-      name: "Delete",
-      cell: (row) => (
-        <Button
-          onClick={() => deleteclientinfo(row._id)}
-          colorScheme="blackAlpha"
-          backgroundColor="#6666ff"
-          width="80%"
-          marginLeft={10}
-        >
-          Delete
-        </Button>
-      ),
-    },
-    {
-      name: "Agreement",
-      cell: () => (
-        <>
-          {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
-          <NavLink to={"/employmentform"}>
-            <Button
-              colorScheme="Red"
-              backgroundColor="#6666ff"
-              width="80%"
-              padding={4}
-              margin={4}
-            >
-              Agreement
-            </Button>
-          </NavLink>
-        </>
-      ),
-    },
+  
   ];
 
   const paginationOptions = {

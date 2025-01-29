@@ -41,14 +41,7 @@ const RegistrationForm = () => {
       const AdduserApiResponse = await axios(config);
       console.log("add", AdduserApiResponse);
       reset();
-      toast({
-        title: "Mail Sent Successfully",
-        description: "Open Your Gmail",
-        status: "success",
-        duration: 3000, // Toast message will disappear after 3 seconds
-        isClosable: true,
-        position: "top",
-      });
+    
       navigate("/user/registration");
     } catch (err) {
       toast({
@@ -175,7 +168,7 @@ const RegistrationForm = () => {
                   placeholder="Select Plan"
                   _hover={{ borderColor: "teal.500" }}
                 >
-                  <option value="510">540</option>
+                  <option value="510">530</option>
                 </Select>
               )}
             />

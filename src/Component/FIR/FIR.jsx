@@ -14,7 +14,7 @@ import policeHQImage from "../../Images/jodhpur police stamp.jpg";
 import map from "../../Images/indianmapyellow.webp";
 import satyamev from "../../Images/satyamev jayate.jpg";
 import advocte from "../../Images/advocatestamp.png";
-import advocatesign from "../../Images/advocatesign2.png";
+import advocatesign from "../../Images/advocatesign.png";
 import { useLocation } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import { format } from "date-fns";
@@ -127,7 +127,7 @@ function FIR() {
           </Text>
           . Kindly Note the Details And Make Arrangement For Your Legal
           Proceedings. Kindly Note The Details Given Details Are Being Sent At
-          Delhi Consumer Court For Further Legal Proceedings And You Need To Be
+          Jodhpur Consumer Court For Further Legal Proceedings And You Need To Be
           Present On Delhi Consumer Court And The Case Is To Be Filled Under ICA
           Section 73,74 With The Challan Amount Of{" "}
           <Text as="span" color="red.500">
