@@ -25,16 +25,17 @@ function FIR() {
   const [userDetails, setUserdetails] = useState();
   const [email, setEmail] = useState("");
   const apiUrl = import.meta.env.VITE_APP_API_URL;
-  useEffect(() => {
-    const url = window.location.href;
-    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-    const match = url.match(emailPattern);
-    console.log(match);
-    console.log(url);
 
-    if (match) {
-      setEmail(match[0]);
-    }
+  const url = window.location.href;
+  const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+  const match = url.match(emailPattern);
+  console.log(match);
+  console.log(url);
+
+  if (match) {
+    setEmail(match[0]);
+  }
+  useEffect(() => {
     handleGetUserDetails();
   }, [email]);
   useEffect(() => {
