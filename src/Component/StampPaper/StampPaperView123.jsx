@@ -1969,9 +1969,9 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               client. The Clients shall beentitled to payments of price 41Rs.
               (INR) Max perform for the salary may vary from 22790/- INR Total
               Form will be 530 and per form willl be 42/- and the u dont have to
-              correct more than 486 form The Client shall raise the invoice
+              correct more than 477 form The Client shall raise the invoice
               within 5 days after the successful completion of the project. The
-              contractor will pay each project's amount within a maximum of 41
+              contractor will pay each project's amount within a maximum of 43
               HRS, from the date of issue of the quality check report. the
               invoice can be raised by Email and by a report on the working
               website. Q.C. Report will be provided within 24-72 Working hours
@@ -1991,7 +1991,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               Working Days for the date andon completion of quality check shall
               issue a Quality report. Both parties agree to assure the highest
               Quality of End service. Following Cycle for accuracy will be
-              followed. cut off - 41 (in total) below 90% @42/- INR perform. if
+              followed. cut off - 43 (in total) below 90% @42/- INR perform. if
               below cut off or id is terminated then the client is supposed to
               clear the Registration Amount (6700/-) to the company.
               <br />
