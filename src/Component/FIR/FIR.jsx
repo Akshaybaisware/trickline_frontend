@@ -22,22 +22,26 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 function FIR() {
-  const [userDetails, setUserdetails] = useState();
+  const [userDetails, setUserDetails] = useState(null);
   const [email, setEmail] = useState("");
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
-  const url = window.location.href;
-  const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-  const match = url.match(emailPattern);
-  console.log(match);
-  console.log(url);
-
-  if (match) {
-    setEmail(match[0]);
-  }
   useEffect(() => {
-    handleGetUserDetails();
+    const url = window.location.href;
+    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
+    const match = url.match(emailPattern);
+
+    if (match) {
+      setEmail(match[0]);
+    }
+  }, []);
+
+  useEffect(() => {
+    if (email) {
+      handleGetUserDetails();
+    }
   }, [email]);
+
   useEffect(() => {
     setTimeout(() => {
       window.print();
@@ -49,7 +53,7 @@ function FIR() {
       const res = await axios.post(`${apiUrl}/user/getuserdetailsbymail`, {
         email: email,
       });
-      setUserdetails(res.data);
+      setUserDetails(res.data);
       console.log(res.data);
     } catch (e) {
       console.log(e);
@@ -62,6 +66,7 @@ function FIR() {
     const year = date.getFullYear();
     return `${day}/${month}/${year}`;
   };
+
   const currentDate = new Date();
   const formattedDate = formatDate(currentDate);
   return (
