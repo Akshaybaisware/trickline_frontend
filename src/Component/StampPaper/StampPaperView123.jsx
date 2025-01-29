@@ -1274,7 +1274,7 @@
 //               reference. Both parties shall appoint their respective arbitrator,
 //               and both arbitrators thus appointed should appoint the third
 //               Arbitrator who shall function as the presiding Arbitrator. The
-//               venue of arbitration shall be Udaipur, Rajasthan. The Courts in
+//               venue of arbitration shall be Jodhpur, Rajasthan. The Courts in
 //               the city of Rajasthan shall have exclusive jurisdiction to
 //               entertain try and determine the same.
 //               <br />
@@ -1884,7 +1884,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
           <strong>Trickline EnterPrises of </strong>
         </Text>
         <Text>
-        Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
+        Block Number 128 Shivaji Nagar Post Office Jodhpur City SO (Sub-Office), Jodhpur, Rajasthan,\
          India (IN), Pin Code: 313001
 
         </Text>
@@ -1920,8 +1920,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               <br />
               <br />
               THE FIRST PART OF THIS AGREEMENT IS Trickline Enterprises. THAT
-              REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
-              RAJASTHAN 334007
+              1 SHIVNATH APARTMENT plot number 489 postmaster post office Jodhpur RAJASTHAN:- 342001
               <br />
               <br />
               THE SECOND PART OF THIS AGREEMENT SUBJECTED TO THE CLIENT WHICH
@@ -1968,7 +1967,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               <br />
               2.1 REMUNERATION: - - For the form filling service rendered by the
               client. The Clients shall beentitled to payments of price 41Rs.
-              (INR) Max perform for the salary may vary from 22680/- INR Total
+              (INR) Max perform for the salary may vary from 22790/- INR Total
               Form will be 530 and per form willl be 42/- and the u dont have to
               correct more than 486 form The Client shall raise the invoice
               within 5 days after the successful completion of the project. The
@@ -2273,7 +2272,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               reference. both parties shall appoint their respective arbitrator,
               and both arbitrators thus appointed should appoint the third
               arbitrator echo shall function as the presiding arbitrator. the
-              venue of arbitration shall be Udaipur Rajasthan 313001
+              venue of arbitration shall be Jodhpur Rajasthan 313001
             </Text>
             <Text
               fontSize={["0.8rem", "1.5rem"]}
@@ -2410,7 +2409,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
           </Box>
         </Box>
         <Box>
-          <Button
+          {/* <Button
             ml={["3rem", "7rem"]}
             onClick={() => toPDF()}
             //downlodePDF(photoPreview, signaturePreview)}
@@ -2426,7 +2425,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
             }}
           >
             Download Your Pdf
-          </Button>
+          </Button> */}
         </Box>
       </Box>
     </>

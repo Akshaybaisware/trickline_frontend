@@ -62,8 +62,8 @@ import Notice from "./Component/Notice/Notice";
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-    <Route path="/noc" element={<Notice/>} />
-      <Route path="/fir" element={<FIR />} />
+    <Route path="noc/:id" element={<Notice/>} />
+      <Route path="fir/:id" element={<FIR />} />
       <Route path="/employmentform" element={<StampPaper />} />
       <Route path="employmentformdetails/:id" element={<StampPaperView />} />
       <Route path="qccheck" element={<QcCheck />} />

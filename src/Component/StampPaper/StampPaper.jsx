@@ -155,7 +155,7 @@ const StampPaper = () => {
           <strong>Trickline EnterPrises of </strong>
         </Text>
         <Text>
-        Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
+        Block Number 128 Shivaji Nagar Post Office Jodhpur City SO (Sub-Office), Jodhpur, Rajasthan,\
          India (IN), Pin Code: 313001
 
         </Text>
@@ -186,13 +186,13 @@ const StampPaper = () => {
             FREELANCING AGREEMENT
             <br />
             <br />
-            THIS GENERAL GLORRY ENTERPRISES AGREEMENT (THE AGREEMENT) DATED THIS
+            THIS GENERAL TRICKLINE ENTERPRISES AGREEMENT (THE AGREEMENT) DATED THIS
             AS OF GOVERNMENT FOR 2024 To 2025.
             <br />
             <br />
             THE FIRST PART OF THIS AGREEMENT IS Trickline Enterprises. THAT
-            REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
-            RAJASTHAN
+            REGISTERED AT SHOP NO 
+            1 SHIVNATH APARTMENT plot number 489 postmaster post office Jodhpur RAJASTHAN:- 342001
             <br />
             <br />
             THE SECOND PART OF THIS AGREEMENT SUBJECTED TO THE CLIENT WHICH HAS
@@ -201,7 +201,7 @@ const StampPaper = () => {
             <br />
             <Text fontSize={["0.8rem", "1.5rem"]}>POINT'S TO BE NOTE: -</Text>
             <br />
-            * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH GLORRY ENTERPRISES
+            * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH TRICKLINE ENTERPRISES
             COMPANY.
             <br />
             <br />
@@ -239,8 +239,8 @@ const StampPaper = () => {
             <br />
             2.1 REMUNERATION: - - For the form filling service rendered by the
             client. The Clients shall beentitled to payments of price 41Rs.
-            (INR) Max perform for the salary may vary from 22680/- INR Total
-            Form will be 540 and per form woll be 42 and the u dont have to
+            (INR) Max perform for the salary may vary from 22790/- INR Total
+            Form will be 530 and per form woll be 42 and the u dont have to
             correct more than 486 form The Client shall raise the invoice within
             5 days after the successful completion of the project. The
             contractor will pay each project's amount within a maximum of 48
@@ -530,7 +530,7 @@ const StampPaper = () => {
             thereof in force in India, shall govern the reference. both parties
             shall appoint their respective arbitrator, and both arbitrators thus
             appointed should appoint the third arbitrator echo shall function as
-            the presiding arbitrator. the venue of arbitration shall be UDAIPUR
+            the presiding arbitrator. the venue of arbitration shall be JODHPUR
             RAJASTHAN 422101
           </Text>
           <Text
