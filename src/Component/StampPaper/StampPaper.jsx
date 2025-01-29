@@ -152,7 +152,7 @@ const StampPaper = () => {
         </Text>
 
         <Text fontSize={"1.5rem"}>
-          <strong>Glorry EnterPrises of </strong>
+          <strong>Trickline EnterPrises of </strong>
         </Text>
         <Text>
         Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
@@ -190,7 +190,7 @@ const StampPaper = () => {
             AS OF GOVERNMENT FOR 2024 To 2025.
             <br />
             <br />
-            THE FIRST PART OF THIS AGREEMENT IS Glorry Enterprises. THAT
+            THE FIRST PART OF THIS AGREEMENT IS Trickline Enterprises. THAT
             REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
             RAJASTHAN
             <br />
@@ -265,7 +265,7 @@ const StampPaper = () => {
             Quality of End service. Following Cycle for accuracy will be
             followed. cut off - 43 (in total) Above 90% @41/- INR perform. if
             below cut off or id is terminated then the client is supposed to
-            clear the Registration Amount (6900/-) to the company.
+            clear the Registration Amount (6700/-) to the company.
             <br />
             <br />
             2.4 The Q.C. Department will Check the forms Randomly by the server.
@@ -286,7 +286,7 @@ const StampPaper = () => {
             3. Conflict of interest
             <br />
             <br />
-            3.1 Application Fee(S): The Registration Amount of 6900/- INR. Will
+            3.1 Application Fee(S): The Registration Amount of 6700/- INR. Will
             be deducted from the salary ifgenerated, and if the salary is not
             generated i.e If the client fails to complete the work. then he/she
             is liable to pay the same registration amount on their own. The
@@ -307,7 +307,7 @@ const StampPaper = () => {
             server of the company detects that there are multiple login
             Attempts/multiple IP Addresses of the account Modules .and The ID
             will get Terminated Without Any Intimation and the client needs to
-            clear the server maintenance charge up to 6900/- INR. (Refundable
+            clear the server maintenance charge up to 6700/- INR. (Refundable
             Amount After Successfully done the work**) For That Particular
             Project As Per This Agreement.
             <br />
@@ -339,7 +339,7 @@ const StampPaper = () => {
             understanding between theparties and shall remain in effect for six
             months for the date of execution hereof the Contractor's
             Specification in terms of quality and other parameters that shall be
-            issued by the Contractor. This General Glorry EnterprisesAgreement
+            issued by the Contractor. This General Trickline EnterprisesAgreement
             Stands and is valid for 11 months, if the client or contractor is
             willing to end this business relationship they need to proceed with
             the termination of this agreement-based contract.
@@ -359,7 +359,7 @@ const StampPaper = () => {
             4.1 Termination: - - If the Client fails to submit data on or If the
             client fails to give Accuracy in the Output file. The client
             reserves the right to terminate the agreement with immediate effect
-            and Glorry Enterprises freelancing services will not be responsible
+            and Trickline Enterprises freelancing services will not be responsible
             for any future data and payment to the Client and the Client will be
             liable to pay the maintenance Amount to the client as mentioned in
             "clause-3.1" In this agreement and client will also be liable to pay
@@ -382,7 +382,7 @@ const StampPaper = () => {
             data entry operators engaged by the client, violence or political
             turbulence or for any other reasons of a similar nature, which is
             beyond the control of the client. If you want to terminate your
-            agreement after your first work, you need to pay 6900*11 times the
+            agreement after your first work, you need to pay 6700*11 times the
             agreement amount as per company policies.
             <br />
           </Text>
@@ -560,10 +560,9 @@ const StampPaper = () => {
             Employer : -
           </Text>
           <Text ml={["1rem", "3rem"]} fontWeight={"500"}>
-            Name : Glorry Enterprises <br />
-            Email : helplineservice19@gmail.com <br />
-            Adress: block Number 128 Shivaji Nagar Post Office Udaipur City SO
-            (Sub-Office), Udaipur, Rajasthan, India (IN), Pin Code: 313001
+            Name : trickline Enterprises <br />
+            Email :  helplineservicewww27@gmail.com <br />
+            Adress:shivnath appartment plot number 489 postmaster post office Jodhpur Rajasthan:- 342001
           </Text>
         </Box>
 

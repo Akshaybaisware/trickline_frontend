@@ -82,12 +82,12 @@ const RegistrationForm = () => {
   return (
     <Box mt="8" mx="auto" width={["90%", "50%"]}>
       <Box
-        color="#DD372D"
+        color="purple"
         mb="1rem"
         fontSize={["1.5rem", "2rem"]}
         fontWeight="700"
       >
-        Add User
+        Add Client
       </Box>
       <form onSubmit={handleSubmit(onSubmit)}>
         <Stack spacing={4}>
@@ -218,13 +218,14 @@ const RegistrationForm = () => {
 
         <Button
           type="submit"
-          colorScheme="teal"
+     bg={"purple"}
+     color={"white"}
           mt="4"
           mx="auto"
           display="flex"
           alignItems="center"
           justifyContent="center"
-          _hover={{ bgColor: "teal.600" }}
+          _hover={{ bgColor: "red" }}
           fontSize="lg"
           fontWeight="bold"
           p={4}

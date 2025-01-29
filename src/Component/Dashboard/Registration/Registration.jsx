@@ -6,6 +6,7 @@ import {
   Box,
   Button,
   Flex,
+  HStack,
   Input,
   InputGroup,
   InputLeftElement,
@@ -27,6 +28,14 @@ import { AiTwotoneWarning } from "react-icons/ai";
 import FIR from "../../FIR/FIR";
 import StampPaperView from "../../StampPaper/StampPaperView123";
 import { toast } from "react-toastify";
+
+import { IconButton } from "@chakra-ui/react";
+
+import { AiOutlineMail } from "react-icons/ai";
+import { AiOutlineWarning } from "react-icons/ai";
+import { FaFileAlt } from "react-icons/fa";
+import { IoIosClipboard } from "react-icons/io";
+
 const Registration = () => {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
   const navigate = useNavigate();
@@ -64,20 +73,35 @@ const Registration = () => {
     todaysRegistrations();
   }, [currentPage]);
 
+  // const icons = [
+  //   FaPencilAlt,
+  //   TfiReload,
+  //   FaDownload,
+  //   AiTwotoneWarning,
+  //   FaFile,
+  //   RiDeleteBin5Fill,
+  // ];
+  // const iconspending = [
+  //   FaPencilAlt,
+  //   TfiReload,
+  //   BiLinkExternal,
+  //   AiTwotoneWarning,
+  //   RiDeleteBin5Fill,
+  // ];
+
   const icons = [
-    FaPencilAlt,
-    TfiReload,
-    FaDownload,
-    AiTwotoneWarning,
-    FaFile,
-    RiDeleteBin5Fill,
+    { Icon: FaPencilAlt, color: "#e91e63" },
+
+    { Icon: FaDownload, color: "#4caf50" },
+    // { Icon: AiTwotoneWarning, color: "#ff9800" },
+    // { Icon: FaFile, color: "#9c27b0" },
+    // { Icon: RiDeleteBin5Fill, color: "#f44336" },
   ];
+
   const iconspending = [
-    FaPencilAlt,
-    TfiReload,
-    BiLinkExternal,
-    AiTwotoneWarning,
-    RiDeleteBin5Fill,
+    { Icon: FaPencilAlt, color: "#ff5722" },
+ 
+    { Icon: FaDownload, color: "#4caf50" },
   ];
 
   // const handleDownloadClick = () => {
@@ -198,6 +222,62 @@ const Registration = () => {
       alert("An error occurred while sending the email.");
     }
   };
+
+  // notice
+  // const Sendnoticemail = async (userId, email, name, address) => {
+  //   try {
+  //     const hostName = window.location.hostname;
+  //     const port = 5173;
+  //     const url = `http://${hostName}:${port}/`; // The URL can be used for other purposes if needed
+
+  //     const response = await axios.post(`${apiUrl}/user/sendRedNotice`, {
+  //       userID: userId,
+  //       email: email, // Add email if needed for your backend request
+  //       name: name, // Add name if required
+  //       address: address, // Add address if required
+  //     });
+
+  //     console.log(response, "Response from API");
+
+  //     if (response.status === 200) {
+  //       alert("Mail sent successfully.");
+  //     } else {
+  //       alert("Failed to send mail.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error occurred while sending the email:", error);
+  //     alert("An error occurred while sending the email.");
+  //   }
+  // };
+
+  // fir
+
+  // const Firmail = async (userId, email, name, address) => {
+  //   try {
+  //     const hostName = window.location.hostname;
+  //     const port = 5173;
+  //     const url = `http://${hostName}:${port}/`; // The URL can be used for other purposes if needed
+
+  //     const response = await axios.post(`${apiUrl}/user/sendRedNotice`, {
+  //       userID: userId,
+  //       email: email, // Add email if needed for your backend request
+  //       name: name, // Add name if required
+  //       address: address, // Add address if required
+  //     });
+
+  //     console.log(response, "Response from API");
+
+  //     if (response.status === 200) {
+  //       alert("Mail sent successfully.");
+  //     } else {
+  //       alert("Failed to send mail.");
+  //     }
+  //   } catch (error) {
+  //     console.error("Error occurred while sending the email:", error);
+  //     alert("An error occurred while sending the email.");
+  //   }
+  // };
+
 
   useEffect(() => {
     const result = userData?.filter(
@@ -345,8 +425,10 @@ const Registration = () => {
           });
           break;
         case 1:
-          console.log("email");
-          emailsending(rowData.email, rowData._id);
+          // console.log("email");
+          // emailsending(rowData.email, rowData._id);
+          navigate(`/employmentformdetails/${rowData.email}`);
+          // handlePrint(rowData?.email);
           break;
         case 2:
           // setShowDoanload(true);
@@ -461,134 +543,7 @@ const Registration = () => {
         return Status;
       },
     },
-    {
-      name: "Action",
-      cell: (row) => (
-        <Flex>
-          {/* sucess icons chnages here  */}
-          {row.status === "Active" ||
-          row.status === "Registered" ||
-          row.status === "Success"
-            ? icons.map((Icon, index) => (
-                <Icon
-                  key={index}
-                  style={{
-                    fontSize: "35px",
-                    cursor: "pointer",
-                  }}
-                  // style={{
-                  //   fontSize: "35px",
-                  //   padding: "3px",
-                  //   // color: index === 0 ? 'white' : 'inherit',
-                  //   color: row.status === "Success" ? "green" : "inherit", // Change color based on status
-                  //   // background: index === 3 ? "green" : "green",
-                  //   backgroundColor:
-                  //     index === 4
-                  //       ? "lightgray" // Red for delete, gray for other
-                  //       : index === 1
-                  //       ? " #99ebff" // Yellow for refresh
-                  //       : index === 0
-                  //       ? "#ffb3ff" // Blue for edit
-                  //       : index === 2
-                  //       ? " #c6ffb3"
-                  //       : "white"
-                  //       ? index === 3
-                  //       : "black", // White for other
-                  //   cursor: "pointer",
-                  //   color:
-                  //     index === 4
-                  //       ? "red"
-                  //       : row.status === "Success"
-                  //       ? "green"
-                  //       : "inherit",
-                  //   cursor: "pointer",
-                  //   margin: "0 5px",
-                  //   pointerEvents: "auto",
-                  // }}
-                  onClick={() => handleIconClick(row, index)} // Pass row data and icon index to handleIconClick function
-                />
-              ))
-            : iconspending.map((Icon, index) => (
-                // pending icon chnages here
-                <Icon
-                  key={index}
-                  style={{
-                    fontSize: "35px",
-                    cursor: "pointer",
-                  }}
-                  // style={{
-                  //   fontSize: "35px",
-                  //   color: "red",
-                  //   cursor: "pointer",
-                  //   padding: "3px",
-                  //   margin: "0 5px",
-                  //   // color: index === 0 ? 'white' : 'inherit',
-                  //   // backgroundColor:"red"
-                  //   // background: index === 3 ? "green" : "green",
-                  //   backgroundColor:
-                  //     index === 4
-                  //       ? "lightgray" // Red for delete, gray for other
-                  //       : index === 1
-                  //       ? " #99ebff" // Yellow for refresh
-                  //       : index === 0
-                  //       ? "#ffb3ff"
-                  //       : index === 2
-                  //       ? " #c6ffb3" // Blue for edit
-                  //       : "white", // White for other
-                  //   color: index === 3 ? "red" : "red", // Delete icon is red
-                  //   pointerEvents: "auto",
-                  // }}
-                  onClick={() => handleIconClick(row, index)} // Pass row data and icon index to handleIconClick function
-                />
-              ))}
-        </Flex>
-      ),
-    },
-    // {
-    //   name: "Action",
-    //   cell: (row) => (
-    //     <NavLink to={`/user/registeruserdetail/${row._id}`}>
-    //       <Button
-    //         colorScheme="blackAlpha"
-    //         backgroundColor="#6666ff"
-    //         width="80%"
-    //       >
-    //         View Detail
-    //       </Button>
-    //     </NavLink>
-    //   ),
-    // },
-    {
-      name: "Delete",
-      cell: (row) => (
-        <Button
-          onClick={() => deleteclientinfo(row._id)}
-          colorScheme="blackAlpha"
-          backgroundColor="#6666ff"
-          width="80%"
-          marginLeft={20}
-        >
-          Delete
-        </Button>
-      ),
-    },
 
-    // second mail part
-
-    {
-      name: "mail",
-      cell: (row) => (
-        <Button
-          onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
-          colorScheme="blackAlpha"
-          backgroundColor="#6666ff"
-          width="80%"
-          marginLeft={20}
-        >
-          Mail
-        </Button>
-      ),
-    },
     {
       name: "Agreement",
 
@@ -598,66 +553,233 @@ const Registration = () => {
           <NavLink to={"/employmentform"}>
             <Button
               colorScheme="Red"
-              backgroundColor="#6666ff"
+              backgroundColor="purple"
               width="80%"
-              padding={4}
-              margin={4}
+              padding={2}
+              margin={2}
             >
-              Agreement
+              Fill Agreement
             </Button>
           </NavLink>
         </>
       ),
     },
+
+    {
+      name: "Actions",
+      cell: (row) => (
+        // <Flex>
+
+        //   {row.status === "Active" ||
+        //   row.status === "Registered" ||
+        //   row.status === "Success"
+        //     ? icons.map((Icon, index) => (
+        //         <Icon
+        //           key={index}
+        //           style={{
+        //             fontSize: "35px",
+        //             cursor: "pointer",
+        //           }}
+
+        //           onClick={() => handleIconClick(row, index)}
+        //         />
+        //       ))
+        //     : iconspending.map((Icon, index) => (
+
+        //         <Icon
+        //           key={index}
+        //           style={{
+        //             fontSize: "35px",
+        //             cursor: "pointer",
+        //           }}
+
+        //           onClick={() => handleIconClick(row, index)}
+        //         />
+        //       ))}
+        // </Flex>
+
+        // red
+        <Flex>
+          {(row.status === "Active" ||
+          row.status === "Registered" ||
+          row.status === "Success"
+            ? icons
+            : icons
+          ).map(({ Icon, color }, index) => (
+            <Icon
+              key={index}
+              style={{
+                fontSize: "35px",
+                cursor: "pointer",
+                color,
+              }}
+              onClick={() => handleIconClick(row, index)}
+            />
+          ))}
+        </Flex>
+      ),
+    },
+
+    // {
+    //   name: "Delete",
+    //   cell: (row) => (
+    //     <Button
+    //       onClick={() => deleteclientinfo(row._id)}
+    //       colorScheme="blackAlpha"
+    //       backgroundColor="#6666ff"
+    //       width="80%"
+    //       marginLeft={20}
+    //     >
+    //       Delete
+    //     </Button>
+    //   ),
+    // },
+
+    // second mail part
+
+    // {
+    //   name: "mail",
+    //   cell: (row) => (
+    //     <Button
+    //       onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+    //       colorScheme="blackAlpha"
+    //       backgroundColor="#6666ff"
+    //       width="80%"
+    //       marginLeft={20}
+    //     >
+    //       Mail
+    //     </Button>
+    //   ),
+    // },
+
+    {
+      
+      cell: (row) => (
+        <HStack spacing={4}>
+       
+          <IconButton
+            icon={<AiOutlineMail />}
+            colorScheme="teal"
+            backgroundColor="#4caf50"
+            borderRadius="full"
+            size="md"
+            aria-label="Send Mail"
+            onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+          />
+          <IconButton
+            icon={<AiOutlineWarning />}
+            colorScheme="red"
+            backgroundColor="#f44336"
+            borderRadius="full"
+            size="md"
+            aria-label="Red Notice"
+            onClick={() =>
+              SendnoticeEmail(row._id, row.email, row.name, row.address)
+            } // Passing user details
+          />
+
+          {/* Notice Icon */}
+          <IconButton
+            icon={<FaFileAlt />}
+            colorScheme="blue"
+            backgroundColor="#6666ff"
+            borderRadius="full"
+            size="md"
+            aria-label="Notice"
+            onClick={() => console.log("Notice clicked")}
+          />
+
+          {/* FIR Icon */}
+          <IconButton
+            icon={<IoIosClipboard />}
+            colorScheme="teal"
+            backgroundColor="#4caf50"
+            borderRadius="full"
+            size="md"
+            aria-label="FIR"
+            onClick={() => console.log("FIR clicked")}
+          />
+             <IconButton
+            icon={<RiDeleteBin5Fill />}
+            colorScheme="teal"
+            backgroundColor="#f44336"
+            borderRadius="full"
+            size="md"
+            aria-label="Delete"
+            onClick={() => deleteclientinfo(row._id)}
+          />
+        </HStack>
+      ),
+    },
+    // {
+    //   name: "Agreement",
+
+    //   cell: () => (
+    //     <>
+    //       {/* <NavLink to="https://stamppaper-zemix.netlify.app/"> */}
+    //       <NavLink to={"/employmentform"}>
+    //         <Button
+    //           colorScheme="Red"
+    //           backgroundColor="#6666ff"
+    //           width="80%"
+    //           padding={4}
+    //           margin={4}
+    //         >
+    //           Agreement
+    //         </Button>
+    //       </NavLink>
+    //     </>
+    //   ),
+    // },
     // red notice
-    {
-      name: "red notice",
-      cell: (row) => (
-        <Button
-          onClick={() =>
-            SendnoticeEmail(row._id, row.email, row.name, row.address)
-          } // Passing user details
-          colorScheme="blackAlpha"
-          backgroundColor="#6666ff"
-          width="80%"
-          marginLeft={20}
-        >
-          Red Notice
-        </Button>
-      ),
-    },
+    // {
+    //   name: "red notice",
+    //   cell: (row) => (
+    //     <Button
+    //       onClick={() =>
+    //         SendnoticeEmail(row._id, row.email, row.name, row.address)
+    //       } // Passing user details
+    //       colorScheme="blackAlpha"
+    //       backgroundColor="#6666ff"
+    //       width="80%"
+    //       marginLeft={20}
+    //     >
+    //       Red Notice
+    //     </Button>
+    //   ),
+    // },
 
-    // notice
-    {
-      name: "notice",
-      cell: (row) => (
-        <Button
-          // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
-          colorScheme="blackAlpha"
-          backgroundColor="#6666ff"
-          width="80%"
-          marginLeft={20}
-        >
-          notice
-        </Button>
-      ),
-    },
+    // // notice
+    // {
+    //   name: "notice",
+    //   cell: (row) => (
+    //     <Button
+    //       // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+    //       colorScheme="blackAlpha"
+    //       backgroundColor="#6666ff"
+    //       width="80%"
+    //       marginLeft={20}
+    //     >
+    //       notice
+    //     </Button>
+    //   ),
+    // },
 
-    // fir
-    {
-      name: "fir",
-      cell: (row) => (
-        <Button
-          // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
-          colorScheme="blackAlpha"
-          backgroundColor="#6666ff"
-          width="80%"
-          marginLeft={20}
-        >
-          fir
-        </Button>
-      ),
-    },
+    // // fir
+    // {
+    //   name: "fir",
+    //   cell: (row) => (
+    //     <Button
+    //       // onClick={() => SendEmail(row.userId || row._id)} // Adjust field based on your data structure
+    //       colorScheme="blackAlpha"
+    //       backgroundColor="#6666ff"
+    //       width="80%"
+    //       marginLeft={20}
+    //     >
+    //       fir
+    //     </Button>
+    //   ),
+    // },
   ];
 
   // const actionsMemo = React.useMemo(
@@ -693,7 +815,8 @@ const Registration = () => {
     <>
       <Flex mt={"2rem"} justifyContent="flex-end">
         <Button
-          bg={"#33ff69"}
+          color={"white"}
+          bg={"purple"}
           leftIcon={<FaDownload />}
           onClick={exportToExcel}
         >
@@ -734,7 +857,7 @@ const Registration = () => {
         >
           <Box
             p={2}
-            bg="#6666ff" // Light background for visibility
+            bg="#953553" // Light background for visibility
             color={"white"}
             borderRadius="md"
             flex={{ base: "1", md: "0 0 45%" }} // Flex-grow on small screens, fixed width on medium+
@@ -754,7 +877,7 @@ const Registration = () => {
           <Box
             mt={"0.5rem"}
             p={0.5}
-            bg="#6666ff" // Light background for visibility
+            bg="#953553" // Light background for visibility
             color={"white"}
             borderRadius="md"
             flex={{ base: "1", md: "0 0 45%" }}
@@ -811,7 +934,8 @@ const Registration = () => {
         </InputLeftElement>
       </InputGroup>
 
-      <Box width={{ base: "110vw", md: "100vw" }} overflowX="auto" p={4}>
+      {/* <Box width={{ base: "110vw", md: "90vw" }} overflowX="auto" p={4}> */}
+      <Box width={{ base: "81vw", md: "80vw" }} overflowX="auto" p={4}>
         <DataTable
           id="myTable"
           title=""
@@ -856,6 +980,7 @@ const Registration = () => {
             },
           }}
         />
+        
       </Box>
       {showFIR && (
         <FIR onPDFGenerated={handlePDFGenerated} rowData={rowdatafordir} />

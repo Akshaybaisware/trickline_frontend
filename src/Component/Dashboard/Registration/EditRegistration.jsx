@@ -389,7 +389,16 @@ const EditClientComponent = () => {
   return (
     <>
       <Box mt={"3rem"}>
-        <Center fontWeight={800} color={"red"}>
+        <Center
+          bg={"purple"}
+          _hover={{
+            bg: "purple.600", // Darken the background color on hover
+            transform: "scale(1.05)", // Slightly increase the size on hover
+            boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Add a shadow on hover
+          }}
+          fontWeight={600}
+          p={4} // Optional: Adding some padding for better spacing
+        >
           Client Details
         </Center>
         <Box p={"1rem"} maxW="600px" mx="auto" mt="4">
@@ -500,7 +509,16 @@ const EditClientComponent = () => {
               />
             </FormControl>
 
-            <Button type="submit" color={"white"} bg={"red"}>
+            <Button
+              type="submit"
+              color={"white"}
+              bg={"purple"}
+              _hover={{
+                bg: "purple.600", // Darken the background color on hover
+                transform: "scale(1.05)", // Slightly increase the size on hover
+                boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)", // Add a shadow on hover
+              }}
+            >
               Submit
             </Button>
           </form>

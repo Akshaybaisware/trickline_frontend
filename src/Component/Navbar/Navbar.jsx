@@ -84,12 +84,13 @@ export default function Navbar() {
 
   return (
     <Flex
+    
       direction={{ base: "row", md: "row" }} // Stack vertically on small screens and horizontally on medium and larger screens
       justifyContent="space-between"
       // alignItems="center"
       paddingX={{ base: "3", md: "8" }} // Add padding on small screens and larger screens
       paddingY="4"
-       bg={"rgb(77, 26, 165)"}
+        bg={"rgb(77, 26, 165)"}
       // bg={"#0F0623"}
     >
       <Box

@@ -57,11 +57,12 @@ import DownloadStampPaper from "./Component/StampPaper/DownloadStampPaper";
 import FIR from "./Component/FIR/FIR";
 import Userinstructions from "./Component/Dashboard/UserSidebar/Assignment/Userinstructions";
 import Stamppapertesting from "./Component/StampPaper/Stampapertesting";
+import Notice from "./Component/Notice/Notice";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-    
+    <Route path="/noc" element={<Notice/>} />
       <Route path="/fir" element={<FIR />} />
       <Route path="/employmentform" element={<StampPaper />} />
       <Route path="employmentformdetails/:id" element={<StampPaperView />} />

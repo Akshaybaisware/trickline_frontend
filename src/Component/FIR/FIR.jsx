@@ -1,219 +1,133 @@
-import React, { useRef, useEffect, useState } from "react";
-import jsPDF from "jspdf";
-import html2canvas from "html2canvas";
-import { Box, Heading, Text, List, ListItem, Image } from "@chakra-ui/react";
- 
-import Map from "../../Images/india-map-.webp"
+import React from "react";
+import {
+  Box,
+  Image,
+  Heading,
+  Text,
+  Stack,
+  Divider,
+  Flex,
+} from "@chakra-ui/react";
 
+// Import the sample images
+import policeHQImage from "../../Images/jodhpur police stamp.jpg";
+import map from "../../Images/indianmapyellow.webp";
+import satyamev from "../../Images/satyamev jayate.jpg";
+import advocte from "../../Images/advocatestamp.png";
+import advocatesign from "../../Images/advocatesign2.png";
 
-const FIR = ({ onPDFGenerated, rowData }) => {
-  const pdfRef = useRef();
-  console.log(onPDFGenerated, "fir pdf");
-  const countref = useRef(0);
-  console.log(rowData, "fir pdf");
-  const [userData, setUserData] = useState();
-
-  useEffect(() => {
-    // Automatically generate the PDF when the component is rendered
-    setUserData(rowData);
-    if (countref.current === 0) {
-      const input = pdfRef.current;
-      console.log("fir pdf");
-
-      html2canvas(input, { scale: 2 }).then((canvas) => {
-        const imgData = canvas.toDataURL("image/png");
-        const pdf = new jsPDF("p", "mm", "a4");
-        const pdfWidth = pdf.internal.pageSize.getWidth();
-        const pdfHeight = pdf.internal.pageSize.getHeight();
-        pdf.addImage(imgData, "PNG", 0, 0, pdfWidth, pdfHeight);
-        pdf.save("FIR_Copy.pdf");
-
-        // Notify parent that the PDF has been generated
-        if (onPDFGenerated) {
-          onPDFGenerated();
-        }
-      });
-      countref.current = 1;
-    }
-  }, [onPDFGenerated]);
-
+function FIR() {
   return (
-    // <div
-    //   ref={pdfRef}
-    //   style={{
-    //     position: "relative",
-    //     width: "210mm",
-    //     height: "297mm",
-    //     padding: "20px",
-    //     background: "white",
-    //   }}
-    // >
-    //   {/* Background image */}
-    //   <img
-    //     src={""} // Replace with your background image path
-    //     alt="FIR Template"
-    //     style={{
-    //       position: "absolute",
-    //       width: "100%",
-    //       height: "100%",
-    //       top: 0,
-    //       left: 0,
-    //       zIndex: -1,
-    //     }}
-    //   />
-    //   <div style={{ padding: "30px" }}>
-    //     <h2 style={{ textAlign: "center", color: "red" }}>F.I.R</h2>
-    //     <p>To,</p>
-    //     <p>
-    //       <strong>Mr./Ms./Mrs. {userData?.name}:</strong> I. BHAVYA
-    //     </p>
-    //     <p>
-    //       Kindly note the details are being sent at Mumbai District Court for
-    //       further legal proceedings. You need to be present on:
-    //       <strong> 2025-01-13</strong>
-    //     </p>
-    //     <p>
-    //       Challan Amount: <strong>78,980 INR</strong>
-    //     </p>
-    //     <p>
-    //       FIR Number: <strong>AG56287987</strong>
-    //     </p>
-    //     <p>
-    //       Approval Status: <strong>Pending by District Court</strong>
-    //     </p>
-    //     <p>
-    //       Case Type: <strong>Breach of Agreement</strong>
-    //     </p>
-    //     <p>MH2547/2016</p>
-    //     <p style={{ textAlign: "right" }}>
-    //       <strong>Authorized Signature</strong>
-    //     </p>
-    //   </div>
-    // </div>
-  
-<Box
-    position="relative"
-    width="210mm"
-    height="297mm"
-    padding="30px"
-    background="white"
-    border="2px solid black"
-    boxShadow="0 4px 12px rgba(0, 0, 0, 0.1)"
-    fontFamily="Arial, sans-serif"
-    overflow="hidden"
-  >
-    {/* Background Map */}
-      {/* <Box
-        position="absolute"
-        top="0"
-        left="0"
-        width="100%"
-        height="100%"
-        zIndex="-1"
-        opacity="0.05"
+    <Box
+      fontFamily="Arial, sans-serif"
+      p="40px"
+      backgroundPosition="center"
+      backgroundSize="cover"
+      backgroundRepeat="no-repeat"
+      minHeight="100vh"
+    >
+      {/* Horizontal Satyamev Jayate */}
+      <Heading
+        as="h2"
+        size="lg"
+        textAlign="center"
+        color="purple.700"
+        mb="20px"
+        borderBottom="1px solid black"
+      >
+        सत्यमेव जयते
+      </Heading>
+
+      {/* Top Bar with Flex layout for Police HQ Image */}
+      <Flex justify="center" align="center" mb="40px">
+        <Image
+          src={policeHQImage}
+          alt="Police Headquarters"
+          boxSize="120px"
+          objectFit="contain"
+        />
+      </Flex>
+
+      <Divider />
+
+      <Heading color={"red"} as="h5" size="xl" textAlign="center" mb="20px">
+        First Information Report (FIR)
+      </Heading>
+      <Text textAlign="center" fontSize="xl" fontWeight="bold" mb="30px">
+        Breach of Agreement - Contract Violation
+      </Text>
+
+      <Stack spacing={6} fontSize="lg">
+        <Text>
+          <strong>Complainant Name:</strong> John Doe
+        </Text>
+        <Text>
+          <strong>Complaint Date:</strong> January 29, 2025
+        </Text>
+        <Text>
+  This Is a Letter Including Your Details on Behalf Of{" "}
+  <Text as="span" color="red.500">
+    Trickline Enterprises
+  </Text>
+  . Kindly Note the Details And Make Arrangement For Your Legal Proceedings.
+  Kindly Note The Details Given Details Are Being Sent At Delhi Consumer Court
+  For Further Legal Proceedings And You Need To Be Present On Delhi Consumer
+  Court And The Case Is To Be Filled Under ICA Section 73,74 With The Challan
+  Amount Of{" "}
+  <Text as="span" color="red.500">
+    78,980/- INR
+  </Text>
+  .
+</Text>
+        <Text>
+          <strong>Case Type:</strong>{" "}
+          <Text as="span" color="red.500">
+            Breach of Agreement
+          </Text>
+        </Text>
+
+        <Text>
+          <strong>F.I.R Number:</strong>{" "}
+          <Text as="span" color="red.500">
+            AG562/87987
+          </Text>
+        </Text>
+        <Text>
+          <strong>Approval Status:</strong>{" "}
+          <Text as="span" color="red.500">
+            Pending By District Court
+          </Text>
+        </Text>
+      </Stack>
+
+      <Divider my="30px" />
+
+      <Heading as="h3" size="lg" textAlign="center" mb="20px" color="red">
+        शांति सेवा न्याय
+      </Heading>
+
+      <Box
+        display={"flex"}
+        justifyContent={"space-between"}
+        mt="40px"
+        textAlign="center"
+        fontSize="sm"
+        borderTop="1px solid #000"
+        pt="20px"
       >
         <Image
-          src={Map}
-          alt="Indian Map showingi ghjbkl;lkjghjklhjklkjhgjkl;kjhkl;kjhkl;kjhg"
-          objectFit="cover"
-          width="100%"
-          height="100%"
-          opacity="0.2"
+          src={advocte}
+          alt="Police Headquarters"
+          boxSize="120px"
+          objectFit="contain"
+          borderRadius="100%"
+          border="2px solid"
+          borderColor="purple.500"
         />
-      </Box> */}
-
-    {/* Header */}
-    <Box textAlign="center" marginBottom="20px">
-      <Text
-        fontSize="26px"
-        fontWeight="bold"
-        color="red.600"
-        textDecoration="underline"
-        marginBottom="10px"
-      >
-        FIRST INFORMATION REPORT
-      </Text>
-      <Text fontSize="14px" fontWeight="bold">Mumbai District Court</Text>
-      <Text fontSize="12px" fontStyle="italic" color="gray.600">
-        (Under Section 154 of the Indian Penal Code)
-      </Text>
-    </Box>
-
-    {/* Content */}
-    <Box color="#000" lineHeight="1.6" fontSize="14px">
-      <Text>
-        <strong>To,</strong>
-      </Text>
-      <Text>
-        <strong>Mr./Ms./Mrs. I. BHAVYA</strong>
-      </Text>
-      <Text>
-        This is to inform you that the details mentioned below are being forwarded to the{" "}
-        <strong> Mumbai District Court </strong> for further legal proceedings.
-      </Text>
-      <Text>
-        You are required to appear before the court on: <strong>13th January 2025</strong>
-      </Text>
-      <Text marginTop="15px" fontWeight="bold">
-        <strong>Details:</strong>
-      </Text>
-      <Box as="ul" listStyleType="none" padding="0">
-        <Box as="li">Challan Amount: <strong>78,980 INR</strong></Box>
-        <Box as="li">FIR Number: <strong>AG56287987</strong></Box>
-        <Box as="li">Approval Status: <strong>Pending by District Court</strong></Box>
-        <Box as="li">Case Type: <strong>Breach of Agreement</strong></Box>
-        <Box as="li">Reference Code: <strong>MH2547/2016</strong></Box>
+        <Image src={advocatesign} alt="Police Headquarters" boxSize="150px" />
       </Box>
-      <Text marginTop="20px">
-        Please ensure your presence and bring all relevant documents as required.
-      </Text>
     </Box>
-
-    {/* Advocate Stamp */}
-    <Box
-      position="absolute"
-      top="220px"
-      right="20px"
-      width="100px"
-      height="100px"
-      borderRadius="50%"
-      border="3px solid red"
-      display="flex"
-      justifyContent="center"
-      alignItems="center"
-      fontSize="12px"
-      fontWeight="bold"
-      color="red.500"
-      bg="rgba(255, 0, 0, 0.1)"
-      zIndex="1"
-    >
-      Advocate Stamp
-    </Box>
-
-    {/* Footer */}
-    <Box textAlign="right" marginTop="30px" fontSize="14px" fontWeight="bold">
-      <Text>Authorized Signature</Text>
-      <Image
-        src="https://upload.wikimedia.org/wikipedia/commons/e/e5/Example_Signature.png"
-        alt="Signature"
-        width="120px"
-        height="50px"
-        marginTop="10px"
-      />
-    </Box>
-
-    {/* Footer Note */}
-    <Box
-      textAlign="center"
-      marginTop="30px"
-      fontSize="12px"
-      color="#555"
-    >
-      This is a system-generated document and does not require a physical signature.
-    </Box>
-  </Box>
-
   );
-};
+}
 
 export default FIR;

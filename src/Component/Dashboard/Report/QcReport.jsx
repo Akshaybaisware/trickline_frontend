@@ -99,7 +99,7 @@ function QcReport() {
          width={["20vw" , "10vw"]}
         direction="column" mb={4}>
           <Text fontWeight="bold">Total Form:</Text>
-          <Text>540</Text>
+          <Text>530</Text>
         </Flex>
 
         {/* Correct Form Row */}

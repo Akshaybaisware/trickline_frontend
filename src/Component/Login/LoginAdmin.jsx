@@ -467,7 +467,7 @@ const LoginAdmin = () => {
         )}
 
         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
-          <Box marginBottom={"0.6rem"} display="flex" justifyContent="flex-end">
+          {/* <Box marginBottom={"0.6rem"} display="flex" justifyContent="flex-end">
             <NavLink
               to="/ForgetPassword"
               style={{
@@ -479,7 +479,7 @@ const LoginAdmin = () => {
             >
               Forget the password?
             </NavLink>
-          </Box>
+          </Box> */}
 
           <Button
             bg={"#6BC15C"}

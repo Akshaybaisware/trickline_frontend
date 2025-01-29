@@ -487,7 +487,7 @@
 //             3. Conflict of Interest
 //           </Heading>
 //           <Text color="red" fontSize="md">
-//             3.1. Application Fee(s): The Registration Amount Of 6900/- INR. Will
+//             3.1. Application Fee(s): The Registration Amount Of 6700/- INR. Will
 //             Be Deducted From The Salary If Generated, And If The Salary Is Not
 //             Generated i.e If The Employee Fails To Complete The Work, Then You
 //             are required to work for 5 days. If you fail to commence your work
@@ -1396,7 +1396,7 @@
 //               fontWeight={"500"}
 //               padding={["1rem", "3rem"]}
 //             >
-//               Name : Glorry  Enterprises <br />
+//               Name : Trickline  Enterprises <br />
 //               Email : helplinessrvice156@gmail.com <br />
 //               Address : block number: 23 Hanuman Nagar Ajmer Road
 //               S.O, Jaipur, 302006
@@ -1881,7 +1881,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
         </Text>
 
         <Text fontSize={"1.5rem"}>
-          <strong>Glorry EnterPrises of </strong>
+          <strong>Trickline EnterPrises of </strong>
         </Text>
         <Text>
         Block Number 128 Shivaji Nagar Post Office Udaipur City SO (Sub-Office), Udaipur, Rajasthan,\
@@ -1915,11 +1915,11 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               FREELANCING AGREEMENT
               <br />
               <br />
-              THIS GENERAL GLORRY ENTERPRISES AGREEMENT (THE AGREEMENT) DATED
+              THIS GENERAL Trickline ENTERPRISES AGREEMENT (THE AGREEMENT) DATED
               THIS AS OF GOVERNMENT FOR 2024 To 2025.
               <br />
               <br />
-              THE FIRST PART OF THIS AGREEMENT IS Glorry Enterprises. THAT
+              THE FIRST PART OF THIS AGREEMENT IS Trickline Enterprises. THAT
               REGISTERED AT SHOP NO 168-169 SHAMBHAJI COMPLEX RING ROAD UDAIPUR
               RAJASTHAN 334007
               <br />
@@ -1930,7 +1930,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               <br />
               <Text fontSize={["0.8rem", "1.5rem"]}>POINT'S TO BE NOTE: -</Text>
               <br />
-              * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH GLORRY ENTERPRISES
+              * YOUR AGREEMENT IS MADE FOR 11 MONTHS WITH Trickline ENTERPRISES
               COMPANY.
               <br />
               <br />
@@ -1969,7 +1969,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               2.1 REMUNERATION: - - For the form filling service rendered by the
               client. The Clients shall beentitled to payments of price 41Rs.
               (INR) Max perform for the salary may vary from 22680/- INR Total
-              Form will be 540 and per form willl be 42/- and the u dont have to
+              Form will be 530 and per form willl be 42/- and the u dont have to
               correct more than 486 form The Client shall raise the invoice
               within 5 days after the successful completion of the project. The
               contractor will pay each project's amount within a maximum of 41
@@ -1994,7 +1994,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               Quality of End service. Following Cycle for accuracy will be
               followed. cut off - 43 (in total) Above 90% @42/- INR perform. if
               below cut off or id is terminated then the client is supposed to
-              clear the Registration Amount (6900/-) to the company.
+              clear the Registration Amount (6700/-) to the company.
               <br />
               <br />
               2.4 The Q.C. Department will Check the forms Randomly by the
@@ -2015,7 +2015,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               3. Conflict of interest
               <br />
               <br />
-              3.1 Application Fee(S): The Registration Amount of 6900/- INR.
+              3.1 Application Fee(S): The Registration Amount of 6700/- INR.
               Will be deducted from the salary ifgenerated, and if the salary is
               not generated
               <br />
@@ -2041,7 +2041,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               server of the company detects that there are multiple login
               Attempts/multiple IP Addresses of the account Modules .and The ID
               will get Terminated Without Any Intimation and the client needs to
-              clear the server maintenance charge up to 6900/- INR. (Refundable
+              clear the server maintenance charge up to 6700/- INR. (Refundable
               Amount After Successfully done the work**) For That Particular
               Project As Per This Agreement.
               <br />
@@ -2078,7 +2078,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               <br />
               The Contractor's Specification in terms of quality and other
               parameters that shall be issued by the Contractor. This General
-              Glorry Enterprises Agreement Stands and is valid for 11 months, if
+              Trickline Enterprises Agreement Stands and is valid for 11 months, if
               the client or contractor is willing to end this business
               relationship they need to proceed with the termination of this
               agreement-based contract.
@@ -2102,7 +2102,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               4.1 Termination: - - If the Client fails to submit data on or If
               the client fails to give Accuracy in the Output file. The client
               reserves the right to terminate the agreement with immediate
-              effect and Glorry Enterprises freelancing services will not be
+              effect and Trickline Enterprises freelancing services will not be
               responsible for any future data and payment to the Client and the
               Client will be liable to pay the maintenance Amount to the client
               as mentioned in "clause-3.1" In this agreement and client will
@@ -2125,7 +2125,7 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               political turbulence or for any other reasons of a similar nature,
               which is beyond the control of the client. If you want to
               terminate your agreement after your first work, you need to pay
-              6900*11 times the agreement amount as per company policies.
+              6700*11 times the agreement amount as per company policies.
               <br />
             </Text>
           </Box>
@@ -2305,10 +2305,9 @@ const StampPaperView = ({ onDownalodClick, rowData }) => {
               mt={["-1rem", "-5rem"]}
               padding={["1rem", "3rem"]}
             >
-              Name : Glorry Enterprises <br />
-              Email : helplineservice19@gmail.com <br />
-              Adress: block Number 128 Shivaji Nagar Post Office Udaipur City SO
-              (Sub-Office), Udaipur, Rajasthan, India (IN), Pin Code: 313001
+           Name : trickline Enterprises <br />
+            Email :  helplineservicewww27@gmail.com <br />
+            Adress:shivnath appartment plot number 489 postmaster post office Jodhpur Rajasthan:- 342001
             </Text>
           </Box>
           <Text

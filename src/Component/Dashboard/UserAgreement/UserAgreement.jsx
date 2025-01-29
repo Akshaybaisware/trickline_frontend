@@ -267,7 +267,7 @@ const UserAgreemen = () => {
       name: "Details",
       cell: (row) => (
         <NavLink to={`/employmentformdetails/${row.email}`}>
-          <Button colorScheme="blackAlpha" backgroundColor="black" width="80%">
+          <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
             View Detail
           </Button>
         </NavLink>

@@ -265,7 +265,7 @@ function EmployeesTable() {
         thickness="4px"
         speed="0.65s"
         emptyColor="gray.200"
-        color="blue.500"
+        color="green.500"
         size="xl"
       />
     </Center>
@@ -282,7 +282,7 @@ function EmployeesTable() {
           Employees
         </Text>
         <Link to="/employeeform">
-          <Button color={"white"} bg="blue" mb={{ base: "2", md: "0" }}>
+          <Button color={"white"} bg="purple" mb={{ base: "2", md: "0" }}>
             + Add Employees
           </Button>
         </Link>

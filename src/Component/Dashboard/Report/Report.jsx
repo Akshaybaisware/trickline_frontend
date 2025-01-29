@@ -801,7 +801,7 @@ function Report() {
     {
       name: "Total Forms",
       selector: (row) => {
-        if (row?.totalAssignmentLimit === 540) {
+        if (row?.totalAssignmentLimit === 530) {
           // Call the function if the condition is met
           console.log(row, "www 1");
           qcreportdata(row);

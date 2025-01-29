@@ -94,7 +94,9 @@ const ActiveUser = () => {
 
   //export Button
   const Export = ({ onExport }) => (
-    <Button onClick={(e) => onExport(e.target.value)}>Export</Button>
+    <Button 
+    
+    onClick={(e) => onExport(e.target.value)}>details</Button>
   );
 
   function convertArrayOfObjectsToCSV(array) {
@@ -170,7 +172,7 @@ const ActiveUser = () => {
       name: "Caller",
       selector: "caller",
       cell: (row) => {
-        const selectPlan = row?.selectPlan; // Extract date part only
+        const selectPlan = row?.caller; // Extract date part only
         return selectPlan;
       },
     },
@@ -239,42 +241,9 @@ const ActiveUser = () => {
   return (
     <>
       <Flex direction="column" align="center">
-        <Flex>
-          <Box>
-            All Users
-            {" " +
-              new Date().toLocaleString("en-IN", {
-                year: "numeric",
-                month: "2-digit",
-                day: "2-digit",
-                hour: "2-digit",
-                minute: "2-digit",
-                hour12: false,
-              })}
-          </Box>
+      
 
-          <Box>
-            <Text fontWeight={700} fontSize={["md", "xl"]} marginBottom="4">
-              Today Total
-              {`${todaysassignmentcount}`} | Today Done {`${todaysassignment}`}
-            </Text>
-          </Box>
-        </Flex>
-
-        <div>
-          {loading && <p>Loading...</p>}
-          {/* {error && <p>{error}</p>} */}
-          {registrationsCount !== null && (
-            <Box
-              fontSize={["1.3rem", "1.5rem"]}
-              mt={"1rem"}
-              fontWeight={"700"}
-              color={"green"}
-            >
-              Today's Registrations: {registrationsCount}
-            </Box>
-          )}
-        </div>
+     
         <Box
           color="#DD372D"
           ml={["1rem", "0rem"]}
@@ -283,21 +252,9 @@ const ActiveUser = () => {
           fontSize={["1.5rem", "2rem"]}
           fontWeight="700"
         >
-          Registration
+        All Actice Client
         </Box>
-        <NavLink to="/user/Registrationform">
-          <Button
-            mt="1rem"
-            mb={"1rem"}
-            _hover={{ background: "white", color: "gray" }}
-            p="1rem"
-            color="white"
-            bg="black"
-            width={"6rem"}
-          >
-            Add User
-          </Button>
-        </NavLink>
+      
       </Flex>
       <InputGroup mt="1rem" ml={["1rem", "1.5rem"]} width={["90%", "400px"]}>
         <InputLeftElement pointerEvents="none">

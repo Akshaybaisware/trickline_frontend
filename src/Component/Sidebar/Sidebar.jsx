@@ -127,7 +127,7 @@ export default function SideBar() {
             {isAdmin && (
               <ListItem className="listItem" p="10px" borderRadius="10px">
                 <Flex alignItems="center">
-                  <DashboardIcon style={{ marginTop: "0rem" }} />
+                  <DashboardIcon style={{ color:"yellow" ,marginTop: "0rem" }} />
                   <NavLink
                     to="dashboard"
                     style={{
@@ -177,6 +177,7 @@ export default function SideBar() {
                                     width: "3.5rem",
                                     height: "3rem",
                                     textAlign: "center",
+                                    color:"yellow"
                                   }}
                                 />
                                 <Text
@@ -204,7 +205,7 @@ export default function SideBar() {
                               >
                                 <ListIcon
                                   as={BsAmd}
-                                  color="gray.500"
+                                  color="yellow"
                                   ml="10px"
                                 />
                                 <NavLink to="/user/Registrationform">
@@ -250,6 +251,7 @@ export default function SideBar() {
                                     width: "3.5rem",
                                     height: "3rem",
                                     textAlign: "center",
+                                    color:"yellow"
                                   }}
                                 />
                                 <Text
@@ -259,7 +261,7 @@ export default function SideBar() {
                                   marginLeft={"0.7rem"}
                                   // Remove the hover red color
                                 >
-                                  Ptocedure
+                                  Procedure
                                 </Text>
 
                                 {isExpanded ? (
@@ -452,11 +454,13 @@ export default function SideBar() {
                   p="10px"
                   borderRadius="10px"
                 >
-                  <MovingIcon className="sidebaricon" />
+                  {/* <MovingIcon className="sidebaricon" /> */}
+                  <MovingIcon className="sidebaricon" style={{ color: "yellow" }} />
+
 
                   <Text
                     as="span"
-                    color="black"
+                    color="yellow"
                     fontSize="rem"
                     marginLeft="8px" // Add some margin for spacing between icon and text
                     _hover={{ textDecoration: "underline" }}
@@ -500,6 +504,7 @@ export default function SideBar() {
                                           width: "3.5rem",
                                           height: "3rem",
                                           textAlign: "center",
+                                             color:"yellow"
                                         }}
                                       />
                                       <Text
@@ -533,7 +538,7 @@ export default function SideBar() {
                                     >
                                       <ListIcon
                                         as={BsAmd}
-                                        color="gray.500"
+                                        color="yellow"
                                         ml="10px"
                                       />
                                       <NavLink to="/user/Registrationform">
@@ -599,6 +604,7 @@ export default function SideBar() {
                                           width: "3.5rem",
                                           height: "3rem",
                                           textAlign: "center",
+                                             color:"yellow"
                                         }}
                                       />
                                       <Text
@@ -844,13 +850,15 @@ export default function SideBar() {
                           className="listItem"
                           p="10px"
                           borderRadius="10px"
-                          color="black"
+                          color="yellow"
                         >
-                          <MovingIcon className="sidebaricon" />
+                          {/* <MovingIcon className="sidebaricon" /> */}
+                          <MovingIcon className="sidebaricon" style={{ color: "yellow" }} />
+
 
                           <Text
                             as="span"
-                            color="black"
+                            color="yellow"
                             fontSize="rem"
                             marginLeft="8px" // Add some margin for spacing between icon and text
                             _hover={{ textDecoration: "underline" }}
@@ -1002,7 +1010,7 @@ export default function SideBar() {
 
                   <Text
                     as="span"
-                    color="white"
+                    color="yellow"
                     fontSize="rem"
                     marginLeft="8px" // Add some margin for spacing between icon and text
                     _hover={{ textDecoration: "underline" }}
@@ -1178,7 +1186,7 @@ export default function SideBar() {
 
                           <Text
                             as="span"
-                            color="white"
+                            color="yellow"
                             fontSize="rem"
                             marginLeft="8px" // Add some margin for spacing between icon and text
                             _hover={{ textDecoration: "underline" }}
