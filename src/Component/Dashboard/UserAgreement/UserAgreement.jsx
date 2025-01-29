@@ -268,7 +268,7 @@ const UserAgreemen = () => {
       cell: (row) => (
         <NavLink to={`/employmentformdetails/${row.email}`}>
           <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
-            View Detail
+            AGREEMENT
           </Button>
         </NavLink>
       ),
@@ -278,7 +278,7 @@ const UserAgreemen = () => {
       cell: (row) => (
         <NavLink to={`/noc/${row?._id}`}>
           <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
-            View Detail
+            NOC
           </Button>
         </NavLink>
       ),
@@ -288,7 +288,7 @@ const UserAgreemen = () => {
       cell: (row) => (
         <NavLink to={`/fir/${row?._id}`}>
           <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
-            View Detail
+            FIR
           </Button>
         </NavLink>
       ),
