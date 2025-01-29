@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Box, Flex, Icon } from "@chakra-ui/react";
+import { Box, Flex, Icon , Button } from "@chakra-ui/react";
 import axios from "axios";
+import { FaClipboard, FaDownload } from "react-icons/fa";
 import { FaCalendarAlt } from "react-icons/fa";
 import { FaTasks } from "react-icons/fa"; // or FaClipboardList if preferred
 import { FaCheckCircle } from "react-icons/fa"; // You can also use FaFileAlt
-import { FaClipboard } from "react-icons/fa"; // Import the clipboard icon
+
+import { NavLink } from "react-router-dom";
 const Assignment = () => {
   // for data
   const [data, setData] = useState();
@@ -62,19 +64,23 @@ const Assignment = () => {
     // fetchDetails();
     getUserdetails();
   }, []);
+
+
+
+  // agreement 
   return (
     <Flex
     
-      direction={{ base: "column", md: "row" }}
+      direction={{ base: "column", md: "column" }}
       align="center"
       justify="center"
       gap={2}
     >
       {/* Total Assingment */}
-      <Flex textAlign="center" width={{ base: "100%", md: "20%" }}>
+      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
   <Box
     color={"black"}
-    backgroundColor="#a7632d"
+    backgroundColor="#4ddbff"
     border="#ebe9eb"
     margin="20px"
     padding="40px"
@@ -106,10 +112,10 @@ const Assignment = () => {
 </Flex>
 
       {/* Submitted Assingment */}
-      <Flex textAlign="center" width={{ base: "100%", md: "20%" }}>
+      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
   <Box
     color={"black"}
-    backgroundColor="#964596"
+    backgroundColor="#6699ff"
     border="#ebe9eb"
     margin="20px"
     padding="40px"
@@ -140,9 +146,9 @@ const Assignment = () => {
   </Box>
 </Flex>
       {/* Pending Assingment */}
-      <Flex textAlign="center" width={{ base: "100%", md: "20%" }}>
+      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
   <Box
-    backgroundColor="#59ac59"
+    backgroundColor="#ff9966"
     color={"black"}
     border="#ebe9eb"
     margin="20px"
@@ -174,7 +180,7 @@ const Assignment = () => {
   </Box>
 </Flex>
       {/* End date */}
-      <Flex textAlign="center" width={{ base: "100%", md: "20%" }}>
+      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
   <Box
     backgroundColor="#d43ad4"
     color={"black"}
@@ -208,7 +214,38 @@ const Assignment = () => {
   </Box>
 </Flex>
 
+{/* agreement */}
+
+
+<Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
+        <Box
+          backgroundColor="#8080ff"
+          color={"black"}
+          border="#ebe9eb"
+          margin="20px"
+          padding="40px"
+          fontWeight="800"
+          borderRadius="10px"
+          width="300px"
+          height="150px"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          ml={{ base: "2rem" }}
+        >
+          <p style={{ marginBottom: "10px" }}>
+            <Icon as={FaClipboard} w={6} h={6} mr={2} /> Agreement Details
+          </p>
+          <NavLink to={`/employmentformdetails/${useinfo?.email}`}>
+            <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%" leftIcon={<FaDownload />}>
+              AGREEMENT
+            </Button>
+          </NavLink>
+        </Box>
+      </Flex>
     </Flex>
+   
   );
 };
 

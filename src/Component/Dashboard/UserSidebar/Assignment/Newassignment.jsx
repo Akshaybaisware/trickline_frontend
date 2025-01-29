@@ -139,7 +139,7 @@ function ContentValidationfrom() {
         userdetails?.data?.User?.submittedAssignmentCount + 1
       );
 
-      if (userdetails?.data?.User?.submittedAssignmentCount >= 539) {
+      if (userdetails?.data?.User?.submittedAssignmentCount >= 529) {
         navigate(
           "/qccheck"
           //    {
@@ -157,6 +157,7 @@ function ContentValidationfrom() {
   }, [currentPage]);
 
   const submitForm = async () => {
+
     try {
       const response = await axios.post(`${apiUrl}/assignment/addassignment`, {
         userId: userID,
@@ -173,7 +174,7 @@ function ContentValidationfrom() {
           isClosable: true,
         });
         refreshAssignment();
-        navigate("/assignment");
+        navigate("/newassignment");
         // Refresh the assignment data after submission
       }
     } catch (error) {
@@ -189,10 +190,13 @@ function ContentValidationfrom() {
     }
   };
 
+ 
+  
+
   // Fetch data on component mount and update every 10 minutes
 
   const showQc = () => {
-    if (userdata?.submittedAssignmentCount >= 539) {
+    if (userdata?.submittedAssignmentCount >= 529) {
       navigate(
         "/qccheck"
         //    {
@@ -203,6 +207,7 @@ function ContentValidationfrom() {
   };
 
   useEffect(() => {
+    
     getdatafrom();
     getUserdetails();
     showQc();
@@ -342,31 +347,26 @@ function ContentValidationfrom() {
         </Box>
       </Flex> */}
       <Box bg={"lightgray"}>
-        <Flex justifyContent={"space-evenly"}>
-          <Box>
-            <Button boxShadow="0 6px 12px rgba(0, 0, 0, 0.3)">
-              <Text style={{ fontFamily: "Arial, Helvetica, sans-serif" }}>
-                Page Completed:{submittedAssignmentCount}/ {apidata?.length}
-              </Text>
-            </Button>
-          </Box>
-          <Box>
-            {/* <Button boxShadow="0 6px 12px rgba(0, 0, 0, 0.3)">
-              <Center color={"black"}>
-                {"Current Page"}: {currentpageshowinginui}
-              </Center>
-            </Button> */}
-          </Box>
-        </Flex>
+  
+
+
+  <Box>
+    <Text style={{ fontFamily: "Arial, Helvetica, sans-serif",  padding:"1px", borderRadius:"2px"}}>
+      Page Completed: {submittedAssignmentCount} / 530
+      
+    </Text>
+    
+  </Box>
+
         <></>
-        <Box>
+        <Box  height="2rem" >
           <Center mt={"1rem"}>
             <Text>Go to page directly:</Text>
             <Select
               value={currentPage}
               onChange={handlePageChange}
-              width="150px"
-              color="red"
+              width="50px"
+              color="ornage"
               placeholder="Select Page"
             >
               {Array.from({ length: apidata?.length }, (_, index) => (
@@ -377,7 +377,7 @@ function ContentValidationfrom() {
             </Select>
           </Center>
         </Box>
-        <Center height="2.5rem"  mt={"1rem"} bg="red.100" color="red.800">
+        <Center height="2rem"  mt={"1rem"} bg="red.100" color="red.800">
           Your last date of Submission:
           <Text fontWeight={"700"} as="span" color="brown">
             {userdata?.endDate?.slice(0, 10)}
