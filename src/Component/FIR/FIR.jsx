@@ -53,8 +53,8 @@ function FIR() {
       const res = await axios.post(`${apiUrl}/user/getuserdetailsbymail`, {
         email: email,
       });
-      setUserDetails(res.data);
-      console.log(res.data);
+      setUserDetails(res.data.response);
+      console.log(res.data.response);
     } catch (e) {
       console.log(e);
     }
