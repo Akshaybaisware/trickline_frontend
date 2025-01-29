@@ -24,13 +24,14 @@ function FIR() {
   const [userDetails, setUserdetails] = useState();
   const [email, setEmail] = useState("");
   useEffect(() => {
+    const url = window.location.href;
     const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
     const match = url.match(emailPattern);
 
     if (match) {
       setEmail(match[0]);
     }
-  }, [url]);
+  }, []);
   useEffect(() => {
     setTimeout(() => {
       window.print();
