@@ -201,7 +201,7 @@ const UserAgreemen = () => {
       const config = {
         method: "GET",
         //  url: `${apiUrl}/terms/getterms`,
-         url: `${apiUrl}/user/getallclient`,
+        url: `${apiUrl}/user/getallclient`,
       };
       const response = await axios(config);
       setTotalPages(response.data?.totalPages);
@@ -267,6 +267,26 @@ const UserAgreemen = () => {
       name: "Details",
       cell: (row) => (
         <NavLink to={`/employmentformdetails/${row.email}`}>
+          <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
+            View Detail
+          </Button>
+        </NavLink>
+      ),
+    },
+    {
+      name: "Noc",
+      cell: (row) => (
+        <NavLink to={`/noc/${row?._id}`}>
+          <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
+            View Detail
+          </Button>
+        </NavLink>
+      ),
+    },
+    {
+      name: "FIR",
+      cell: (row) => (
+        <NavLink to={`/fir/${row?._id}`}>
           <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
             View Detail
           </Button>

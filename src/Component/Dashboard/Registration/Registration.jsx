@@ -3,6 +3,7 @@ import DataTable from "react-data-table-component";
 import { NavLink } from "react-router-dom";
 import axios from "axios";
 import {
+  Alert,
   Box,
   Button,
   Flex,
@@ -100,7 +101,7 @@ const Registration = () => {
 
   const iconspending = [
     { Icon: FaPencilAlt, color: "#ff5722" },
- 
+
     { Icon: FaDownload, color: "#4caf50" },
   ];
 
@@ -277,7 +278,6 @@ const Registration = () => {
   //     alert("An error occurred while sending the email.");
   //   }
   // };
-
 
   useEffect(() => {
     const result = userData?.filter(
@@ -500,6 +500,23 @@ const Registration = () => {
     }
   };
 
+  const handleSendFirmail = async (row) => {
+    try {
+      const res = await axios.post(`${apiUrl}/user/sendNotice`, {
+        userID: row._id,
+        email: row?.email,
+        name: row?.name,
+        address: row?.address,
+      });
+      console.log(res, "FIR Mail Response");
+      if (res.status == 200) {
+        console.log("FIR Mail Sent Successfully");
+        alert("FIR Mail Sent Successfully");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
   const columns = [
     {
       name: "Name",
@@ -653,10 +670,8 @@ const Registration = () => {
     // },
 
     {
-      
       cell: (row) => (
         <HStack spacing={4}>
-       
           <IconButton
             icon={<AiOutlineMail />}
             colorScheme="teal"
@@ -686,7 +701,7 @@ const Registration = () => {
             borderRadius="full"
             size="md"
             aria-label="Notice"
-            onClick={() => console.log("Notice clicked")}
+            onClick={() => handleSendFirmail(row)}
           />
 
           {/* FIR Icon */}
@@ -697,9 +712,9 @@ const Registration = () => {
             borderRadius="full"
             size="md"
             aria-label="FIR"
-            onClick={() => console.log("FIR clicked")}
+            onClick={() => handleSendFirmail(row)}
           />
-             <IconButton
+          <IconButton
             icon={<RiDeleteBin5Fill />}
             colorScheme="teal"
             backgroundColor="#f44336"
@@ -980,7 +995,6 @@ const Registration = () => {
             },
           }}
         />
-        
       </Box>
       {showFIR && (
         <FIR onPDFGenerated={handlePDFGenerated} rowData={rowdatafordir} />

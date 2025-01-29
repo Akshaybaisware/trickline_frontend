@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Box,
   Image,
@@ -20,23 +20,31 @@ import { useToast } from "@chakra-ui/react";
 import { format } from "date-fns";
 import { useNavigate } from "react-router-dom";
 
-
-
-
-
-
-
-
 function FIR() {
-
-  useEffect(()=>{
+  const [userDetails, setUserdetails] = useState();
+  useEffect(() => {
     setTimeout(() => {
-       window.print();
-     }, 2000);
-   },[]);
-  
+      window.print();
+    }, 2000);
+  }, []);
+  const userEmail = useLocation().state.email;
 
+  const handleGetUserDetails = async () => {
+    try {
+      console.log(userEmail);
+      const res = await axios.post(`${apiUrl}/user/getuserdetailsbymail`, {
+        email: userEmail,
+      });
+      setUserdetails(res.data);
+      console.log(res.data);
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
+  useEffect(() => {
+    handleGetUserDetails();
+  }, []);
   return (
     <Box
       fontFamily="Arial, sans-serif"
@@ -70,7 +78,7 @@ function FIR() {
 
       <Divider />
 
-      <Heading color={"red"}  size="1.5rem" textAlign="center" mb="20px">
+      <Heading color={"red"} size="1.5rem" textAlign="center" mb="20px">
         First Information Report (FIR)
       </Heading>
       <Text textAlign="center" fontSize="0.9rem" fontWeight="bold" mb="30px">
@@ -78,27 +86,33 @@ function FIR() {
       </Text>
 
       <Stack spacing={6} fontSize="lg">
-      <Text fontSize={"0.9rem"}>
-          <strong>Complainant Name:</strong> John Doe
+        <Text fontSize={"0.9rem"}>
+          <strong>Complainant Name:</strong> {userDetails?.name}
         </Text>
         <Text fontSize={"0.9rem"}>
-          <strong>Complaint Date:</strong> January 29, 2025
+          <strong>Complaint Date:</strong> {Date.now()}
+        </Text>
+        <Text fontSize={"0.9rem"}>
+          <strong>Email:</strong> {userDetails?.email}
+        </Text>
+        <Text fontSize={"0.9rem"}>
+          <strong>Address:</strong> {userDetails?.address}
         </Text>
         <Text fontSize={"0.8rem"}>
-  This Is a Letter Including Your Details on Behalf Of{" "}
-  <Text as="span" color="red.500">
-    Trickline Enterprises
-  </Text >
-   . Kindly Note the Details And Make Arrangement For Your Legal Proceedings.
-  Kindly Note The Details Given Details Are Being Sent At Delhi Consumer Court
-  For Further Legal Proceedings And You Need To Be Present On Delhi Consumer
-  Court And The Case Is To Be Filled Under ICA Section 73,74 With The Challan
-  Amount Of{" "}
-  <Text as="span" color="red.500">
-    78,980/- INR
-  </Text>
-  .
-</Text>
+          This Is a Letter Including Your Details on Behalf Of{" "}
+          <Text as="span" color="red.500">
+            Trickline Enterprises
+          </Text>
+          . Kindly Note the Details And Make Arrangement For Your Legal
+          Proceedings. Kindly Note The Details Given Details Are Being Sent At
+          Delhi Consumer Court For Further Legal Proceedings And You Need To Be
+          Present On Delhi Consumer Court And The Case Is To Be Filled Under ICA
+          Section 73,74 With The Challan Amount Of{" "}
+          <Text as="span" color="red.500">
+            78,980/- INR
+          </Text>
+          .
+        </Text>
         <Text>
           <strong>Case Type:</strong>{" "}
           <Text as="span" color="red.500">
