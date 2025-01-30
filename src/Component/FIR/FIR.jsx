@@ -27,22 +27,23 @@ function FIR() {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
-    const url = window.location.href;
-    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-    const match = url.match(emailPattern);
+    const urlParts = window.location.pathname.split("/");
+    const userId = urlParts[urlParts.length - 1];
+    console.log(userId, "userId");
 
-    if (match) {
-      setEmail(match[0]);
-    }
-  }, []);
+    const getUserDetailsById = async () => {
+      try {
+        const res = await axios.post(`${apiUrl}/user/getuserbyid`, {
+          userId: userId,
+        });
+        setUserDetails(res.data.User);
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
-  useEffect(() => {
-    if (email) {
-      handleGetUserDetails();
-    }
-  }, [email]);
+    getUserDetailsById();
 
-  useEffect(() => {
     setTimeout(() => {
       window.print();
     }, 2000);

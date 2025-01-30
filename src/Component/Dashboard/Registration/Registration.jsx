@@ -199,6 +199,14 @@ const Registration = () => {
   // red notice
 
   const SendnoticeEmail = async (userId, email, name, address) => {
+    const date = prompt("Enter the date (YYYY-MM-DD):");
+    const amount = prompt("Enter the amount:");
+
+    // Validate inputs
+    if (!date || !amount || isNaN(amount)) {
+      alert("Invalid input. Please enter a valid date and a numeric amount.");
+      return;
+    }
     try {
       const hostName = window.location.hostname;
       const port = 5173;
@@ -209,6 +217,8 @@ const Registration = () => {
         email: email, // Add email if needed for your backend request
         name: name, // Add name if required
         address: address, // Add address if required
+        date: date,
+        amount: amount,
       });
 
       console.log(response, "Response from API");

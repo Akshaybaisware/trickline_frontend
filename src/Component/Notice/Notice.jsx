@@ -89,6 +89,10 @@ function Notice() {
         Dear {userDetails?.name},
         <br />
         <Text mb="20px">Dear {userDetails?.address},</Text>
+        <br />
+        <Text mb="20px"> Amount {userDetails?.novcAmount}</Text>
+        <br />
+        <Text mb="20px"> Date {userDetails?.nocDate}</Text>
         This is a formal notice regarding a breach of agreement between you and{" "}
         <Text as="span" color="red.500">
           Trickline Enterprises
@@ -101,7 +105,7 @@ function Notice() {
         You are hereby required to resolve the matter by [Resolution Date] and
         pay a penalty amount of{" "}
         <Text as="span" color="red.500">
-          ₹78,980/- INR
+          ₹{userDetails?.novcAmount}/- INR
         </Text>
         . Failure to comply will result in legal proceedings at the Delhi
         Consumer Court under ICA Section 73 and 74.
@@ -121,7 +125,7 @@ function Notice() {
         <br />
         आपको इस मामले को [समाधान तिथि] तक हल करने और{" "}
         <Text as="span" color="red.500">
-          ₹78,980/- INR
+          ₹{userDetails?.novcAmount}/- INR
         </Text>{" "}
         का जुर्माना अदा करने का निर्देश दिया जाता है। अनुपालन न करने की स्थिति
         में दिल्ली उपभोक्ता न्यायालय में ICA धारा 73 और 74 के तहत कानूनी
