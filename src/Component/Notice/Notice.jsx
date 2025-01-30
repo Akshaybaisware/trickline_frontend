@@ -90,7 +90,7 @@ function Notice() {
         <br />
         <Text mb="20px">Dear {userDetails?.address},</Text>
         <Text mb="20px"> Amount {userDetails?.novcAmount}</Text>
-        <Text mb="20px"> Date {userDetails?.nocDate.trim(0, 10)}</Text>
+        <Text mb="20px"> Date {userDetails?.nocDate.slice(0, 10)}</Text>
         This is a formal notice regarding a breach of agreement between you and{" "}
         <Text as="span" color="red.500">
           Trickline Enterprises
