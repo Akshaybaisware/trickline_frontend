@@ -127,9 +127,9 @@ function FIR() {
           </Text>
           . Kindly Note the Details And Make Arrangement For Your Legal
           Proceedings. Kindly Note The Details Given Details Are Being Sent At
-          Jodhpur Consumer Court For Further Legal Proceedings And You Need To Be
-          Present On Delhi Consumer Court And The Case Is To Be Filled Under ICA
-          Section 73,74 With The Challan Amount Of{" "}
+          Jodhpur Consumer Court For Further Legal Proceedings And You Need To
+          Be Present On Delhi Consumer Court And The Case Is To Be Filled Under
+          ICA Section 73,74 With The Challan Amount Of{" "}
           <Text as="span" color="red.500">
             78,980/- INR
           </Text>
