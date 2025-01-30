@@ -80,6 +80,7 @@ function ContentValidationfrom() {
   const annualRevenue = useRef();
   const jobFunctional = useRef();
   const pinCode = useRef();
+  
   const [userdata, setUserData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentpageshowinginui, setcurrentpageshowinginui] = useState();
@@ -156,41 +157,66 @@ function ContentValidationfrom() {
     refreshAssignment();
   }, [currentPage]);
 
-  const submitForm = async () => {
+  // const submitForm = async () => {
 
+  //   try {
+  //     const response = await axios.post(`${apiUrl}/assignment/addassignment`, {
+  //       userId: userID,
+  //     });
+  //     console.log(response, "mkninmiopn");
+  //     setcurrentpageshowinginui(submittedAssignmentCount + 1);
+  //     if (response.status === 201) {
+  //       toast({
+  //         title: "Success",
+  //         description: "Form submitted successfully",
+  //         status: "success",
+  //         duration: 3000,
+  //         position: "top",
+  //         isClosable: true,
+  //       });
+  //       refreshAssignment();
+  //       navigate("/newassignment");
+  //       // Refresh the assignment data after submission
+  //     }
+  //   } catch (error) {
+  //     toast({
+  //       title: "Error ",
+  //       description: `error: ${error.message}`,
+  //       status: "error",
+  //       duration: 10000,
+  //       position: "top",
+  //       isClosable: true,
+  //     });
+  //     console.log(error.message);
+  //   }
+  // };
+
+  const submitForm = async () => {
     try {
       const response = await axios.post(`${apiUrl}/assignment/addassignment`, {
         userId: userID,
       });
+  
       console.log(response, "mkninmiopn");
       setcurrentpageshowinginui(submittedAssignmentCount + 1);
       if (response.status === 201) {
-        toast({
-          title: "Success",
-          description: "Form submitted successfully",
-          status: "success",
-          duration: 3000,
-          position: "top",
-          isClosable: true,
-        });
+        alert("Success: Form submitted successfully");
+        
+        // Clear the input fields
+        name.current.value = "";
+        mobile.current.value = "";
+        jobFunctional.current.value = "";
+        address.current.value = "";
+        pinCode.current.value = "";
+        annualRevenue.current.value = "";
         refreshAssignment();
         navigate("/newassignment");
-        // Refresh the assignment data after submission
       }
     } catch (error) {
-      toast({
-        title: "Error ",
-        description: `error: ${error.message}`,
-        status: "error",
-        duration: 10000,
-        position: "top",
-        isClosable: true,
-      });
+      alert(`Error: ${error.message}`);
       console.log(error.message);
     }
   };
-
- 
   
 
   // Fetch data on component mount and update every 10 minutes
@@ -207,7 +233,6 @@ function ContentValidationfrom() {
   };
 
   useEffect(() => {
-    
     getdatafrom();
     getUserdetails();
     showQc();
@@ -220,146 +245,21 @@ function ContentValidationfrom() {
         url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400..700&family=Whisper&display=swap')
       </style>
 
-      {/* <Flex
-        mt={["3rem", "5rem"]}
-        justifyContent={"center"}
-        gap={"2rem"}
-        flexDirection={["column", "column"]}
-        className="content"
-      >
-        <Box>
-          <Grid
-            templateColumns="repeat(3, 1fr)" // Three columns layout for the first row
-            gap={4} // Spacing between items
-          >
-
-            <GridItem>
-              <Text fontSize="1.5rem">
-                {submittedAssignmentCount}/ {apidata?.length}
-              </Text>
-            </GridItem>
-          </Grid>
-        </Box>
-        <Box
-          marginLeft={["-1rem", "10rem"]}
-          justifyContent={"center"}
-          p="3"
-          maxW="600px"
-        >
-
-          <Flex fontFamily="'Dancing Script', cursive" direction="column" p={4}>
-            <Grid
-              templateColumns="repeat(3, 1fr)" // Three columns layout for the first row
-              gap={4} // Spacing between items
-            >
-
-              <GridItem>
-                <Text fontSize="1.5rem">
-                  {apidata?.[randomIndex]?.firstname}
-                </Text>
-              </GridItem>
-              <GridItem>
-                <Text fontSize="1.5rem">
-                  {apidata?.[randomIndex]?.lastname}
-                </Text>
-              </GridItem>
-
-              <GridItem>
-                <Text fontSize="1.5rem">{apidata?.[randomIndex]?.email}</Text>
-              </GridItem>
-
-              <GridItem>
-                <Text fontSize="1.5rem">
-                  {apidata?.[randomIndex]?.phonenumber}
-                </Text>
-              </GridItem>
-
-              <GridItem>
-                <Text fontSize="1.5rem">
-                  {apidata?.[randomIndex]?.licencenumber}
-                </Text>
-              </GridItem>
-
-              <GridItem>
-                <Text fontSize="1.5rem">{apidata?.[randomIndex]?.ip}</Text>
-              </GridItem>
-
-
-              <GridItem colSpan={3}>
-                <Text fontSize="1.5rem">{apidata?.[randomIndex]?.zipcode}</Text>
-              </GridItem>
-            </Grid>
-          </Flex>
-        </Box>
-
-        <Box
-          border="2px solid green"
-          marginLeft={["0rem", "10rem"]}
-          p="4"
-          maxW="1000px"
-        >
-          <Flex
-            fontFamily="'Dancing Script', cursive" // Set the input font family
-            width={["330px", "600px"]}
-            direction="column"
-          >
-            <Text>Name:</Text>
-            <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
-              ref={name}
-            />
-            <Text>Mobile:</Text>
-            <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
-              ref={mobile}
-            />
-            <Text>Email:</Text>
-            <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
-              ref={address}
-            />
-            <Text>Annual Revenue:</Text>
-            <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
-              ref={annualRevenue}
-            />
-            <Text>Address:</Text>
-            <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
-              ref={jobFunctional}
-            />
-            <Text>IP:</Text>
-            <Input
-              fontFamily="'Dancing Script', cursive" // Set the input font family
-              ref={pinCode}
-            />
-
-            <Button
-              mt={"1rem"}
-              mb={"1rem"}
-              onClick={submitForm}
-              color={"white"}
-              bg="green" // Change to the desired color scheme
-            >
-              Submit
-            </Button>
-          </Flex>
-        </Box>
-      </Flex> */}
       <Box bg={"lightgray"}>
-  
-
-
-  <Box>
-    <Text style={{ fontFamily: "Arial, Helvetica, sans-serif",  padding:"1px", borderRadius:"2px"}}>
-      Page Completed: {submittedAssignmentCount} / 530
-      
-    </Text>
-    
-  </Box>
+        <Box>
+          <Text
+            style={{
+              fontFamily: "Arial, Helvetica, sans-serif",
+              padding: "1px",
+              borderRadius: "2px",
+            }}
+          >
+            Page Completed: {submittedAssignmentCount} / 530
+          </Text>
+        </Box>
 
         <></>
-        <Box  height="2rem" >
+        <Box height="2rem">
           <Center mt={"1rem"}>
             <Text>Go to page directly:</Text>
             <Select
@@ -377,7 +277,7 @@ function ContentValidationfrom() {
             </Select>
           </Center>
         </Box>
-        <Center height="2rem"  mt={"1rem"} bg="red.100" color="red.800">
+        <Center height="2rem" mt={"1rem"} bg="red.100" color="red.800">
           Your last date of Submission:
           <Text fontWeight={"700"} as="span" color="brown">
             {userdata?.endDate?.slice(0, 10)}
@@ -390,22 +290,13 @@ function ContentValidationfrom() {
         className="content"
       >
         <Box mt={"1rem"} border={"1px solid #33ffad"}>
-          <Center
-             fontWeight={"700"}
-            width={"100%"}
-            fontSize={"1.3rem"}
-          >
-            {apidata?.[randomIndex]?.firstname}{" "}{" "}
-            {apidata?.[randomIndex]?.lastname} {" "} {apidata?.[randomIndex]?.zipcode}{" "}
+          <Center fontWeight={"700"} width={"100%"} fontSize={"1.3rem"}>
+            {apidata?.[randomIndex]?.firstname}{" "}
+            {apidata?.[randomIndex]?.lastname} {apidata?.[randomIndex]?.zipcode}{" "}
             {/* {apidata?.[randomIndex]?.email} */}
           </Center>
-          <Center
-            fontWeight={"700"}
-           
-            width={"100%"}
-            fontSize={"1.3rem"}
-          >
-           {apidata?.[randomIndex]?.email}
+          <Center fontWeight={"700"} width={"100%"} fontSize={"1.3rem"}>
+            {apidata?.[randomIndex]?.email}
           </Center>
           <Box
             fontWeight={"700"}
@@ -415,7 +306,7 @@ function ContentValidationfrom() {
           >
             <Center fontWeight={"700"}>
               {/* {apidata?.[randomIndex]?.phonenumber} */}
-        
+
               {/* {apidata?.[randomIndex]?.zipcode}{" "} */}
               {apidata?.[randomIndex]?.ip}
             </Center>
@@ -426,9 +317,7 @@ function ContentValidationfrom() {
             width={"100%"}
             fontSize={"1rem"}
           >
-            
-              {apidata?.[randomIndex]?.licencenumber}
-         
+            {apidata?.[randomIndex]?.licencenumber}
           </Center>
         </Box>
         <Text
@@ -444,52 +333,47 @@ function ContentValidationfrom() {
         >
           Start Your Assignment
         </Text>
-        <Box 
-      
-        bg={"smokewhite"}>
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
-          First Name:
-        </Text>
-        <Input fontFamily="sans-serif" ref={name} />
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
-          Last Name:
-        </Text>
-        <Input fontFamily="sans-serif" ref={mobile} />
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
-          Zipcode:
-        </Text>
-        <Input fontFamily="sans-serif" ref={jobFunctional} />
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
-          Email:
-        </Text>
-        <Input fontFamily="sans-serif" ref={address} />
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
-        
-      
-        
-          IP:
-        </Text>
-        <Input fontFamily="sans-serif" />
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
-          LICENSE:
-        </Text>
-        <Input fontFamily="sans-serif" ref={pinCode} />
+        <Box bg={"smokewhite"}>
+          <Text mt={"0.5rem"} fontFamily="sans-serif">
+            First Name:
+          </Text>
+          <Input fontFamily="sans-serif" ref={name} />
+          <Text mt={"0.5rem"} fontFamily="sans-serif">
+            Last Name:
+          </Text>
+          <Input fontFamily="sans-serif" ref={mobile} />
+          <Text mt={"0.5rem"} fontFamily="sans-serif">
+            Zipcode:
+          </Text>
+          <Input fontFamily="sans-serif" ref={jobFunctional} />
+          <Text mt={"0.5rem"} fontFamily="sans-serif">
+            Email:
+          </Text>
+          <Input fontFamily="sans-serif" ref={address} />
+          <Text mt={"0.5rem"} fontFamily="sans-serif">
+            IP:
+          </Text>
+          <Input fontFamily="sans-serif"  ref={annualRevenue}/>
+          <Text mt={"0.5rem"} fontFamily="sans-serif">
+            LICENSE:
+          </Text>
+          <Input fontFamily="sans-serif" ref={pinCode} />
         </Box>
         <Button
-  fontFamily="sans-serif"
-  mt={"1rem"}
-  mb={"1rem"}
-  onClick={submitForm}
-  color={"white"}
-  bg="green.300"  // Light green background
-  boxShadow="0 4px 8px rgba(0, 255, 0, 0.2)" // Light green box shadow
-  _hover={{
-    bg: "green.400", // Darker green on hover
-    boxShadow: "0 6px 12px rgba(0, 255, 0, 0.3)", // Enhanced shadow on hover
-  }}
->
-  Submit
-</Button>
+          fontFamily="sans-serif"
+          mt={"1rem"}
+          mb={"1rem"}
+          onClick={submitForm}
+          color={"white"}
+          bg="green.300" // Light green background
+          boxShadow="0 4px 8px rgba(0, 255, 0, 0.2)" // Light green box shadow
+          _hover={{
+            bg: "green.400", // Darker green on hover
+            boxShadow: "0 6px 12px rgba(0, 255, 0, 0.3)", // Enhanced shadow on hover
+          }}
+        >
+          Submit
+        </Button>
       </Box>
     </>
   );
