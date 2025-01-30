@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import { NavLink } from "react-router-dom";
@@ -109,11 +108,11 @@ const UserAgreemen = () => {
       ),
     },
     {
-      name: "Noc",
+      name: "Notice",
       cell: (row) => (
         <NavLink to={`/noc/${row?._id}`}>
           <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
-            NOC
+            Notice
           </Button>
         </NavLink>
       ),
@@ -124,6 +123,16 @@ const UserAgreemen = () => {
         <NavLink to={`/fir/${row?._id}`}>
           <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
             FIR
+          </Button>
+        </NavLink>
+      ),
+    },
+    {
+      name: "NOC",
+      cell: (row) => (
+        <NavLink to={`/nonoc/${row?._id}`}>
+          <Button colorScheme="blackAlpha" backgroundColor="purple" width="80%">
+            NOC
           </Button>
         </NavLink>
       ),
