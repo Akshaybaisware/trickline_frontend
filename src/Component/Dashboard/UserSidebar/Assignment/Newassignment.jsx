@@ -390,36 +390,46 @@ function ContentValidationfrom() {
         className="content"
       >
         <Box mt={"1rem"} border={"1px solid #33ffad"}>
-          <Box
-            // fontWeight={"700"}
+          <Center
+             fontWeight={"700"}
             width={"100%"}
             fontSize={"1.3rem"}
           >
-            {apidata?.[randomIndex]?.firstname}{" "}
-            {apidata?.[randomIndex]?.lastname} {apidata?.[randomIndex]?.email}
-          </Box>
+            {apidata?.[randomIndex]?.firstname}{" "}{" "}
+            {apidata?.[randomIndex]?.lastname} {" "} {apidata?.[randomIndex]?.zipcode}{" "}
+            {/* {apidata?.[randomIndex]?.email} */}
+          </Center>
+          <Center
+            fontWeight={"700"}
+           
+            width={"100%"}
+            fontSize={"1.3rem"}
+          >
+           {apidata?.[randomIndex]?.email}
+          </Center>
           <Box
             fontWeight={"700"}
-            mt={"1rem"}
+            mt={"0.5rem"}
             width={"100%"}
-            fontSize={"0.9rem"}
+            fontSize={"1.3rem"}
           >
-            <Box fontWeight={"700"}>
-              {apidata?.[randomIndex]?.phonenumber}
-              {""} {apidata?.[randomIndex]?.zipcode}{" "}
+            <Center fontWeight={"700"}>
+              {/* {apidata?.[randomIndex]?.phonenumber} */}
+        
+              {/* {apidata?.[randomIndex]?.zipcode}{" "} */}
               {apidata?.[randomIndex]?.ip}
-            </Box>
+            </Center>
           </Box>
-          <Box
+          <Center
             fontWeight="700"
-            mt={"1.1rem"}
+            mt={"0.5rem"}
             width={"100%"}
-            fontSize={"0.9rem"}
+            fontSize={"1rem"}
           >
-            <Box fontWeight={"700"}>
+            
               {apidata?.[randomIndex]?.licencenumber}
-            </Box>
-          </Box>
+         
+          </Center>
         </Box>
         <Text
           fontWeight={"700"}
@@ -436,7 +446,7 @@ function ContentValidationfrom() {
         </Text>
         <Box 
       
-        bg={"lightgray"}>
+        bg={"smokewhite"}>
         <Text mt={"0.5rem"} fontFamily="sans-serif">
           First Name:
         </Text>
@@ -446,18 +456,17 @@ function ContentValidationfrom() {
         </Text>
         <Input fontFamily="sans-serif" ref={mobile} />
         <Text mt={"0.5rem"} fontFamily="sans-serif">
-          Email:
-        </Text>
-        <Input fontFamily="sans-serif" ref={address} />
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
-          Mobile:
-        </Text>
-        <Input fontFamily="sans-serif" ref={annualRevenue} />
-        <Text mt={"0.5rem"} fontFamily="sans-serif">
           Zipcode:
         </Text>
         <Input fontFamily="sans-serif" ref={jobFunctional} />
         <Text mt={"0.5rem"} fontFamily="sans-serif">
+          Email:
+        </Text>
+        <Input fontFamily="sans-serif" ref={address} />
+        <Text mt={"0.5rem"} fontFamily="sans-serif">
+        
+      
+        
           IP:
         </Text>
         <Input fontFamily="sans-serif" />
