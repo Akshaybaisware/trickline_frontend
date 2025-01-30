@@ -74,10 +74,10 @@ const Assignment = () => {
       direction={{ base: "column", md: "column" }}
       align="center"
       justify="center"
-      gap={2}
+     
     >
       {/* Total Assingment */}
-      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
+      <Flex textAlign="center" width={{ base: "80%", md: "50%" }}>
   <Box
     color={"black"}
     backgroundColor="#4ddbff"
@@ -112,7 +112,7 @@ const Assignment = () => {
 </Flex>
 
       {/* Submitted Assingment */}
-      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
+      <Flex textAlign="center" width={{ base: "80%", md: "50%" }}>
   <Box
     color={"black"}
     backgroundColor="#6699ff"
@@ -146,7 +146,7 @@ const Assignment = () => {
   </Box>
 </Flex>
       {/* Pending Assingment */}
-      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
+      <Flex textAlign="center" width={{ base: "80%", md: "50%" }}>
   <Box
     backgroundColor="#ff9966"
     color={"black"}
@@ -180,7 +180,7 @@ const Assignment = () => {
   </Box>
 </Flex>
       {/* End date */}
-      <Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
+      <Flex textAlign="center" width={{ base: "80%", md: "50%" }}>
   <Box
     backgroundColor="#d43ad4"
     color={"black"}
@@ -217,7 +217,7 @@ const Assignment = () => {
 {/* agreement */}
 
 
-<Flex textAlign="center" width={{ base: "100%", md: "50%" }}>
+<Flex textAlign="center" width={{ base: "80%", md: "50%" }}>
         <Box
           backgroundColor="#8080ff"
           color={"black"}
