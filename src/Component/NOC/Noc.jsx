@@ -1,5 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Box, Heading, Text, Stack, Divider, Flex, Image } from "@chakra-ui/react";
+import {
+  Box,
+  Heading,
+  Text,
+  Stack,
+  Divider,
+  Flex,
+  Image,
+} from "@chakra-ui/react";
 import { useLocation } from "react-router-dom";
 import { useToast } from "@chakra-ui/react";
 import { format } from "date-fns";
@@ -13,22 +21,23 @@ function Noc() {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   useEffect(() => {
-    const url = window.location.href;
-    const emailPattern = /[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}/;
-    const match = url.match(emailPattern);
+    const urlParts = window.location.pathname.split("/");
+    const userId = urlParts[urlParts.length - 1];
+    console.log(userId, "userId");
 
-    if (match) {
-      setEmail(match[0]);
-    }
-  }, []);
+    const getUserDetailsById = async () => {
+      try {
+        const res = await axios.post(`${apiUrl}/user/getuserbyid`, {
+          userId: userId,
+        });
+        setUserDetails(res.data.User);
+      } catch (e) {
+        console.log(e);
+      }
+    };
 
-  useEffect(() => {
-    if (email) {
-      handleGetUserDetails();
-    }
-  }, [email]);
+    getUserDetailsById();
 
-  useEffect(() => {
     setTimeout(() => {
       window.print();
     }, 2000);
@@ -56,7 +65,6 @@ function Noc() {
   const currentDate = new Date();
   const formattedDate = formatDate(currentDate);
   return (
-
     <Box
       fontFamily="Arial, sans-serif"
       p="40px"
@@ -68,7 +76,14 @@ function Noc() {
       color="gray.800"
     >
       {/* Top Heading for NOC */}
-      <Heading as="h2" size="xl" textAlign="center" color="blue.700" mb="40px" fontWeight="bold">
+      <Heading
+        as="h2"
+        size="xl"
+        textAlign="center"
+        color="blue.700"
+        mb="40px"
+        fontWeight="bold"
+      >
         No Objection Certificate (NOC)
       </Heading>
 
@@ -85,22 +100,28 @@ function Noc() {
           <strong>Address:</strong> {userDetails?.address}
         </Text>
         <Text fontSize="1rem">
-          This document certifies that there is no objection from Trickline Enterprises regarding the actions or conduct described herein. Kindly ensure adherence to all legal and administrative guidelines.
+          This document certifies that there is no objection from Trickline
+          Enterprises regarding the actions or conduct described herein. Kindly
+          ensure adherence to all legal and administrative guidelines.
         </Text>
       </Stack>
 
       <Divider my="40px" borderColor="blue.500" />
 
-      <Flex justifyContent="space-between" mt="40px" fontSize="md" borderTop="1px solid #000" pt="20px">
-      
+      <Flex
+        justifyContent="space-between"
+        mt="40px"
+        fontSize="md"
+        borderTop="1px solid #000"
+        pt="20px"
+      >
         {/* <Text color="gray.600" textAlign="right">
           Seal/Stamp
         </Text> */}
-           <Image src={LOGO} alt="Stamp" />
-            <Image src={SIGN} alt="Stamp" />
+        <Image src={LOGO} alt="Stamp" />
+        <Image src={SIGN} alt="Stamp" />
       </Flex>
     </Box>
- 
   );
 }
 

@@ -510,6 +510,24 @@ const Registration = () => {
     }
   };
 
+  const handleSendNocMail = async (row) => {
+    try {
+      const res = await axios.post(`${apiUrl}/user/sendFirNotice`, {
+        userID: row._id,
+        email: row?.email,
+        name: row?.name,
+        address: row?.address,
+      });
+      console.log(res, "FIR Mail Response");
+      if (res.status == 200) {
+        console.log("FIR Mail Sent Successfully");
+        alert("NOC Mail Sent Successfully");
+      }
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const handleSendFirmail = async (row) => {
     try {
       const res = await axios.post(`${apiUrl}/user/sendNotice`, {
@@ -711,7 +729,7 @@ const Registration = () => {
             borderRadius="full"
             size="md"
             aria-label="Notice"
-            onClick={() => handleSendFirmail(row)}
+            onClick={() => handleSendNocMail(row)}
           />
 
           {/* FIR Icon */}
