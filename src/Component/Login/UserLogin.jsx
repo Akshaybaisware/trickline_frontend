@@ -1,8 +1,289 @@
+// import {
+//   Box,
+//   Button,
+//   Flex,
+//   Heading,
+//   Image,
+//   Input,
+//   Alert,
+//   AlertIcon,
+//   AlertTitle,
+//   Spinner,
+// } from "@chakra-ui/react";
+// import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
+// import { useNavigate } from "react-router-dom";
+// import React, { useState } from "react";
+// import { useToast } from "@chakra-ui/react";
+// import axios from "axios";
+// import logo from "../../Images/TRICKLINE_2.png";
+// import { jwtDecode } from "jwt-decode";
+// import { useUserContext } from "../Context/UserContext";
+// import bg from "../../Images/dataentry_adminbg.webp"
+// import {  keyframes, css } from '@chakra-ui/react';
+// const borderAnimation = keyframes`
+//   0% {
+//     border-color: #FF6347;
+//     border-width: 4px;
+//   }
+//   50% {
+//     border-color: #00BFFF;
+//     border-width: 8px;
+//   }
+//   100% {
+//     border-color: #32CD32;
+//     border-width: 4px;
+//   }
+// `;
+
+
+
+
+
+// const UserLogin = () => {
+//   const { setUserContext } = useUserContext();
+//   const toast = useToast();
+
+//   const navigate = useNavigate();
+//   const apiUrl = import.meta.env.VITE_APP_API_URL;
+
+//   const [errors, setErrors] = useState({});
+//   const [isLoading, setIsLoading] = useState(false); // State to track loading status
+
+//   const [inputFields, setInputFields] = useState({
+//     email: "",
+//     password: "",
+//   });
+
+//   const onChangeHandler = (e) => {
+//     const { name, value } = e.target;
+//     setInputFields((prevVal) => {
+//       return {
+//         ...prevVal,
+//         [name]: value,
+//       };
+//     });
+//   };
+
+//   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+//   const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+
+//   const validationForm = () => {
+//     const newError = {};
+//     if (!inputFields.email.match(emailRegex)) {
+//       newError.email = "Invalid Email Address";
+//     }
+
+//     // if (!inputFields.password.match(passwordRegex)) {
+//     //   newError.password = "Invalid Password";
+//     // }
+//     setErrors(newError);
+//     return Object.keys(newError).length === 0; // Return true if no errors
+//   };
+
+//   const handleSubmit = async (e) => {
+//     e.preventDefault();
+//     if (!validationForm()) {
+//       return; // Exit if validation fails
+//     }
+//     setIsLoading(true); // Start the loader when login is initiated
+//     try {
+//       const response = await axios.post(`${apiUrl}/user/login`, inputFields, {
+//         headers: {
+//           "Content-Type": "application/json",
+//         },
+//       });
+//       console.log(response, "user login ");
+//       const endDate = new Date(response.data.user.endDate);
+//       const currentDate = new Date();
+//       console.log(endDate.getTime(), currentDate.getTime(), "dates");
+//       if (endDate.getTime() < currentDate.getTime()) {
+//         console.log("in the redirect");
+//         localStorage.setItem("useremail", response.data.email);
+//         localStorage.setItem("usermobilenumber", response.data.user.mobile);
+//         localStorage.setItem("username", response.data.user.name);
+//         localStorage.setItem("useraddress", response.data.address);
+//         localStorage.setItem(
+//           "usersubmitedforms",
+//           response.data.submittedAssignmentCount
+//         );
+//         navigate("/qccheck", {
+//           state: response.data,
+//         });
+//         return;
+//       }
+
+//       if (response.data.status === "Freeze") {
+//         navigate("/qccheck");
+//       } else if (response.status === 200) {
+//         setUserContext(response.data.role);
+//         sessionStorage.setItem("userrole", response.data.role);
+//         const { token, id } = response.data;
+//         const decodedToken = jwtDecode(token);
+//         sessionStorage.setItem("token", JSON.stringify(decodedToken));
+//         sessionStorage.setItem("id", id);
+
+//         toast({
+//           title: "Login Success",
+//           status: "success",
+//           duration: 3000,
+//           isClosable: true,
+//           position: "top",
+//         });
+//         navigate("/assignment");
+//       } else {
+//         alert("Invalid credentials");
+//       }
+//     } catch (error) {
+//       console.error("Error:", error);
+//       toast({
+//         title: "Login Failed",
+//         description: "Provide Correct UserId and Password",
+//         status: "error",
+//         duration: 3000,
+//         isClosable: true,
+//         position: "top",
+//       });
+//     } finally {
+//       setIsLoading(false); // Stop the loader after the request is done
+//     }
+//   };
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <Box
+//         width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }}
+//               marginX="auto"
+//               minHeight="100vh"
+//               display="flex"
+//               flexDirection="column"
+//               alignItems="center"
+//               justifyContent={"center"}
+//               padding="20px"
+//              bgImage={`url(${bg})`}
+//               backgroundSize="cover"
+//               backgroundPosition="center"
+//               animation="fadeIn 2s ease-in-out" // Apply fade-in animation
+//               transition="background 0.5s ease-in-out"
+//       >
+//        <Box 
+//         borderRadius="25%" 
+//         overflow="hidden" // Ensures the image respects the borderRadius of the Box
+//         display="flex" 
+//         flexDirection="column" 
+//         alignItems="center" 
+//         marginY="20px"
+//         animation={`${borderAnimation} 2s infinite`}
+//         css={css`
+//           transition: all 0.3s ease-in-out;
+//           &:hover {
+//             border-width: 8px;
+//           }
+//         `}
+//       >
+//         <Image 
+//           width={"23rem"} 
+//           src={logo} 
+//           alt="Logo" 
+//         />
+//       </Box>
+
+//         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
+//           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
+//             <FaEnvelope style={{ width: "4%", marginLeft: "20px" }} />
+//             <Input
+//               name="email"
+//               type="text"
+//               placeholder="Email"
+//               style={inputStyle}
+//               onFocus={(e) => (e.target.style.outline = "none")}
+//               required
+//               onChange={onChangeHandler}
+//               value={inputFields.email}
+//             />
+//           </Flex>
+//         </Flex>
+//         {errors.email && (
+//           <Alert w="70" status="error">
+//             <AlertIcon />
+//             <AlertTitle>{errors.email}</AlertTitle>
+//           </Alert>
+//         )}
+
+//         <Flex
+//           direction="column"
+//           width={["90%", "70%", "50%", "40%"]}
+//           marginY="10px"
+//         >
+//           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
+//             <FaLock style={{ width: "4%", marginLeft: "20px" }} />
+//             <Input
+//               name="password"
+//               type="password"
+//               placeholder="Password"
+//               style={inputStyle}
+//               onFocus={(e) => (e.target.style.outline = "none")}
+//               required
+//               value={inputFields.password}
+//               onChange={onChangeHandler}
+//             />
+//           </Flex>
+//         </Flex>
+//         {errors.password && (
+//           <Alert w="70" status="error">
+//             <AlertIcon />
+//             <AlertTitle>{errors.password}</AlertTitle>
+//           </Alert>
+//         )}
+
+//         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
+//           <Button
+//             height={"3rem"}
+//             style={buttonStyle}
+//             type="submit"
+//             isDisabled={isLoading} // Disable the button when loading
+//             _hover={{ background: "FloralWhite", color: "black" }}
+//           >
+//             {isLoading ? <Spinner size="md" /> : "Login"}{" "}
+//             {/* Show spinner while loading */}
+//           </Button>
+//         </Flex>
+//       </Box>
+//     </form>
+//   );
+// };
+
+// const inputStyle = {
+//   outline: "none",
+//   marginLeft: "10px",
+//   width: "100%",
+//   border: "none",
+//   background: "white",
+//   fontSize: "16px",
+//   color: "gray",
+//   fontFamily: '"Poppins", sans-serif',
+//   fontWeight: "400",
+//   height: "45px",
+//   borderRadius: "20px",
+// };
+
+// const buttonStyle = {
+//   padding: "15px",
+//   width: "100%",
+//   borderRadius: "25px",
+//   border: "2px solid black",
+//   color: "#fff",
+//    background: "#6BC15C",
+//   fontWeight: "700",
+//   fontFamily: '"Poppins", sans-serif',
+// };
+
+// export default UserLogin;
+
+
 import {
   Box,
   Button,
   Flex,
-  Heading,
   Image,
   Input,
   Alert,
@@ -10,7 +291,7 @@ import {
   AlertTitle,
   Spinner,
 } from "@chakra-ui/react";
-import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useToast } from "@chakra-ui/react";
@@ -18,8 +299,9 @@ import axios from "axios";
 import logo from "../../Images/TRICKLINE_2.png";
 import { jwtDecode } from "jwt-decode";
 import { useUserContext } from "../Context/UserContext";
-import bg from "../../Images/dataentry_adminbg.webp"
-import {  keyframes, css } from '@chakra-ui/react';
+import bg from "../../Images/dataentry_adminbg.webp";
+import { keyframes, css } from "@chakra-ui/react";
+
 const borderAnimation = keyframes`
   0% {
     border-color: #FF6347;
@@ -35,20 +317,14 @@ const borderAnimation = keyframes`
   }
 `;
 
-
-
-
-
 const UserLogin = () => {
   const { setUserContext } = useUserContext();
   const toast = useToast();
-
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false); // State to track loading status
-
+  const [isLoading, setIsLoading] = useState(false);
   const [inputFields, setInputFields] = useState({
     email: "",
     password: "",
@@ -56,48 +332,38 @@ const UserLogin = () => {
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setInputFields((prevVal) => {
-      return {
-        ...prevVal,
-        [name]: value,
-      };
-    });
+    setInputFields((prevVal) => ({
+      ...prevVal,
+      [name]: value.trim(),
+    }));
   };
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
   const validationForm = () => {
     const newError = {};
-    if (!inputFields.email.match(emailRegex)) {
-      newError.email = "Invalid Email Address";
+    if (!inputFields.email) {
+      newError.email = "Email is required.";
     }
-
-    // if (!inputFields.password.match(passwordRegex)) {
-    //   newError.password = "Invalid Password";
-    // }
+    if (!inputFields.password) {
+      newError.password = "Password is required.";
+    }
     setErrors(newError);
-    return Object.keys(newError).length === 0; // Return true if no errors
+    return Object.keys(newError).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validationForm()) {
-      return; // Exit if validation fails
-    }
-    setIsLoading(true); // Start the loader when login is initiated
+    if (!validationForm()) return;
+    setIsLoading(true);
     try {
       const response = await axios.post(`${apiUrl}/user/login`, inputFields, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log(response, "user login ");
+
       const endDate = new Date(response.data.user.endDate);
       const currentDate = new Date();
-      console.log(endDate.getTime(), currentDate.getTime(), "dates");
       if (endDate.getTime() < currentDate.getTime()) {
-        console.log("in the redirect");
         localStorage.setItem("useremail", response.data.email);
         localStorage.setItem("usermobilenumber", response.data.user.mobile);
         localStorage.setItem("username", response.data.user.name);
@@ -144,7 +410,7 @@ const UserLogin = () => {
         position: "top",
       });
     } finally {
-      setIsLoading(false); // Stop the loader after the request is done
+      setIsLoading(false);
     }
   };
 
@@ -152,40 +418,36 @@ const UserLogin = () => {
     <form onSubmit={handleSubmit}>
       <Box
         width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }}
-              marginX="auto"
-              minHeight="100vh"
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent={"center"}
-              padding="20px"
-             bgImage={`url(${bg})`}
-              backgroundSize="cover"
-              backgroundPosition="center"
-              animation="fadeIn 2s ease-in-out" // Apply fade-in animation
-              transition="background 0.5s ease-in-out"
+        marginX="auto"
+        minHeight="100vh"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent={"center"}
+        padding="20px"
+        bgImage={`url(${bg})`}
+        backgroundSize="cover"
+        backgroundPosition="center"
+        animation="fadeIn 2s ease-in-out"
+        transition="background 0.5s ease-in-out"
       >
-       <Box 
-        borderRadius="25%" 
-        overflow="hidden" // Ensures the image respects the borderRadius of the Box
-        display="flex" 
-        flexDirection="column" 
-        alignItems="center" 
-        marginY="20px"
-        animation={`${borderAnimation} 2s infinite`}
-        css={css`
-          transition: all 0.3s ease-in-out;
-          &:hover {
-            border-width: 8px;
-          }
-        `}
-      >
-        <Image 
-          width={"23rem"} 
-          src={logo} 
-          alt="Logo" 
-        />
-      </Box>
+        <Box
+          borderRadius="25%"
+          overflow="hidden"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          marginY="20px"
+          animation={`${borderAnimation} 2s infinite`}
+          css={css`
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              border-width: 8px;
+            }
+          `}
+        >
+          <Image width={"23rem"} src={logo} alt="Logo" />
+        </Box>
 
         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
@@ -240,11 +502,10 @@ const UserLogin = () => {
             height={"3rem"}
             style={buttonStyle}
             type="submit"
-            isDisabled={isLoading} // Disable the button when loading
+            isDisabled={isLoading}
             _hover={{ background: "FloralWhite", color: "black" }}
           >
-            {isLoading ? <Spinner size="md" /> : "Login"}{" "}
-            {/* Show spinner while loading */}
+            {isLoading ? <Spinner size="md" /> : "Login"}
           </Button>
         </Flex>
       </Box>
@@ -272,7 +533,7 @@ const buttonStyle = {
   borderRadius: "25px",
   border: "2px solid black",
   color: "#fff",
-   background: "#6BC15C",
+  background: "#6BC15C",
   fontWeight: "700",
   fontFamily: '"Poppins", sans-serif',
 };

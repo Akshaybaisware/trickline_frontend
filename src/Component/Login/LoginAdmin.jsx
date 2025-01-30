@@ -313,7 +313,7 @@ const LoginAdmin = () => {
     setInputFields((prevVal) => {
       return {
         ...prevVal,
-        [name]: value,
+        [name]: value.trim(),
       };
     });
   };
