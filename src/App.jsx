@@ -59,12 +59,13 @@ import Userinstructions from "./Component/Dashboard/UserSidebar/Assignment/Useri
 import Stamppapertesting from "./Component/StampPaper/Stampapertesting";
 import Notice from "./Component/Notice/Notice";
 import Noc from "./Component/NOC/Noc";
+import QcFail from "./Component/Login/QcFail";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route>
-      <Route path="nonoc/:id" element={<Noc/>} />
-    <Route path="noc/:id" element={<Notice/>} />
+      <Route path="nonoc/:id" element={<Noc />} />
+      <Route path="noc/:id" element={<Notice />} />
       <Route path="fir/:id" element={<FIR />} />
       <Route path="/employmentform" element={<StampPaper />} />
       <Route path="employmentformdetails/:id" element={<StampPaperView />} />
@@ -138,6 +139,7 @@ const router = createBrowserRouter(
         <Route path="downloadreport" element={<DownloadStampPaper />} />
         <Route path="stamppapertesting/:id" element={<Stamppapertesting />} />
         <Route path="fir" element={<FIR />} />
+        <Route path="qcfail" element={<QcFail />} />
         {/* <Route
         path="usersidebar"
         element={<ProtectedRoute element={<Dashboard />} />}

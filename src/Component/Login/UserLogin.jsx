@@ -18,8 +18,8 @@ import axios from "axios";
 import logo from "../../Images/TRICKLINE_2.png";
 import { jwtDecode } from "jwt-decode";
 import { useUserContext } from "../Context/UserContext";
-import bg from "../../Images/dataentry_adminbg.webp"
-import {  keyframes, css } from '@chakra-ui/react';
+import bg from "../../Images/dataentry_adminbg.webp";
+import { keyframes, css } from "@chakra-ui/react";
 const borderAnimation = keyframes`
   0% {
     border-color: #FF6347;
@@ -34,10 +34,6 @@ const borderAnimation = keyframes`
     border-width: 4px;
   }
 `;
-
-
-
-
 
 const UserLogin = () => {
   const { setUserContext } = useUserContext();
@@ -106,6 +102,25 @@ const UserLogin = () => {
           "usersubmitedforms",
           response.data.submittedAssignmentCount
         );
+        navigate("/qcfail", {
+          state: response.data,
+        });
+        return;
+      }
+
+      if (
+        endDate.getTime() > currentDate.getTime() &&
+        response.data.submittedAssignmentCount === 529
+      ) {
+        console.log("in the redirect");
+        // localStorage.setItem("useremail", response.data.email);
+        // localStorage.setItem("usermobilenumber", response.data.user.mobile);
+        // localStorage.setItem("username", response.data.user.name);
+        // localStorage.setItem("useraddress", response.data.address);
+        // localStorage.setItem(
+        //   "usersubmitedforms",
+        //   response.data.submittedAssignmentCount
+        // );
         navigate("/qccheck", {
           state: response.data,
         });
@@ -152,40 +167,36 @@ const UserLogin = () => {
     <form onSubmit={handleSubmit}>
       <Box
         width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }}
-              marginX="auto"
-              minHeight="100vh"
-              display="flex"
-              flexDirection="column"
-              alignItems="center"
-              justifyContent={"center"}
-              padding="20px"
-             bgImage={`url(${bg})`}
-              backgroundSize="cover"
-              backgroundPosition="center"
-              animation="fadeIn 2s ease-in-out" // Apply fade-in animation
-              transition="background 0.5s ease-in-out"
+        marginX="auto"
+        minHeight="100vh"
+        display="flex"
+        flexDirection="column"
+        alignItems="center"
+        justifyContent={"center"}
+        padding="20px"
+        bgImage={`url(${bg})`}
+        backgroundSize="cover"
+        backgroundPosition="center"
+        animation="fadeIn 2s ease-in-out" // Apply fade-in animation
+        transition="background 0.5s ease-in-out"
       >
-       <Box 
-        borderRadius="25%" 
-        overflow="hidden" // Ensures the image respects the borderRadius of the Box
-        display="flex" 
-        flexDirection="column" 
-        alignItems="center" 
-        marginY="20px"
-        animation={`${borderAnimation} 2s infinite`}
-        css={css`
-          transition: all 0.3s ease-in-out;
-          &:hover {
-            border-width: 8px;
-          }
-        `}
-      >
-        <Image 
-          width={"23rem"} 
-          src={logo} 
-          alt="Logo" 
-        />
-      </Box>
+        <Box
+          borderRadius="25%"
+          overflow="hidden" // Ensures the image respects the borderRadius of the Box
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          marginY="20px"
+          animation={`${borderAnimation} 2s infinite`}
+          css={css`
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              border-width: 8px;
+            }
+          `}
+        >
+          <Image width={"23rem"} src={logo} alt="Logo" />
+        </Box>
 
         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
@@ -272,10 +283,9 @@ const buttonStyle = {
   borderRadius: "25px",
   border: "2px solid black",
   color: "#fff",
-   background: "#6BC15C",
+  background: "#6BC15C",
   fontWeight: "700",
   fontFamily: '"Poppins", sans-serif',
 };
 
 export default UserLogin;
-
