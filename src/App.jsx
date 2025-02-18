@@ -80,6 +80,7 @@ const router = createBrowserRouter(
       <Route path="/stamppaper" element={<UserAgreement />} />
       <Route path="/stampapersucess" element={<StampPaperSubmission />} />
       <Route path="/stamppaperfill" element={<StampPaperFill />} />
+      <Route path="qcfail" element={<QcFail />} />
       <Route path="/" element={<RootLayout />}>
         {/* {/ ADMIN PART /} */}
         <Route
@@ -139,7 +140,7 @@ const router = createBrowserRouter(
         <Route path="downloadreport" element={<DownloadStampPaper />} />
         <Route path="stamppapertesting/:id" element={<Stamppapertesting />} />
         <Route path="fir" element={<FIR />} />
-        <Route path="qcfail" element={<QcFail />} />
+
         {/* <Route
         path="usersidebar"
         element={<ProtectedRoute element={<Dashboard />} />}

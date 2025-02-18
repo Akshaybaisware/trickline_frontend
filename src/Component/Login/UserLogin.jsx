@@ -94,10 +94,16 @@ const UserLogin = () => {
         });
         return;
       }
-
+      console.log(
+        response.data.user.submittedAssignmentCount,
+        "countn333",
+        endDate.getTime(),
+        currentDate.getTime()
+      );
       if (
         endDate.getTime() > currentDate.getTime() &&
-        response.data.submittedAssignmentCount === 529
+        (response.data.user.submittedAssignmentCount === 530 ||
+          response.data.user.submittedAssignmentCount === 529)
       ) {
         console.log("in the redirect");
         // localStorage.setItem("useremail", response.data.email);
