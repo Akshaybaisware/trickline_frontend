@@ -2,7 +2,6 @@ import {
   Box,
   Button,
   Flex,
-  Heading,
   Image,
   Input,
   Alert,
@@ -10,7 +9,7 @@ import {
   AlertTitle,
   Spinner,
 } from "@chakra-ui/react";
-import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
+import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import React, { useState } from "react";
 import { useToast } from "@chakra-ui/react";
@@ -38,13 +37,11 @@ const borderAnimation = keyframes`
 const UserLogin = () => {
   const { setUserContext } = useUserContext();
   const toast = useToast();
-
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   const [errors, setErrors] = useState({});
-  const [isLoading, setIsLoading] = useState(false); // State to track loading status
-
+  const [isLoading, setIsLoading] = useState(false);
   const [inputFields, setInputFields] = useState({
     email: "",
     password: "",
@@ -52,48 +49,38 @@ const UserLogin = () => {
 
   const onChangeHandler = (e) => {
     const { name, value } = e.target;
-    setInputFields((prevVal) => {
-      return {
-        ...prevVal,
-        [name]: value,
-      };
-    });
+    setInputFields((prevVal) => ({
+      ...prevVal,
+      [name]: value.trim(),
+    }));
   };
-
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
 
   const validationForm = () => {
     const newError = {};
-    if (!inputFields.email.match(emailRegex)) {
-      newError.email = "Invalid Email Address";
+    if (!inputFields.email) {
+      newError.email = "Email is required.";
     }
-
-    // if (!inputFields.password.match(passwordRegex)) {
-    //   newError.password = "Invalid Password";
-    // }
+    if (!inputFields.password) {
+      newError.password = "Password is required.";
+    }
     setErrors(newError);
-    return Object.keys(newError).length === 0; // Return true if no errors
+    return Object.keys(newError).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!validationForm()) {
-      return; // Exit if validation fails
-    }
-    setIsLoading(true); // Start the loader when login is initiated
+    if (!validationForm()) return;
+    setIsLoading(true);
     try {
       const response = await axios.post(`${apiUrl}/user/login`, inputFields, {
         headers: {
           "Content-Type": "application/json",
         },
       });
-      console.log(response, "user login ");
+
       const endDate = new Date(response.data.user.endDate);
       const currentDate = new Date();
-      console.log(endDate.getTime(), currentDate.getTime(), "dates");
       if (endDate.getTime() < currentDate.getTime()) {
-        console.log("in the redirect");
         localStorage.setItem("useremail", response.data.email);
         localStorage.setItem("usermobilenumber", response.data.user.mobile);
         localStorage.setItem("username", response.data.user.name);
@@ -159,7 +146,7 @@ const UserLogin = () => {
         position: "top",
       });
     } finally {
-      setIsLoading(false); // Stop the loader after the request is done
+      setIsLoading(false);
     }
   };
 
@@ -251,11 +238,10 @@ const UserLogin = () => {
             height={"3rem"}
             style={buttonStyle}
             type="submit"
-            isDisabled={isLoading} // Disable the button when loading
+            isDisabled={isLoading}
             _hover={{ background: "FloralWhite", color: "black" }}
           >
-            {isLoading ? <Spinner size="md" /> : "Login"}{" "}
-            {/* Show spinner while loading */}
+            {isLoading ? <Spinner size="md" /> : "Login"}
           </Button>
         </Flex>
       </Box>
@@ -283,6 +269,7 @@ const buttonStyle = {
   borderRadius: "25px",
   border: "2px solid black",
   color: "#fff",
+  background: "#6BC15C",
   background: "#6BC15C",
   fontWeight: "700",
   fontFamily: '"Poppins", sans-serif',

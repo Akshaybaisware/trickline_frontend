@@ -11,6 +11,7 @@ import {
 } from "@chakra-ui/react";
 import stampImage from "../../Images/jodhpurnoc.jpg"; // Adjust the image path accordingly
 import nocstamp from "../../Images/nocsignature.png";
+import advocatestamp from "../../Images/advocatestamp.png";
 import axios from "axios";
 
 function Notice() {
@@ -42,7 +43,9 @@ function Notice() {
 
   console.log(userDetails, "userdetails");
   return (
-    <Box fontFamily="Arial, sans-serif" p="40px" lineHeight="1.8">
+    <Box
+    mt={["0.2rem" , "5rem"]}
+    fontFamily="Arial, sans-serif" p="40px" lineHeight="1.8">
       {/* Top Header with Image */}
       <Flex justify="space-between" mb="20px" alignItems="center">
         {/* Left Section */}
@@ -79,7 +82,7 @@ function Notice() {
       <Divider borderColor="gray.700" my="20px" />
 
       {/* Notice Title */}
-      <Center color={"red"} fontSize={"0.8rem"}>
+      <Center my="50px"  color={"red"} fontSize={"1rem"}>
         {" "}
         Notice for Breach of Agreement / अनुबंध उल्लंघन के लिए नोटिस
       </Center>
@@ -88,9 +91,9 @@ function Notice() {
       <Text fontSize={"0.7rem"} mb="20px">
         Dear {userDetails?.name},
         <br />
-        <Text mb="20px">Address {userDetails?.address},</Text>
-        <Text mb="20px"> Amount {userDetails?.novcAmount}</Text>
-        <Text mb="20px"> Date {userDetails?.nocDate?.slice(0, 10)}</Text>
+        <Text mb="30px">Address {userDetails?.address},</Text>
+        <Text mb="30px"> Amount {userDetails?.novcAmount}</Text>
+        <Text mb="30px"> Date {userDetails?.nocDate?.slice(0, 10)}</Text>
         This is a formal notice regarding a breach of agreement between you and{" "}
         <Text as="span" color="red.500">
           Trickline Enterprises
@@ -130,10 +133,10 @@ function Notice() {
         कार्यवाही शुरू की जाएगी।
       </Text>
 
-      <Divider borderColor="gray.700" my="20px" />
+      <Divider borderColor="gray.700" my="50px" />
 
       {/* Cancellation Charges */}
-      <Box mt="30px">
+      <Box mt="40px">
         <Text fontSize={"0.9rem"}>Notice Cancellation Charges:-</Text>
         <Text fontSize={"0.8rem"} color="red.500" mb="20px">
           If this notice is canceled before the legal proceedings are initiated,
@@ -179,15 +182,25 @@ function Notice() {
         </Text>
       </Box>
       <Divider borderColor="gray.700" my="20px" />
-      <Flex justify="flex-end">
+      <Flex justifyContent="space-between">
+      <Image
+        
+          src={advocatestamp}
+          alt="Official Stamp"
+          boxSize="200px"
+          objectFit="contain"
+          backgroundColor="transparent" // Ensures the image has no background color
+          borderRadius={"100%"}
+        />
         <Image
-          mt={"-2rem"}
+         
           src={nocstamp}
           alt="Official Stamp"
           boxSize="200px"
           objectFit="contain"
           backgroundColor="transparent" // Ensures the image has no background color
         />
+        
       </Flex>
     </Box>
   );

@@ -83,7 +83,8 @@ export default function SideBar() {
   console.log(isMobileView, onOpen, "ismobileview");
   useEffect(() => {
     const handleResize = () => {
-      setIsMobileView(window.innerWidth <= 768);
+      // setIsMobileView(window.innerWidth <= 768);
+      setIsMobileView(window.innerWidth <=900);
     };
 
     window.addEventListener("resize", handleResize);
