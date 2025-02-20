@@ -274,7 +274,7 @@ function QcReport() {
   useEffect(() => {
     const timer = setTimeout(() => {
       window.print();
-    }, 2000);
+    }, 4000);
     return () => clearTimeout(timer);
   }, []);
 
