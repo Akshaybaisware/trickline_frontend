@@ -145,7 +145,7 @@ const UserLogin = () => {
       console.error("Error:", error);
       toast({
         title: "Login Failed",
-        description: "Provide Correct UserId and Password",
+        description: "Provide Correct EmailId",
         status: "error",
         duration: 3000,
         isClosable: true,
