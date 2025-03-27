@@ -105,7 +105,7 @@ export default function SideBar() {
       duration: 3000,
       isClosable: true,
     });
-    navigate("/");
+    navigate("/userlogin");
   };
 
   return (
