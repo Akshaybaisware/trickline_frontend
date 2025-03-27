@@ -30,7 +30,7 @@ export default function Navbar() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
-  const token = sessionStorage.getItem("token"); // Replace 'token' with your actual cookie name
+  const token = localStorage.getItem("token"); // Replace 'token' with your actual cookie name
   console.log(token, "dasdasd");
   // let userID;
   // Check if token exists
@@ -43,7 +43,7 @@ export default function Navbar() {
   } else {
     console.log("Token not found");
   }
-  const userRole = sessionStorage.getItem("userrole");
+  const userRole = localStorage.getItem("userrole");
   console.log(userRole);
 
   const handleSubmit = async (e) => {
@@ -84,17 +84,16 @@ export default function Navbar() {
 
   return (
     <Flex
-    
       direction={{ base: "row", md: "row" }} // Stack vertically on small screens and horizontally on medium and larger screens
       justifyContent="space-between"
       // alignItems="center"
       paddingX={{ base: "3", md: "8" }} // Add padding on small screens and larger screens
       paddingY="4"
-        bg={"rgb(77, 26, 165)"}
+      bg={"rgb(77, 26, 165)"}
       // bg={"#0F0623"}
     >
       <Box
-      mt={"1rem"}
+        mt={"1rem"}
         display="flex"
         alignItems="center"
         marginBottom={{ base: "4", md: "0" }}
@@ -103,7 +102,7 @@ export default function Navbar() {
           marginLeft={{ base: "0", md: "0rem" }}
           boxSize={{ base: "90px", md: "150px" }}
           src={Dataentry}
-          
+
         /> */}
         {/* <Heading
           fontSize={{ base: "2xl", md: "5xl" }}
@@ -112,7 +111,7 @@ export default function Navbar() {
           Zemix Services
         </Heading> */}
         <Heading
-        color={"white"}
+          color={"white"}
           fontSize={{ base: "2xl", md: "5xl" }}
           marginLeft={{ base: "1rem", md: "10rem" }}
           style={{
@@ -149,15 +148,15 @@ export default function Navbar() {
             marginRight="1.5"
           /> */}
           <Avatar
-  marginTop={"1rem"}
-  borderRadius="50%"
-  width={{ base: "2.5rem", md: "3.5rem" }}
-  height={{ base: "2.4rem", md: "3rem" }}
-  bg={"gray"}
-  border={"6px solid lightgray"}
-  src="https://randomuser.me/api/portraits/men/33.jpg" // Replace with any Indian-themed placeholder
-  marginRight="1.5"
-/>
+            marginTop={"1rem"}
+            borderRadius="50%"
+            width={{ base: "2.5rem", md: "3.5rem" }}
+            height={{ base: "2.4rem", md: "3rem" }}
+            bg={"gray"}
+            border={"6px solid lightgray"}
+            src="https://randomuser.me/api/portraits/men/33.jpg" // Replace with any Indian-themed placeholder
+            marginRight="1.5"
+          />
         </Box>
       )}
 

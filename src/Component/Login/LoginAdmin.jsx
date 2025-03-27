@@ -1,4 +1,3 @@
-
 // import {
 //   Box,
 //   Button,
@@ -264,9 +263,8 @@ import {
   AlertTitle,
   Spinner, // Chakra UI spinner for loader
   useToast,
-  
 } from "@chakra-ui/react";
-import {  keyframes, css } from '@chakra-ui/react';
+import { keyframes, css } from "@chakra-ui/react";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
 import { NavLink, useNavigate } from "react-router-dom";
 import React, { useState } from "react";
@@ -274,9 +272,8 @@ import axios from "axios";
 import logo from "../../Images/TRICKLINE_2.png";
 import { jwtDecode } from "jwt-decode";
 import { useUserContext } from "../Context/UserContext";
-import bg from "../../Images/dataentry_adminbg.webp"
+import bg from "../../Images/dataentry_adminbg.webp";
 // Define a light-weight background image URL (replace with your preferred URL)
-
 
 const borderAnimation = keyframes`
   0% {
@@ -292,8 +289,6 @@ const borderAnimation = keyframes`
     border-width: 4px;
   }
 `;
-
-
 
 const LoginAdmin = () => {
   const { setUserContext } = useUserContext();
@@ -343,11 +338,11 @@ const LoginAdmin = () => {
       if (response.status === 200) {
         setUserrole(response.data.role);
         setUserContext(response.data.role);
-        sessionStorage.setItem("userrole", response.data.role);
+        localStorage.setItem("userrole", response.data.role);
 
         const token = response.data.token;
         const decodedToken = jwtDecode(token);
-        sessionStorage.setItem("token", JSON.stringify(decodedToken));
+        localStorage.setItem("token", JSON.stringify(decodedToken));
 
         toast({
           title: "Hello Admin",
@@ -397,30 +392,30 @@ const LoginAdmin = () => {
         alignItems="center"
         justifyContent={"center"}
         padding="20px"
-       bgImage={`url(${bg})`}
+        bgImage={`url(${bg})`}
         backgroundSize="cover"
         backgroundPosition="center"
         animation="fadeIn 2s ease-in-out" // Apply fade-in animation
         transition="background 0.5s ease-in-out"
       >
         <Box
-  borderRadius="25%"
-  overflow="hidden"
-  display="flex"
-  flexDirection="column"
-  alignItems="center"
-  marginY="20px"
-  border="4px solid #FF6347"
-  animation={`${borderAnimation} 2s infinite`}
-  css={css`
-    transition: all 0.3s ease-in-out;
-    &:hover {
-      border-width: 8px;
-    }
-  `}
->
-  <Image width={"23rem"} src={logo} alt="Logo" />
-</Box>
+          borderRadius="25%"
+          overflow="hidden"
+          display="flex"
+          flexDirection="column"
+          alignItems="center"
+          marginY="20px"
+          border="4px solid #FF6347"
+          animation={`${borderAnimation} 2s infinite`}
+          css={css`
+            transition: all 0.3s ease-in-out;
+            &:hover {
+              border-width: 8px;
+            }
+          `}
+        >
+          <Image width={"23rem"} src={logo} alt="Logo" />
+        </Box>
 
         <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
@@ -444,7 +439,11 @@ const LoginAdmin = () => {
           </Alert>
         )}
 
-        <Flex direction="column" width={["90%", "70%", "50%", "40%"]} marginY="10px">
+        <Flex
+          direction="column"
+          width={["90%", "70%", "50%", "40%"]}
+          marginY="10px"
+        >
           <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
             <FaLock style={{ width: "4%", marginLeft: "20px" }} />
             <Input
@@ -490,7 +489,8 @@ const LoginAdmin = () => {
             _hover={{ background: "FloralWhite", color: "black" }}
             isDisabled={loading} // Disable the button while loading
           >
-            {loading ? <Spinner size="sm" color="gray" /> : "Login"} {/* Spinner while loading */}
+            {loading ? <Spinner size="sm" color="gray" /> : "Login"}{" "}
+            {/* Spinner while loading */}
           </Button>
         </Flex>
       </Box>

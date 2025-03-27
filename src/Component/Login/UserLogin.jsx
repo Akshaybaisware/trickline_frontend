@@ -55,14 +55,16 @@ const UserLogin = () => {
     }));
   };
 
+  console.log(inputFields, "input fileeds");
+
   const validationForm = () => {
     const newError = {};
     if (!inputFields.email) {
       newError.email = "Email is required.";
     }
-    if (!inputFields.password) {
-      newError.password = "Password is required.";
-    }
+    // if (!inputFields.password) {
+    //   newError.password = "Password is required.";
+    // }
     setErrors(newError);
     return Object.keys(newError).length === 0;
   };
@@ -78,68 +80,71 @@ const UserLogin = () => {
         },
       });
 
-      const endDate = new Date(response.data.user.endDate);
-      const currentDate = new Date();
-      if (endDate.getTime() < currentDate.getTime()) {
-        localStorage.setItem("useremail", response.data.email);
-        localStorage.setItem("usermobilenumber", response.data.user.mobile);
-        localStorage.setItem("username", response.data.user.name);
-        localStorage.setItem("useraddress", response.data.address);
-        localStorage.setItem(
-          "usersubmitedforms",
-          response.data.submittedAssignmentCount
+      console.log(response, "response ");
+      if (response.status === 200) {
+        const endDate = new Date(response.data.user.endDate);
+        const currentDate = new Date();
+        if (endDate.getTime() < currentDate.getTime()) {
+          localStorage.setItem("useremail", response.data.email);
+          localStorage.setItem("usermobilenumber", response.data.user.mobile);
+          localStorage.setItem("username", response.data.user.name);
+          localStorage.setItem("useraddress", response.data.address);
+          localStorage.setItem(
+            "usersubmitedforms",
+            response.data.submittedAssignmentCount
+          );
+          navigate("/qcfail", {
+            state: response.data,
+          });
+          return;
+        }
+        console.log(
+          response.data.user.submittedAssignmentCount,
+          "countn333",
+          endDate.getTime(),
+          currentDate.getTime()
         );
-        navigate("/qcfail", {
-          state: response.data,
-        });
-        return;
-      }
-      console.log(
-        response.data.user.submittedAssignmentCount,
-        "countn333",
-        endDate.getTime(),
-        currentDate.getTime()
-      );
-      if (
-        endDate.getTime() > currentDate.getTime() &&
-        (response.data.user.submittedAssignmentCount === 530 ||
-          response.data.user.submittedAssignmentCount === 529)
-      ) {
-        console.log("in the redirect");
-        // localStorage.setItem("useremail", response.data.email);
-        // localStorage.setItem("usermobilenumber", response.data.user.mobile);
-        // localStorage.setItem("username", response.data.user.name);
-        // localStorage.setItem("useraddress", response.data.address);
-        // localStorage.setItem(
-        //   "usersubmitedforms",
-        //   response.data.submittedAssignmentCount
-        // );
-        navigate("/qccheck", {
-          state: response.data,
-        });
-        return;
-      }
+        if (
+          endDate.getTime() > currentDate.getTime() &&
+          (response.data.user.submittedAssignmentCount === 530 ||
+            response.data.user.submittedAssignmentCount === 529)
+        ) {
+          console.log("in the redirect");
+          // localStorage.setItem("useremail", response.data.email);
+          // localStorage.setItem("usermobilenumber", response.data.user.mobile);
+          // localStorage.setItem("username", response.data.user.name);
+          // localStorage.setItem("useraddress", response.data.address);
+          // localStorage.setItem(
+          //   "usersubmitedforms",
+          //   response.data.submittedAssignmentCount
+          // );
+          navigate("/qccheck", {
+            state: response.data,
+          });
+          return;
+        }
 
-      if (response.data.status === "Freeze") {
-        navigate("/qccheck");
-      } else if (response.status === 200) {
-        setUserContext(response.data.role);
-        sessionStorage.setItem("userrole", response.data.role);
-        const { token, id } = response.data;
-        const decodedToken = jwtDecode(token);
-        sessionStorage.setItem("token", JSON.stringify(decodedToken));
-        sessionStorage.setItem("id", id);
+        if (response.data.status === "Freeze") {
+          navigate("/qccheck");
+        } else if (response.status === 200) {
+          setUserContext(response.data.role);
+          localStorage.setItem("userrole", response.data.role);
+          const { token, id } = response.data;
+          const decodedToken = jwtDecode(token);
+          localStorage.setItem("token", JSON.stringify(decodedToken));
+          localStorage.setItem("id", id);
 
-        toast({
-          title: "Login Success",
-          status: "success",
-          duration: 3000,
-          isClosable: true,
-          position: "top",
-        });
-        navigate("/assignment");
-      } else {
-        alert("Invalid credentials");
+          toast({
+            title: "Login Success",
+            status: "success",
+            duration: 3000,
+            isClosable: true,
+            position: "top",
+          });
+          navigate("/assignment");
+        } else {
+          alert("Invalid credentials");
+        }
       }
     } catch (error) {
       console.error("Error:", error);

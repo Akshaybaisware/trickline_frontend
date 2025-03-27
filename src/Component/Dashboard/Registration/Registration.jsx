@@ -375,7 +375,7 @@ const Registration = () => {
   };
   const emailsending = async (email, _id) => {
     try {
-      // console.log("email function", sessionStorage.getItem("token"));
+      // console.log("email function", localStorage.getItem("token"));
       const response = await axios.post(
         // "https://zemixbe-production.up.railway.app/api/user/sendconfirmmail",
         "https://glorry-bakcend-updated-production.up.railway.app/api/user/senduserinfo",

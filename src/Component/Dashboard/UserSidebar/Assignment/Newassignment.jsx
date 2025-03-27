@@ -58,7 +58,7 @@ function ContentValidationfrom() {
   const apiUrl = import.meta.env.VITE_APP_API_URL;
 
   const userId = localStorage.getItem("userId");
-  const token = sessionStorage.getItem("token"); // Replace 'token' with your actual cookie name
+  const token = localStorage.getItem("token"); // Replace 'token' with your actual cookie name
   console.log(token, "dasdasd");
   let userID;
   // Check if token exists
@@ -80,7 +80,7 @@ function ContentValidationfrom() {
   const annualRevenue = useRef();
   const jobFunctional = useRef();
   const pinCode = useRef();
-  
+
   const [userdata, setUserData] = useState();
   const [currentPage, setCurrentPage] = useState(1);
   const [currentpageshowinginui, setcurrentpageshowinginui] = useState();
@@ -196,12 +196,12 @@ function ContentValidationfrom() {
       const response = await axios.post(`${apiUrl}/assignment/addassignment`, {
         userId: userID,
       });
-  
+
       console.log(response, "mkninmiopn");
       setcurrentpageshowinginui(submittedAssignmentCount + 1);
       if (response.status === 201) {
         alert("Success: Form submitted successfully");
-        
+
         // Clear the input fields
         name.current.value = "";
         mobile.current.value = "";
@@ -217,7 +217,6 @@ function ContentValidationfrom() {
       console.log(error.message);
     }
   };
-  
 
   // Fetch data on component mount and update every 10 minutes
 
@@ -353,7 +352,7 @@ function ContentValidationfrom() {
           <Text mt={"0.5rem"} fontFamily="sans-serif">
             IP:
           </Text>
-          <Input fontFamily="sans-serif"  ref={annualRevenue}/>
+          <Input fontFamily="sans-serif" ref={annualRevenue} />
           <Text mt={"0.5rem"} fontFamily="sans-serif">
             LICENSE:
           </Text>

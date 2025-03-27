@@ -73,7 +73,7 @@ export default function SideBar() {
   const [isMobileView, setIsMobileView] = useState(window.innerWidth <= 768);
   const { getUser } = useUserContext();
   // const userRole = getUser();
-  const userRole = sessionStorage.getItem("userrole");
+  const userRole = localStorage.getItem("userrole");
   console.log(userRole, "userrole");
   const isAdmin = userRole === "Admin";
   const isUser = userRole === "User";
@@ -84,7 +84,7 @@ export default function SideBar() {
   useEffect(() => {
     const handleResize = () => {
       // setIsMobileView(window.innerWidth <= 768);
-      setIsMobileView(window.innerWidth <=900);
+      setIsMobileView(window.innerWidth <= 900);
     };
 
     window.addEventListener("resize", handleResize);
@@ -96,7 +96,7 @@ export default function SideBar() {
 
   const handleSignout = () => {
     localStorage.clear();
-    sessionStorage.clear();
+    localStorage.clear();
     toast({
       title: "Logout Success.",
       // description: "We've created your account for you.",
@@ -128,7 +128,9 @@ export default function SideBar() {
             {isAdmin && (
               <ListItem className="listItem" p="10px" borderRadius="10px">
                 <Flex alignItems="center">
-                  <DashboardIcon style={{ color:"yellow" ,marginTop: "0rem" }} />
+                  <DashboardIcon
+                    style={{ color: "yellow", marginTop: "0rem" }}
+                  />
                   <NavLink
                     to="dashboard"
                     style={{
@@ -178,7 +180,7 @@ export default function SideBar() {
                                     width: "3.5rem",
                                     height: "3rem",
                                     textAlign: "center",
-                                    color:"yellow"
+                                    color: "yellow",
                                   }}
                                 />
                                 <Text
@@ -204,11 +206,7 @@ export default function SideBar() {
                                 p="5px"
                                 borderRadius="10px"
                               >
-                                <ListIcon
-                                  as={BsAmd}
-                                  color="yellow"
-                                  ml="10px"
-                                />
+                                <ListIcon as={BsAmd} color="yellow" ml="10px" />
                                 <NavLink to="/user/Registrationform">
                                   <Text
                                     as="span"
@@ -252,7 +250,7 @@ export default function SideBar() {
                                     width: "3.5rem",
                                     height: "3rem",
                                     textAlign: "center",
-                                    color:"yellow"
+                                    color: "yellow",
                                   }}
                                 />
                                 <Text
@@ -456,8 +454,10 @@ export default function SideBar() {
                   borderRadius="10px"
                 >
                   {/* <MovingIcon className="sidebaricon" /> */}
-                  <MovingIcon className="sidebaricon" style={{ color: "yellow" }} />
-
+                  <MovingIcon
+                    className="sidebaricon"
+                    style={{ color: "yellow" }}
+                  />
 
                   <Text
                     as="span"
@@ -505,7 +505,7 @@ export default function SideBar() {
                                           width: "3.5rem",
                                           height: "3rem",
                                           textAlign: "center",
-                                             color:"yellow"
+                                          color: "yellow",
                                         }}
                                       />
                                       <Text
@@ -605,7 +605,7 @@ export default function SideBar() {
                                           width: "3.5rem",
                                           height: "3rem",
                                           textAlign: "center",
-                                             color:"yellow"
+                                          color: "yellow",
                                         }}
                                       />
                                       <Text
@@ -854,8 +854,10 @@ export default function SideBar() {
                           color="yellow"
                         >
                           {/* <MovingIcon className="sidebaricon" /> */}
-                          <MovingIcon className="sidebaricon" style={{ color: "yellow" }} />
-
+                          <MovingIcon
+                            className="sidebaricon"
+                            style={{ color: "yellow" }}
+                          />
 
                           <Text
                             as="span"
@@ -1198,10 +1200,7 @@ export default function SideBar() {
                         </ListItem>
                       </Stack>
                     </DrawerBody>
-                    <DrawerFooter>
-                      {" "}
-                     
-                    </DrawerFooter>
+                    <DrawerFooter> </DrawerFooter>
                   </DrawerContent>
                 </DrawerOverlay>
               </Drawer>
