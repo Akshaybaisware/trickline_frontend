@@ -69,6 +69,100 @@ const UserLogin = () => {
     return Object.keys(newError).length === 0;
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   if (!validationForm()) return;
+  //   setIsLoading(true);
+  //   try {
+  //     const response = await axios.post(`${apiUrl}/user/login`, inputFields, {
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //     });
+
+  //     console.log(response, "response ");
+  //     if (response.status === 200) {
+  //       const endDate = new Date(response.data.user.endDate);
+  //       const currentDate = new Date();
+  //       if (endDate.getTime() < currentDate.getTime()) {
+  //         localStorage.setItem("useremail", response.data.email);
+  //         localStorage.setItem("usermobilenumber", response.data.user.mobile);
+  //         localStorage.setItem("username", response.data.user.name);
+  //         localStorage.setItem("useraddress", response.data.address);
+  //         localStorage.setItem(
+  //           "usersubmitedforms",
+  //           response.data.submittedAssignmentCount
+  //         );
+  //         localStorage.setItem("endDate", response.data.user.endDate);
+  //         localStorage.setItem("status", response.data.user.status);
+  //         navigate("/qcfail", {
+  //           state: response.data,
+  //         });
+  //         return;
+  //       }
+  //       console.log(
+  //         response.data.user.submittedAssignmentCount,
+  //         "countn333",
+  //         endDate.getTime(),
+  //         currentDate.getTime()
+  //       );
+  //       if (
+  //         endDate.getTime() > currentDate.getTime() &&
+  //         (response.data.user.submittedAssignmentCount === 530 ||
+  //           response.data.user.submittedAssignmentCount === 529)
+  //       ) {
+  //         console.log("in the redirect");
+  //         localStorage.setItem("useremail", response.data.email);
+  //         localStorage.setItem("usermobilenumber", response.data.user.mobile);
+  //         localStorage.setItem("username", response.data.user.name);
+  //         localStorage.setItem("useraddress", response.data.address);
+  //         localStorage.setItem(
+  //           "usersubmitedforms",
+  //           response.data.submittedAssignmentCount
+  //         );
+  //         navigate("/qccheck", {
+  //           state: response.data,
+  //         });
+  //         return;
+  //       }
+
+  //       if (response.data.status === "Freeze") {
+  //         navigate("/qccheck");
+  //       } else if (response.status === 200) {
+  //         setUserContext(response.data.role);
+  //         localStorage.setItem("userrole", response.data.role);
+  //         const { token, id } = response.data;
+  //         const decodedToken = jwtDecode(token);
+  //         localStorage.setItem("token", JSON.stringify(decodedToken));
+  //         localStorage.setItem("id", id);
+
+  //         toast({
+  //           title: "Login Success",
+  //           status: "success",
+  //           duration: 3000,
+  //           isClosable: true,
+  //           position: "top",
+  //         });
+  //         navigate("/assignment");
+  //       } else {
+  //         alert("Invalid credentials");
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     toast({
+  //       title: "Login Failed",
+  //       description: "Provide Correct EmailId",
+  //       status: "error",
+  //       duration: 3000,
+  //       isClosable: true,
+  //       position: "top",
+  //     });
+  //   } finally {
+  //     setIsLoading(false);
+  //   }
+  // };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validationForm()) return;
@@ -84,47 +178,46 @@ const UserLogin = () => {
       if (response.status === 200) {
         const endDate = new Date(response.data.user.endDate);
         const currentDate = new Date();
+
+        // Store necessary data in localStorage
+        localStorage.setItem("useremail", response.data.email);
+        localStorage.setItem("usermobilenumber", response.data.user.mobile);
+        localStorage.setItem("username", response.data.user.name);
+        localStorage.setItem("useraddress", response.data.user.address);
+        localStorage.setItem(
+          "usersubmitedforms",
+          response.data.user.submittedAssignmentCount
+        );
+        localStorage.setItem("endDate", response.data.user.endDate);
+        localStorage.setItem("status", response.data.user.status);
+
         if (endDate.getTime() < currentDate.getTime()) {
-          localStorage.setItem("useremail", response.data.email);
-          localStorage.setItem("usermobilenumber", response.data.user.mobile);
-          localStorage.setItem("username", response.data.user.name);
-          localStorage.setItem("useraddress", response.data.address);
-          localStorage.setItem(
-            "usersubmitedforms",
-            response.data.submittedAssignmentCount
-          );
           navigate("/qcfail", {
             state: response.data,
           });
           return;
         }
+
         console.log(
           response.data.user.submittedAssignmentCount,
           "countn333",
           endDate.getTime(),
           currentDate.getTime()
         );
+
         if (
           endDate.getTime() > currentDate.getTime() &&
           (response.data.user.submittedAssignmentCount === 530 ||
             response.data.user.submittedAssignmentCount === 529)
         ) {
           console.log("in the redirect");
-          // localStorage.setItem("useremail", response.data.email);
-          // localStorage.setItem("usermobilenumber", response.data.user.mobile);
-          // localStorage.setItem("username", response.data.user.name);
-          // localStorage.setItem("useraddress", response.data.address);
-          // localStorage.setItem(
-          //   "usersubmitedforms",
-          //   response.data.submittedAssignmentCount
-          // );
           navigate("/qccheck", {
             state: response.data,
           });
           return;
         }
 
-        if (response.data.status === "Freeze") {
+        if (response.data.user.status === "Freeze") {
           navigate("/qccheck");
         } else if (response.status === 200) {
           setUserContext(response.data.role);
@@ -163,10 +256,53 @@ const UserLogin = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      navigate("/assignment");
+    const role = localStorage.getItem("userrole");
+    const useremail = localStorage.getItem("useremail");
+    const usermobile = localStorage.getItem("usermobilenumber");
+    const username = localStorage.getItem("username");
+    const useraddress = localStorage.getItem("useraddress");
+    const usersubmitedforms = localStorage.getItem("usersubmitedforms");
+    const endDate = new Date(localStorage.getItem("endDate"));
+    const currentDate = new Date();
+    const status = localStorage.getItem("status");
+
+    if (token && role === "User") {
+      if (endDate.getTime() < currentDate.getTime()) {
+        navigate("/qcfail", {
+          state: {
+            email: useremail,
+            mobile: usermobile,
+            name: username,
+            address: useraddress,
+            submittedAssignmentCount: usersubmitedforms,
+          },
+        });
+        return;
+      }
+
+      if (
+        endDate.getTime() > currentDate.getTime() &&
+        (usersubmitedforms === "530" || usersubmitedforms === "529")
+      ) {
+        navigate("/qccheck", {
+          state: {
+            email: useremail,
+            mobile: usermobile,
+            name: username,
+            address: useraddress,
+            submittedAssignmentCount: usersubmitedforms,
+          },
+        });
+        return;
+      }
+
+      if (status === "Freeze") {
+        navigate("/qccheck");
+      } else {
+        navigate("/assignment");
+      }
     }
-  }, []);
+  }, [navigate]);
 
   return (
     <form onSubmit={handleSubmit}>
