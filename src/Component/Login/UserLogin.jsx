@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useToast } from "@chakra-ui/react";
 import axios from "axios";
 import logo from "../../Images/TRICKLINE_2.png";
@@ -160,6 +160,13 @@ const UserLogin = () => {
       setIsLoading(false);
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/assignment");
+    }
+  }, []);
 
   return (
     <form onSubmit={handleSubmit}>

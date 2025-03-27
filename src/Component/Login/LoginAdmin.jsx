@@ -267,7 +267,7 @@ import {
 import { keyframes, css } from "@chakra-ui/react";
 import { FaEnvelope, FaLock } from "react-icons/fa"; // Icons from react-icons library
 import { NavLink, useNavigate } from "react-router-dom";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import logo from "../../Images/TRICKLINE_2.png";
 import { jwtDecode } from "jwt-decode";
@@ -380,6 +380,15 @@ const LoginAdmin = () => {
       setLoading(false); // Set loading to false after the login process finishes
     }
   };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    const userrole = localStorage.getItem("userrole");
+    const isAdmin = userrole === "Admin";
+    if (token && isAdmin) {
+      navigate("/dashboard");
+    }
+  }, []);
 
   return (
     <form>
