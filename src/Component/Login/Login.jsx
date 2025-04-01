@@ -245,12 +245,10 @@ const Login = () => {
           </NavLink>
         </Box>
       </Box> */}
-       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minH="100vh" bg="gray.100" color="gray.900">
+        <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minH="100vh" bg="gray.100" color="gray.900">
       <Heading as="h1" size="4xl" fontWeight="bold">404</Heading>
       <Text fontSize="xl" mt={2}>Oops! The page you're looking for doesn't exist.</Text>
-      {/* <Button mt={4} colorScheme="blue" onClick={() => window.location.href = "/"}>
-        Go Home
-      </Button> */}
+     <Text>192.78.678.765</Text>
     </Box>
     </>
   );
