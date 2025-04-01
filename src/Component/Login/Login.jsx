@@ -122,7 +122,7 @@
 import React from "react";
 import logo from "../../Images/TRICKLINE_2.png";
 import { NavLink } from "react-router-dom";
-import { Box, Button, Image, keyframes } from "@chakra-ui/react";
+import { Box, Button, Heading, Image, keyframes, Text } from "@chakra-ui/react";
 import bgImage from "../../Images/dataentry_banner.webp";
 
 // Define keyframes for animations
@@ -140,7 +140,7 @@ const fadeIn = keyframes`
 const Login = () => {
   return (
     <>
-      <Box
+      {/* <Box
         bgImage={`url(${bgImage})`}
         bgSize="cover"
         bgPosition="center"
@@ -153,7 +153,7 @@ const Login = () => {
         // filter="grayscale(100%)" // Black and white effect
         position="relative"
       >
-        {/* Overlay for better text contrast */}
+        
         <Box
           position="absolute"
           top={0}
@@ -164,7 +164,7 @@ const Login = () => {
           zIndex={0}
         ></Box>
 
-        {/* Top Banner Section */}
+    
         <Box
           textAlign="center"
           fontSize="2xl"
@@ -177,7 +177,7 @@ const Login = () => {
           Data Entry Work - Highest Paid Data Entry Jobs - Earn from Home
         </Box>
 
-        {/* Floating logo with rounded corners and colored background */}
+       
         <Box
           p={4}
           borderRadius="25%"
@@ -196,7 +196,7 @@ const Login = () => {
           />
         </Box>
 
-        {/* Fade-in login buttons */}
+      
         <Box
           borderRadius="16px"
           display="flex"
@@ -244,7 +244,14 @@ const Login = () => {
             </Button>
           </NavLink>
         </Box>
-      </Box>
+      </Box> */}
+       <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minH="100vh" bg="gray.100" color="gray.900">
+      <Heading as="h1" size="4xl" fontWeight="bold">404</Heading>
+      <Text fontSize="xl" mt={2}>Oops! The page you're looking for doesn't exist.</Text>
+      {/* <Button mt={4} colorScheme="blue" onClick={() => window.location.href = "/"}>
+        Go Home
+      </Button> */}
+    </Box>
     </>
   );
 };
