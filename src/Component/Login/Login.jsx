@@ -140,7 +140,7 @@ const fadeIn = keyframes`
 const Login = () => {
   return (
     <>
-      <Box
+      {/* <Box
         bgImage={`url(${bgImage})`}
         bgSize="cover"
         bgPosition="center"
@@ -244,12 +244,18 @@ const Login = () => {
             </Button>
           </NavLink>
         </Box>
-      </Box>
-        {/* <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minH="100vh" bg="gray.100" color="gray.900">
-      <Heading as="h1" size="4xl" fontWeight="bold">404</Heading>
-      <Text fontSize="xl" mt={2}>Oops! The page you're looking for doesn't exist.</Text>
-     <Text>192.78.678.765</Text>
-    </Box> */}
+      </Box> */}
+     <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minH="100vh" bg="gray.100" color="gray.900">
+  <Heading as="h1" size="4xl" fontWeight="bold">404.</Heading>
+  <Text fontSize="xl" mt={2} fontWeight="medium">That's an error.</Text>
+  <Text fontSize="lg" mt={1}>The page you’re looking for is no longer available.</Text>
+  <Text fontSize="lg" mt={1}>It may have been removed or restricted due to policy changes.</Text>
+  <Text mt={4} color="gray.500">192.78.678.765</Text>
+  <Text fontSize="sm" mt={4} color="gray.600">
+    If you believe this is an error, please check our policies or contact support.
+  </Text>
+</Box>
+
     </>
   );
 };
