@@ -8,6 +8,8 @@ import {
   AlertIcon,
   AlertTitle,
   Spinner,
+  Text,
+  Heading,
 } from "@chakra-ui/react";
 import { FaEnvelope, FaLock } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -305,101 +307,107 @@ const UserLogin = () => {
   }, [navigate]);
 
   return (
-    <form onSubmit={handleSubmit}>
-      <Box
-        width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }}
-        marginX="auto"
-        minHeight="100vh"
-        display="flex"
-        flexDirection="column"
-        alignItems="center"
-        justifyContent={"center"}
-        padding="20px"
-        bgImage={`url(${bg})`}
-        backgroundSize="cover"
-        backgroundPosition="center"
-        animation="fadeIn 2s ease-in-out" // Apply fade-in animation
-        transition="background 0.5s ease-in-out"
-      >
-        <Box
-          borderRadius="25%"
-          overflow="hidden" // Ensures the image respects the borderRadius of the Box
-          display="flex"
-          flexDirection="column"
-          alignItems="center"
-          marginY="20px"
-          animation={`${borderAnimation} 2s infinite`}
-          css={css`
-            transition: all 0.3s ease-in-out;
-            &:hover {
-              border-width: 8px;
-            }
-          `}
-        >
-          <Image width={"23rem"} src={logo} alt="Logo" />
-        </Box>
+    // <form onSubmit={handleSubmit}>
+    //   <Box
+    //     width={{ base: "100%", md: "100%", lg: "100%", xl: "100%" }}
+    //     marginX="auto"
+    //     minHeight="100vh"
+    //     display="flex"
+    //     flexDirection="column"
+    //     alignItems="center"
+    //     justifyContent={"center"}
+    //     padding="20px"
+    //     bgImage={`url(${bg})`}
+    //     backgroundSize="cover"
+    //     backgroundPosition="center"
+    //     animation="fadeIn 2s ease-in-out" // Apply fade-in animation
+    //     transition="background 0.5s ease-in-out"
+    //   >
+    //     <Box
+    //       borderRadius="25%"
+    //       overflow="hidden" // Ensures the image respects the borderRadius of the Box
+    //       display="flex"
+    //       flexDirection="column"
+    //       alignItems="center"
+    //       marginY="20px"
+    //       animation={`${borderAnimation} 2s infinite`}
+    //       css={css`
+    //         transition: all 0.3s ease-in-out;
+    //         &:hover {
+    //           border-width: 8px;
+    //         }
+    //       `}
+    //     >
+    //       <Image width={"23rem"} src={logo} alt="Logo" />
+    //     </Box>
 
-        <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
-          <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
-            <FaEnvelope style={{ width: "4%", marginLeft: "20px" }} />
-            <Input
-              name="email"
-              type="text"
-              placeholder="Email"
-              style={inputStyle}
-              onFocus={(e) => (e.target.style.outline = "none")}
-              required
-              onChange={onChangeHandler}
-              value={inputFields.email}
-            />
-          </Flex>
-        </Flex>
-        {errors.email && (
-          <Alert w="70" status="error">
-            <AlertIcon />
-            <AlertTitle>{errors.email}</AlertTitle>
-          </Alert>
-        )}
+    //     <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
+    //       <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
+    //         <FaEnvelope style={{ width: "4%", marginLeft: "20px" }} />
+    //         <Input
+    //           name="email"
+    //           type="text"
+    //           placeholder="Email"
+    //           style={inputStyle}
+    //           onFocus={(e) => (e.target.style.outline = "none")}
+    //           required
+    //           onChange={onChangeHandler}
+    //           value={inputFields.email}
+    //         />
+    //       </Flex>
+    //     </Flex>
+    //     {errors.email && (
+    //       <Alert w="70" status="error">
+    //         <AlertIcon />
+    //         <AlertTitle>{errors.email}</AlertTitle>
+    //       </Alert>
+    //     )}
 
-        <Flex
-          direction="column"
-          width={["90%", "70%", "50%", "40%"]}
-          marginY="10px"
-        >
-          <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
-            <FaLock style={{ width: "4%", marginLeft: "20px" }} />
-            <Input
-              name="password"
-              type="password"
-              placeholder="Password"
-              style={inputStyle}
-              onFocus={(e) => (e.target.style.outline = "none")}
-              required
-              value={inputFields.password}
-              onChange={onChangeHandler}
-            />
-          </Flex>
-        </Flex>
-        {errors.password && (
-          <Alert w="70" status="error">
-            <AlertIcon />
-            <AlertTitle>{errors.password}</AlertTitle>
-          </Alert>
-        )}
+    //     <Flex
+    //       direction="column"
+    //       width={["90%", "70%", "50%", "40%"]}
+    //       marginY="10px"
+    //     >
+    //       <Flex alignItems="center" bg="white" borderRadius="30px" p="10px">
+    //         <FaLock style={{ width: "4%", marginLeft: "20px" }} />
+    //         <Input
+    //           name="password"
+    //           type="password"
+    //           placeholder="Password"
+    //           style={inputStyle}
+    //           onFocus={(e) => (e.target.style.outline = "none")}
+    //           required
+    //           value={inputFields.password}
+    //           onChange={onChangeHandler}
+    //         />
+    //       </Flex>
+    //     </Flex>
+    //     {errors.password && (
+    //       <Alert w="70" status="error">
+    //         <AlertIcon />
+    //         <AlertTitle>{errors.password}</AlertTitle>
+    //       </Alert>
+    //     )}
 
-        <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
-          <Button
-            height={"3rem"}
-            style={buttonStyle}
-            type="submit"
-            isDisabled={isLoading}
-            _hover={{ background: "FloralWhite", color: "black" }}
-          >
-            {isLoading ? <Spinner size="md" /> : "Login"}
-          </Button>
-        </Flex>
-      </Box>
-    </form>
+    //     <Flex direction="column" width={["90%", "70%", "50%", "40%"]}>
+    //       <Button
+    //         height={"3rem"}
+    //         style={buttonStyle}
+    //         type="submit"
+    //         isDisabled={isLoading}
+    //         _hover={{ background: "FloralWhite", color: "black" }}
+    //       >
+    //         {isLoading ? <Spinner size="md" /> : "Login"}
+    //       </Button>
+    //     </Flex>
+    //   </Box>
+    // </form>
+    <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" minH="100vh" bg="gray.100" color="gray.900">
+  <Heading as="h1" size="4xl" fontWeight="bold">404.</Heading>
+  <Text fontSize="xl" mt={2} fontWeight="medium">That's an error.</Text>
+  <Text fontSize="lg" mt={1}>The page you’re looking for is no longer available.</Text>
+  
+</Box>
   );
 };
 
